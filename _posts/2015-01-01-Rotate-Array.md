@@ -54,7 +54,7 @@ void LeftRotateString(char* s, int n, int m)
 
 如下图所示：
 
-![](../images/1/3.jpeg)
+![](../images/Algorithms/1/3.jpeg)
 
 代码则可以这么写：
 ```c

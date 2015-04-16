@@ -7,7 +7,7 @@
   <title>
     {{ page.title }}
     {% if page.category == 'blog' and page.url != '/blog/index.html' %}
-    - Yong Yuan
+    - 肖一飞
     {% endif %}
   </title>
   <link rel="stylesheet" href="../css/site.css">
@@ -34,34 +34,16 @@
   </div>
   <div class="header-container">
     <header class="inner">
-      {% if page.url == '/cn/index.html' %}
       <nav>
         <a class="{% if page.category == 'about' %} selected {% endif %}" href="/cn/">关于</a>
         <a href="/resume/">简历</a>
         <a class="{% if page.category == 'blog' %} selected {% endif %}" href="/blog/">博客</a>
         <a href="https://github.com/xiaoyifeibupt">Github</a>
       </nav>
-      {% else %}
-      <nav>
-        <a class="{% if page.category == 'about' %} selected {% endif %}" href="/">About</a>
-		<a href="/resume/">Resume</a>
-        <a class="{% if page.category == 'blog' %} selected {% endif %}" href="/blog/">Blog</a>
-        <a href="https://github.com/xiaoyifeibupt">Github</a>
-      </nav>
-      {% endif %}
       
       <div class="pull-right right logo">
         <div class="name">
           <a href="/">肖一飞</a><br />
-          <small>
-            <em>
-              {% if page.url == '/cn/index.html' %}
-                <a href="/cn">开发者</a>
-              {% else %}
-                <a href="/">developer</a>
-              {% endif %}
-            </em>
-          </small>
         </div>
         <img class="avatar" src="/images/xiaoyifei.png" alt="My profile picture" />
       </div>

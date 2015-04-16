@@ -35,21 +35,12 @@
 
   <div class="header-container">
     <header class="inner">
-      {% if page.url == '/cn/index.html' %}
       <nav>
         <a class="{% if page.category == 'about' %} selected {% endif %}" href="/cn/">关于</a>        
         <a href="/resume/">简历</a>
         <a class="{% if page.category == 'blog' %} selected {% endif %}" href="/blog/">博客</a>
         <a href="https://github.com/xiaoyifeibupt">Github</a>
       </nav>
-      {% else %}
-      <nav>
-        <a class="{% if page.category == 'about' %} selected {% endif %}" href="/">About</a>
-		<a href="/resume/">Resume</a>
-        <a class="{% if page.category == 'blog' %} selected {% endif %}" href="/blog/">Blog</a>
-        <a href="https://github.com/xiaoyifeibupt">Github</a>
-      </nav>
-      {% endif %}
       
       <div class="pull-right right logo">
         <div class="name">

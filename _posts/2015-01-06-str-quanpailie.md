@@ -24,31 +24,32 @@ abc、acb、bac、bca、cab 和 cba。
 
 代码可如下编写所示：
 
-```cpp
-void CalcAllPermutation(char* perm, int from, int to)
-{
-	if (to <= 1)
-	{
-		return;
-	}
 
-	if (from == to)
+	void CalcAllPermutation(char* perm, int from, int to)
 	{
-		for (int i = 0; i <= to; i++)
-			cout << perm[i];
-		cout << endl;
-	}
-	else
-	{
-		for (int j = from; j <= to; j++)
+		if (to <= 1)
 		{
-			swap(perm[j], perm[from]);
-			CalcAllPermutation(perm, from + 1, to);
-			swap(perm[j], perm[from]);
+			return;
+		}
+	
+		if (from == to)
+		{
+			for (int i = 0; i <= to; i++)
+				cout << perm[i];
+			cout << endl;
+		}
+		else
+		{
+			for (int j = from; j <= to; j++)
+			{
+				swap(perm[j], perm[from]);
+				CalcAllPermutation(perm, from + 1, to);
+				swap(perm[j], perm[from]);
+			}
 		}
 	}
-}
-```
+
+
 
 ### 解法二、字典序排列
 
@@ -101,32 +102,32 @@ next_permutation算法
 
 23145即为所求的21543的下一个排列。参考实现代码如下：
 
-```cpp
-bool CalcAllPermutation(char* perm, int num){
-	int i;
 
-	//①找到排列中最后（最右）一个升序的首位位置i，x = ai
-	for (i = num - 2; (i >= 0) && (perm[i] >= perm[i + 1]); --i){
-		;
-	}
-	// 已经找到所有排列
-	if (i < 0){
-		return false;
+	bool CalcAllPermutation(char* perm, int num){
+		int i;
+	
+		//①找到排列中最后（最右）一个升序的首位位置i，x = ai
+		for (i = num - 2; (i >= 0) && (perm[i] >= perm[i + 1]); --i){
+			;
+		}
+		// 已经找到所有排列
+		if (i < 0){
+			return false;
+		}
+	
+		int k;
+		//②找到排列中第i位右边最后一个比ai 大的位置j，y = aj
+		for (k = num - 1; (k > i) && (perm[k] <= perm[i]); --k){
+			;
+		}
+	
+		//③交换x，y
+		swap(perm[i], perm[k]);
+		//④把第(i+ 1)位到最后的部分翻转
+		reverse(perm + i + 1, perm + num);
+		return true;
 	}
 
-	int k;
-	//②找到排列中第i位右边最后一个比ai 大的位置j，y = aj
-	for (k = num - 1; (k > i) && (perm[k] <= perm[i]); --k){
-		;
-	}
-
-	//③交换x，y
-	swap(perm[i], perm[k]);
-	//④把第(i+ 1)位到最后的部分翻转
-	reverse(perm + i + 1, perm + num);
-	return true;
-}
-```
 然后在主函数里循环判断和调用calcAllPermutation函数输出全排列即可。
 
 ### 解法总结
@@ -138,23 +139,23 @@ bool CalcAllPermutation(char* perm, int num){
 
 分析：非简单的全排列问题（跟全排列的形式不同,abc全排列的话，只有6个不同的输出）。
 本题可用递归的思想，设置一个变量表示已输出的个数，然后当个数达到字符串长度时，就输出。
-```c
-//copyright@ 一直很安静 && World Gao
-//假设str已经有序
-void perm(char* result, char *str, int size, int resPos)
-{
-  if(resPos == size)
-    printf("%s\n", result);
-  else
-    {
-      for(int i = 0; i < size; ++i)
-        {
-          result[resPos] = str[i];
-          perm(result, str, size, resPos + 1);
-        }
-    }
-}
-```
+
+	//copyright@ 一直很安静 && World Gao
+	//假设str已经有序
+	void perm(char* result, char *str, int size, int resPos)
+	{
+	  if(resPos == size)
+	    printf("%s\n", result);
+	  else
+	    {
+	      for(int i = 0; i < size; ++i)
+	        {
+	          result[resPos] = str[i];
+	          perm(result, str, size, resPos + 1);
+	        }
+	    }
+	}
+
 2、如果不是求字符的所有排列，而是求字符的所有组合，应该怎么办呢？当输入的字符串中含有相同的字符串时，相同的字符交换位置是不同的排列，但是同一个组合。举个例子，如果输入abc，它的组合有a、b、c、ab、ac、bc、abc。
 
 

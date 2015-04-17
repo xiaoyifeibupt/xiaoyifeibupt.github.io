@@ -18,30 +18,31 @@ categories: [Algorithms]
 
 同时从字符串头尾开始向中间扫描字串，如果所有字符都一样，那么这个字串就是一个回文。采用这种方法的话，我们只需要维护头部和尾部两个扫描指针即可。
 
+
+
 代码如下：：
 
-```cpp
-bool IsPalindrome(const char *s, int n)
-{
-	//非法输入
-	if (s == NULL || n < 1) 
-		return false;   
-	char *front, *back;
-	
-	//初始化头指针和尾指针
-	front = s; 
-	back = s + n - 1; 
-
-	while (front < back) 
+	bool IsPalindrome(const char *s, int n)
 	{
-		if (*front != *back)
-			return false; // 不是回文，立即返回  
-		++front;
-		--back;
+		//非法输入
+		if (s == NULL || n < 1) 
+			return false;   
+		char *front, *back;
+		
+		//初始化头指针和尾指针
+		front = s; 
+		back = s + n - 1; 
+	
+		while (front < back) 
+		{
+			if (*front != *back)
+				return false; // 不是回文，立即返回  
+			++front;
+			--back;
+		}
+		return true; // 是回文  
 	}
-	return true; // 是回文  
-}
-```
+
 
 这是一个直白且效率不错的实现，时间复杂度：O(n)，空间复杂度：O(1)。
 
@@ -50,23 +51,23 @@ bool IsPalindrome(const char *s, int n)
 
 上述解法一从两头向中间扫描，那么是否还有其它办法呢？我们可以先从中间开始、然后向两边扩展查看字符是否相等。参考代码如下：
 
-```cpp
-bool IsPalindrome2(const char *s, int n)
-{
-	if (s == NULL || n < 1) 
-		return false; // 非法输入  
-	char *first, *second;
 
-	int m = ((n >> 1) - 1) >= 0 ? (n >> 1) - 1 : 0; // m is themiddle point of s      
-	first = s + m; 
-	second = s + n - 1 - m;
+	bool IsPalindrome2(const char *s, int n)
+	{
+		if (s == NULL || n < 1) 
+			return false; // 非法输入  
+		char *first, *second;
+	
+		int m = ((n >> 1) - 1) >= 0 ? (n >> 1) - 1 : 0; // m is themiddle point of s      
+		first = s + m; 
+		second = s + n - 1 - m;
+	
+		while (first >= s)
+		if (s[first--] != s[second++]) 
+			return false; // not equal, so it's not apalindrome  
+		return true; // check over, it's a palindrome  
+	}
 
-	while (first >= s)
-	if (s[first--] != s[second++]) 
-		return false; // not equal, so it's not apalindrome  
-	return true; // check over, it's a palindrome  
-}
-```
 时间复杂度：O(n)，空间复杂度：O(1)。
 
 虽然本解法二的时空复杂度和解法一是一样的，但很快我们会看到，在某些回文问题里面，这个方法有着自己的独到之处，可以方便的解决一类问题。

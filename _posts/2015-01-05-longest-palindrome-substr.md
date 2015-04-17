@@ -17,33 +17,33 @@ categories: [Algorithms]
 
 那么，我们是否可以可以枚举中心位置，然后再在该位置上用扩展法，记录并更新得到的最长的回文长度呢？答案是肯定的，参考代码如下：
 
-```cpp
-int LongestPalindrome(const char *s, int n)
-{
-	int i, j, max,c;
-	if (s == 0 || n < 1)
-		return 0;
-	max = 0;
-
-	for (i = 0; i < n; ++i) { // i is the middle point of the palindrome  
-		for (j = 0; (i - j >= 0) && (i + j < n); ++j){ // if the length of the palindrome is odd  
-			if (s[i - j] != s[i + j])
-				break;
-			c = j * 2 + 1;
+	int LongestPalindrome(const char *s, int n){
+		int i, j, max,c;
+		if (s == 0 || n < 1)
+			return 0;
+		max = 0;
+	
+		for (i = 0; i < n; ++i) { // i is the middle point of the palindrome
+			// if the length of the palindrome is odd  
+			for (j = 0; (i - j >= 0) && (i + j < n); ++j){ 
+				  
+				if (s[i - j] != s[i + j])
+					break;
+				c = j * 2 + 1;
+			}
+			if (c > max)
+				max = c;
+			// for the even case  
+			for (j = 0; (i - j >= 0) && (i + j + 1 < n); ++j){ 
+				if (s[i - j] != s[i + j + 1])
+					break;
+				c = j * 2 + 2;
+			}
+			if (c > max)
+				max = c;
 		}
-		if (c > max)
-			max = c;
-		for (j = 0; (i - j >= 0) && (i + j + 1 < n); ++j){ // for the even case  
-			if (s[i - j] != s[i + j + 1])
-				break;
-			c = j * 2 + 2;
-		}
-		if (c > max)
-			max = c;
+		return max;
 	}
-	return max;
-}
-```
 
 代码稍微难懂一点的地方就是内层的两个 for 循环，它们分别对于以 i 为中心的，长度为奇数和偶数的两种情况，整个代码遍历中心位置 i 并以之扩展，找出最长的回文。
 
@@ -71,14 +71,14 @@ int LongestPalindrome(const char *s, int n)
 - 如果mx > i，那么P[i] >= Min(P[2 * id - i], mx - i)
 
 C代码如下：
-```c
-//mx > i，那么P[i] >= MIN(P[2 * id - i], mx - i)
-//故谁小取谁
-if (mx - i > P[2*id - i])
-    P[i] = P[2*id - i];
-else  //mx-i <= P[2*id - i]
-    P[i] = mx - i; 
-```
+
+	//mx > i，那么P[i] >= MIN(P[2 * id - i], mx - i)
+	//故谁小取谁
+	if (mx - i > P[2*id - i])
+	    P[i] = P[2*id - i];
+	else  //mx-i <= P[2*id - i]
+	    P[i] = mx - i; 
+
 下面，令j = 2*id - i，也就是说j是i关于id的对称点。
 
 当 mx - i > P[j] 的时候，以S[j]为中心的回文子串包含在以S[id]为中心的回文子串中，由于i和j对称，以S[i]为中心的回文子串必然包含在以S[id]为中心的回文子串中，所以必有P[i] = P[j]；
@@ -92,23 +92,23 @@ else  //mx-i <= P[2*id - i]
 此外，对于 mx <= i 的情况，因为无法对 P[i]做更多的假设，只能让P[i] = 1，然后再去匹配。
 
 综上，关键代码如下：
-```c
-//输入，并处理得到字符串s
-int p[1000], mx = 0, id = 0;
-memset(p, 0, sizeof(p));
-for (i = 1; s[i] != '\0'; i++) 
-{
-	p[i] = mx > i ? min(p[2 * id - i], mx - i) : 1;
-	while (s[i + p[i]] == s[i - p[i]]) 
-		p[i]++;
-	if (i + p[i] > mx) 
+
+	//输入，并处理得到字符串s
+	int p[1000], mx = 0, id = 0;
+	memset(p, 0, sizeof(p));
+	for (i = 1; s[i] != '\0'; i++) 
 	{
-		mx = i + p[i];
-		id = i;
+		p[i] = mx > i ? min(p[2 * id - i], mx - i) : 1;
+		while (s[i + p[i]] == s[i - p[i]]) 
+			p[i]++;
+		if (i + p[i] > mx) 
+		{
+			mx = i + p[i];
+			id = i;
+		}
 	}
-}
-//找出p[i]中最大的
-```
+	//找出p[i]中最大的
+
 此Manacher算法使用id、mx做配合，可以在每次循环中，直接对P[i]的快速赋值，从而在计算以i为中心的回文子串的过程中，不必每次都从1开始比较，减少了比较次数，最终使得求解最长回文子串的长度达到线性O(N)的时间复杂度。
 
 参考：http://www.felix021.com/blog/read.php?2040 。另外，这篇文章也不错：http://leetcode.com/2011/11/longest-palindromic-substring-part-ii.html 。

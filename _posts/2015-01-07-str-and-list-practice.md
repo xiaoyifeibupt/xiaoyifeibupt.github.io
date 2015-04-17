@@ -233,8 +233,8 @@ void* memcpy(void *dst, const void *src, size_t count)
         pdst++;      
         psrc++;      
     }      
-    return dst;      
-}    
+    return dst;
+} 
 ```
 
 **29、实现memmove函数**
@@ -268,6 +268,6 @@ void* memcpy(void *dst, const void *src, size_t count)
          while (count--)  
              *dest-- = *source--;  
      }  
-     return ret;  
+     return ret;
  }  
 ```

@@ -41,21 +41,21 @@ String 2：BCE
 
 代码可如下编写：
 
-```cpp
-bool StringContain(string &a,string &b)
-{
-    for (int i = 0; i < b.length(); ++i) {
-        int j;
-        for (j = 0; (j < a.length()) && (a[j] != b[i]); ++j)
-            ;
-        if (j >= a.length())
-        {
-            return false;
-        }
-    }
-    return true;
-}
-```
+
+	bool StringContain(string &a,string &b)
+	{
+	    for (int i = 0; i < b.length(); ++i) {
+	        int j;
+	        for (j = 0; (j < a.length()) && (a[j] != b[i]); ++j)
+	            ;
+	        if (j >= a.length())
+	        {
+	            return false;
+	        }
+	    }
+	    return true;
+	}
+
 
 假设n是字符串String1的长度，m是字符串String2的长度，那么此算法，需要O(n*m)次操作。显然，时间开销太大，应该找到一种更好的办法。
 
@@ -65,28 +65,29 @@ bool StringContain(string &a,string &b)
 
 关于排序方法，可采用最常用的快速排序，参考代码如下：
 
-```cpp
-//注意A B中可能包含重复字符，所以注意A下标不要轻易移动。这种方法改变了字符串。如不想改变请自己复制
-bool StringContain(string &a,string &b)
-{
-    sort(a.begin(),a.end());
-    sort(b.begin(),b.end());
-    for (int pa = 0, pb = 0; pb < b.length();)
-    {
-        while ((pa < a.length()) && (a[pa] < b[pb]))
-        {
-            ++pa;
-        }
-        if ((pa >= a.length()) || (a[pa] > b[pb]))
-        {
-            return false;
-        }
-        //a[pa] == b[pb]
-        ++pb;
-    }
-    return true;
-}
-```
+
+	//注意A B中可能包含重复字符，所以注意A下标不要轻易移动。
+	//这种方法改变了字符串。如不想改变请自己复制
+	bool StringContain(string &a,string &b)
+	{
+	    sort(a.begin(),a.end());
+	    sort(b.begin(),b.end());
+	    for (int pa = 0, pb = 0; pb < b.length();)
+	    {
+	        while ((pa < a.length()) && (a[pa] < b[pb]))
+	        {
+	            ++pa;
+	        }
+	        if ((pa >= a.length()) || (a[pa] > b[pb]))
+	        {
+	            return false;
+	        }
+	        //a[pa] == b[pb]
+	        ++pb;
+	    }
+	    return true;
+	}
+
 
 ### 解法三
 
@@ -107,31 +108,31 @@ bool StringContain(string &a,string &b)
 
 如前所述，算法的时间复杂度为O(m+n)的最好的情况为O(n)（遍历短的字符串的第一个数，与长字符串素数的乘积相除，即出现余数，便可退出程序，返回false），n为长字串的长度，空间复杂度为O(1)。
 
-```cpp
-//此方法只有理论意义，因为整数乘积很大，有溢出风险
-bool StringContain(string &a,string &b)
-{
-    const int p[26] = {2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59,61, 67, 71, 73, 79, 83, 89, 97, 101};
-    int f = 1;
-    for (int i = 0; i < a.length(); ++i)
-    {
-        int x = p[a[i] - 'A'];
-        if (f % x)
-        {
-            f *= x;
-        }
-    }
-    for (int i = 0; i < b.length(); ++i)
-    {
-        int x = p[b[i] - 'A'];
-        if (f % x)
-        {
-            return false;
-        }
-    }
-    return true;
-}
-```
+
+	//此方法只有理论意义，因为整数乘积很大，有溢出风险
+	bool StringContain(string &a,string &b)
+	{
+	    const int p[26] = {2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59,61, 67, 71, 73, 79, 83, 89, 97, 101};
+	    int f = 1;
+	    for (int i = 0; i < a.length(); ++i)
+	    {
+	        int x = p[a[i] - 'A'];
+	        if (f % x)
+	        {
+	            f *= x;
+	        }
+	    }
+	    for (int i = 0; i < b.length(); ++i)
+	    {
+	        int x = p[b[i] - 'A'];
+	        if (f % x)
+	        {
+	            return false;
+	        }
+	    }
+	    return true;
+	}
+
 
 此种素数相乘的方法看似完美，但缺点是素数相乘的结果容易导致整数溢出。
 
@@ -143,25 +144,25 @@ bool StringContain(string &a,string &b)
 
 再进一步，我们可以对字符串A，用位运算（26bit整数表示)计算出一个“签名”，再用B中的字符到A里面进行查找。
 
-```cpp
-// “最好的方法”，时间复杂度O(n + m)，空间复杂度O(1)
-bool StringContain(string &a,string &b)
-{
-    int hash = 0;
-    for (int i = 0; i < a.length(); ++i)
-    {
-        hash |= (1 << (a[i] - 'A'));
-    }
-    for (int i = 0; i < b.length(); ++i)
-    {
-        if ((hash & (1 << (b[i] - 'A'))) == 0)
-        {
-            return false;
-        }
-    }
-    return true;
-}
-```
+
+	// “最好的方法”，时间复杂度O(n + m)，空间复杂度O(1)
+	bool StringContain(string &a,string &b)
+	{
+	    int hash = 0;
+	    for (int i = 0; i < a.length(); ++i)
+	    {
+	        hash |= (1 << (a[i] - 'A'));
+	    }
+	    for (int i = 0; i < b.length(); ++i)
+	    {
+	        if ((hash & (1 << (b[i] - 'A'))) == 0)
+	        {
+	            return false;
+	        }
+	    }
+	    return true;
+	}
+
 
 这个方法的实质是用一个整数代替了hashtable，空间复杂度为O(1)，时间复杂度还是O(n + m)。
 

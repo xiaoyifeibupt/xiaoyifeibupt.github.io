@@ -85,7 +85,7 @@ const允许你告诉编译器和其他程序员某值应保持不变，只要“
 **以下几点注意：**
 
 -	令函数返回一个常量值，往往可以降低因客户错误而造成的意外，而不至于放弃安全性和高效性。
-    例：const Rational operator* （const Rational &lhs, cosnt Rational &rhs）;
+    例：`const Rational operator* （const Rational &lhs, cosnt Rational &rhs）;`
 -	const成员函数使class接口比较容易被理解，它们使“操作const对象”称为可能；
     说明：声明为const的成员函数，不可改变non-static成员变量，在成员变量声明之前添加mutable可让其在const成员函数中可被改变。
 

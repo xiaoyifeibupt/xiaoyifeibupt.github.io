@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Effective C++ ——让自己习惯C++
+title: Effective C++ —— 让自己习惯C++
 categories: [C++]
 ---
 

@@ -7,10 +7,10 @@ categories: [C++]
 ##条款01：视C++为一个语言联邦
 为了更好的理解C++，我们将C++分解为四个主要次语言：
 
--  C。说到底C++仍是以C为基础。区块，语句，预处理器，内置数据类型，数组，指针统统来自C。
--  Object-Oreinted C++。这一部分是面向对象设计之古典守则在C++上的最直接实施。类，封装，继承，多态，virtual函数等等...
--	Template C++。这是C++泛型编程部分。
--	STL。STL是个template程序库。容器（containers），迭代器（iterators），算法（algorithms）以及函数对象（function objects）...
+-  C：说到底C++仍是以C为基础。区块，语句，预处理器，内置数据类型，数组，指针统统来自C。
+-  Object-Oreinted C++：这一部分是面向对象设计之古典守则在C++上的最直接实施。类，封装，继承，多态，virtual函数等等...
+-	Template C++：这是C++泛型编程部分。
+-	STL：STL是个template程序库。容器（containers），迭代器（iterators），算法（algorithms）以及函数对象（function objects）...
 
 	**请记住：**
 	这四个次语言，当你从某个次语言切换到另一个，导致高效编程守则要求你改变策略。C++高效编程守则视状况而变化，取决于你使用C++的哪一部分。
@@ -35,9 +35,8 @@ categories: [C++]
 
 -	定义常量指针：
 
-	const char *authorName = "Shenzi";
-	cosnt std::string authorName("Shenzi");	
-
+		const char *authorName = "Shenzi";
+		cosnt std::string authorName("Shenzi");	
 
 
 -	类专属常量：`static const int NumTurns = 5；`//static 静态常量 所有的对象只有一份拷贝。

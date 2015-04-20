@@ -13,13 +13,13 @@ categories: [C++]
 
 
 许多客户端错误可以因为导入新类型而获得预防。在防范“不值得拥有的代码”上，类型系统是你的主要同盟国。
-```cpp
-  struct Day { 
-    explicit Day(int d)        //explicit 避免隐式的转换。
-    :val(d) {}
-    int val; 
-  };
-```     
+
+	struct Day { 
+		explicit Day(int d)        //explicit 避免隐式的转换。
+			:val(d) {}
+		int val; 
+	};
+   
 
 对日期进行类似的类型封装，能有效地避免不恰当的日期赋值。
 
@@ -28,16 +28,16 @@ categories: [C++]
 在资源管理方面，也许我们应该“先发制人”，即让函数返回一个资源的指针改为返回一个只能指针。
 
 例如：
-```cpp
-  std::tr1::shared_ptr<Investment> createInvestment();
-```
+
+	std::tr1::shared_ptr<Investment> createInvestment();
+
 这便实质上强迫客户将返回值存储于一个`tr1::shared_ptr`内，几乎消除了忘记删除底部`Investment`对象的可能性。
 
 `tr1::shared_ptr`提供的某个构造函数接受两个实参：一个是被管理的指针，另一个是引用次数变成0时被调用的“删除器”。但我们自己制定第二个参数，当然这是安全的。但是留给客户，那也许存在危险。
-```cpp
-  std::tr1::shared_ptr<Investment>         //tr1::shared_ptr构造函数坚持第一个参数必须是个指针。
-  pInv(static_cast<Investment*>(0), getRidOfInvestment); 
-```
+
+	std::tr1::shared_ptr<Investment> //tr1::shared_ptr构造函数坚持第一个参数必须是个指针。
+	pInv(static_cast<Investment*>(0), getRidOfInvestment); 
+
 `tr1::shared_ptr`有一个特别好的性质是：它会自动使用它的“每个指针专属的删除器”，因而消除另一个潜在的客户错误：所谓的“cross-DLL problem”。因为它缺省的删除器是来自“tr1::shared_ptr诞生所在的那个DLL”的delete。
 
 **请记住：**
@@ -78,9 +78,9 @@ C++就像在其它面向对象编程语言一样，当你定义一个新class，
 所以在以对象为by value时，可能会调用相应的构造函数（成员对象的构造、基类对象的构造），然后调用对应的析构函数。所以以by value的形式开销还是比较大的。
 
 如果我们用`pass-by-reference-to-const`，例如：
-```cpp
-  bool validateStudent(const Student& s);     //const，希望别对传入对象进行不恰当的修改；
-```
+
+	bool validateStudent(const Student& s); //const，希望别对传入对象进行不恰当的修改；
+
 这种传递方式效率高得多：没有任何构造函数或析构函数被调用，因为没有任何新对象被创建。
 
 以传引用方式传递参数也可以避免对象切割问题：即当一个派生类对象以传值的方式传递并被视为一个基类对象，基类对象的拷贝构造函数会被调用，而“造成此对象的行为像个派生类对象”的那些特化性质全被切割掉了，仅仅留下了基类对象。这一般不是你想要的。
@@ -140,32 +140,32 @@ C++就像在其它面向对象编程语言一样，当你定义一个新class，
 通常，令类支持隐式类型转换通常是个糟糕的主意。当然这条规则有其例外，最常见的例外是在建立数值类型时。
 
 例：
-```cpp
-  const Rational operator*(const Rational& rhs) const; 
-```
+
+	const Rational operator*(const Rational& rhs) const; 
+
 如果定义一个有理数类，并实现*操作符为成员函数，如上所示；那么考虑一下调用：
-```cpp
-Rational oneHalf(1, 2); 
-result = oneHalf * 2; // 正确，2被隐式转换为Rational（2，1）
-                     //编译器眼中应该是这样：const Rational temp(2); result = oneHalf * temp; 
-result = 2 * oneHalf; // 错误，2，可不被认为是Rational对象；因此无法调用operator*
-```
+
+	Rational oneHalf(1, 2); 
+	result = oneHalf * 2; // 正确，2被隐式转换为Rational（2，1）
+	//编译器眼中应该是这样：const Rational temp(2); result = oneHalf * temp; 
+	result = 2 * oneHalf; // 错误，2，可不被认为是Rational对象；因此无法调用operator*
+
 
 可见，这样并不准确，因为乘法（*）应该满足交换律，不是吗？
 
 所以，支持混合式算术运算的可行之道应该是：让operator*成为一个non-member函数，允许编译器在每一个实参上执行隐式类型转换：
-```cpp
-  class Rational {
-    ... // contains no operator* 
-  }; 
-  const Rational operator*(const Rational& lhs,  Rational& rhs) { 
-    return Rational(lhs.numerator() * rhs.numerator(),lhs.denominator() * rhs.denominator()); 
-  } 
-    Rational oneFourth(1, 4); 
-    Rational result; 
-    result = oneFourth * 2; 
-    result = 2 * oneFourth;  //这下两个都工作的很好，通过隐式转换实现
-```
+
+	class Rational {
+		... // contains no operator* 
+	}; 
+	const Rational operator*(const Rational& lhs,  Rational& rhs) { 
+		return Rational(lhs.numerator() * rhs.numerator(),lhs.denominator() * rhs.denominator()); 
+	} 
+	Rational oneFourth(1, 4); 
+	Rational result; 
+	result = oneFourth * 2; 
+	result = 2 * oneFourth;  //这下两个都工作的很好，通过隐式转换实现
+
 
 成员函数的方面是非成员函数，而不是友元函数。
 

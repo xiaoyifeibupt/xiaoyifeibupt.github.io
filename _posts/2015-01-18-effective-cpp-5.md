@@ -10,16 +10,16 @@ categories: [C++]
 
 只要你定义了一个变量而其类型带有一个构造函数或析构函数，那么当程序的控制流到达这个变量定义式时，你便得承受构造成本；当这个变量离开其作用域时，你便得承受析构成本。即使这个变量最终并为被使用，仍需耗费这些成本，所以应该尽量避免这种情形。
 
-std::string encryptPassword(const std::string& password) { 
-  using namespace std; 
-  string encrypted1;
-  if (password.length() < MinimumPasswordLength) { 
-    throw logic_error("Password is too short");     //注意：可能抛出异常
-  }
-  string encrypted2;
-  ... 
-  return encrypted; 
-} 
+	std::string encryptPassword(const std::string& password) { 
+	  using namespace std; 
+	  string encrypted1;
+	  if (password.length() < MinimumPasswordLength) { 
+	    throw logic_error("Password is too short");     //注意：可能抛出异常
+	  }
+	  string encrypted2;
+	  ... 
+	  return encrypted; 
+	} 
 
 如上代码，encrypted在2处定义是个不错的选择，因为如果抛出异常，那么encrypted的构造和析构可是做了无用功啊！
 
@@ -27,18 +27,18 @@ std::string encryptPassword(const std::string& password) {
 
 “尽可能延后”的真正意义应该是：你不只应该延后变量的定义，直到非得使用该变量的前一刻为止，甚至应该尝试延后这份定义直到能够给它初值实参为止。
 
-//方法A:定义循环外
-Widget w;
-for (int i = 0; i < n; ++i) { 
-  w = some value dependent on i;
-  ...
-  }     //1个构造函数+1个析构函数+n个赋值操作；
-
-//方法B：定义循环外
-for (int i = 0; i < n; ++i) {
-  Widget w(some value dependent on i);  
-  ...
-}     //n个构造函数+n个析构函数
+	//方法A:定义循环外
+	Widget w;
+	for (int i = 0; i < n; ++i) { 
+	  w = some value dependent on i;
+	  ...
+	  }     //1个构造函数+1个析构函数+n个赋值操作；
+	
+	//方法B：定义循环外
+	for (int i = 0; i < n; ++i) {
+	  Widget w(some value dependent on i);  
+	  ...
+	}     //n个构造函数+n个析构函数
 
 除非：1.你知道赋值成本比“构造+析构”成本低；2.你正在处理代码中效率高度敏感的部分，否则应该使用方法B。
 
@@ -51,11 +51,11 @@ C++规则的设计目标之一是，保证“类型错误”绝不可能发生�
 
 C风格的转型动作看起来像这样：
 
-(T)expression    //将expression转型为T
+	(T)expression    //将expression转型为T
 
 函数风格的转型动作看起来像这样：
 
-T(expression)    //将expression转型为T
+	T(expression)    //将expression转型为T
 
 **C++还提供四种新式转型：**
 - const_cast:通常被用来将对象的常量性转除；即去掉const。
@@ -75,24 +75,27 @@ T(expression)    //将expression转型为T
 - 宁可使用C++-style（新式）转型，不要使用旧式转型。前者很容易辨识出来，而且也比较有着分门别类的执掌。   
 
 ##条款28：避免返回handls指向对象内部成分
-struct RectData { 
-  Point ulhc; 
-  Point lrhc; 
-}; 
-class Rectangle {
-public: 
-  ... 
-  Point& upperLeft() const { return pData->ulhc; }1//const只对函数内进行保护，函数返回后呢？？
-  Point& lowerRight() const { return pData->lrhc; }2 //const只对函数内进行保护，函数返回后呢？？
-private: 
-  std::tr1::shared_ptr<RectData> pData; 
-  ... 
-}; 
+
+	struct RectData { 
+		Point ulhc; 
+		Point lrhc; 
+	}; 
+	class Rectangle {
+	public: 
+	  ... 
+		//1.const只对函数内进行保护，函数返回后呢？？
+		Point& upperLeft() const { return pData->ulhc; }
+		//2.const只对函数内进行保护，函数返回后呢？？
+	  	Point& lowerRight() const { return pData->lrhc; }
+	private: 
+	  	std::tr1::shared_ptr<RectData> pData; 
+	  	... 
+	}; 
 
 1，2两函数都返回引用，指向private内部数据，调用者于是可通过这些引用更改内部数据！这严重破坏了数据的封装性，对私有成员进行直接操作？太不可思意了！
 
-const Point& upperLeft() const { return pData->ulhc; }3
-const Point& lowerRight() const { return pData->lrhc; }4     
+	const Point& upperLeft() const { return pData->ulhc; }3
+	const Point& lowerRight() const { return pData->lrhc; }4     
 
 或者将1，2改为3，4，这就限制了客户的“涂改权”，只有“读取权”。
 

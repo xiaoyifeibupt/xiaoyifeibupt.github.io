@@ -25,25 +25,26 @@ categories: [Algorithms]
 
 假设数组为a[]，直接利用动态规划来求解，考虑到可能存在负数的情况，我们用maxend来表示以a[i]结尾的最大连续子串的乘积值，用minend表示以a[i]结尾的最小的子串的乘积值，那么状态转移方程为：
 
-maxend = max(max(maxend * a[i], minend * a[i]), a[i]);
-minend = min(min(maxend * a[i], minend * a[i]), a[i]);  
-初始状态为maxend = minend = a[0]。
+    maxend = max(max(maxend * a[i], minend * a[i]), a[i]);
+    minend = min(min(maxend * a[i], minend * a[i]), a[i]);  
+    初始状态为maxend = minend = a[0]。
 
 参考代码如下：
 
-double MaxProductSubstring(double *a, int length){
-    double maxEnd = a[0];
-    double minEnd = a[0];
-    double maxResult = a[0];
-    for (int i = 1; i < length; ++i)
-    {
-        double end1 = maxEnd * a[i], end2 = minEnd * a[i];
-        maxEnd = max(max(end1, end2), a[i]);
-        minEnd = min(min(end1, end2), a[i]);
-        maxResult = max(maxResult, maxEnd);
+    double MaxProductSubstring(double *a, int length){
+        double maxEnd = a[0];
+        double minEnd = a[0];
+        double maxResult = a[0];
+        for (int i = 1; i < length; ++i)
+        {
+            double end1 = maxEnd * a[i], end2 = minEnd * a[i];
+            maxEnd = max(max(end1, end2), a[i]);
+            minEnd = min(min(end1, end2), a[i]);
+            maxResult = max(maxResult, maxEnd);
+        }
+        return maxResult;
     }
-    return maxResult;
-}
+    
 动态规划求解的方法一个for循环搞定，所以时间复杂度为O(n)。
 
 ###举一反三
@@ -66,23 +67,31 @@ double MaxProductSubstring(double *a, int length){
 
 此题常见的思路是动态规划，假如令dp[i][j] 表示源串S[0…i] 和目标串T[0…j] 的最短编辑距离，其边界：dp[0][j] = j，dp[i][0] = i，那么我们可以得出状态转移方程：
 
-dp[i][j] =min{
-dp[i-1][j] + 1 , S[i]不在T[0…j]中
-dp[i-1][j-1] + 1/0 , S[i]在T[j]
-dp[i][j-1] + 1 , S[i]在T[0…j-1]中
-}
+    dp[i][j] =min{
+    dp[i-1][j] + 1 , S[i]不在T[0…j]中
+    dp[i-1][j-1] + 1/0 , S[i]在T[j]
+    dp[i][j-1] + 1 , S[i]在T[0…j-1]中
+    }
 
 接下来，咱们重点解释下上述3个式子的含义
 
 关于dp[i-1][j] + 1, s.t. s[i]不在T[0…j]中的说明
+
 s[i]没有落在T[0…j]中，即s[i]在中间的某一次编辑操作被删除了。因为删除操作没有前后相关性，不妨将其在第1次操作中删除。除首次操作时删除外，后续编辑操作是将长度为i-1的字符串，编辑成长度为j的字符串：即dp[i-1][j]。
+
 因此：dp[i][j] = dp[i-1][j] + 1。
+
 关于dp[i-1][j-1] + 0/1, s.t. s[i] 在T[j]的说明
+
 若s[i]经过编辑，最终落在T[j]的位置。
+
 则要么s[i] == t[j]，s[i]直接落在T[j]。这种情况，编辑操作实际上是将长度为i-1的S’串，编辑成长度为j-1的T’串：即dp[i-1][j-1]；
+
 要么s[i] ≠ t[j]，s[i] 落在T[j]后，要将s[i]修改成T[j]，即在上一种情况的基础上，增加一次修改操作：即dp[i-1][j-1] + 1。
 关于dp[i][j-1] + 1, s.t. s[i]在T[0…j-1]中的说明
+
 若s[i]落在了T[1…j-1]的某个位置，不妨认为是k，因为最小编辑步数的定义，那么，在k+1到j-1的字符，必然是通过插入新字符完成的。因为共插入了(j-k)个字符，故编辑次数为(j-k)次。而字符串S[1…i]经过编辑，得到了T[1…k]，编辑次数为dp[i][k]。故： dp[i][j] = dp[i][k] + (j-k)。
+
 由于最后的(j-k)次是插入操作，可以讲(j-k)逐次规约到dp[i][k]中。即：dp[i][k]+(j-k)=dp[i][k+1] + (j-k-1) 规约到插入操作为1次，得到 dp[i][k]+(j-k) =dp[i][k+1] + (j-k-1) =dp[i][k+2] + (j-k-2)=… =dp[i][k+(j-k-1)] + (j-k)-(j-k-1) =dp[i][j-1] + 1。
 上述的解释清晰规范，但为啥这样做呢？
 
@@ -104,42 +113,44 @@ dp[i, j - 1] + 1
 dp[i - 1, j - 1] + (s[i] == t[j] ? 0 : 1)
 综上，可以写出简单的DP状态方程：
 
-//dp[i,j]表示表示源串S[0…i] 和目标串T[0…j] 的最短编辑距离
-dp[i, j] = min { dp[i - 1, j] + 1,  dp[i, j - 1] + 1,  dp[i - 1, j - 1] + (s[i] == t[j] ? 0 : 1) }
-//分别表示：删除1个，添加1个，替换1个（相同就不用替换）。
+    //dp[i,j]表示表示源串S[0…i] 和目标串T[0…j] 的最短编辑距离
+    dp[i, j] = min { dp[i - 1, j] + 1,  dp[i, j - 1] + 1,  dp[i - 1, j - 1] + (s[i] == t[j] ? 0 : 1) }
+    //分别表示：删除1个，添加1个，替换1个（相同就不用替换）。
+
 参考代码如下：
 
-//dp[i][j]表示源串source[0-i)和目标串target[0-j)的编辑距离
-int EditDistance(char *pSource, char *pTarget)
-{
-    int srcLength = strlen(pSource);
-    int targetLength = strlen(pTarget);
-    int i, j;
-    //边界dp[i][0] = i，dp[0][j] = j  
-    for (i = 1; i <= srcLength; ++i)
+    //dp[i][j]表示源串source[0-i)和目标串target[0-j)的编辑距离
+    int EditDistance(char *pSource, char *pTarget)
     {
-        dp[i][0] = i;
-    }
-    for (j = 1; j <= targetLength; ++j)
-    {
-        dp[0][j] = j;
-    }
-    for (i = 1; i <= srcLength; ++i)
-    {
+        int srcLength = strlen(pSource);
+        int targetLength = strlen(pTarget);
+        int i, j;
+        //边界dp[i][0] = i，dp[0][j] = j  
+        for (i = 1; i <= srcLength; ++i)
+        {
+            dp[i][0] = i;
+        }
         for (j = 1; j <= targetLength; ++j)
         {
-            if (pSource[i - 1] == pTarget[j - 1])
+            dp[0][j] = j;
+        }
+        for (i = 1; i <= srcLength; ++i)
+        {
+            for (j = 1; j <= targetLength; ++j)
             {
-                dp[i][j] = dp[i - 1][j - 1];
-            }
-            else
-            {
-                dp[i][j] = 1 + min(dp[i - 1][j], dp[i][j - 1]);
+                if (pSource[i - 1] == pTarget[j - 1])
+                {
+                    dp[i][j] = dp[i - 1][j - 1];
+                }
+                else
+                {
+                    dp[i][j] = 1 + min(dp[i - 1][j], dp[i][j - 1]);
+                }
             }
         }
+        return dp[srcLength][targetLength];
     }
-    return dp[srcLength][targetLength];
-}
+
 ###2.3 举一反三
 
 1、传统的编辑距离里面有三种操作，即增、删、改，我们现在要讨论的编辑距离只允许两种操作，即增加一个字符、删除一个字符。我们求两个字符串的这种编辑距离，即把一个字符串变成另外一个字符串的最少操作次数。假定每个字符串长度不超过1000，只有大写英文字母组成。
@@ -161,35 +172,35 @@ int EditDistance(char *pSource, char *pTarget)
 如果s2当前字符等于s3当前字符，并且dp[i][j-1]为真，那么可以取s2而忽略s1的情况，dp[i][j]返回真，其它情况，dp[i][j]返回假
 参考代码如下：
 
-public boolean IsInterleave(String s1, String 2, String 3){
+    public boolean IsInterleave(String s1, String 2, String 3){
     int n = s1.length(), m = s2.length(), s = s3.length();
-
+    
     //如果长度不一致，则s3不可能由s1和s2交错组成
     if (n + m != s)
         return false;
-
+    
     boolean[][]dp = new boolean[n + 1][m + 1];
-
+    
     //在初始化边界时，我们认为空串可以由空串组成，因此dp[0][0]赋值为true。
     dp[0][0] = true;
-
+    
     for (int i = 0; i < n + 1; i++){
         for (int j = 0; j < m + 1; j++){
             if ( dp[i][j] || (i - 1 >= 0 && dp[i - 1][j] == true &&
                 //取s1字符
                 s1.charAT(i - 1) == s3.charAT(i + j - 1)) ||
-
+    
                 (j - 1 >= 0 && dp[i][j - 1] == true &&
                 //取s2字符
                 s2.charAT(j - 1) == s3.charAT(i + j - 1)) )
-
+    
                 dp[i][j] = true;
             else
                 dp[i][j] = false;
         }
     }
     return dp[n][m]
-  }
+    }
 
 理解本题及上段代码，对真正理解动态规划有一定帮助。
 
@@ -203,25 +214,29 @@ public boolean IsInterleave(String s1, String 2, String 3){
 
 ####4.2.1. 解法一——DP
 
-  dp[i]表示以a[i]结尾的最大子数组的和
-  dp[i] = max(dp[i – 1] + a[i], a[i])
-  包含a[i – 1]：dp[i – 1] + a[i]
-  不包含a[i – 1]: a[i]
-  初值 dp[0] = a[0]
-  答案？最大的dp[0..n – 1]
-  时间复杂度 O(n), 空间复杂度O(n)
-  空间优化: dp[i]要存么？
-  endHere = max(endHere + a[i], a[i])
-  结果answer = max(endHere, answer)
+    dp[i]表示以a[i]结尾的最大子数组的和
+    dp[i] = max(dp[i – 1] + a[i], a[i])
+    包含a[i – 1]：dp[i – 1] + a[i]
+    不包含a[i – 1]: a[i]
+    初值 dp[0] = a[0]
+    答案？最大的dp[0..n – 1]
+    时间复杂度 O(n), 空间复杂度O(n)
+    空间优化: dp[i]要存么？
+    endHere = max(endHere + a[i], a[i])
+    结果answer = max(endHere, answer)
 
 ####4.2.2. 解法二——线性枚举
 
 
 定义
-  sum[i] = a[0] + a[1] + a[2] +…+ a[i]   i>=0
-  sum[-1] = 0
-则 对 0 <= i <= j 
-  a[i] + a[i + 1] + … + a[j] = sum[j] – sum[i – 1]
+
+    sum[i] = a[0] + a[1] + a[2] +…+ a[i]   i>=0
+    sum[-1] = 0
+
+则 对 0 <= i <= j
+
+    a[i] + a[i + 1] + … + a[j] = sum[j] – sum[i – 1]
+  
 我们就是要求这样一个最大值
 对j我们可以求得当前的sum[j]，取的i – 1一定是之前最小的sum值，用一个变量记录sum的最小值
 时间O(n),空间O(1)

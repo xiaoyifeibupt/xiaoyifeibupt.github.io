@@ -1,9 +1,10 @@
 ---
 layout: post
-title: 【转自July】2.7 荷兰国旗问题
+title: 2.7 荷兰国旗问题
 categories: [Algorithms]
 ---
 
+【转自July】
 
 ### 题目描述
 

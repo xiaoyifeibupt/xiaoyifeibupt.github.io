@@ -1,9 +1,9 @@
 ---
 layout: post
-title: 【转自July】2.1 寻找最小的K个数
+title: 2.1 寻找最小的K个数
 categories: [Algorithms]
 ---
-
+【转自July】
 ## 题目描述
 
 输入n个整数，输出其中最小的k个。  

@@ -1,9 +1,9 @@
 ---
 layout: post
-title: 【转自July】1.5 最长回文子串
+title: 1.5 最长回文子串
 categories: [Algorithms]
 ---
-
+【转自July】
 
 ## 题目描述
 给定一个字符串，求它的最长回文子串的长度。

@@ -1,8 +1,11 @@
 ---
 layout: post
-title: 【转自July】2.9 完美洗牌
+title: 2.9 完美洗牌
 categories: [Algorithms]
 ---
+
+【转自July】
+
 ## 题目详情
 
 有个长度为2n的数组{a1,a2,a3,...,an,b1,b2,b3,...,bn}，希望排序后{a1,b1,a2,b2,....,an,bn}，请考虑有无时间复杂度o(n)，空间复杂度0(1)的解法。

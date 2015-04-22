@@ -1,8 +1,10 @@
 ---
 layout: post
-title: 【转自July】2.5 跳台阶问题
+title: 2.5 跳台阶问题
 categories: [Algorithms]
 ---
+
+【转自July】
 
 ### 题目描述
 一个台阶总共有n 级，如果一次可以跳1 级，也可以跳2 级。

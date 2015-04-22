@@ -1,8 +1,10 @@
 ---
 layout: post
-title: 【转自July】2.10 K个最小和
+title: 2.10 K个最小和
 categories: [Algorithms]
 ---
+
+【转自July】
 
 ## 题目大意：
 

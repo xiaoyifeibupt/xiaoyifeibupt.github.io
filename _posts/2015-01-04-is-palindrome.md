@@ -1,8 +1,10 @@
 ---
 layout: post
-title: 【转自July】1.4 回文判断
+title: 1.4 回文判断
 categories: [Algorithms]
 ---
+
+【转自July】
 
 ## 题目描述
 

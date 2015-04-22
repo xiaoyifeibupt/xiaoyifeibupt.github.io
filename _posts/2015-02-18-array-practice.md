@@ -1,9 +1,9 @@
 ---
 layout: post
-title: 【转自July】2.11 本章数组和队列的习题
+title: 2.11 本章数组和队列的习题
 categories: [Algorithms]
 ---
-
+【转自July】
 
 **1、不用除法运算**
 

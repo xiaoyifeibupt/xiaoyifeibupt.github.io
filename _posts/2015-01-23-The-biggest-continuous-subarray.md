@@ -1,8 +1,9 @@
 ---
 layout: post
-title: 【转自July】2.4 最大连续子数组和
+title: 2.4 最大连续子数组和
 categories: [Algorithms]
 ---
+【转自July】
 
 ## 题目描述
 

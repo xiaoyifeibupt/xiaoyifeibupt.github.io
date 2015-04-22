@@ -1,9 +1,9 @@
 ---
 layout: post
-title: 【转自July】1.7 本章字符串和链表的习题
+title: 1.7 本章字符串和链表的习题
 categories: [Algorithms]
 ---
-
+【转自July】
 
 **1、第一个只出现一次的字符**
 

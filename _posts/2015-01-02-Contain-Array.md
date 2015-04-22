@@ -1,9 +1,9 @@
 ---
 layout: post
-title: 【转自July】1.2 字符串包含
+title: 1.2 字符串包含
 categories: [Algorithms]
 ---
-
+【转自July】
 ## 题目描述
 
 给定两个分别由字母组成的字符串A和字符串B，字符串B的长度比字符串A短。请问，如何最快地判断字符串B中所有字母是否都在字符串A里？

@@ -1,8 +1,9 @@
 ---
 layout: post
-title: 【转自July】1.3 字符串转换成整数
+title: 1.3 字符串转换成整数
 categories: [Algorithms]
 ---
+【转自July】
 
 ## 题目描述
 输入一个由数字组成的字符串，把它转换成整数并输出。例如：输入字符串"123"，输出整数123。

@@ -1,8 +1,9 @@
 ---
 layout: post
-title: 【转自July】2.8 矩阵相乘
+title: 2.8 矩阵相乘
 categories: [Algorithms]
 ---
+【转自July】
 
 ## 题目描述
 

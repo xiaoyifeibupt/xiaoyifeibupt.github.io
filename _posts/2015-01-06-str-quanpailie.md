@@ -1,8 +1,9 @@
 ---
 layout: post
-title: 【转自July】1.6 字符串全排列
+title: 1.6 字符串全排列
 categories: [Algorithms]
 ---
+【转自July】
 
 ## 题目描述
 

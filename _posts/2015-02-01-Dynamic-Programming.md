@@ -92,7 +92,14 @@ s[i]没有落在T[0…j]中，即s[i]在中间的某一次编辑操作被删除�
 
 若s[i]落在了T[1…j-1]的某个位置，不妨认为是k，因为最小编辑步数的定义，那么，在k+1到j-1的字符，必然是通过插入新字符完成的。因为共插入了(j-k)个字符，故编辑次数为(j-k)次。而字符串S[1…i]经过编辑，得到了T[1…k]，编辑次数为dp[i][k]。故： dp[i][j] = dp[i][k] + (j-k)。
 
-由于最后的(j-k)次是插入操作，可以讲(j-k)逐次规约到dp[i][k]中。即：dp[i][k]+(j-k)=dp[i][k+1] + (j-k-1) 规约到插入操作为1次，得到 dp[i][k]+(j-k) =dp[i][k+1] + (j-k-1) =dp[i][k+2] + (j-k-2)=… =dp[i][k+(j-k-1)] + (j-k)-(j-k-1) =dp[i][j-1] + 1。
+由于最后的(j-k)次是插入操作，可以讲(j-k)逐次规约到dp[i][k]中。即：
+
+dp[i][k]+(j-k)=dp[i][k+1] + (j-k-1) 
+
+规约到插入操作为1次，得到
+ 
+dp[i][k]+(j-k) =dp[i][k+1] + (j-k-1) =dp[i][k+2] + (j-k-2)=… =dp[i][k+(j-k-1)] + (j-k)-(j-k-1) =dp[i][j-1] + 1。
+
 上述的解释清晰规范，但为啥这样做呢？
 
 换一个角度，其实就是字符串对齐的思路。例如把字符串“ALGORITHM”，变成“ALTRUISTIC”，那么把相关字符各自对齐后，如下图所示：
@@ -107,15 +114,19 @@ s[i]没有落在T[0…j]中，即s[i]在中间的某一次编辑操作被删除�
 
 下面的目标串空白，即S + 字符X，T + 空白，S变成T，意味着源串要删字符
 dp[i - 1, j] + 1
+
 上面的源串空白，S + 空白，T + 字符，S变成T，最后，在S的最后插入“字符”，意味着源串要添加字符
 dp[i, j - 1] + 1
+
 上面源串中的的字符跟下面目标串中的字符不一样，即S + 字符X，T + 字符Y，S变成T，意味着源串要修改字符
 dp[i - 1, j - 1] + (s[i] == t[j] ? 0 : 1)
+
 综上，可以写出简单的DP状态方程：
 
-    //dp[i,j]表示表示源串S[0…i] 和目标串T[0…j] 的最短编辑距离
-    dp[i, j] = min { dp[i - 1, j] + 1,  dp[i, j - 1] + 1,  dp[i - 1, j - 1] + (s[i] == t[j] ? 0 : 1) }
-    //分别表示：删除1个，添加1个，替换1个（相同就不用替换）。
+		//dp[i,j]表示表示源串S[0…i] 和目标串T[0…j] 的最短编辑距离
+	dp[i, j] = min { dp[i - 1, j] + 1,  dp[i, j - 1] + 1,  
+					dp[i - 1, j - 1] + (s[i] == t[j] ? 0 : 1) }
+		//分别表示：删除1个，添加1个，替换1个（相同就不用替换）。
 
 参考代码如下：
 
@@ -225,6 +236,37 @@ dp[i - 1, j - 1] + (s[i] == t[j] ? 0 : 1)
     endHere = max(endHere + a[i], a[i])
     结果answer = max(endHere, answer)
 
+	class Solution1 {
+	public:
+	    int maxSubArray(int A[], int n) {
+	        int sum = A[0],b = 0;
+	        for(int i = 0; i < n; i++) {
+	            if(b > 0)
+	                b+=A[i];
+	            else
+	                b = A[i];
+	            if(sum < b)
+	                sum = b;
+	        }
+	    return sum;
+	    }
+	};
+
+	class Solution2 {
+	public:
+	    int maxSubArray(int A[], int n) {
+	        int answer = A[0];
+	        int endhere = A[0];
+	        for(int i = 1; i < n; i++) {
+	            endhere = max(endhere + A[i],A[i]);
+	            answer = max(answer,endhere);
+	        }
+	    return answer;
+	    }
+	};
+
+
+
 ####4.2.2. 解法二——线性枚举
 
 
@@ -241,6 +283,21 @@ dp[i - 1, j - 1] + (s[i] == t[j] ? 0 : 1)
 对j我们可以求得当前的sum[j]，取的i – 1一定是之前最小的sum值，用一个变量记录sum的最小值
 时间O(n),空间O(1)
 
+	class Solution3 {
+	public:
+	    int maxSubArray(int A[], int n) {
+	        int sum = A[0];
+	        int minSum = min(0,sum);
+	        int answer = A[0];
+	        for(int i = 1; i < n; i++) {
+	            sum += A[i];
+	            answer = max(answer,sum - minSum);
+	            minSum = min(minSum,sum);
+	        }
+	    return answer;
+	    }
+	};
+
 
 
 
@@ -253,18 +310,78 @@ dp[i - 1, j - 1] + (s[i] == t[j] ? 0 : 1)
 ###5.2. 分析和解法
 
 dp[i][j]表示从左上到达(i,j)的最小值
+
 dp[i][j] = min(dp[i – 1][j], dp[i][j – 1]) + a[i][j]
+
 从上边过来dp[i – 1][j] + a[i][j]
+
 从左边过来dp[i][j – 1] + a[i][j]
+
 初值  (下标从0开始）
+
 dp[0][0] = a[0][0] 
+
 dp[0][j > 0] = dp[0][j – 1] + a[0][j]
+
 dp[i > 0][0] = dp[i – 1][0] + a[i][0]
+
 复杂度: 时间O(m * n), 空间O(m * n)
 
 空间优化——省掉一维
 
 dp[i][j]只与dp[i – 1][j] , dp[i][j – 1]有关
-对每个i,正向循环j
-之前的dp[j – 1]是“新的”，dp[j]还是旧的
+
+对每个i,正向循环j之前的dp[j – 1]是“新的”，dp[j]还是旧的
+
 dp[j] = min(dp[j – 1], dp[j]) + a[i][j] 更新
+
+	class Solution1 {
+	public:
+	    int minPathSum(vector<vector<int> > &grid) {
+	        int m = grid.size();
+	        if(m == 0) return 0;
+	        int n = grid[0].size();
+	        vector<vector<int> > dp(m,vector<int>(n));
+	        
+	        for(int i = 0; i < m; i++){
+	            for(int j = 0; j < n; j++){
+	                if(i == 0){
+	                    if(j == 0)
+	                        dp[i][j] = grid[i][j];
+	                    else
+	                        dp[i][j] = dp[i][j - 1] + grid[i][j];
+	                }else if(j == 0)
+	                    dp[i][j] = dp[i - 1][j] + grid[i][j];
+	                else
+	                    dp[i][j] = min(dp[i - 1][j] + grid[i][j],dp[i][j - 1] + grid[i][j]);
+	            }
+	        }
+	    return dp[m - 1][n - 1];
+	    }
+	};
+	
+	
+	class Solution2 {
+	public:
+	    int minPathSum(vector<vector<int> > &grid) {
+	        int m = grid.size();
+	        if(m == 0) return 0;
+	        int n = grid[0].size();
+	        vector<int> dp(n);
+	        
+	        for(int i = 0; i < m; i++){
+	            for(int j = 0; j < n; j++){
+	                if(i == 0){
+	                    if(j == 0)
+	                        dp[j] = grid[i][j];
+	                    else
+	                        dp[j] = dp[j - 1] + grid[i][j];
+	                }else if(j == 0)
+	                    dp[j] = dp[j] + grid[i][j];
+	                else
+	                    dp[j] = min(dp[j] + grid[i][j],dp[j - 1] + grid[i][j]);
+	            }
+	        }
+	    return dp[n - 1];
+	    }
+	};

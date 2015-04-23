@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 1.2 字符串包含
+title: Algorithms——字符串包含
 categories: [Algorithms]
 ---
 【转自July】

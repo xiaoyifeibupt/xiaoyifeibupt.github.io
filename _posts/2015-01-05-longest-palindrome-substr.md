@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 1.5 最长回文子串
+title: Algorithms——最长回文子串
 categories: [Algorithms]
 ---
 【转自July】

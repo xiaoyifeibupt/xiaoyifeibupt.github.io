@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 2.5 跳台阶问题
+title: Algorithms——跳台阶问题
 categories: [Algorithms]
 ---
 

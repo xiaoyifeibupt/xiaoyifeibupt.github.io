@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 1.1 旋转字符串
+title: Algorithms——旋转字符串
 categories: [Algorithms]
 ---
 

@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 1.7 本章字符串和链表的习题
+title: Algorithms——本章字符串和链表的习题
 categories: [Algorithms]
 ---
 【转自July】

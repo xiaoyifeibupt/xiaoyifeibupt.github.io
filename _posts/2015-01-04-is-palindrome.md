@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 1.4 回文判断
+title: Algorithms——回文判断
 categories: [Algorithms]
 ---
 

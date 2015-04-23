@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 2.7 荷兰国旗问题
+title: Algorithms——荷兰国旗问题
 categories: [Algorithms]
 ---
 

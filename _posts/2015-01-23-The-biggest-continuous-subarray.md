@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 2.4 最大连续子数组和
+title: Algorithms——最大连续子数组和
 categories: [Algorithms]
 ---
 【转自July】

@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 查找匹配
+title: Algorithms——查找匹配
 categories: [Algorithms]
 ---
 【整理自July】

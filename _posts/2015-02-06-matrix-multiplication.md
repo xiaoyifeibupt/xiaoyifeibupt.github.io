@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 2.8 矩阵相乘
+title: Algorithms——矩阵相乘
 categories: [Algorithms]
 ---
 【转自July】

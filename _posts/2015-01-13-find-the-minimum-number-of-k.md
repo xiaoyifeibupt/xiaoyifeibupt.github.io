@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 2.1 寻找最小的K个数
+title: Algorithms——寻找最小的K个数
 categories: [Algorithms]
 ---
 【转自July】

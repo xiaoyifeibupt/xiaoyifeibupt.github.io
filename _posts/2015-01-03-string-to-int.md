@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 1.3 字符串转换成整数
+title: Algorithms——字符串转换成整数
 categories: [Algorithms]
 ---
 【转自July】

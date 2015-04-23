@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 2.11 本章数组和队列的习题
+title: Algorithms——本章数组和队列的习题
 categories: [Algorithms]
 ---
 【转自July】

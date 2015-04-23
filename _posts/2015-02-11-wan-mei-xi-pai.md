@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 2.9 完美洗牌
+title: Algorithms——完美洗牌
 categories: [Algorithms]
 ---
 

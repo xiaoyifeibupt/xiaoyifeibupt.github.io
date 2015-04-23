@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 2.10 K个最小和
+title: Algorithms——K个最小和
 categories: [Algorithms]
 ---
 

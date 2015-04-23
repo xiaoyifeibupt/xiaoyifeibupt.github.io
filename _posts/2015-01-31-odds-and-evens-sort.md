@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 2.6 奇偶排序
+title: Algorithms——奇偶排序
 categories: [Algorithms]
 ---
 

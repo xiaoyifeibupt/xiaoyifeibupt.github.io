@@ -187,6 +187,7 @@ public class Observer2 implements Observer {
     }  
   
 }  
+```
 
 Subject接口及实现类：
 

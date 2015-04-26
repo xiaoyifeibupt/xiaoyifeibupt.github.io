@@ -22,6 +22,7 @@ public class Source {
 ```
 
 接口
+
 ```Java
 public interface Targetable {
 

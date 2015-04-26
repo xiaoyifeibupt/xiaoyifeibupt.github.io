@@ -132,11 +132,13 @@ int StrToInt(const char* str) {
 	while (isdigit(*str)) {
 		//处理溢出
 		int c = *str - '0';
-		if (sign > 0 && (n > MAX_INT / 10 || (n == MAX_INT / 10 && c > MAX_INT % 10))) {
+		if (sign > 0 && (n > MAX_INT / 10 || 
+				(n == MAX_INT / 10 && c > MAX_INT % 10))) {
 			n = MAX_INT;
 			break;
 		}
-		else if (sign < 0 && (n >(unsigned)MIN_INT / 10 || (n == (unsigned)MIN_INT / 10 && c > 							(unsigned)MIN_INT % 10))){
+		else if (sign < 0 && (n >(unsigned)MIN_INT / 10 || 
+				(n == (unsigned)MIN_INT / 10 && c > (unsigned)MIN_INT % 10))){
 			n = MIN_INT;
 			break;
 		}

@@ -21,17 +21,17 @@ categories: [Algorithms]
 
 思路有了，你可能不假思索，写下如下代码：
 
-	int StrToInt(const char *str)
-	{
-		int n = 0;
-		while (*str != 0)
-		{
-			int c = *str - '0';
-			n = n * 10 + c;
-			++str;
-		}
-		return n;
+```C
+int StrToInt(const char *str) {
+	int n = 0;
+	while (*str != 0) {
+		int c = *str - '0';
+		n = n * 10 + c;
+		++str;
 	}
+	return n;
+}
+```
 
 显然，上述代码忽略了以下细节：
 
@@ -51,26 +51,26 @@ categories: [Algorithms]
 
 而后，你可能会编写如下代码段处理溢出问题：
 
-	//当发生正溢出时，返回INT_MAX
-	if ((sign == '+') && (c > MAX_INT - n * 10))
-	{
-		
-		n = MAX_INT;
-		break;
-	}
-	//发生负溢出时，返回INT_MIN
-	else if ((sign == '-') && (c - 1 > MAX_INT - n * 10))
-	{
-		n = MIN_INT;
-		break;
-	}
+```C
+//当发生正溢出时，返回INT_MAX
+if ((sign == '+') && (c > MAX_INT - n * 10)) {
+	
+	n = MAX_INT;
+	break;
+}
+//发生负溢出时，返回INT_MIN
+else if ((sign == '-') && (c - 1 > MAX_INT - n * 10)) {
+	n = MIN_INT;
+	break;
+}
+```
 
 但当上述代码转换"    10522545459"会出错，因为正常的话理应得到MAX_INT：2147483647，但程序运行结果将会是：1932610867。
 
 为什么呢？因为当给定字符串"    10522545459"时，而MAX_INT是2147483647，即MAX_INT(2147483647) < n*10(1052254545\*10)，所以当扫描到最后一个字符‘9’的时候，执行上面的这行代码：
-
+```C
 	c > MAX_INT - n * 10
-
+```
 已无意义，因为此时(MAX_INT - n * 10)已经小于0，程序已经出错。
 
 针对这种由于输入了一个很大的数字转换之后会超过能够表示的最大的整数而导致的溢出情况，我们有两种处理方式可以选择：
@@ -89,70 +89,65 @@ categories: [Algorithms]
 
 如此我们可以写出正确的处理溢出的代码：
 
-	c = *str - '0';
-	if (sign > 0 && (n > MAX_INT / 10 
-		|| (n == MAX_INT / 10 && c > MAX_INT % 10)))
-	{
-	    n = MAX_INT;
-	    break;
-	}
-	else if (sign < 0 && (n > (unsigned)MIN_INT / 10 
-			|| (n == (unsigned)MIN_INT / 10 && c > (unsigned)MIN_INT % 10)))
-	{
-	    n = MIN_INT;
-	    break;
-	}
+```C
+c = *str - '0';
+if (sign > 0 && (n > MAX_INT / 10 
+	|| (n == MAX_INT / 10 && c > MAX_INT % 10))) {
+    n = MAX_INT;
+    break;
+}
+else if (sign < 0 && (n > (unsigned)MIN_INT / 10 
+		|| (n == (unsigned)MIN_INT / 10 && c > (unsigned)MIN_INT % 10))) {
+    n = MIN_INT;
+    break;
+}
+```
 
 从而，字符串转换成整数，完整的参考代码为：
 
-	int StrToInt(const char* str)
-	{
-		static const int MAX_INT = (int)((unsigned)~0 >> 1);
-		static const int MIN_INT = -(int)((unsigned)~0 >> 1) - 1;
-		unsigned int n = 0;
-	
-		//判断是否输入为空
-		if (str == 0)
-		{
-			return 0;
-		}
-	
-		//处理空格
-		while (isspace(*str))
-			++str;
-	
-		//处理正负
-		int sign = 1;
-		if (*str == '+' || *str == '-')
-		{
-			if (*str == '-')
-				sign = -1;
-			++str;
-		}
-	
-		//确定是数字后才执行循环
-		while (isdigit(*str))
-		{
-			//处理溢出
-			int c = *str - '0';
-			if (sign > 0 && (n > MAX_INT / 10 || (n == MAX_INT / 10 && c > MAX_INT % 10)))
-			{
-				n = MAX_INT;
-				break;
-			}
-			else if (sign < 0 && (n >(unsigned)MIN_INT / 10 || (n == (unsigned)MIN_INT / 10 && c > (unsigned)MIN_INT % 10)))
-			{
-				n = MIN_INT;
-				break;
-			}
-	
-			//把之前得到的数字乘以10，再加上当前字符表示的数字。
-			n = n * 10 + c;
-			++str;
-		}
-		return sign > 0 ? n : -n;
+```C
+int StrToInt(const char* str) {
+	static const int MAX_INT = (int)((unsigned)~0 >> 1);
+	static const int MIN_INT = -(int)((unsigned)~0 >> 1) - 1;
+	unsigned int n = 0;
+
+	//判断是否输入为空
+	if (str == 0) {
+		return 0;
 	}
 
+	//处理空格
+	while (isspace(*str))
+		++str;
+
+	//处理正负
+	int sign = 1;
+	if (*str == '+' || *str == '-') {
+		if (*str == '-')
+			sign = -1;
+		++str;
+	}
+
+	//确定是数字后才执行循环
+	while (isdigit(*str)) {
+		//处理溢出
+		int c = *str - '0';
+		if (sign > 0 && (n > MAX_INT / 10 || (n == MAX_INT / 10 && c > MAX_INT % 10))) {
+			n = MAX_INT;
+			break;
+		}
+		else if (sign < 0 && (n >(unsigned)MIN_INT / 10 || (n == (unsigned)MIN_INT / 10 && c > 							(unsigned)MIN_INT % 10))){
+			n = MIN_INT;
+			break;
+		}
+
+		//把之前得到的数字乘以10，再加上当前字符表示的数字。
+		n = n * 10 + c;
+		++str;
+	}
+	return sign > 0 ? n : -n;
+}
+```
 
 ## 举一反三
 

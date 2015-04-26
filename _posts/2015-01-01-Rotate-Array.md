@@ -15,26 +15,25 @@ categories: [Algorithms]
 
 初看此题，可能最先想到的方法是按照题目所要求的，把需要移动的字符一个一个地移动到字符串的尾部，如此我们可以实现一个函数`LeftShiftOne(char* s, int n)` ，以完成移动一个字符到字符串尾部的功能，代码如下所示：
 
-	void LeftShiftOne(char* s, int n)
-	{
-	    char t = s[0];  //保存第一个字符
-	    for (int i = 1; i < n; i++)
-	    {
-	        s[i - 1] = s[i];
-	    }
-	    s[n - 1] = t;
-	}
-
+```C
+void LeftShiftOne(char* s, int n) {
+    char t = s[0];  //保存第一个字符
+    for (int i = 1; i < n; i++) {
+        s[i - 1] = s[i];
+    }
+    s[n - 1] = t;
+}
+```
 
 因此，若要把字符串开头的m个字符移动到字符串的尾部，则可以如下操作：
 
-	void LeftRotateString(char* s, int n, int m)
-	{
-	    while (m--)
-	    {
-	        LeftShiftOne(s, n);
-	    }
-	}
+```C
+void LeftRotateString(char* s, int n, int m) {
+    while (m--) {
+        LeftShiftOne(s, n);
+    }
+}
+```
 
 下面，我们来分析一下这种方法的时间复杂度和空间复杂度。
 
@@ -58,23 +57,22 @@ categories: [Algorithms]
 
 代码则可以这么写：
 
-	void ReverseString(char* s,int from,int to)
-	{
-	    while (from < to)
-	    {
-	        char t = s[from];
-	        s[from++] = s[to];
-	        s[to--] = t;
-	    }
-	}
-	
-	void LeftRotateString(char* s,int n,int m)
-	{
-	    m %= n;               //若要左移动大于n位，那么和%n 是等价的
-	    ReverseString(s, 0, m - 1); //反转[0..m - 1]，套用到上面举的例子中，就是X->X^T，即 abc->cba
-	    ReverseString(s, m, n - 1); //反转[m..n - 1]，例如Y->Y^T，即 def->fed
-	    ReverseString(s, 0, n - 1); //反转[0..n - 1]，即如整个反转，(X^TY^T)^T=YX，即 cbafed->defabc。
-	}
+```C
+void ReverseString(char* s,int from,int to) {
+    while (from < to) {
+        char t = s[from];
+        s[from++] = s[to];
+        s[to--] = t;
+    }
+}
+
+void LeftRotateString(char* s,int n,int m){
+    m %= n;               //若要左移动大于n位，那么和%n 是等价的
+    ReverseString(s, 0, m - 1); //反转[0..m - 1]，套用到上面举的例子中，就是X->X^T，即 abc->cba
+    ReverseString(s, m, n - 1); //反转[m..n - 1]，例如Y->Y^T，即 def->fed
+    ReverseString(s, 0, n - 1); //反转[0..n - 1]，即如整个反转，(X^TY^T)^T=YX，即 cbafed->defabc。
+}
+```
 
 这就是把字符串分为两个部分，先各自反转再整体反转的方法，时间复杂度为O(n)，空间复杂度为O(1)，达到了题目的要求。
 

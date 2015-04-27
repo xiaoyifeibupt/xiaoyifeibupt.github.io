@@ -24,27 +24,26 @@ categories: [Algorithms]
 
 代码如下：：
 
-	bool IsPalindrome(const char *s, int n)
-	{
-		//非法输入
-		if (s == NULL || n < 1) 
-			return false;   
-		char *front, *back;
-		
-		//初始化头指针和尾指针
-		front = s; 
-		back = s + n - 1; 
+```c
+bool IsPalindrome(const char *s, int n) {
+	//非法输入
+	if (s == NULL || n < 1) 
+		return false;   
+	char *front, *back;
 	
-		while (front < back) 
-		{
-			if (*front != *back)
-				return false; // 不是回文，立即返回  
-			++front;
-			--back;
-		}
-		return true; // 是回文  
-	}
+	//初始化头指针和尾指针
+	front = s; 
+	back = s + n - 1; 
 
+	while (front < back) {
+		if (*front != *back)
+			return false; // 不是回文，立即返回  
+		++front;
+		--back;
+	}
+	return true; // 是回文  
+}
+```
 
 这是一个直白且效率不错的实现，时间复杂度：O(n)，空间复杂度：O(1)。
 
@@ -53,22 +52,22 @@ categories: [Algorithms]
 
 上述解法一从两头向中间扫描，那么是否还有其它办法呢？我们可以先从中间开始、然后向两边扩展查看字符是否相等。参考代码如下：
 
+```c
+bool IsPalindrome2(const char *s, int n) {
+	if (s == NULL || n < 1) 
+		return false; // 非法输入  
+	char *first, *second;
 
-	bool IsPalindrome2(const char *s, int n)
-	{
-		if (s == NULL || n < 1) 
-			return false; // 非法输入  
-		char *first, *second;
-	
-		int m = ((n >> 1) - 1) >= 0 ? (n >> 1) - 1 : 0; // m is themiddle point of s      
-		first = s + m; 
-		second = s + n - 1 - m;
-	
-		while (first >= s)
-		if (s[first--] != s[second++]) 
-			return false; // not equal, so it's not apalindrome  
-		return true; // check over, it's a palindrome  
-	}
+	int m = ((n >> 1) - 1) >= 0 ? (n >> 1) - 1 : 0; // m is themiddle point of s      
+	first = s + m; 
+	second = s + n - 1 - m;
+
+	while (first >= s)
+	if (s[first--] != s[second++]) 
+		return false; // not equal, so it's not apalindrome  
+	return true; // check over, it's a palindrome  
+}
+```
 
 时间复杂度：O(n)，空间复杂度：O(1)。
 

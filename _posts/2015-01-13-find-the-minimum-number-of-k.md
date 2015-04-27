@@ -48,39 +48,36 @@ categories: [Algorithms]
 
 示例代码如下：
 
+```C
+//QuickSelect 将第k小的元素放在 a[k-1]  
+void QuickSelect( int a[], int k, int left, int right ) {
+    int i, j;
+    int pivot;
 
-	//QuickSelect 将第k小的元素放在 a[k-1]  
-	void QuickSelect( int a[], int k, int left, int right )
-	{
-	    int i, j;
-	    int pivot;
-	
-	    if( left + cutoff <= right )
-	    {
-	        pivot = median3( a, left, right );
-	        //取三数中值作为枢纽元，可以很大程度上避免最坏情况
-	        i = left; j = right - 1;
-	        for( ; ; )
-	        {
-	            while( a[ ++i ] < pivot ){ }
-	            while( a[ --j ] > pivot ){ }
-	            if( i < j )
-	                swap( &a[ i ], &a[ j ] );
-	            else
-	                break;
-	        }
-	        //重置枢纽元
-	        swap( &a[ i ], &a[ right - 1 ] );  
-	
-	        if( k <= i )
-	            QuickSelect( a, k, left, i - 1 );
-	        else if( k > i + 1 )
-	            QuickSelect( a, k, i + 1, right );
-	    }
-	    else  
-	        InsertSort( a + left, right - left + 1 );
-	}
+    if( left + cutoff <= right ) {
+        pivot = median3( a, left, right );
+        //取三数中值作为枢纽元，可以很大程度上避免最坏情况
+        i = left; j = right - 1;
+        for( ; ; ) {
+            while( a[ ++i ] < pivot ){ }
+            while( a[ --j ] > pivot ){ }
+            if( i < j )
+                swap( &a[ i ], &a[ j ] );
+            else
+                break;
+        }
+        //重置枢纽元
+        swap( &a[ i ], &a[ right - 1 ] );  
 
+        if( k <= i )
+            QuickSelect( a, k, left, i - 1 );
+        else if( k > i + 1 )
+            QuickSelect( a, k, i + 1, right );
+    }
+    else  
+        InsertSort( a + left, right - left + 1 );
+}
+```
 
 这个快速选择SELECT算法，类似快速排序的划分方法。N个数存储在数组S中，再从数组中选取“中位数的中位数”作为枢纽元X，把数组划分为Sa和Sb俩部分，Sa<=X<=Sb，如果要查找的k个元素小于Sa的元素个数，则返回Sa中较小的k个元素，否则返回Sa中所有元素+Sb中小的k-|Sa|个元素，这种解法在平均情况下能做到`O(n)`的复杂度。
 

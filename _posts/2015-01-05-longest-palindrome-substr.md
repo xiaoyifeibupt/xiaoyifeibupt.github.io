@@ -17,33 +17,35 @@ categories: [Algorithms]
 
 那么，我们是否可以可以枚举中心位置，然后再在该位置上用扩展法，记录并更新得到的最长的回文长度呢？答案是肯定的，参考代码如下：
 
-	int LongestPalindrome(const char *s, int n){
-		int i, j, max,c;
-		if (s == 0 || n < 1)
-			return 0;
-		max = 0;
-	
-		for (i = 0; i < n; ++i) { // i is the middle point of the palindrome
-			// if the length of the palindrome is odd  
-			for (j = 0; (i - j >= 0) && (i + j < n); ++j){ 
-				  
-				if (s[i - j] != s[i + j])
-					break;
-				c = j * 2 + 1;
-			}
-			if (c > max)
-				max = c;
-			// for the even case  
-			for (j = 0; (i - j >= 0) && (i + j + 1 < n); ++j){ 
-				if (s[i - j] != s[i + j + 1])
-					break;
-				c = j * 2 + 2;
-			}
-			if (c > max)
-				max = c;
+```c
+int LongestPalindrome(const char *s, int n) {
+	int i, j, max,c;
+	if (s == 0 || n < 1)
+		return 0;
+	max = 0;
+
+	for (i = 0; i < n; ++i) { // i is the middle point of the palindrome
+		// if the length of the palindrome is odd  
+		for (j = 0; (i - j >= 0) && (i + j < n); ++j) { 
+			  
+			if (s[i - j] != s[i + j])
+				break;
+			c = j * 2 + 1;
 		}
-		return max;
+		if (c > max)
+			max = c;
+		// for the even case  
+		for (j = 0; (i - j >= 0) && (i + j + 1 < n); ++j) { 
+			if (s[i - j] != s[i + j + 1])
+				break;
+			c = j * 2 + 2;
+		}
+		if (c > max)
+			max = c;
 	}
+	return max;
+}
+```
 
 代码稍微难懂一点的地方就是内层的两个 for 循环，它们分别对于以 i 为中心的，长度为奇数和偶数的两种情况，整个代码遍历中心位置 i 并以之扩展，找出最长的回文。
 
@@ -72,42 +74,44 @@ categories: [Algorithms]
 
 C代码如下：
 
-	//mx > i，那么P[i] >= MIN(P[2 * id - i], mx - i)
-	//故谁小取谁
-	if (mx - i > P[2*id - i])
-	    P[i] = P[2*id - i];
-	else  //mx-i <= P[2*id - i]
-	    P[i] = mx - i; 
+```c
+//mx > i，那么P[i] >= MIN(P[2 * id - i], mx - i)
+//故谁小取谁
+if (mx - i > P[2*id - i])
+    P[i] = P[2*id - i];
+else  //mx-i <= P[2*id - i]
+    P[i] = mx - i; 
+```
 
-下面，令j = 2*id - i，也就是说j是i关于id的对称点。
+下面，令`j = 2*id - i`，也就是说j是i关于id的对称点。
 
-当 mx - i > P[j] 的时候，以S[j]为中心的回文子串包含在以S[id]为中心的回文子串中，由于i和j对称，以S[i]为中心的回文子串必然包含在以S[id]为中心的回文子串中，所以必有P[i] = P[j]；
+当 `mx - i > P[j] `的时候，以`S[j]`为中心的回文子串包含在以`S[id]`为中心的回文子串中，由于`i`和`j`对称，以`S[i]`为中心的回文子串必然包含在以S[id]为中心的回文子串中，所以必有`P[i] = P[j]`；
 
 ![](http://www.felix021.com/blog/attachment/1318476284_79354a47.png)
 
-当 P[j] >= mx - i 的时候，以S[j]为中心的回文子串不一定完全包含于以S[id]为中心的回文子串中，但是基于对称性可知，下图中两个绿框所包围的部分是相同的，也就是说以S[i]为中心的回文子串，其向右至少会扩张到mx的位置，也就是说 P[i] >= mx - i。至于mx之后的部分是否对称，再具体匹配。
+当 `P[j] >= mx - i `的时候，以`S[j]`为中心的回文子串不一定完全包含于以`S[id]`为中心的回文子串中，但是基于对称性可知，下图中两个绿框所包围的部分是相同的，也就是说以`S[i]`为中心的回文子串，其向右至少会扩张到mx的位置，也就是说 `P[i] >= mx - i`。至于`mx`之后的部分是否对称，再具体匹配。
 
 ![](http://www.felix021.com/blog/attachment/1318478114_4379fb5c.png)
 
-此外，对于 mx <= i 的情况，因为无法对 P[i]做更多的假设，只能让P[i] = 1，然后再去匹配。
+此外，对于 `mx <= i` 的情况，因为无法对 `P[i]` 做更多的假设，只能让 `P[i] = 1` ，然后再去匹配。
 
 综上，关键代码如下：
 
-	//输入，并处理得到字符串s
-	int p[1000], mx = 0, id = 0;
-	memset(p, 0, sizeof(p));
-	for (i = 1; s[i] != '\0'; i++) 
-	{
-		p[i] = mx > i ? min(p[2 * id - i], mx - i) : 1;
-		while (s[i + p[i]] == s[i - p[i]]) 
-			p[i]++;
-		if (i + p[i] > mx) 
-		{
-			mx = i + p[i];
-			id = i;
-		}
+```c
+//输入，并处理得到字符串s
+int p[1000], mx = 0, id = 0;
+memset(p, 0, sizeof(p));
+for (i = 1; s[i] != '\0'; i++) {
+	p[i] = mx > i ? min(p[2 * id - i], mx - i) : 1;
+	while (s[i + p[i]] == s[i - p[i]]) 
+		p[i]++;
+	if (i + p[i] > mx) {
+		mx = i + p[i];
+		id = i;
 	}
-	//找出p[i]中最大的
+}
+//找出p[i]中最大的
+```
 
 此Manacher算法使用id、mx做配合，可以在每次循环中，直接对P[i]的快速赋值，从而在计算以i为中心的回文子串的过程中，不必每次都从1开始比较，减少了比较次数，最终使得求解最长回文子串的长度达到线性O(N)的时间复杂度。
 

@@ -33,48 +33,50 @@ categories: [Algorithms]
 
 思路有了，接下来，写代码实现：
 
-	//判断是否为奇数
-	bool IsOddNumber(int data)
+```C
+//判断是否为奇数
+bool IsOddNumber(int data)
+{
+	return data & 1 == 1;
+}
+
+//交换两个元素
+void swap(int* x, int* y)
+{
+	int temp = *x;
+	*x = *y;
+	*y = temp;
+}
+
+//奇偶互换
+void OddEvenSort(int *pData, unsigned int length)
+{
+	if (pData == NULL || length == 0)
+		return;
+
+	int *pBegin = pData;
+	int *pEnd = pData + length - 1;
+
+	while (pBegin < pEnd)
 	{
-		return data & 1 == 1;
-	}
-	
-	//交换两个元素
-	void swap(int* x, int* y)
-	{
-		int temp = *x;
-		*x = *y;
-		*y = temp;
-	}
-	
-	//奇偶互换
-	void OddEvenSort(int *pData, unsigned int length)
-	{
-		if (pData == NULL || length == 0)
-			return;
-	
-		int *pBegin = pData;
-		int *pEnd = pData + length - 1;
-	
-		while (pBegin < pEnd)
+		//如果pBegin指针指向的是奇数，正常，向右移
+		if (IsOddNumber(*pBegin))  
 		{
-			//如果pBegin指针指向的是奇数，正常，向右移
-			if (IsOddNumber(*pBegin))  
-			{
-				pBegin++;
-			}
-			//如果pEnd指针指向的是偶数，正常，向左移
-			else if (!IsOddNumber(*pEnd))
-			{
-				pEnd--;
-			}
-			else
-			{
-				//否则都不正常，交换
-				swap(*pBegin, *pEnd);
-			}
+			pBegin++;
+		}
+		//如果pEnd指针指向的是偶数，正常，向左移
+		else if (!IsOddNumber(*pEnd))
+		{
+			pEnd--;
+		}
+		else
+		{
+			//否则都不正常，交换
+			swap(*pBegin, *pEnd);
 		}
 	}
+}
+```
 
 本方法通过头尾两个指针往中间扫描，一次遍历完成所有奇数偶数的重新排列，时间复杂度为O(n)。
 
@@ -132,23 +134,23 @@ partition分治过程，每一趟排序的过程中，选取的主元都会把�
 
 参考代码如下：
 
-
-	//奇偶互换
-	void OddEvenSort2(int data[], int lo, int hi)
+```C
+//奇偶互换
+void OddEvenSort2(int data[], int lo, int hi)
+{
+	int i = lo - 1;
+	for (int j = lo; j < hi; j++)
 	{
-		int i = lo - 1;
-		for (int j = lo; j < hi; j++)
+		//data[j]指向奇数，交换
+		if ( IsOddNumber(data[j]) )
 		{
-			//data[j]指向奇数，交换
-			if ( IsOddNumber(data[j]) )
-			{
-				i = i + 1;
-				swap(&data[i], &data[j]);
-			}
+			i = i + 1;
+			swap(&data[i], &data[j]);
 		}
-		swap(&data[i + 1], &data[hi]);
 	}
-
+	swap(&data[i + 1], &data[hi]);
+}
+```
 
 此解法一前一后两个指针同时向右扫描的过程中，也是一次遍历完成奇数偶数的重新排列，故时间复杂度也为O(n)。
 

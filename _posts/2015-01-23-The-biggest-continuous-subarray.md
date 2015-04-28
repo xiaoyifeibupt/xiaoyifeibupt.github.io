@@ -22,27 +22,27 @@ categories: [Algorithms]
 
 参考代码如下：
 
+```C
+int MaxSubArray(int* A, int n) {
+    int maxSum = a[0];  //全负情况，返回最大负数
+    int currSum = 0;
+    for (int i = 0; i < n; i++)
+    {
+        for (int j = i; j < n; j++)
+        {
+            for (int k = i; k <= j; k++)
+            {
+                currSum += A[k];
+            }
+            if (currSum > maxSum)
+                maxSum = currSum;
 
-	int MaxSubArray(int* A, int n)
-	{
-	    int maxSum = a[0];  //全负情况，返回最大负数
-	    int currSum = 0;
-	    for (int i = 0; i < n; i++)
-	    {
-	        for (int j = i; j < n; j++)
-	        {
-	            for (int k = i; k <= j; k++)
-	            {
-	                currSum += A[k];
-	            }
-	            if (currSum > maxSum)
-	                maxSum = currSum;
-	
-	            currSum = 0; //这里要记得清零，否则的话sum最终存放的是所有子数组的和。
-	        }
-	    }
-	    return maxSum;
-	}
+            currSum = 0; //这里要记得清零，否则的话sum最终存放的是所有子数组的和。
+        }
+    }
+    return maxSum;
+}
+```
 
 此方法的时间复杂度为O(n^3)。
 
@@ -65,20 +65,21 @@ categories: [Algorithms]
 
 参考代码如下：
 
-	int MaxSubArray(int* a, int n)
-	{
-		int currSum = 0;
-		int maxSum = a[0];       //全负情况，返回最大数
-	
-		for (int j = 0; j < n; j++)
-		{
-			currSum = (a[j] > currSum + a[j]) ? a[j] : currSum + a[j];
-			maxSum = (maxSum > currSum) ? maxSum : currSum;
-	
-		}
-		return maxSum;
-	}
+```C
+int MaxSubArray(int* a, int n)
+{
+	int currSum = 0;
+	int maxSum = a[0];       //全负情况，返回最大数
 
+	for (int j = 0; j < n; j++)
+	{
+		currSum = (a[j] > currSum + a[j]) ? a[j] : currSum + a[j];
+		maxSum = (maxSum > currSum) ? maxSum : currSum;
+
+	}
+	return maxSum;
+}
+```
 
 ## 问题扩展
 

@@ -33,16 +33,15 @@ categories: [Algorithms]
 
 原来上述问题就是我们平常所熟知的Fibonacci数列问题。可编写代码，如下：
 
+```C
+long long Fibonacci(unsigned int n) {
+    int result[3] = {0, 1, 2};
+    if (n <= 2)
+        return result[n];
 
-	long long Fibonacci(unsigned int n)
-	{
-	    int result[3] = {0, 1, 2};
-	    if (n <= 2)
-	        return result[n];
-	
-	    return Fibonacci(n - 1) + Fibonacci(n - 2);
-	}
-
+    return Fibonacci(n - 1) + Fibonacci(n - 2);
+}
+```
 
 那么，如果一个人上台阶可以一次上1个，2个，或者3个呢？这个时候，公式是这样写的：
 	
@@ -60,23 +59,23 @@ categories: [Algorithms]
 
 参考代码如下：
 
-	//1, 1, 2, 3, 5, 8, 13, 21..
-	int ClimbStairs(int n)
+```C
+//1, 1, 2, 3, 5, 8, 13, 21..
+int ClimbStairs(int n) {
+	int dp[3] = { 1, 1 };
+	if (n < 2)
 	{
-		int dp[3] = { 1, 1 };
-		if (n < 2)
-		{
-			return 1;
-		}
-		for (int i = 2; i <= n; i++)
-		{
-			dp[2] = dp[0] + dp[1];
-			dp[0] = dp[1];
-			dp[1] = dp[2];
-		}
-		return dp[2];
+		return 1;
 	}
-
+	for (int i = 2; i <= n; i++)
+	{
+		dp[2] = dp[0] + dp[1];
+		dp[0] = dp[1];
+		dp[1] = dp[2];
+	}
+	return dp[2];
+}
+```
 
 ### 举一反三
 
@@ -90,16 +89,17 @@ categories: [Algorithms]
 
 想兑换100元钱，有1,2,5,10四种钱，问总共有多少兑换方法。
 
-	const int N = 100;
-	int dimes[] = { 1, 2, 5, 10 };
-	int arr[N + 1] = { 1 };
-	for (int i = 0; i < sizeof(dimes) / sizeof(int); ++i)
+```C
+const int N = 100;
+int dimes[] = { 1, 2, 5, 10 };
+int arr[N + 1] = { 1 };
+for (int i = 0; i < sizeof(dimes) / sizeof(int); ++i)
+{
+	for (int j = dimes[i]; j <= N; ++j)
 	{
-		for (int j = dimes[i]; j <= N; ++j)
-		{
-			arr[j] += arr[j - dimes[i]];
-		}
+		arr[j] += arr[j - dimes[i]];
 	}
-
+}
+```
 
 此问题还有一个变形，就是打印出路径目前只想到要使用递归来解决这个问题。对此，利用一个vector来保存路径，每进入一层，push_back一个路径，每退出一层，pop_back一个路径。

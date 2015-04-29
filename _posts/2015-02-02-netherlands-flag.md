@@ -39,27 +39,23 @@ ok，说这么多，你可能不甚明了，直接引用下gnuhpc的图，就一
 
 参考代码如下：
 
-	//引用自gnuhpc  
-	while( current<=end )        
-	{             
-	  if( array[current] ==0 )             
-	   {                 
-	      swap(array[current],array[begin]);                  
-	      current++;                  
-	      begin++;            
-	   }             
-	   else if( array[current] == 1 )            
-	   {                 
-	      current++;            
-	   }   
-	            
-	   else //When array[current] =2   
-	   {               
-	      swap(array[current],array[end]);                
-	      end--;            
-	   }      
-	}  
-
+```C
+//引用自gnuhpc  
+while( current<=end ) {             
+	if( array[current] ==0 ) {                 
+		swap(array[current],array[begin]);                  
+		current++;                  
+		begin++;            
+	}             
+   	else if( array[current] == 1 ) {                 
+      		current++;            
+   	}
+   	else{ //When array[current] =2  
+      		swap(array[current],array[end]);                
+		end--;            
+	}      
+}  
+```
 
 ### 举一反三
 

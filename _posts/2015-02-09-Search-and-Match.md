@@ -40,35 +40,33 @@ categories: [Algorithms]
 
 以下是一份参考实现：
 
-	int BinarySearch(int array[], int n, int value)
-	{
-	    int left = 0;
-	    int right = n - 1;
-	    //如果这里是int right = n 的话，那么下面有两处地方需要修改，以保证一一对应：
-	    //1、下面循环的条件则是while(left < right)
-	    //2、循环内当 array[middle] > value 的时候，right = mid
-	
-	    while (left <= right)  //循环条件，适时而变
-	    {
-			//防止溢出，移位也更高效。同时，每次循环都需要更新。
-	        int middle = left + ((right - left) >> 1);  
-	
-	        if (array[middle] > value)
-	        {
-	            right = middle - 1;  //right赋值，适时而变
-	        }
-	        else if(array[middle] < value)
-	        {
-	            left = middle + 1;
-	        }
-	        else
-	            return middle;
-	        //可能会有读者认为刚开始时就要判断相等，但毕竟数组中不相等的情况更多
-	        //如果每次循环都判断一下是否相等，将耗费时间
-	    }
-	    return -1;
-	}
+```C
+int BinarySearch(int array[], int n, int value) {
+    int left = 0;
+    int right = n - 1;
+    //如果这里是int right = n 的话，那么下面有两处地方需要修改，以保证一一对应：
+    //1、下面循环的条件则是while(left < right)
+    //2、循环内当 array[middle] > value 的时候，right = mid
 
+    while (left <= right) {  //循环条件，适时而变
+
+	//防止溢出，移位也更高效。同时，每次循环都需要更新。
+        int middle = left + ((right - left) >> 1);  
+
+        if (array[middle] > value) {
+            right = middle - 1;  //right赋值，适时而变
+        }
+        else if(array[middle] < value) {
+            left = middle + 1;
+        }
+        else
+            return middle;
+        //可能会有读者认为刚开始时就要判断相等，但毕竟数组中不相等的情况更多
+        //如果每次循环都判断一下是否相等，将耗费时间
+    }
+    return -1;
+}
+```
 ###1.3. 总结
 
 编写二分查找的程序时
@@ -110,23 +108,25 @@ img
 
 关键代码如下所示：
 
-	#define ROW 4
-	#define COL 4
-	
-	bool YoungMatrix(int array[][COL], int searchKey){
-	    int i = 0, j = COL - 1;
-	    int var = array[i][j];
-	    while (true){
-	        if (var == searchKey)
-	            return true;
-	        else if (var < searchKey && i < ROW - 1)
-	            var = array[++i][j];
-	        else if (var > searchKey && j > 0)
-	            var = array[i][--j];
-	        else
-	            return false;
-	    }
-	}
+```c
+#define ROW 4
+#define COL 4
+
+bool YoungMatrix(int array[][COL], int searchKey) {
+    int i = 0, j = COL - 1;
+    int var = array[i][j];
+    while (true) {
+        if (var == searchKey)
+            return true;
+        else if (var < searchKey && i < ROW - 1)
+            var = array[++i][j];
+        else if (var > searchKey && j > 0)
+            var = array[i][--j];
+        else
+            return false;
+    }
+}
+```
 
 ###2.3. 举一反三
 
@@ -223,29 +223,26 @@ Hash表需要O(n)的空间开销，且要设计hash函数，还有没有更好�
 
 思路清楚了，完整的代码如下：
 
-	//a代表数组，length代表数组长度
-	int FindOneNumber(int* a, int length)
-	{
-	    int candidate = a[0];
-	    int nTimes = 1;
-	    for (int i = 1; i < length; i++)
-	    {
-	        if (nTimes == 0)
-	        {
-	            candidate = a[i];
-	            nTimes = 1;
-	        }
-	        else
-	        {
-	            if (candidate == a[i])
-	                nTimes++;
-	            else
-	                nTimes--;
-	        }
-	    }
-	    return candidate;
-	}
-	
+```c
+//a代表数组，length代表数组长度
+int FindOneNumber(int* a, int length) {
+    int candidate = a[0];
+    int nTimes = 1;
+    for (int i = 1; i < length; i++) {
+        if (nTimes == 0) {
+            candidate = a[i];
+            nTimes = 1;
+        }
+        else {
+            if (candidate == a[i])
+                nTimes++;
+            else
+                nTimes--;
+        }
+    }
+    return candidate;
+}
+```	
 即针对数组{0, 1, 2, 1, 1}，套用上述程序可得：
 
 	i=0，candidate=0，nTimes=1；

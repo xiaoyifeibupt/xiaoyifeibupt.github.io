@@ -31,20 +31,21 @@ categories: [Algorithms]
 
 参考代码如下：
 
-    double MaxProductSubstring(double *a, int length){
-        double maxEnd = a[0];
-        double minEnd = a[0];
-        double maxResult = a[0];
-        for (int i = 1; i < length; ++i)
-        {
-            double end1 = maxEnd * a[i], end2 = minEnd * a[i];
-            maxEnd = max(max(end1, end2), a[i]);
-            minEnd = min(min(end1, end2), a[i]);
-            maxResult = max(maxResult, maxEnd);
-        }
-        return maxResult;
-    }
-    
+```C
+double MaxProductSubstring(double *a, int length) {
+	double maxEnd = a[0];
+	double minEnd = a[0];
+	double maxResult = a[0];
+	for (int i = 1; i < length; ++i) {
+    		double end1 = maxEnd * a[i], end2 = minEnd * a[i];
+    		maxEnd = max(max(end1, end2), a[i]);
+    		minEnd = min(min(end1, end2), a[i]);
+		maxResult = max(maxResult, maxEnd);
+	}
+return maxResult;
+}
+```
+
 动态规划求解的方法一个for循环搞定，所以时间复杂度为O(n)。
 
 ###举一反三
@@ -67,11 +68,13 @@ categories: [Algorithms]
 
 此题常见的思路是动态规划，假如令dp[i][j] 表示源串S[0…i] 和目标串T[0…j] 的最短编辑距离，其边界：dp[0][j] = j，dp[i][0] = i，那么我们可以得出状态转移方程：
 
+```C
     dp[i][j] =min{
-    dp[i-1][j] + 1 , S[i]不在T[0…j]中
-    dp[i-1][j-1] + 1/0 , S[i]在T[j]
-    dp[i][j-1] + 1 , S[i]在T[0…j-1]中
+    	dp[i-1][j] + 1 , S[i]不在T[0…j]中
+    	dp[i-1][j-1] + 1/0 , S[i]在T[j]
+    	dp[i][j-1] + 1 , S[i]在T[0…j-1]中
     }
+```
 
 接下来，咱们重点解释下上述3个式子的含义
 
@@ -123,44 +126,42 @@ dp[i - 1, j - 1] + (s[i] == t[j] ? 0 : 1)
 
 综上，可以写出简单的DP状态方程：
 
+```c
 		//dp[i,j]表示表示源串S[0…i] 和目标串T[0…j] 的最短编辑距离
 	dp[i, j] = min { dp[i - 1, j] + 1,  dp[i, j - 1] + 1,  
 					dp[i - 1, j - 1] + (s[i] == t[j] ? 0 : 1) }
 		//分别表示：删除1个，添加1个，替换1个（相同就不用替换）。
+```
 
 参考代码如下：
 
-    //dp[i][j]表示源串source[0-i)和目标串target[0-j)的编辑距离
-    int EditDistance(char *pSource, char *pTarget)
-    {
-        int srcLength = strlen(pSource);
-        int targetLength = strlen(pTarget);
-        int i, j;
-        //边界dp[i][0] = i，dp[0][j] = j  
-        for (i = 1; i <= srcLength; ++i)
-        {
-            dp[i][0] = i;
-        }
-        for (j = 1; j <= targetLength; ++j)
-        {
-            dp[0][j] = j;
-        }
-        for (i = 1; i <= srcLength; ++i)
-        {
-            for (j = 1; j <= targetLength; ++j)
-            {
-                if (pSource[i - 1] == pTarget[j - 1])
-                {
-                    dp[i][j] = dp[i - 1][j - 1];
-                }
-                else
-                {
-                    dp[i][j] = 1 + min(dp[i - 1][j], dp[i][j - 1]);
-                }
-            }
-        }
-        return dp[srcLength][targetLength];
-    }
+```C
+//dp[i][j]表示源串source[0-i)和目标串target[0-j)的编辑距离
+int EditDistance(char *pSource, char *pTarget)
+{
+	int srcLength = strlen(pSource);
+	int targetLength = strlen(pTarget);
+	int i, j;
+	//边界dp[i][0] = i，dp[0][j] = j  
+	for (i = 1; i <= srcLength; ++i) {
+    		dp[i][0] = i;
+	}
+	for (j = 1; j <= targetLength; ++j) {
+	    dp[0][j] = j;
+	}
+	for (i = 1; i <= srcLength; ++i) {
+	    for (j = 1; j <= targetLength; ++j) {
+	        if (pSource[i - 1] == pTarget[j - 1]) {
+	            dp[i][j] = dp[i - 1][j - 1];
+	        }
+	        else {
+	            dp[i][j] = 1 + min(dp[i - 1][j], dp[i][j - 1]);
+	        }
+	    }
+	}
+return dp[srcLength][targetLength];
+}
+```
 
 ###2.3 举一反三
 
@@ -183,35 +184,37 @@ dp[i - 1, j - 1] + (s[i] == t[j] ? 0 : 1)
 如果s2当前字符等于s3当前字符，并且dp[i][j-1]为真，那么可以取s2而忽略s1的情况，dp[i][j]返回真，其它情况，dp[i][j]返回假
 参考代码如下：
 
-    public boolean IsInterleave(String s1, String 2, String 3){
-    int n = s1.length(), m = s2.length(), s = s3.length();
-    
-    //如果长度不一致，则s3不可能由s1和s2交错组成
-    if (n + m != s)
-        return false;
-    
-    boolean[][]dp = new boolean[n + 1][m + 1];
-    
-    //在初始化边界时，我们认为空串可以由空串组成，因此dp[0][0]赋值为true。
-    dp[0][0] = true;
-    
-    for (int i = 0; i < n + 1; i++){
-        for (int j = 0; j < m + 1; j++){
-            if ( dp[i][j] || (i - 1 >= 0 && dp[i - 1][j] == true &&
-                //取s1字符
-                s1.charAT(i - 1) == s3.charAT(i + j - 1)) ||
-    
-                (j - 1 >= 0 && dp[i][j - 1] == true &&
-                //取s2字符
-                s2.charAT(j - 1) == s3.charAT(i + j - 1)) )
-    
-                dp[i][j] = true;
-            else
-                dp[i][j] = false;
-        }
-    }
-    return dp[n][m]
-    }
+```Java
+public boolean IsInterleave(String s1, String 2, String 3) {
+	int n = s1.length(), m = s2.length(), s = s3.length();
+	
+	//如果长度不一致，则s3不可能由s1和s2交错组成
+	if (n + m != s)
+	return false;
+	
+	boolean[][]dp = new boolean[n + 1][m + 1];
+	
+	//在初始化边界时，我们认为空串可以由空串组成，因此dp[0][0]赋值为true。
+	dp[0][0] = true;
+	
+	for (int i = 0; i < n + 1; i++) {
+		for (int j = 0; j < m + 1; j++) {
+		    if ( dp[i][j] || (i - 1 >= 0 && dp[i - 1][j] == true &&
+		        //取s1字符
+		        s1.charAT(i - 1) == s3.charAT(i + j - 1)) ||
+		
+		        (j - 1 >= 0 && dp[i][j - 1] == true &&
+		        //取s2字符
+		        s2.charAT(j - 1) == s3.charAT(i + j - 1)) )
+		
+		        dp[i][j] = true;
+		    else
+		        dp[i][j] = false;
+		}
+	}
+return dp[n][m];
+}
+```
 
 理解本题及上段代码，对真正理解动态规划有一定帮助。
 
@@ -236,35 +239,36 @@ dp[i - 1, j - 1] + (s[i] == t[j] ? 0 : 1)
     endHere = max(endHere + a[i], a[i])
     结果answer = max(endHere, answer)
 
-	class Solution1 {
-	public:
-	    int maxSubArray(int A[], int n) {
-	        int sum = A[0],b = 0;
-	        for(int i = 0; i < n; i++) {
-	            if(b > 0)
-	                b+=A[i];
-	            else
-	                b = A[i];
-	            if(sum < b)
-	                sum = b;
-	        }
-	    return sum;
-	    }
-	};
+```CPP
+class Solution1 {
+public:
+    int maxSubArray(int A[], int n) {
+        int sum = A[0],b = 0;
+        for(int i = 0; i < n; i++) {
+            if(b > 0)
+                b+=A[i];
+            else
+                b = A[i];
+            if(sum < b)
+                sum = b;
+        }
+    return sum;
+    }
+};
 
-	class Solution2 {
-	public:
-	    int maxSubArray(int A[], int n) {
-	        int answer = A[0];
-	        int endhere = A[0];
-	        for(int i = 1; i < n; i++) {
-	            endhere = max(endhere + A[i],A[i]);
-	            answer = max(answer,endhere);
-	        }
-	    return answer;
-	    }
-	};
-
+class Solution2 {
+public:
+    int maxSubArray(int A[], int n) {
+        int answer = A[0];
+        int endhere = A[0];
+        for(int i = 1; i < n; i++) {
+            endhere = max(endhere + A[i],A[i]);
+            answer = max(answer,endhere);
+        }
+    return answer;
+    }
+};
+```
 
 
 ####4.2.2. 解法二——线性枚举
@@ -283,21 +287,22 @@ dp[i - 1, j - 1] + (s[i] == t[j] ? 0 : 1)
 对j我们可以求得当前的sum[j]，取的i – 1一定是之前最小的sum值，用一个变量记录sum的最小值
 时间O(n),空间O(1)
 
-	class Solution3 {
-	public:
-	    int maxSubArray(int A[], int n) {
-	        int sum = A[0];
-	        int minSum = min(0,sum);
-	        int answer = A[0];
-	        for(int i = 1; i < n; i++) {
-	            sum += A[i];
-	            answer = max(answer,sum - minSum);
-	            minSum = min(minSum,sum);
-	        }
-	    return answer;
-	    }
-	};
-
+```CPP
+class Solution3 {
+public:
+    int maxSubArray(int A[], int n) {
+        int sum = A[0];
+        int minSum = min(0,sum);
+        int answer = A[0];
+        for(int i = 1; i < n; i++) {
+            sum += A[i];
+            answer = max(answer,sum - minSum);
+            minSum = min(minSum,sum);
+        }
+    return answer;
+    }
+};
+```
 
 
 
@@ -335,53 +340,55 @@ dp[i][j]只与dp[i – 1][j] , dp[i][j – 1]有关
 
 dp[j] = min(dp[j – 1], dp[j]) + a[i][j] 更新
 
-	class Solution1 {
-	public:
-	    int minPathSum(vector<vector<int> > &grid) {
-	        int m = grid.size();
-	        if(m == 0) return 0;
-	        int n = grid[0].size();
-	        vector<vector<int> > dp(m,vector<int>(n));
-	        
-	        for(int i = 0; i < m; i++){
-	            for(int j = 0; j < n; j++){
-	                if(i == 0){
-	                    if(j == 0)
-	                        dp[i][j] = grid[i][j];
-	                    else
-	                        dp[i][j] = dp[i][j - 1] + grid[i][j];
-	                }else if(j == 0)
-	                    dp[i][j] = dp[i - 1][j] + grid[i][j];
-	                else
-	                    dp[i][j] = min(dp[i - 1][j] + grid[i][j],dp[i][j - 1] + grid[i][j]);
-	            }
-	        }
-	    return dp[m - 1][n - 1];
-	    }
-	};
-	
-	
-	class Solution2 {
-	public:
-	    int minPathSum(vector<vector<int> > &grid) {
-	        int m = grid.size();
-	        if(m == 0) return 0;
-	        int n = grid[0].size();
-	        vector<int> dp(n);
-	        
-	        for(int i = 0; i < m; i++){
-	            for(int j = 0; j < n; j++){
-	                if(i == 0){
-	                    if(j == 0)
-	                        dp[j] = grid[i][j];
-	                    else
-	                        dp[j] = dp[j - 1] + grid[i][j];
-	                }else if(j == 0)
-	                    dp[j] = dp[j] + grid[i][j];
-	                else
-	                    dp[j] = min(dp[j] + grid[i][j],dp[j - 1] + grid[i][j]);
-	            }
-	        }
-	    return dp[n - 1];
-	    }
-	};
+```CPP
+class Solution1 {
+public:
+    int minPathSum(vector<vector<int> > &grid) {
+        int m = grid.size();
+        if(m == 0) return 0;
+        int n = grid[0].size();
+        vector<vector<int> > dp(m,vector<int>(n));
+        
+        for(int i = 0; i < m; i++){
+            for(int j = 0; j < n; j++){
+                if(i == 0){
+                    if(j == 0)
+                        dp[i][j] = grid[i][j];
+                    else
+                        dp[i][j] = dp[i][j - 1] + grid[i][j];
+                }else if(j == 0)
+                    dp[i][j] = dp[i - 1][j] + grid[i][j];
+                else
+                    dp[i][j] = min(dp[i - 1][j] + grid[i][j],dp[i][j - 1] + grid[i][j]);
+            }
+        }
+    return dp[m - 1][n - 1];
+    }
+};
+
+
+class Solution2 {
+public:
+    int minPathSum(vector<vector<int> > &grid) {
+        int m = grid.size();
+        if(m == 0) return 0;
+        int n = grid[0].size();
+        vector<int> dp(n);
+        
+        for(int i = 0; i < m; i++){
+            for(int j = 0; j < n; j++){
+                if(i == 0){
+                    if(j == 0)
+                        dp[j] = grid[i][j];
+                    else
+                        dp[j] = dp[j - 1] + grid[i][j];
+                }else if(j == 0)
+                    dp[j] = dp[j] + grid[i][j];
+                else
+                    dp[j] = min(dp[j] + grid[i][j],dp[j - 1] + grid[i][j]);
+            }
+        }
+    return dp[n - 1];
+    }
+};
+```

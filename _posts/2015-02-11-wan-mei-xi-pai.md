@@ -127,21 +127,21 @@ Yeah，顾名思义，完美洗牌算法解决的就是一个完美洗牌问题�
 
 因此，如果题目允许我们再用一个数组的话，我们直接把每个元素放到该放得位置就好了。也就产生了最简单的方法pefect_shuffle1，参考代码如下：
 
-
-	// 时间O(n)，空间O(n) 数组下标从1开始
-	void PefectShuffle1(int *a, int n)
-	{
-	    int n2 = n * 2, i, b[N];
-	    for (i = 1; i <= n2; ++i)
-	    {
-	        b[(i * 2) % (n2 + 1)] = a[i];
-	    }
-	    for (i = 1; i <= n2; ++i)
-	    {
-	        a[i] = b[i];
-	    }
-	}
-
+```C
+// 时间O(n)，空间O(n) 数组下标从1开始
+void PefectShuffle1(int *a, int n)
+{
+    int n2 = n * 2, i, b[N];
+    for (i = 1; i <= n2; ++i)
+    {
+        b[(i * 2) % (n2 + 1)] = a[i];
+    }
+    for (i = 1; i <= n2; ++i)
+    {
+        a[i] = b[i];
+    }
+}
+```
 
 但很明显，它的时间复杂度虽然是O(n)，但其空间复杂度却是O(n)，仍不符合本题所期待的时间O(n)，空间O(1)。我们继续寻找更优的解法。
 
@@ -191,20 +191,21 @@ Yeah，顾名思义，完美洗牌算法解决的就是一个完美洗牌问题�
 
 上面沿着圈走的算法我们给它取名为cycle_leader，这部分代码如下：
 
+```C
+//数组下标从1开始，from是圈的头部，mod是要取模的数 mod 应该为 2 * n + 1，时间复杂度O(圈长）
+void CycleLeader(int *a, int from, int mod)
+{
+    int t,i;
 
-	//数组下标从1开始，from是圈的头部，mod是要取模的数 mod 应该为 2 * n + 1，时间复杂度O(圈长）
-	void CycleLeader(int *a, int from, int mod)
-	{
-	    int t,i;
-	
-	    for (i = from * 2 % mod; i != from; i = i * 2 % mod)
-	    {
-	        t = a[i];
-	        a[i] = a[from];
-	        a[from] = t;
-	    }
-	}
+    for (i = from * 2 % mod; i != from; i = i * 2 % mod)
+    {
+        t = a[i];
+        a[i] = a[from];
+        a[from] = t;
+    }
+}
 
+````
 
 ##### 2.2.2、神级结论：若2*n=（3^k - 1），则可确定圈的个数及各自头部的起始位置
 
@@ -230,26 +231,24 @@ Yeah，顾名思义，完美洗牌算法解决的就是一个完美洗牌问题�
 
 这个翻转的代码如下：
 
-	//翻转字符串时间复杂度O(to - from)
-	void reverse(int *a, int from, int to)
-	{
-	    int t;
-	    for (; from < to; ++from, --to)
-	    {
-	        t = a[from];
-	        a[from] = a[to];
-	        a[to] = t;
-	    }
-	}
-	
-	//循环右移num位 时间复杂度O(n)
-	void RightRotate(int *a, int num, int n)
-	{
-	    reverse(a, 1, n - num);
-	    reverse(a, n - num + 1, n);
-	    reverse(a, 1, n);
-	}
+```C
+//翻转字符串时间复杂度O(to - from)
+void reverse(int *a, int from, int to) {
+    int t;
+    for (; from < to; ++from, --to) {
+        t = a[from];
+        a[from] = a[to];
+        a[to] = t;
+    }
+}
 
+//循环右移num位 时间复杂度O(n)
+void RightRotate(int *a, int num, int n) {
+    reverse(a, 1, n - num);
+    reverse(a, n - num + 1, n);
+    reverse(a, 1, n);
+}
+```
 
 翻转后，得到的目标数组的下标为：
 
@@ -294,61 +293,56 @@ T(n - m)
 
 此完美洗牌算法实现的参考代码如下：
 
+```C
+//copyright@caopengcs 8/24/2013
+//时间O(n)，空间O(1)
+void PerfectShuffle2(int *a, int n) {
+    int n2, m, i, k, t;
+    for (; n > 1;) {
+        // step 1
+        n2 = n * 2;
+        for (k = 0, m = 1; n2 / m >= 3; ++k, m *= 3)
+          ;
+        m /= 2;
+        // 2m = 3^k - 1 , 3^k <= 2n < 3^(k + 1)
 
-	//copyright@caopengcs 8/24/2013
-	//时间O(n)，空间O(1)
-	void PerfectShuffle2(int *a, int n)
-	{
-	    int n2, m, i, k, t;
-	    for (; n > 1;)
-	    {
-	        // step 1
-	        n2 = n * 2;
-	        for (k = 0, m = 1; n2 / m >= 3; ++k, m *= 3)
-	          ;
-	        m /= 2;
-	        // 2m = 3^k - 1 , 3^k <= 2n < 3^(k + 1)
-	
-	        // step 2
-	        right_rotate(a + m, m, n);
-	
-	        // step 3
-	        for (i = 0, t = 1; i < k; ++i, t *= 3)
-	        {
-	          cycle_leader(a , t, m * 2 + 1);
-	        }
-	
-	        //step 4
-	        a += m * 2;
-	        n -= m;
-	
-	    }
-	    // n = 1
-	    t = a[1];
-	    a[1] = a[2];
-	    a[2] = t;
-	}
+        // step 2
+        right_rotate(a + m, m, n);
 
+        // step 3
+        for (i = 0, t = 1; i < k; ++i, t *= 3) {
+          cycle_leader(a , t, m * 2 + 1);
+        }
+
+        //step 4
+        a += m * 2;
+        n -= m;
+
+    }
+    // n = 1
+    t = a[1];
+    a[1] = a[2];
+    a[2] = t;
+}
+```
   
 ##### 2.2.4、perfect_shuffle2算法解决其变形问题
 
 啊哈！以上代码即解决了完美洗牌问题，那么针对本章要解决的其变形问题呢？是的，如本章开头所说，在完美洗牌问题的基础上对它最后的序列swap两两相邻元素即可，代码如下：
 
-
-	//copyright@caopengcs 8/24/2013
-	//时间复杂度O(n)，空间复杂度O(1)，数组下标从1开始，调用perfect_shuffle3
-	void shuffle(int *a, int n)
-	{
-	    int i, t, n2 = n * 2;
-	    PerfectShuffle2(a, n);
-	    for (i = 2; i <= n2; i += 2)
-	    {
-	        t = a[i - 1];
-	        a[i - 1] = a[i];
-	        a[i] = t;
-	   }
-	}
-
+```C
+//copyright@caopengcs 8/24/2013
+//时间复杂度O(n)，空间复杂度O(1)，数组下标从1开始，调用perfect_shuffle3
+void shuffle(int *a, int n) {
+    int i, t, n2 = n * 2;
+    PerfectShuffle2(a, n);
+    for (i = 2; i <= n2; i += 2) {
+        t = a[i - 1];
+        a[i - 1] = a[i];
+        a[i] = t;
+   }
+}
+```
 
 上述的这个“在完美洗牌问题的基础上对它最后的序列swap两两相邻元素”的操作（当然，你也可以让原数组第一个和最后一个不变，中间的2 * (n - 1)项用原始的标准完美洗牌算法做），只是在完美洗牌问题时间复杂度O(N)空间复杂度O(1)的基础上再增加O(N)的时间复杂度，故总的时间复杂度O(N)不变，且理所当然的保持了空间复杂度O(1)。至此，咱们的问题得到了圆满解决！
 

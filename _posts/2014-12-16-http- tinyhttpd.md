@@ -117,7 +117,7 @@ void accept_request(int client)
     int cgi = 0;      /* becomes true if server decides this is a CGI program */
     char *query_string = NULL;
 
-    // 得到请求的第一行
+    //得到请求的第一行
     numchars = get_line(client, buf, sizeof(buf));
     i = 0; j = 0;
     // 把客户端的请求方法存到 method 数组

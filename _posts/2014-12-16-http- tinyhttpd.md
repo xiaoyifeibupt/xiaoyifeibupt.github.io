@@ -1,8 +1,10 @@
 ---
 layout: post
-title:  C 语言实现最简单的 HTTP 服务器
-categories: [APUE]
+title:  C 语言实现最简单的 HTTP 服务器tinyhttpd详解
+categories: [http]
 ---
+
+原博地址：http://blog.csdn.net/jcjc918/article/details/42129311
 
 tinyhttpd主要函数
 

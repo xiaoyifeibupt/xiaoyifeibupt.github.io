@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  从零开始实现自己的hhtpd——socket
+title:  从零开始实现自己的httpd——socket
 categories: [http]
 ---
 

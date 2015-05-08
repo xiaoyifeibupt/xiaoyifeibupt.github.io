@@ -8,7 +8,7 @@ categories: [c++]
 
 ####分配内存空间函数malloc
 
--   调用形式 ：(类型说明符*) malloc (size)
+-   调用形式 ：`(类型说明符*) malloc (size)`
 -   功能：在内存的动态存储区中分配一块长度为"size" 字节的连续区域。函数的返回值为该区域的首地址。 “类型说明符”表示把该区域用于何种数据类型。(类型说明符*)表示把返回值强制转换为该类型指针。“size”是一个无符号数。
 -   例如： `pc=(char *) malloc (100);` 表示分配100个字节的内存空间，并强制转换为字符数组类型， 函数的返回值为指向该字符数组的指针， 把该指针赋予指针变量pc。
 
@@ -16,23 +16,23 @@ categories: [c++]
 
 　　calloc 也用于分配内存空间。
 　　
--   调用形式： (类型说明符*)calloc(n,size) 
+-   调用形式： `(类型说明符*)calloc(n,size) `
 -   功能：在内存动态存储区中分配n块长度为“size”字节的连续区域。函数的返回值为该区域的首地址。(类型说明符*)用于强制类型转换。calloc函数与malloc 函数的区别仅在于一次可以分配n块区域。
--   例如： `ps=(struet stu*) calloc(2,sizeof (struct stu));` 其中的`sizeof(struct stu)`是求stu的结构长度。因此该语句的意思是，按stu的长度分配2块连续区域，强制转换为stu类型，并把其首地址赋予指针变量ps。
+-   例如： `ps=(struet stu*) calloc(2,sizeof (struct stu));` 其中的`sizeof(struct stu)`是求stu的结构长度。因此该语句的意思是，按stu的长度分配2块连续区域，强制转换为`stu`类型，并把其首地址赋予指针变量`ps`。
 
  
 
 简单的说是：
 
-malloc它允许从空间内存池中分配内存,malloc()的参数是一个指定所需字节数的整数，例如:
+malloc它允许从空间内存池中分配内存，`malloc()`的参数是一个指定所需字节数的整数，例如:
 
 ```cpp
 P=(int*)malloc(n*sizeof(int));
 ```
 
-colloc与malloc类似,但是主要的区别是存储在已分配的内存空间中的值默认为0,使用malloc时,已分配的内存中可以是任意的值.
+colloc与malloc类似，但是主要的区别是存储在已分配的内存空间中的值默认为0，使用`malloc`时，已分配的内存中可以是任意的值。
 
-colloc需要两个参数,第一个是需要分配内存的变量的个数,第二个是每个变量的大小。例如:
+colloc需要两个参数，第一个是需要分配内存的变量的个数，第二个是每个变量的大小。例如:
 
 ```cpp
 P=(int*)colloc(n,colloc(int));
@@ -47,13 +47,13 @@ P=(int*)colloc(n,colloc(int));
 void *malloc(unsigned size)
 ```
 
-动态申请size个字节的内存空间；功能：在内存的动态存储区中分配一块长度为" size" 字节的连续区域。函数的返回值为该区域的首地址。。(类型说明符*)表示把返回值强制转换为该类型指针。
+动态申请size个字节的内存空间。功能：在内存的动态存储区中分配一块长度为" size" 字节的连续区域，函数的返回值为该区域的首地址。(类型说明符*)表示把返回值强制转换为该类型指针。
 
 ```cpp
 (void *)calloc(unsigned n,unsigned size)
 ```
 
-用于向系统动态申请n个, 每个占size个字节的内存空间; 并把分配的内存全都初始化为零值。函数的返回值为该区域的首地址
+用于向系统动态申请n个, 每个占size个字节的内存空间，并把分配的内存全都初始化为零值。函数的返回值为该区域的首地址
 
 ```cpp
 (void *)realloc(void *p,unsigned size)
@@ -61,15 +61,19 @@ void *malloc(unsigned size)
 
 将指针p所指向的已分配内存区的大小改为size
 
-**区别** ：两者都是动态分配内存。主要的不同是malloc不初始化分配的内存，已分配的内存中可以是任意的值.　calloc　初始化已分配的内存为0。次要的不同是calloc返回的是一个数组，而malloc返回的是一个对象。
+**区别** ：两者都是动态分配内存。主要的不同是`malloc`不初始化分配的内存，已分配的内存中可以是任意的值。`calloc`初始化已分配的内存为0。次要的不同是`calloc`返回的是一个数组，而`malloc`返回的是一个对象。
 
-malloc它允许从空间内存池中分配内存，malloc()的参数是一个指定所需字节数的整数。
+malloc它允许从空间内存池中分配内存，`malloc()`的参数是一个指定所需字节数的整数。例如:
 
-例如:`P=(int*)malloc(n*sizeof(int));`
+```cpp
+P=(int*)malloc(n*sizeof(int));
+```
 
-colloc与malloc类似，colloc需要两个参数，第一个是需要分配内存的变量的个数，第二个是每个变量的大小。
+colloc与malloc类似，colloc需要两个参数，第一个是需要分配内存的变量的个数，第二个是每个变量的大小。例如:
 
-例如:`P=(int*)colloc(n,sizeof(int)); `
+```cpp
+P=(int*)colloc(n,sizeof(int)); 
+```
 
 例，申请一个字符大小的指针
 
@@ -119,30 +123,25 @@ ip_a = ( int* )calloc( 5, sizeof(int) );
 
 ```cpp
 #include <iostream>
-
 using namespace std;
 
-void main()
-{
-int * ip_a;
-int * ip_b;
-
-ip_a = (int*)malloc( sizeof (int) * 5 );
-for( int i = 0; i < 5; i++ )
-{
-   cin>>ip_a[i];
-}
-for( int j = 0; j < 5; j++ )
-{
-   cout<<ip_a[j]<<" ";
-}
+void main() {
+    int * ip_a;
+    int * ip_b;
+    
+    ip_a = (int*)malloc( sizeof (int) * 5 );
+    for( int i = 0; i < 5; i++ ) {
+       cin>>ip_a[i];
+    }
+    for( int j = 0; j < 5; j++ ) {
+       cout<<ip_a[j]<<" ";
+    }
 
 
-ip_b = ( int* )calloc( 5, sizeof(int) );
-for( int j = 0; j < 5; j++ )
-{
-   cout<<ip_b[j]<<" ";
-}
+    ip_b = ( int* )calloc( 5, sizeof(int) );
+    for( int j = 0; j < 5; j++ ) {
+        cout<<ip_b[j]<<" ";
+    }
 
 }
 
@@ -195,12 +194,12 @@ C语言的标准内存分配函数：malloc，calloc，realloc，free等。
 
 malloc与calloc的区别为1块与n块的**区别**：
 
-malloc调用形式为(类型*)malloc(size)：在内存的动态存储区中分配一块长度为“size”字节的连续区域，返回该区域的首地址。
+malloc调用形式为`(类型*)malloc(size)`：在内存的动态存储区中分配一块长度为`size`字节的连续区域，返回该区域的首地址。
 
-calloc调用形式为(类型*)calloc(n，size)：在内存的动态存储区中分配n块长度为“size”字节的连续区域，返回首地址。
+calloc调用形式为`(类型*)calloc(n，size)`：在内存的动态存储区中分配n块长度为`size`字节的连续区域，返回首地址。
 
-realloc调用形式为(类型*)realloc(*ptr，size)：将ptr内存大小增大到size。
+realloc调用形式为`(类型*)realloc(*ptr，size)`：将`ptr`内存大小增大到`size`。
 
-free的调用形式为free(void*ptr)：释放ptr所指向的一块内存空间。
+free的调用形式为`free(void*ptr)`：释放ptr所指向的一块内存空间。
 
-C++中为new/delete函数。
+C++中为`new/delete`函数。

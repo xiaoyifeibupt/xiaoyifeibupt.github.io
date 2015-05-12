@@ -92,8 +92,11 @@ int main(int argc, const char * argv[])
     clickCallback(button, 10, 123);
     return 0;
 }
-再来一段示例谈谈怎么使用std::bind代码：
+```
 
+再来一段示例谈谈怎么使用`std::bind`代码：
+
+```cpp
 #include <iostream>
 #include <functional>
 using namespace std;

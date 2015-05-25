@@ -102,3 +102,147 @@ void improved_BubbleSort(int a[], int size) {
 
 最坏情况时间：O(n^2)。
 
+```cpp
+void SelectionSort(int* pDataArray, int iDataNum) {  
+    for (int i = 0; i < iDataNum - 1; i++) {		//从第一个位置开始  
+        int index = i;  
+        for (int j = i + 1; j < iDataNum; j++)    //寻找最小的数据索引   
+            if (pDataArray[j] < pDataArray[index])  
+                index = j;  
+  
+        if (index != i)    //如果最小数位置变化则交换  
+            Swap(&pDataArray[index], &pDataArray[i]);
+    }  
+}  
+```
+
+###归并排序
+
+特点：stable sort、Out-place sort
+
+思想：运用分治法思想解决排序问题。
+
+最坏情况运行时间：O(nlgn)
+
+最佳运行时间：O(nlgn)
+
+```cpp
+void merge(int *data, int p, int q, int r)  
+{  
+    int n1, n2, i, j, k;  
+    int *left=NULL, *right=NULL;  
+   
+    n1 = q-p+1;   
+    n2 = r-q;  
+   
+    left = new int[n1];   
+    right = new int[n2];  
+    for(i=0; i<n1; ++i)  //对左数组赋值  
+        left[i] = data[p+i];  
+    for(j=0; j<n2; ++j)  //对右数组赋值  
+        right[j] = data[q+1+j];  
+   
+    i = j = 0;   
+    k = p;  
+    while(i<n1 && j<n2) //将数组元素值两两比较，并合并到data数组  
+    {  
+        if(left[i] <= right[j])  
+            data[k++] = left[i++];  
+        else  
+            data[k++] = right[j++];  
+    }  
+   
+    while(i<n1) //如果左数组有元素剩余，则将剩余元素合并到data数组  
+        data[k++] = left[i++];  
+    while(j<n2) //如果右数组有元素剩余，则将剩余元素合并到data数组  
+        data[k++] = right[j++];  
+}  
+   
+void mergeSort(int *data, int p, int r)  
+{  
+    int q;  
+    if(p < r) //只有一个或无记录时不须排序   
+    {  
+        q = (int)((p+r)/2);      //将data数组分成两半     
+        mergeSort(data, p, q);   //递归拆分左数组  
+        mergeSort(data, q+1, r); //递归拆分右数组  
+        merge(data, p, q, r);    //合并数组  
+    }  
+}
+```
+
+###快速排序
+
+特性：unstable sort、In-place sort。
+
+最坏运行时间：当输入数组已排序时，时间为O(n^2)，当然可以通过随机化来改进（shuffle array 或者 randomized select pivot）,使得期望运行时间为O(nlgn)。
+
+最佳运行时间：O(nlgn)
+
+快速排序的思想也是分治法。
+
+当输入数组的所有元素都一样时，不管是快速排序还是随机化快速排序的复杂度都为O(n^2)，而在算法导论第三版的思考题7-2中通过改变Partition函数，从而改进复杂度为O(n)。
+
+注意：只要partition的划分比例是常数的，则快排的效率就是O(nlgn)
+
+```cpp
+int partition(int a[],int p,int r) {
+	int x = a[r];
+	int i = p - 1;
+	for(int j = p; j != r;++j) {
+		if(a[j] <= x) {
+			i = i + 1;
+			swap(a[i],a[j]);
+		}
+	}
+	swap(a[i + 1],a[r]);
+	return i+1;
+}
+
+void quicksort(int a[],int p,int r) {
+	if(p < r) {
+		int q = partition(a,p,r);
+		quicksort(a,p,q - 1);
+		quicksort(a,q + 1,r);
+	}
+}
+```
+
+###堆排序
+
+特性：unstable sort、In-place sort。
+
+最优时间：O(nlgn)
+
+最差时间：O(nlgn)
+
+堆还能用于构建优先队列,优先队列应用于进程间调度、任务调度等,堆数据结构应用于Dijkstra、Prim算法。
+
+```cpp
+void max_heapify(int a[],int i,int heap_size) {
+	int le = (i<<1) + 1;
+	int ri = le+1;
+	int large;
+	if(le < heap_size && a[le] > a[i])
+		large = le;
+	else
+		large = i;
+	if(ri < heap_size && a[ri] > a[large])
+		large = ri;
+	if(large != i)
+	{
+		swap(a[i],a[large]);
+		max_heapify(a,large, heap_size);
+	}
+}
+
+int heap_size = length;
+for(int i = (length-1)/2; i != -1; --i)
+max_heapify(aa,i, heap_size);
+for(int j = length-1; j != 0; --j){
+	swap(aa[0] ,aa[j]);
+	--heap_size;
+	max_heapify(aa,0, heap_size);
+}
+```
+

@@ -53,6 +53,7 @@ void postOrder(BiNode *root, void(*visit)(T)) {
 
 ```cpp
 void preOrder(BiNode *root, void(*visit)(T)) {
+    if(root == NULL) return;
     stack<T> rs;
     BiNode *p = root;
     while(p || !rs.empty()) {
@@ -72,6 +73,7 @@ void preOrder(BiNode *root, void(*visit)(T)) {
 
 ```cpp
 void inOrder(BiNode *root, void(*visit)(T)) {
+    if(root == NULL) return;
     stack<T> rs;
     BiNode *p = root;
     while(p || !rs.empty()) {
@@ -117,8 +119,17 @@ void postOrder(BiNode *root, void(*visit)(T)) {
 
 ```cpp
 void levelOrder(BiNode *root, void(*visit)(T)) {
-    queue<T> Q;
-    BiNode *p = root;
-    Q.push
+    if(root == NULL) return;
+    deque<T*> Q;
+    Q.push_back(root);
+    while(!Q.empty()) {
+        BiNode *p = Q.front();
+        Q.pop_front();
+        visit(p);
+        if(p -> lchild)
+            Q.push_back(p -> lchild);
+        if(p -> rchild)
+            Q.push_back(p -> rchild);
+    }
 }
 ```

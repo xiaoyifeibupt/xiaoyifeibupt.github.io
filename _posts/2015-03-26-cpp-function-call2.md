@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  C函数调用与入栈顺序
-categories: [APUE]
+categories: [C++]
 ---
 
 ###函数修饰符：

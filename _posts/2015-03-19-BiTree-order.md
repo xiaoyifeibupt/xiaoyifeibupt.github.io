@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  algorithms——二叉树遍历
-categories: [algorithms]
+categories: [Algorithms]
 ---
 
 1）定义：有且仅有一个根结点，除根节点外，每个结点只有一个父结点，最多含有两个子节点，子节点有左右之分。  

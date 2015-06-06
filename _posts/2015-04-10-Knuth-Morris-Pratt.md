@@ -60,10 +60,34 @@ next 数组各值的含义：代表当前字符之前的字符串中，有多大
  转换成代码表示，则是：
  
  ```cpp
- 
+ vector<int> KmpSearch(char* s, char* p) {
+	vector<int> result;
+	int i = 0;  
+	int j = 0;  
+	int sLen = strlen(s);  
+	int pLen = strlen(p);  
+	while (i < sLen ){  
+		//①如果j = -1，或者当前字符匹配成功（即S[i] == P[j]），都令i++，j++      
+		if (j == -1 || s[i] == p[j]){  
+            		i++;  
+            		j++;  
+        	}  
+        	else {  
+            		//②如果j != -1，且当前字符匹配失败（即S[i] != P[j]），则令 i 不变，j = next[j]      
+            		//next[j]即为j所对应的next值        
+            		j = next[j];  
+        	}
+		if(j == pLen) {
+            		result.push_back(i - j);
+            		i = i - j + 1;  
+            		j = 0;
+        	}
+    	}  
+	return result;
+}
  ```
  
- ####步骤
+####步骤
  
 -	1.寻找前缀后缀最长公共元素长度
 	-	对于P = p0 p1 ...pj-1 pj，寻找模式串P中长度最大且相等的前缀和后缀。如果存在p0 p1 ...pk-1 pk = pj- k pj-k+1...pj-1 pj，那么在包含pj的模式串中有最大长度为k+1的相同前缀后缀。举个例子，如果给定的模式串为“abab”，那么它的各个子串的前缀后缀的公共元素的最大长度如下表格所示：
@@ -95,8 +119,26 @@ next 数组各值的含义：代表当前字符之前的字符串中，有多大
 	-	若p[k] == p[j]，则next[j + 1 ] = next [j] + 1 = k + 1；
 	-	若p[k ] ≠ p[j]，如果此时p[ next[k] ] == p[j ]，则next[ j + 1 ] =  next[k] + 1，否则继续递归前缀索引k = next[k]，而后重复此过程。 相当于在字符p[j+1]之前不存在长度为k+1的前缀"p0 p1, …, pk-1 pk"跟后缀“pj-k pj-k+1, …, pj-1 pj"相等，那么是否可能存在另一个值t+1 < k+1，使得长度更小的前缀 “p0 p1, …, pt-1 pt” 等于长度更小的后缀 “pj-t pj-t+1, …, pj-1 pj” 呢？如果存在，那么这个t+1 便是next[ j+1]的值，此相当于利用已经求得的next 数组（next [0, ..., k, ..., j]）进行P串前缀跟P串后缀的匹配。
 
-	
+综上，可以通过递推求得next 数组，代码如下所示：
 
-	
+```cpp
+void GetNext(char* p,int next[]) {  
+	int pLen = strlen(p);  
+    	next[0] = -1;  
+    	int k = -1;  
+    	int j = 0;  
+    	while (j < pLen - 1) {  
+        	//p[k]表示前缀，p[j]表示后缀  
+        	if (k == -1 || p[j] == p[k]) {  
+            		++k;  
+            		++j;  
+            		next[j] = k;  
+        	}  
+        	else {  
+			k = next[k];  
+        	}  
+    	}  
+}  
+```	
 
 

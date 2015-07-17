@@ -31,12 +31,13 @@ ssize_t write(int filedes, const void* buf, size_t nbytes);
 综上，对于非阻塞的socket，正确的读写操作为：
 -	读： 忽略掉errno = EAGAIN的错误，下次继续读；
 -	写：忽略掉errno = EAGAIN的错误，下次继续写。
--
+
 对于select和epoll的LT模式，这种读写方式是没有问题的。但对于epoll的ET模式，这种方式还有漏洞。
 
 下面来介绍下epoll事件的两种模式LT（水平触发）和ET（边沿触发），根据可以理解为，文件描述符的读写状态发生变化才会触发epoll事件，具体说来如下：二者的差异在于 level-trigger 模式下只要某个 socket 处于 readable/writable 状态，无论什么时候进行 epoll_wait 都会返回该 socket；而 edge-trigger 模式下只有某个 socket 从 unreadable 变为 readable，或从unwritable 变为writable时，epoll_wait 才会返回该 socket。
 
 所以在epoll的ET模式下，正确的读写方式为：
+
 -	读： 只要可读， 就一直读，直到返回0，或者 errno = EAGAIN
 -	写：只要可写， 就一直写，直到数据发送完，或者 errno = EAGAIN
 
@@ -117,7 +118,7 @@ if (conn_sock == -1) {
 
 使用Linux epoll模型，水平触发模式；当socket可写时，会不停的触发socket可写的事件，如何处理？
 
-第一种最普遍的方式：
+**一种最普遍的方式：**
 
 需要向socket写数据的时候才把socket加入epoll，等待可写事件。
 接受到可写事件后，调用write或者send发送数据。
@@ -125,7 +126,7 @@ if (conn_sock == -1) {
 
 这种方式的缺点是，即使发送很少的数据，也要把socket加入epoll，写完后在移出epoll，有一定操作代价。
 
-一种改进的方式：
+**一种改进的方式：**
 
 开始不把socket加入epoll，需要向socket写数据的时候，直接调用write或者send发送数据。如果返回EAGAIN，把socket加入epoll，在epoll的驱动下写数据，全部数据发送完毕后，再移出epoll。
 

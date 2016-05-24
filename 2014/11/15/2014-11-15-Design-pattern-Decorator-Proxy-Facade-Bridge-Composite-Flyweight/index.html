@@ -8,23 +8,20 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="###装饰模式（Decorator）
 顾名思义，装饰模式就是给一个对象增加一些新的功能，而且是动态的，要求装饰对象和被装饰对象实现同一个接口，装饰对象持有被装饰对象的实例.
-Source类是被装饰类，Decorator类是一个装饰类，可以为Source类动态的添加一些功能，代码如下：
-123public interface Sourceable &amp;#123;    public void meth">
+Source类是被装饰类，Decorator类是一个装饰类，可以为Source类动态的添加一些功能，代码如下：">
 <meta property="og:type" content="article">
 <meta property="og:title" content="设计模式--装饰/代理/外观/桥接/组合/享元">
 <meta property="og:url" content="http://yoursite.com/2014/11/15/2014-11-15-Design-pattern-Decorator-Proxy-Facade-Bridge-Composite-Flyweight/index.html">
 <meta property="og:site_name" content="xiaoyifeibupt's blog">
 <meta property="og:description" content="###装饰模式（Decorator）
 顾名思义，装饰模式就是给一个对象增加一些新的功能，而且是动态的，要求装饰对象和被装饰对象实现同一个接口，装饰对象持有被装饰对象的实例.
-Source类是被装饰类，Decorator类是一个装饰类，可以为Source类动态的添加一些功能，代码如下：
-123public interface Sourceable &amp;#123;    public void meth">
-<meta property="og:updated_time" content="2016-05-24T11:27:40.000Z">
+Source类是被装饰类，Decorator类是一个装饰类，可以为Source类动态的添加一些功能，代码如下：">
+<meta property="og:updated_time" content="2016-05-24T11:59:25.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="设计模式--装饰/代理/外观/桥接/组合/享元">
 <meta name="twitter:description" content="###装饰模式（Decorator）
 顾名思义，装饰模式就是给一个对象增加一些新的功能，而且是动态的，要求装饰对象和被装饰对象实现同一个接口，装饰对象持有被装饰对象的实例.
-Source类是被装饰类，Decorator类是一个装饰类，可以为Source类动态的添加一些功能，代码如下：
-123public interface Sourceable &amp;#123;    public void meth">
+Source类是被装饰类，Decorator类是一个装饰类，可以为Source类动态的添加一些功能，代码如下：">
   
     <link rel="alternative" href="/atom.xml" title="xiaoyifeibupt&#39;s blog" type="application/atom+xml">
   
@@ -220,7 +217,7 @@ Source类是被装饰类，Decorator类是一个装饰类，可以为Source类�
       
         <p>###装饰模式（Decorator）</p>
 <p>顾名思义，装饰模式就是给一个对象增加一些新的功能，而且是动态的，要求装饰对象和被装饰对象实现同一个接口，装饰对象持有被装饰对象的实例.</p>
-<p>Source类是被装饰类，Decorator类是一个装饰类，可以为Source类动态的添加一些功能，代码如下：</p>
+<p>Source类是被装饰类，Decorator类是一个装饰类，可以为Source类动态的添加一些功能，代码如下：<br><a id="more"></a></p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Sourceable</span> </span>&#123;  </span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">method</span><span class="params">()</span></span>;  </span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Source</span> <span class="keyword">implements</span> <span class="title">Sourceable</span> </span>&#123;  </span><br><span class="line"></span><br><span class="line">  <span class="meta">@Override</span>  </span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">method</span><span class="params">()</span> </span>&#123;  </span><br><span class="line">      System.out.println(<span class="string">"the original method!"</span>);  </span><br><span class="line">  &#125;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Decorator</span> <span class="keyword">implements</span> <span class="title">Sourceable</span> </span>&#123;  </span><br><span class="line">  </span><br><span class="line">    <span class="keyword">private</span> Sourceable source;  </span><br><span class="line">      </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Decorator</span><span class="params">(Sourceable source)</span></span>&#123;  </span><br><span class="line">        <span class="keyword">super</span>();  </span><br><span class="line">        <span class="keyword">this</span>.source = source;  </span><br><span class="line">    &#125;  </span><br><span class="line">    <span class="meta">@Override</span>  </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">method</span><span class="params">()</span> </span>&#123;  </span><br><span class="line">        System.out.println(<span class="string">"before decorator!"</span>);  </span><br><span class="line">        source.method();  </span><br><span class="line">        System.out.println(<span class="string">"after decorator!"</span>);  </span><br><span class="line">    &#125;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>

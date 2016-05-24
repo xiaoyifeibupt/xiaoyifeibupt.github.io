@@ -86,7 +86,7 @@
 
 ###策略模式（strategy）
 策略模式定义了一系列算法，并">
-<meta property="og:updated_time" content="2016-05-24T11:28:35.000Z">
+<meta property="og:updated_time" content="2016-05-24T11:59:46.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="设计模式--策略/模板方法/观察者/迭代子/责任链/命令">
 <meta name="twitter:description" content="第一类：通过父类与子类的关系进行实现。第二类：两个类之间。第三类：类的状态。第四类：通过中间类
@@ -357,7 +357,7 @@
 </tbody>
 </table>
 <p>###策略模式（strategy）</p>
-<p>策略模式定义了一系列算法，并将每个算法封装起来，使他们可以相互替换，且算法的变化不会影响到使用算法的客户。需要设计一个接口，为一系列实现类提供统一的方法，多个实现类实现该接口，设计一个抽象类（可有可无，属于辅助类），提供辅助函数，关系图如下：</p>
+<p>策略模式定义了一系列算法，并将每个算法封装起来，使他们可以相互替换，且算法的变化不会影响到使用算法的客户。需要设计一个接口，为一系列实现类提供统一的方法，多个实现类实现该接口，设计一个抽象类（可有可无，属于辅助类），提供辅助函数，关系图如下：<br><a id="more"></a></p>
 <p>图中ICalculator提供同意的方法，<br>AbstractCalculator是辅助类，提供辅助方法，接下来，依次实现下每个类：</p>
 <p>首先统一接口：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">ICalculator</span> </span>&#123;  </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">calculate</span><span class="params">(String exp)</span></span>;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>

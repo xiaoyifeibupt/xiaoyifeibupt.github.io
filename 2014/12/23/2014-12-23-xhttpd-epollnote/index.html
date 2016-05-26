@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+  <title>从零开始实现自己的httpd——epoll读写数据的注意事项 | xiaoyifeibupt&#39;s blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Linux中 ”一切皆文件的概念“使得我们可以很方便地理解与文件相关的操作。网络编程中遇到的基本函数是 select、epoll、accept、read、write这5个，在阻塞和非阻塞模式下，对他们的调用，尤其是对返回值的判断处理很不同，下面做深入描述">
+<meta property="og:type" content="article">
+<meta property="og:title" content="从零开始实现自己的httpd——epoll读写数据的注意事项">
+<meta property="og:url" content="http://yoursite.com/2014/12/23/2014-12-23-xhttpd-epollnote/index.html">
+<meta property="og:site_name" content="xiaoyifeibupt's blog">
+<meta property="og:description" content="Linux中 ”一切皆文件的概念“使得我们可以很方便地理解与文件相关的操作。网络编程中遇到的基本函数是 select、epoll、accept、read、write这5个，在阻塞和非阻塞模式下，对他们的调用，尤其是对返回值的判断处理很不同，下面做深入描述">
+<meta property="og:updated_time" content="2016-05-26T02:50:38.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="从零开始实现自己的httpd——epoll读写数据的注意事项">
+<meta name="twitter:description" content="Linux中 ”一切皆文件的概念“使得我们可以很方便地理解与文件相关的操作。网络编程中遇到的基本函数是 select、epoll、accept、read、write这5个，在阻塞和非阻塞模式下，对他们的调用，尤其是对返回值的判断处理很不同，下面做深入描述">
+  
+    <link rel="alternative" href="/atom.xml" title="xiaoyifeibupt&#39;s blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			
+			<img lazy-src="/face.jpg" class="js-avatar">
+			
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">xiaoyifeibupt</a></h1>
+		</hgroup>
+
+		
+
+		
+			<div class="switch-btn">
+				<div class="icon">
+					<div class="icon-ctn">
+						<div class="icon-wrap icon-house" data-idx="0">
+							<div class="birdhouse"></div>
+							<div class="birdhouse_holes"></div>
+						</div>
+						<div class="icon-wrap icon-ribbon hide" data-idx="1">
+							<div class="ribbon"></div>
+						</div>
+						
+						
+						<div class="icon-wrap icon-me hide" data-idx="3">
+							<div class="user"></div>
+							<div class="shoulder"></div>
+						</div>
+						
+					</div>
+					
+				</div>
+				<div class="tips-box hide">
+					<div class="tips-arrow"></div>
+					<ul class="tips-inner">
+						<li>Menu</li>
+						<li>Tags</li>
+						
+						
+						<li>Über</li>
+						
+					</ul>
+				</div>
+			</div>
+		
+
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/">主页</a></li>
+				        
+							<li><a href="/archives">所有文章</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+								<a class="github" target="_blank" href="https://github.com/xiaoyifeibupt" title="github">github</a>
+					        
+								<a class="weibo" target="_blank" href="http://weibo.com/yifeixiao/" title="weibo">weibo</a>
+					        
+								<a class="zhihu" target="_blank" href="https://www.zhihu.com/people/xiao-yifei" title="zhihu">zhihu</a>
+					        
+								<a class="mail" target="_blank" href="/xiaoyifeibupt@163.com" title="mail">mail</a>
+					        
+						</div>
+					</nav>
+				</section>
+				
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud" id="js-tagcloud">
+						<a href="/tags/CSAPP/" style="font-size: 10px;">CSAPP</a> <a href="/tags/Design-pattern/" style="font-size: 20px;">Design-pattern</a> <a href="/tags/http/" style="font-size: 15px;">http</a>
+					</div>
+				</section>
+				
+				
+				
+
+				
+				
+				<section class="switch-part switch-part3">
+				
+					<div id="js-aboutme">我是谁，我从哪里来，我到哪里去？我就是我，是颜色不一样的吃货…</div>
+				</section>
+				
+			</div>
+		</div>
+	</header>				
+</div>
+
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"></div>
+  		<h1 class="header-author js-mobile-header hide">xiaoyifeibupt</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+			
+				<img lazy-src="/face.jpg" class="js-avatar">
+			
+			</div>
+			<hgroup>
+			  <h1 class="header-author">xiaoyifeibupt</h1>
+			</hgroup>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/archives">所有文章</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="https://github.com/xiaoyifeibupt" title="github">github</a>
+			        
+						<a class="weibo" target="_blank" href="http://weibo.com/yifeixiao/" title="weibo">weibo</a>
+			        
+						<a class="zhihu" target="_blank" href="https://www.zhihu.com/people/xiao-yifei" title="zhihu">zhihu</a>
+			        
+						<a class="mail" target="_blank" href="/xiaoyifeibupt@163.com" title="mail">mail</a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+
+      <div class="body-wrap"><article id="post-2014-12-23-xhttpd-epollnote" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2014/12/23/2014-12-23-xhttpd-epollnote/" class="article-date">
+  	<time datetime="2014-12-23T05:18:08.000Z" itemprop="datePublished">2014-12-23</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      从零开始实现自己的httpd——epoll读写数据的注意事项
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/http/">http</a></li></ul>
+	</div>
+
+        
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Linux中 ”一切皆文件的概念“使得我们可以很方便地理解与文件相关的操作。网络编程中遇到的基本函数是 select、epoll、accept、read、write这5个，在阻塞和非阻塞模式下，对他们的调用，尤其是对返回值的判断处理很不同，下面做深入描述</p>
+<a id="more"></a>
+<p>阻塞简单理解就是当程序调用该函数时，在一段时间内函数不返回，进程会挂起，直到某些条件发生，函数返回，进程才能继续之下函数下面的语句。</p>
+<p>1、read  write<br>函数原型如下：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;unistd.h&gt;</span>  </span></span><br><span class="line"><span class="keyword">ssize_t</span> read(<span class="keyword">int</span> filedes, <span class="keyword">void</span>* buf, <span class="keyword">size_t</span> nbytes);</span><br><span class="line"></span><br><span class="line"><span class="keyword">ssize_t</span> write(<span class="keyword">int</span> filedes, <span class="keyword">const</span> <span class="keyword">void</span>* buf, <span class="keyword">size_t</span> nbytes);</span><br></pre></td></tr></table></figure>
+<p>其中，read返回实际读取到的字节数。但实际读取的字节很有可能少于指定要读取的字节数nbytes。因此会分为：</p>
+<ul>
+<li>返回值大于0。 读取正常，返回实际读取到的字节数</li>
+<li>返回值等于0。 读取异常，读取到文件filedes结尾处了。这里逻辑上要理解为read已经读取完数据</li>
+<li>返回值小于0（-1）。 读取出错，在处理网络请求时可能是网络异常。着重注意当返回-1，此时errno的值EAGAIN、EWOULLDBLOCK，表示内核对应的读缓冲区为空</li>
+</ul>
+<p>而write返回的实际写入字节数正常情况是与制定写入的字节数nbytes相同的，不相等说明写入异常了，着重注意，此时errno的值EAGAIN、EWOULLDBLOCK，表示内核对应的写缓冲区为空。注，EAGAIN等同于EWOULLDBLOCK。</p>
+<p>总之，这个错误表示资源暂时不够，可能read时读缓冲区没有数据， 或者write时写缓冲区满了。遇到这种情况，如果是阻塞socket、 read/write就要阻塞掉。而如果是非阻塞socket、 read/write立即返回-1, 同时errno设置为EAGAIN。</p>
+<p>所以对于阻塞socket、 read/write返回-1代表网络出错了。但对于非阻塞socket、read/write返回-1不一定网络真的出错了。可能支持缓冲区空或者满，这时应该再试，直到Resource available。</p>
+<p>综上，对于非阻塞的socket，正确的读写操作为：</p>
+<ul>
+<li>读： 忽略掉errno = EAGAIN的错误，下次继续读；</li>
+<li>写：忽略掉errno = EAGAIN的错误，下次继续写。</li>
+</ul>
+<p>对于select和epoll的LT模式，这种读写方式是没有问题的。但对于epoll的ET模式，这种方式还有漏洞。</p>
+<p>下面来介绍下epoll事件的两种模式LT（水平触发）和ET（边沿触发），根据可以理解为，文件描述符的读写状态发生变化才会触发epoll事件，具体说来如下：二者的差异在于 level-trigger 模式下只要某个 socket 处于 readable/writable 状态，无论什么时候进行 epoll_wait 都会返回该 socket；而 edge-trigger 模式下只有某个 socket 从 unreadable 变为 readable，或从unwritable 变为writable时，epoll_wait 才会返回该 socket。</p>
+<p>所以在epoll的ET模式下，正确的读写方式为：</p>
+<ul>
+<li>读： 只要可读， 就一直读，直到返回0，或者 errno = EAGAIN</li>
+<li>写：只要可写， 就一直写，直到数据发送完，或者 errno = EAGAIN</li>
+</ul>
+<p>这里的意思是，对于ET模式，相当于我们要自己重写read和write，使其像”原子操作“一样，保证一次read 或 write能够完整的读完缓冲区的数据或者写完要写入缓冲区的数据。因此，实现为用while包住read和write即可。但是对于select或者LT模式，我们可以只使用一次read和write，因为在主程序中会一直while，而事件再下一次select时还会被获取到。但也可以实现为用while包住read和write。从逻辑上讲，一次性把数据读取完整可以保证数据的完整性。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> n = <span class="number">0</span>;    </span><br><span class="line"><span class="keyword">while</span>(<span class="number">1</span>) &#123;</span><br><span class="line">	nread = read(fd, buf + n, BUFSIZ<span class="number">-1</span>);<span class="comment">//读时，用户进程指定的接收数据缓冲区大小固定，一般要比数据大</span></span><br><span class="line">	<span class="keyword">if</span>(nread &lt; <span class="number">0</span>) &#123;</span><br><span class="line">		<span class="keyword">if</span>(errno == EAGAIN || errno == EWOULDBLOCK) &#123;</span><br><span class="line">			<span class="keyword">continue</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">else</span> &#123;</span><br><span class="line">			<span class="keyword">break</span>;<span class="comment">//or return;</span></span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">else</span> <span class="keyword">if</span>(nread == <span class="number">0</span>) &#123;</span><br><span class="line">		<span class="keyword">break</span>;<span class="comment">//or return. because read the EOF</span></span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">else</span> &#123;</span><br><span class="line">		n += nread;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">int</span> data_size = <span class="built_in">strlen</span>(buf);</span><br><span class="line"><span class="keyword">int</span> n = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">while</span>(<span class="number">1</span>) &#123;</span><br><span class="line">	nwrite = write(fd, buf + n, data_size);<span class="comment">//写时，数据大小一直在变化</span></span><br><span class="line">	<span class="keyword">if</span>(nwrite &lt; data_size) &#123;</span><br><span class="line">		<span class="keyword">if</span>(errno == EAGAIN || errno == EWOULDBLOCK) &#123;</span><br><span class="line">			<span class="keyword">continue</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">else</span> &#123;</span><br><span class="line">			<span class="keyword">break</span>;<span class="comment">//or return;		</span></span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">else</span> &#123;</span><br><span class="line">		n += nwrite;</span><br><span class="line">		data_size -= nwrite;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>正确的accept，accept 要考虑 2 个问题</p>
+<p>(1) 阻塞模式 accept 存在的问题</p>
+<p>考虑这种情况：TCP连接被客户端夭折，即在服务器调用accept之前，客户端主动发送RST终止连接，导致刚刚建立的连接从就绪队列中移出，如果套接口被设置成阻塞模式，服务器就会一直阻塞在accept调用上，直到其他某个客户建立一个新的连接为止。但是在此期间，服务器单纯地阻塞在accept调用上，就绪队列中的其他描述符都得不到处理。</p>
+<p>解决办法是把监听套接口设置为非阻塞，当客户在服务器调用accept之前中止某个连接时，accept调用可以立即返回-1，这时源自Berkeley的实现会在内核中处理该事件，并不会将该事件通知给epool，而其他实现把errno设置为ECONNABORTED或者EPROTO错误，我们应该忽略这两个错误。</p>
+<p>(2)ET模式下accept存在的问题</p>
+<p>考虑这种情况：多个连接同时到达，服务器的TCP就绪队列瞬间积累多个就绪连接，由于是边缘触发模式，epoll只会通知一次，accept只处理一个连接，导致TCP就绪队列中剩下的连接都得不到处理。</p>
+<p>解决办法是用while循环抱住accept调用，处理完TCP就绪队列中的所有连接后再退出循环。如何知道是否处理完就绪队列中的所有连接呢？accept返回-1并且errno设置为EAGAIN就表示所有连接都处理完。</p>
+<p>综合以上两种情况，服务器应该使用非阻塞地accept，accept在ET模式下的正确使用方式为：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">while</span> ((conn_sock = accept(listenfd,(<span class="keyword">struct</span> sockaddr *) &amp;remote, (<span class="keyword">size_t</span> *)&amp;addrlen)) &gt; <span class="number">0</span>) &#123;</span><br><span class="line">    handle_client(conn_sock);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">if</span> (conn_sock == <span class="number">-1</span>) &#123;</span><br><span class="line">    <span class="keyword">if</span> (errno != EAGAIN &amp;&amp; errno != ECONNABORTED &amp;&amp; errno != EPROTO &amp;&amp; errno != EINTR)</span><br><span class="line">    perror(<span class="string">"accept"</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>一道腾讯后台开发的面试题</p>
+<p>使用Linux epoll模型，水平触发模式；当socket可写时，会不停的触发socket可写的事件，如何处理？</p>
+<p><strong>一种最普遍的方式：</strong></p>
+<p>需要向socket写数据的时候才把socket加入epoll，等待可写事件。<br>接受到可写事件后，调用write或者send发送数据。<br>当所有数据都写完后，把socket移出epoll。</p>
+<p>这种方式的缺点是，即使发送很少的数据，也要把socket加入epoll，写完后在移出epoll，有一定操作代价。</p>
+<p><strong>一种改进的方式：</strong></p>
+<p>开始不把socket加入epoll，需要向socket写数据的时候，直接调用write或者send发送数据。如果返回EAGAIN，把socket加入epoll，在epoll的驱动下写数据，全部数据发送完毕后，再移出epoll。</p>
+<p>这种方式的优点是：数据不多的时候可以避免epoll的事件处理，提高效率。</p>
+
+      
+    </div>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2014/12/29/2014-12-29-xhttpd-makefile/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption"><</strong>
+      <div class="article-nav-title">
+        
+          从零开始实现自己的httpd——Makefile
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2014/12/21/2014-12-21-xhttpd-epoll/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">从零开始实现自己的httpd——epoll</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<div class="share_jia">
+	<!-- JiaThis Button BEGIN -->
+	<div class="jiathis_style">
+		<span class="jiathis_txt">Share to: &nbsp; </span>
+		<a class="jiathis_button_facebook"></a> 
+    <a class="jiathis_button_twitter"></a>
+    <a class="jiathis_button_plus"></a> 
+    <a class="jiathis_button_tsina"></a>
+		<a class="jiathis_button_cqq"></a>
+		<a class="jiathis_button_douban"></a>
+		<a class="jiathis_button_weixin"></a>
+		<a class="jiathis_button_tumblr"></a>
+    <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+	</div>
+	<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1405949716054953" charset="utf-8"></script>
+	<!-- JiaThis Button END -->
+</div>
+
+
+
+
+
+
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="2014-12-23-xhttpd-epollnote" data-title="从零开始实现自己的httpd——epoll读写数据的注意事项" data-url="http://yoursite.com/2014/12/23/2014-12-23-xhttpd-epollnote/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"flase"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+
+
+
+</div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2016 xiaoyifeibupt
+    	</div>
+      	<div class="footer-right">
+      		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
+      	</div>
+    </div>
+  </div>
+</footer>
+    </div>
+    
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+
+<script>
+	var yiliaConfig = {
+		fancybox: true,
+		mathjax: true,
+		animate: true,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: false
+	}
+</script>
+<script src="http://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+<script src="/js/main.js"></script>
+
+
+
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+  </div>
+</body>
+</html>

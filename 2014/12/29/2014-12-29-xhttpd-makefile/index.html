@@ -4,18 +4,18 @@
   <meta charset="utf-8">
   
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
-  <title>设计模式--建造者模式 | xiaoyifeibupt&#39;s blog</title>
+  <title>从零开始实现自己的httpd——Makefile | xiaoyifeibupt&#39;s blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="工厂类模式提供的是创建单个类的模式，而建造者模式则是将各种产品集中起来进行管理，用来创建复合对象，所谓复合对象就是指某个类具有不同的属性，其实建造者模式就是前面抽象工厂模式和最后的Test结合起来得到的。我们看一下代码：还和前面一样，一个Sender接口，两个实现类MailSender和SmsSender。最后，建造者类如下：">
+  <meta name="description" content="一个工程中的源文件不计其数，其按类型、功能、模块分别放在若干个目录中，makefile定义了一系列的规则来指定，哪些文件需要先编译，哪些文件需要后编译，哪些文件需要重新编译，甚至于进行更复杂的功能操作，因为 makefile就像一个Shell脚本一样，其中也可以执行操作系统的命令。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="设计模式--建造者模式">
-<meta property="og:url" content="http://yoursite.com/2014/11/10/2014-11-10-Design-pattern-Builder/index.html">
+<meta property="og:title" content="从零开始实现自己的httpd——Makefile">
+<meta property="og:url" content="http://yoursite.com/2014/12/29/2014-12-29-xhttpd-makefile/index.html">
 <meta property="og:site_name" content="xiaoyifeibupt's blog">
-<meta property="og:description" content="工厂类模式提供的是创建单个类的模式，而建造者模式则是将各种产品集中起来进行管理，用来创建复合对象，所谓复合对象就是指某个类具有不同的属性，其实建造者模式就是前面抽象工厂模式和最后的Test结合起来得到的。我们看一下代码：还和前面一样，一个Sender接口，两个实现类MailSender和SmsSender。最后，建造者类如下：">
-<meta property="og:updated_time" content="2016-05-24T11:59:02.000Z">
+<meta property="og:description" content="一个工程中的源文件不计其数，其按类型、功能、模块分别放在若干个目录中，makefile定义了一系列的规则来指定，哪些文件需要先编译，哪些文件需要后编译，哪些文件需要重新编译，甚至于进行更复杂的功能操作，因为 makefile就像一个Shell脚本一样，其中也可以执行操作系统的命令。">
+<meta property="og:updated_time" content="2016-05-26T02:51:40.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="设计模式--建造者模式">
-<meta name="twitter:description" content="工厂类模式提供的是创建单个类的模式，而建造者模式则是将各种产品集中起来进行管理，用来创建复合对象，所谓复合对象就是指某个类具有不同的属性，其实建造者模式就是前面抽象工厂模式和最后的Test结合起来得到的。我们看一下代码：还和前面一样，一个Sender接口，两个实现类MailSender和SmsSender。最后，建造者类如下：">
+<meta name="twitter:title" content="从零开始实现自己的httpd——Makefile">
+<meta name="twitter:description" content="一个工程中的源文件不计其数，其按类型、功能、模块分别放在若干个目录中，makefile定义了一系列的规则来指定，哪些文件需要先编译，哪些文件需要后编译，哪些文件需要重新编译，甚至于进行更复杂的功能操作，因为 makefile就像一个Shell脚本一样，其中也可以执行操作系统的命令。">
   
     <link rel="alternative" href="/atom.xml" title="xiaoyifeibupt&#39;s blog" type="application/atom+xml">
   
@@ -172,11 +172,11 @@
 	</div>
 </nav>
 
-      <div class="body-wrap"><article id="post-2014-11-10-Design-pattern-Builder" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-2014-12-29-xhttpd-makefile" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2014/11/10/2014-11-10-Design-pattern-Builder/" class="article-date">
-  	<time datetime="2014-11-10T11:18:08.000Z" itemprop="datePublished">2014-11-10</time>
+      <a href="/2014/12/29/2014-12-29-xhttpd-makefile/" class="article-date">
+  	<time datetime="2014-12-29T05:18:08.000Z" itemprop="datePublished">2014-12-29</time>
 </a>
     </div>
   
@@ -189,7 +189,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      设计模式--建造者模式
+      从零开始实现自己的httpd——Makefile
     </h1>
   
 
@@ -198,7 +198,7 @@
       <div class="article-info article-info-post">
         
 	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Design-pattern/">Design-pattern</a></li></ul>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/http/">http</a></li></ul>
 	</div>
 
         
@@ -209,10 +209,15 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>工厂类模式提供的是创建单个类的模式，而建造者模式则是将各种产品集中起来进行管理，用来创建复合对象，所谓复合对象就是指某个类具有不同的属性，其实建造者模式就是前面抽象工厂模式和最后的Test结合起来得到的。我们看一下代码：<br>还和前面一样，一个Sender接口，两个实现类MailSender和SmsSender。最后，建造者类如下：<br><a id="more"></a><br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Builder</span> </span>&#123;</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">private</span> List&lt;Sender&gt; list = <span class="keyword">new</span> ArrayList&lt;Sender&gt;();</span><br><span class="line">	</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">produceMailSender</span><span class="params">(<span class="keyword">int</span> count)</span></span>&#123;</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;count; i++)&#123;</span><br><span class="line">			list.add(<span class="keyword">new</span> MailSender());</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">produceSmsSender</span><span class="params">(<span class="keyword">int</span> count)</span></span>&#123;</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;count; i++)&#123;</span><br><span class="line">			list.add(<span class="keyword">new</span> SmsSender());</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>测试类：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Test</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">		Builder builder = <span class="keyword">new</span> Builder();</span><br><span class="line">		builder.produceMailSender(<span class="number">10</span>);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>从这点看出，建造者模式将很多功能集成到一个类里，这个类可以创造出比较复杂的东西。所以与工程模式的区别就是：工厂模式关注的是创建单个产品，而建造者模式则关注创建符合对象，多个部分。因此，是选择工厂模式还是建造者模式，依实际情况而定。</p>
+        <p>一个工程中的源文件不计其数，其按类型、功能、模块分别放在若干个目录中，makefile定义了一系列的规则来指定，哪些文件需要先编译，哪些文件需要后编译，哪些文件需要重新编译，甚至于进行更复杂的功能操作，因为 makefile就像一个Shell脚本一样，其中也可以执行操作系统的命令。</p>
+<a id="more"></a>
+<p>###自动化编译</p>
+<p>###主要功能</p>
+<p>Make工具最主要也是最基本的功能就是通过makefile文件来描述源程序之间的相互关系并自动维护编译工作。而makefile 文件需要按照某种语法进行编写，文件中需要说明如何编译各个源文件并连接生成可执行文件，并要求定义源文件之间的依赖关系。</p>
+<p>###规则</p>
+<p>让我们先来粗略地看一看Makefile的规则。</p>
+<p>target … : prerequisites …<br>command<br>…<br>…</p>
+<p>目标：依赖<br>执行指令 …<br>target也就是一个目标文件，可以是Object File，也可以是执行文件。还可以是一个标签（Label）。<br>① prerequisites就是，要生成那个target所需要的文件或是目标。<br>② command也就是make需要执行的命令。（任意的Shell命令）<br>这是一个文件的依赖关系，也就是说，target这一个或多个的目标文件依赖于prerequisites中的文件，其生成规则定义在command中。说白一点就是说，prerequisites中如果有一个以上的文件比target文件要新的话，command所定义的命令就会被执行(command一定要以Tab键开始，否者编译器无法识别command），减少重复编译，提高了其软件工程管理效率。<br>文件定义与命令<br>Makefile文件作为一种描述文档一般需要包含以下<br>命令行中执行makefile<br>命令行中执行makefile<br>内容:<br>宏定义<br>源文件之间的相互依赖关系<br>可执行的命令<br>Makefile中允许使用简单的宏指代源文件及其相关编译信息，在Linux中也称宏为变量。在引用宏时只需在变量前加$符号，但值得注意的是，如果变量名的长度超过一个字符，在引用时就必须加圆括号（）。</p>
 
       
     </div>
@@ -222,18 +227,9 @@
     
 <nav id="article-nav">
   
-    <a href="/2014/11/12/2014-11-12-Design-pattern-Adapter/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption"><</strong>
-      <div class="article-nav-title">
-        
-          设计模式--适配器模式
-        
-      </div>
-    </a>
   
-  
-    <a href="/2014/11/09/2014-11-09-Design-pattern-Prototype/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">设计模式--原型模式</div>
+    <a href="/2014/12/23/2014-12-23-xhttpd-epollnote/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">从零开始实现自己的httpd——epoll读写数据的注意事项</div>
       <strong class="article-nav-caption">></strong>
     </a>
   
@@ -268,7 +264,7 @@
 
 <div class="duoshuo">
 	<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="2014-11-10-Design-pattern-Builder" data-title="设计模式--建造者模式" data-url="http://yoursite.com/2014/11/10/2014-11-10-Design-pattern-Builder/"></div>
+	<div class="ds-thread" data-thread-key="2014-12-29-xhttpd-makefile" data-title="从零开始实现自己的httpd——Makefile" data-url="http://yoursite.com/2014/12/29/2014-12-29-xhttpd-makefile/"></div>
 	<!-- 多说评论框 end -->
 	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 	<script type="text/javascript">

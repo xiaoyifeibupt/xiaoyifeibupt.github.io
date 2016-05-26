@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+  <title>从零开始实现自己的httpd——buffer | xiaoyifeibupt&#39;s blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="准备工作
+ANSI C标准中有几个标准预定义宏（也是常用的）：
+__LINE__：在源代码中插入当前源代码行号；
+__FILE__：在源文件中插入当前源文件名；
+__DATE__：在源文件中插入当前的编译日期
+__TIME__：在源文件中插入当前编译时间；
+__STDC__：当要求程序严格遵循ANSI C标准时该标识被赋值为1；
+__cplusplus：当编写C++程序时该标识符被定义。
+编译器在">
+<meta property="og:type" content="article">
+<meta property="og:title" content="从零开始实现自己的httpd——buffer">
+<meta property="og:url" content="http://yoursite.com/2014/12/18/2014-12-18-xhttpd-buffer/index.html">
+<meta property="og:site_name" content="xiaoyifeibupt's blog">
+<meta property="og:description" content="准备工作
+ANSI C标准中有几个标准预定义宏（也是常用的）：
+__LINE__：在源代码中插入当前源代码行号；
+__FILE__：在源文件中插入当前源文件名；
+__DATE__：在源文件中插入当前的编译日期
+__TIME__：在源文件中插入当前编译时间；
+__STDC__：当要求程序严格遵循ANSI C标准时该标识被赋值为1；
+__cplusplus：当编写C++程序时该标识符被定义。
+编译器在">
+<meta property="og:updated_time" content="2016-05-26T02:48:17.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="从零开始实现自己的httpd——buffer">
+<meta name="twitter:description" content="准备工作
+ANSI C标准中有几个标准预定义宏（也是常用的）：
+__LINE__：在源代码中插入当前源代码行号；
+__FILE__：在源文件中插入当前源文件名；
+__DATE__：在源文件中插入当前的编译日期
+__TIME__：在源文件中插入当前编译时间；
+__STDC__：当要求程序严格遵循ANSI C标准时该标识被赋值为1；
+__cplusplus：当编写C++程序时该标识符被定义。
+编译器在">
+  
+    <link rel="alternative" href="/atom.xml" title="xiaoyifeibupt&#39;s blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			
+			<img lazy-src="/face.jpg" class="js-avatar">
+			
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">xiaoyifeibupt</a></h1>
+		</hgroup>
+
+		
+
+		
+			<div class="switch-btn">
+				<div class="icon">
+					<div class="icon-ctn">
+						<div class="icon-wrap icon-house" data-idx="0">
+							<div class="birdhouse"></div>
+							<div class="birdhouse_holes"></div>
+						</div>
+						<div class="icon-wrap icon-ribbon hide" data-idx="1">
+							<div class="ribbon"></div>
+						</div>
+						
+						
+						<div class="icon-wrap icon-me hide" data-idx="3">
+							<div class="user"></div>
+							<div class="shoulder"></div>
+						</div>
+						
+					</div>
+					
+				</div>
+				<div class="tips-box hide">
+					<div class="tips-arrow"></div>
+					<ul class="tips-inner">
+						<li>Menu</li>
+						<li>Tags</li>
+						
+						
+						<li>Über</li>
+						
+					</ul>
+				</div>
+			</div>
+		
+
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/">主页</a></li>
+				        
+							<li><a href="/archives">所有文章</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+								<a class="github" target="_blank" href="https://github.com/xiaoyifeibupt" title="github">github</a>
+					        
+								<a class="weibo" target="_blank" href="http://weibo.com/yifeixiao/" title="weibo">weibo</a>
+					        
+								<a class="zhihu" target="_blank" href="https://www.zhihu.com/people/xiao-yifei" title="zhihu">zhihu</a>
+					        
+								<a class="mail" target="_blank" href="/xiaoyifeibupt@163.com" title="mail">mail</a>
+					        
+						</div>
+					</nav>
+				</section>
+				
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud" id="js-tagcloud">
+						<a href="/tags/CSAPP/" style="font-size: 10px;">CSAPP</a> <a href="/tags/Design-pattern/" style="font-size: 20px;">Design-pattern</a> <a href="/tags/http/" style="font-size: 15px;">http</a>
+					</div>
+				</section>
+				
+				
+				
+
+				
+				
+				<section class="switch-part switch-part3">
+				
+					<div id="js-aboutme">我是谁，我从哪里来，我到哪里去？我就是我，是颜色不一样的吃货…</div>
+				</section>
+				
+			</div>
+		</div>
+	</header>				
+</div>
+
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"></div>
+  		<h1 class="header-author js-mobile-header hide">xiaoyifeibupt</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+			
+				<img lazy-src="/face.jpg" class="js-avatar">
+			
+			</div>
+			<hgroup>
+			  <h1 class="header-author">xiaoyifeibupt</h1>
+			</hgroup>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/archives">所有文章</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="https://github.com/xiaoyifeibupt" title="github">github</a>
+			        
+						<a class="weibo" target="_blank" href="http://weibo.com/yifeixiao/" title="weibo">weibo</a>
+			        
+						<a class="zhihu" target="_blank" href="https://www.zhihu.com/people/xiao-yifei" title="zhihu">zhihu</a>
+			        
+						<a class="mail" target="_blank" href="/xiaoyifeibupt@163.com" title="mail">mail</a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+
+      <div class="body-wrap"><article id="post-2014-12-18-xhttpd-buffer" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2014/12/18/2014-12-18-xhttpd-buffer/" class="article-date">
+  	<time datetime="2014-12-18T05:18:08.000Z" itemprop="datePublished">2014-12-18</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      从零开始实现自己的httpd——buffer
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/http/">http</a></li></ul>
+	</div>
+
+        
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>准备工作</p>
+<p>ANSI C标准中有几个标准预定义宏（也是常用的）：</p>
+<p><code>__LINE__</code>：在源代码中插入当前源代码行号；</p>
+<p><code>__FILE__</code>：在源文件中插入当前源文件名；</p>
+<p><code>__DATE__</code>：在源文件中插入当前的编译日期</p>
+<p><code>__TIME__</code>：在源文件中插入当前编译时间；</p>
+<p><code>__STDC__</code>：当要求程序严格遵循ANSI C标准时该标识被赋值为1；</p>
+<p><code>__cplusplus</code>：当编写C++程序时该标识符被定义。</p>
+<p>编译器在进行源码编译的时候，会自动将这些宏替换为相应内容。</p>
+<a id="more"></a>
+<p>Log.h</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">#ifndef __LOG_H__</span><br><span class="line">#define __LOG_H__</span><br><span class="line"></span><br><span class="line">#include &lt;string.h&gt;</span><br><span class="line"></span><br><span class="line">#include &lt;cerrno&gt;</span><br><span class="line">#include &lt;iostream&gt;</span><br><span class="line">#include &lt;system_error&gt;</span><br><span class="line"></span><br><span class="line">#define __STR(s) #s</span><br><span class="line">#define WHERE __STR(__FILE__ ":" __LINE__)</span><br><span class="line"></span><br><span class="line">#define _E(msg) \</span><br><span class="line">	std::cerr &lt;&lt; "[ERROR] " &lt;&lt; __FILE__ &lt;&lt; ":" &lt;&lt; __LINE__ &lt;&lt; " " &lt;&lt; msg &lt;&lt; std::endl;</span><br><span class="line"></span><br><span class="line">#define _W(msg) \</span><br><span class="line">	std::cerr &lt;&lt; "[WARNING] " &lt;&lt; __FILE__ &lt;&lt; ":" &lt;&lt; __LINE__ &lt;&lt; " " &lt;&lt; msg &lt;&lt; std::endl;</span><br><span class="line"></span><br><span class="line">#define _I(msg) \</span><br><span class="line">	std::cerr &lt;&lt; "[INFO] " &lt;&lt; msg &lt;&lt; std::endl;</span><br><span class="line"></span><br><span class="line">#define SYSTEM_ERROR() \</span><br><span class="line">do &#123; \</span><br><span class="line">	_E(strerror(errno));\</span><br><span class="line">&#125; while (0)</span><br><span class="line"></span><br><span class="line">#define THROW_SYSTEM_ERROR() \</span><br><span class="line">do &#123; \</span><br><span class="line">	SYSTEM_ERROR(); \</span><br><span class="line">	throw std::system_error(std::error_code(errno, std::system_category()));\</span><br><span class="line">&#125; while (0)</span><br><span class="line"></span><br><span class="line">#define SYSTEM_WARNING() \</span><br><span class="line">do &#123; \</span><br><span class="line">	_W(strerror(errno)) \</span><br><span class="line">&#125; while (0)</span><br><span class="line"></span><br><span class="line">#define THROW(msg) \</span><br><span class="line">do &#123; \</span><br><span class="line">	throw std::runtime_error(msg);\</span><br><span class="line">&#125; while (0)</span><br><span class="line"></span><br><span class="line">#endif /* __LOG_H__ */</span><br></pre></td></tr></table></figure>
+<p>Buffer.h</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">ifndef</span> __BUFFER_H__</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> __BUFFER_H__</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="string">"Log.h"</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line"><span class="keyword">class</span> Buffer</span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">	Buffer(<span class="keyword">size_t</span> capacity = <span class="number">1024</span>) : capacity(capacity) , size(<span class="number">0</span>) &#123;</span><br><span class="line">		<span class="keyword">if</span> (capacity == <span class="number">0</span>) &#123;</span><br><span class="line">			data = <span class="literal">nullptr</span>;</span><br><span class="line">			<span class="keyword">return</span>;</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		data = <span class="keyword">reinterpret_cast</span>&lt;T*&gt;(<span class="built_in">malloc</span>(capacity * <span class="keyword">sizeof</span>(T)));</span><br><span class="line">		<span class="keyword">if</span> (!data) &#123;</span><br><span class="line">			THROW_SYSTEM_ERROR();</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	~Buffer() &#123;</span><br><span class="line">		<span class="keyword">if</span> (data) &#123;</span><br><span class="line">			<span class="built_in">free</span>(data);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">size_t</span> size() <span class="keyword">const</span> &#123;</span><br><span class="line">		<span class="keyword">return</span> size;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">size_t</span> capacity() <span class="keyword">const</span> &#123;</span><br><span class="line">		<span class="keyword">return</span> capacity;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">void</span> <span class="title">setCapacity</span><span class="params">(<span class="keyword">size_t</span> _capacity)</span> </span>&#123;</span><br><span class="line">		capacity = capacity;</span><br><span class="line">		errno = <span class="number">0</span>;</span><br><span class="line">		data = <span class="keyword">reinterpret_cast</span>&lt;T*&gt;(</span><br><span class="line">			<span class="built_in">realloc</span>(data, capacity * <span class="keyword">sizeof</span>(T)));</span><br><span class="line">		<span class="keyword">if</span> (errno) &#123;</span><br><span class="line">			THROW_SYSTEM_ERROR();</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">void</span> <span class="title">append</span><span class="params">(<span class="keyword">const</span> T *src, <span class="keyword">size_t</span> _size)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">if</span> (capacity &lt; size + _size) &#123;</span><br><span class="line">			setCapacity(capacity + size);</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		<span class="keyword">if</span> (src &gt;= data &amp;&amp; src &lt; data + capacity) &#123;</span><br><span class="line">			_E(<span class="string">"src and dst do ovelap"</span>)</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="built_in">memcpy</span>(data + size, src, _size);</span><br><span class="line"></span><br><span class="line">		size += _size;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">void</span> <span class="title">drain</span><span class="params">(<span class="keyword">size_t</span> n)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">if</span> (n == <span class="number">0</span>)</span><br><span class="line">			<span class="keyword">return</span>;</span><br><span class="line"></span><br><span class="line">		<span class="keyword">if</span> (n &gt; size) &#123;</span><br><span class="line">			THROW(<span class="string">"not enough data"</span>);</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		<span class="keyword">size_t</span> count = size - n;</span><br><span class="line">		T *ptr1 = data;</span><br><span class="line">		T *ptr2 = data + n;</span><br><span class="line"></span><br><span class="line">		<span class="keyword">while</span> (count) &#123;</span><br><span class="line">			<span class="keyword">size_t</span> count2 = <span class="built_in">std</span>::min(n, count);</span><br><span class="line"></span><br><span class="line">			<span class="built_in">memcpy</span>(ptr1, ptr2, count2);</span><br><span class="line">			ptr1 = ptr2;</span><br><span class="line">			ptr2 += count2;</span><br><span class="line">			count -= count2;</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		size -= n;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">const</span> T* <span class="title">data</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="keyword">return</span> data;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">	T* data;</span><br><span class="line">	<span class="keyword">size_t</span> capacity;</span><br><span class="line">	<span class="keyword">size_t</span> size;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2014/12/19/2014-12-19-xhttpd-socket/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption"><</strong>
+      <div class="article-nav-title">
+        
+          从零开始实现自己的httpd——socket
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2014/12/16/2014-12-16-http- tinyhttpd/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">C 语言实现最简单的 HTTP 服务器tinyhttpd详解</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<div class="share_jia">
+	<!-- JiaThis Button BEGIN -->
+	<div class="jiathis_style">
+		<span class="jiathis_txt">Share to: &nbsp; </span>
+		<a class="jiathis_button_facebook"></a> 
+    <a class="jiathis_button_twitter"></a>
+    <a class="jiathis_button_plus"></a> 
+    <a class="jiathis_button_tsina"></a>
+		<a class="jiathis_button_cqq"></a>
+		<a class="jiathis_button_douban"></a>
+		<a class="jiathis_button_weixin"></a>
+		<a class="jiathis_button_tumblr"></a>
+    <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+	</div>
+	<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1405949716054953" charset="utf-8"></script>
+	<!-- JiaThis Button END -->
+</div>
+
+
+
+
+
+
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="2014-12-18-xhttpd-buffer" data-title="从零开始实现自己的httpd——buffer" data-url="http://yoursite.com/2014/12/18/2014-12-18-xhttpd-buffer/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"flase"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+
+
+
+</div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2016 xiaoyifeibupt
+    	</div>
+      	<div class="footer-right">
+      		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
+      	</div>
+    </div>
+  </div>
+</footer>
+    </div>
+    
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+
+<script>
+	var yiliaConfig = {
+		fancybox: true,
+		mathjax: true,
+		animate: true,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: false
+	}
+</script>
+<script src="http://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+<script src="/js/main.js"></script>
+
+
+
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+  </div>
+</body>
+</html>

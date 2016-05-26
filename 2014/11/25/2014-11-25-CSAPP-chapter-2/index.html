@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+  <title>CSAPP——信息的表示和处理 | xiaoyifeibupt&#39;s blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="无符号编码基于传统的二进制表示法，表示大于或者等于零的数字
+补码编码是表示有符号整数最常见的方式
+浮点数编码是表示实数的科学记数法的以二为基数的版本
+
+整数的计算机运算满足人们熟知的真正整数运算的规律
+由于表示的进度有限，浮点运算不可结合（整数范围有限但精确，浮点数范围较大但是近似）">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CSAPP——信息的表示和处理">
+<meta property="og:url" content="http://yoursite.com/2014/11/25/2014-11-25-CSAPP-chapter-2/index.html">
+<meta property="og:site_name" content="xiaoyifeibupt's blog">
+<meta property="og:description" content="无符号编码基于传统的二进制表示法，表示大于或者等于零的数字
+补码编码是表示有符号整数最常见的方式
+浮点数编码是表示实数的科学记数法的以二为基数的版本
+
+整数的计算机运算满足人们熟知的真正整数运算的规律
+由于表示的进度有限，浮点运算不可结合（整数范围有限但精确，浮点数范围较大但是近似）">
+<meta property="og:updated_time" content="2016-05-26T02:33:09.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="CSAPP——信息的表示和处理">
+<meta name="twitter:description" content="无符号编码基于传统的二进制表示法，表示大于或者等于零的数字
+补码编码是表示有符号整数最常见的方式
+浮点数编码是表示实数的科学记数法的以二为基数的版本
+
+整数的计算机运算满足人们熟知的真正整数运算的规律
+由于表示的进度有限，浮点运算不可结合（整数范围有限但精确，浮点数范围较大但是近似）">
+  
+    <link rel="alternative" href="/atom.xml" title="xiaoyifeibupt&#39;s blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			
+			<img lazy-src="/face.jpg" class="js-avatar">
+			
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">xiaoyifeibupt</a></h1>
+		</hgroup>
+
+		
+
+		
+			<div class="switch-btn">
+				<div class="icon">
+					<div class="icon-ctn">
+						<div class="icon-wrap icon-house" data-idx="0">
+							<div class="birdhouse"></div>
+							<div class="birdhouse_holes"></div>
+						</div>
+						<div class="icon-wrap icon-ribbon hide" data-idx="1">
+							<div class="ribbon"></div>
+						</div>
+						
+						
+						<div class="icon-wrap icon-me hide" data-idx="3">
+							<div class="user"></div>
+							<div class="shoulder"></div>
+						</div>
+						
+					</div>
+					
+				</div>
+				<div class="tips-box hide">
+					<div class="tips-arrow"></div>
+					<ul class="tips-inner">
+						<li>Menu</li>
+						<li>Tags</li>
+						
+						
+						<li>Über</li>
+						
+					</ul>
+				</div>
+			</div>
+		
+
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/">主页</a></li>
+				        
+							<li><a href="/archives">所有文章</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+								<a class="github" target="_blank" href="https://github.com/xiaoyifeibupt" title="github">github</a>
+					        
+								<a class="weibo" target="_blank" href="http://weibo.com/yifeixiao/" title="weibo">weibo</a>
+					        
+								<a class="zhihu" target="_blank" href="https://www.zhihu.com/people/xiao-yifei" title="zhihu">zhihu</a>
+					        
+								<a class="mail" target="_blank" href="/xiaoyifeibupt@163.com" title="mail">mail</a>
+					        
+						</div>
+					</nav>
+				</section>
+				
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud" id="js-tagcloud">
+						<a href="/tags/CSAPP/" style="font-size: 10px;">CSAPP</a> <a href="/tags/Design-pattern/" style="font-size: 20px;">Design-pattern</a>
+					</div>
+				</section>
+				
+				
+				
+
+				
+				
+				<section class="switch-part switch-part3">
+				
+					<div id="js-aboutme">我是谁，我从哪里来，我到哪里去？我就是我，是颜色不一样的吃货…</div>
+				</section>
+				
+			</div>
+		</div>
+	</header>				
+</div>
+
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"></div>
+  		<h1 class="header-author js-mobile-header hide">xiaoyifeibupt</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+			
+				<img lazy-src="/face.jpg" class="js-avatar">
+			
+			</div>
+			<hgroup>
+			  <h1 class="header-author">xiaoyifeibupt</h1>
+			</hgroup>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/archives">所有文章</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="https://github.com/xiaoyifeibupt" title="github">github</a>
+			        
+						<a class="weibo" target="_blank" href="http://weibo.com/yifeixiao/" title="weibo">weibo</a>
+			        
+						<a class="zhihu" target="_blank" href="https://www.zhihu.com/people/xiao-yifei" title="zhihu">zhihu</a>
+			        
+						<a class="mail" target="_blank" href="/xiaoyifeibupt@163.com" title="mail">mail</a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+
+      <div class="body-wrap"><article id="post-2014-11-25-CSAPP-chapter-2" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2014/11/25/2014-11-25-CSAPP-chapter-2/" class="article-date">
+  	<time datetime="2014-11-25T05:18:08.000Z" itemprop="datePublished">2014-11-25</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      CSAPP——信息的表示和处理
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CSAPP/">CSAPP</a></li></ul>
+	</div>
+
+        
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <ul>
+<li><strong>无符号编码</strong>基于传统的二进制表示法，表示大于或者等于零的数字</li>
+<li><strong>补码编码</strong>是表示有符号整数最常见的方式</li>
+<li><strong>浮点数编码</strong>是表示实数的科学记数法的以二为基数的版本</li>
+</ul>
+<p>整数的计算机运算满足人们熟知的真正整数运算的规律</p>
+<p>由于表示的进度有限，浮点运算不可结合（整数范围有限但<strong>精确</strong>，浮点数范围较大但是<strong>近似</strong>）</p>
+<a id="more"></a>
+<p>##信息存储</p>
+<p>机器级程序将存储器视为一个非常大的字节数组，称为<strong>虚拟存储器</strong></p>
+<p>存储器的每个字节都有一个唯一的数字来标识，成为它的<strong>地址</strong></p>
+<p>所有可能的地址集合称为<strong>虚拟地址空间</strong></p>
+<p><strong>程序对象</strong>：程序数据，指令和控制信息</p>
+<p>###十六进制</p>
+<p>在C语言中，以0x或0X开头的数字常量被认为是16进制的值。字符’A’~’F’既可以是大写也可以是小写，甚至是大小写混合。</p>
+<p>###字<br>每台计算机都有一个<strong>字长</strong>，指明整数和指针数据的标称大小。</p>
+<p>因为虚拟地址是以这样的一个字来编码的，所以字长决定的最重要的系统参数就是虚拟地址空间的最大大小。</p>
+<p>###数据大小<br>C语言支持整数和浮点数的多种数据格式</p>
+<p><code>char</code>存储单个字符，也可以用来存储整数值。</p>
+<p><code>int</code>，<code>short</code>，<code>long long</code>，短整数分配两个字节，不加限定的int分配四个字节，长整数使用机器的全字长。</p>
+<p>指针使用机器的全字长</p>
+<p>单精度（float）和双精度（double），格式分别使用4字节和8字节</p>
+<table>
+<thead>
+<tr>
+<th>C申明</th>
+<th style="text-align:center">32位机器</th>
+<th>64位机器</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>char</td>
+<td style="text-align:center">1</td>
+<td>1</td>
+</tr>
+<tr>
+<td>short int</td>
+<td style="text-align:center">2</td>
+<td>2</td>
+</tr>
+<tr>
+<td>int</td>
+<td style="text-align:center">4</td>
+<td>4</td>
+</tr>
+<tr>
+<td>long int</td>
+<td style="text-align:center">4</td>
+<td>8</td>
+</tr>
+<tr>
+<td>long long int</td>
+<td style="text-align:center">8</td>
+<td>8</td>
+</tr>
+<tr>
+<td>char *</td>
+<td style="text-align:center">4</td>
+<td>8</td>
+</tr>
+<tr>
+<td>float</td>
+<td style="text-align:center">4</td>
+<td>4</td>
+</tr>
+<tr>
+<td>double</td>
+<td style="text-align:center">8</td>
+<td>8</td>
+</tr>
+</tbody>
+</table>
+<p>可移植的一个方面就是使程序对不同数据类型的确切大小不敏感。</p>
+<p>###寻址和字节顺序</p>
+<p>在几乎所有的机器上，多字节对象都被存储为连续的字节序列，对象的地址为所使用字节中最小的地址。<br>这个是通用的原则，不管是大端还是小端都是这样的。</p>
+<p>大端就是对象的地址处是最高字节然后顺序存储，小端就是对象的地址处是最小字节然后顺序存储。</p>
+<p>不管是大端还是小端，对象的地址都是所有字节的地址中最小的地址。</p>
+<p>字节顺序在大部分的时候是不可见的，对于应用程序员来说。但有3类情况变得可见。</p>
+<ul>
+<li>网络传送，现在的解决方法是网络传送时是网络传送的标准，大端和小端都要在传送时变成网络标准，接受时再变回去。</li>
+<li>阅读表示整数数据的字节序列时</li>
+<li>当编写规避正常的类型系统程序时，类型强制转换，类型转化就可以看作是地址不变，但取的字节书目变了。当然大端和小端就会显示出差别。大多数应用编程都强烈不推荐这种编码技巧，但是它们对系统级编程来说非常有用甚至是必需的。</li>
+</ul>
+<p>sizeof(T)返回存储 一个类型为T的对象所需要的字节数。sizeof是运算符，比如+。</p>
+<p>###表示字符串</p>
+<p>c语言中字符串被编码为一个以null字符结尾的字符数组，null字符在ASCII中是0，也就是说所有的c语言字符串最后一个字节都是0。</p>
+<p>Unicode联合会的Unicode标准目前字库包括十万个字符。</p>
+<p>基本编码，也成为Unicode的“统一字符集“使用32位来表示字符，<br>UTF-8表示将每个字符编码为一个字节序列，所有的ASCII字节序列用ASCII码表示和UTF-8表示一样。</p>
+<p>Java使用Unicode来表示字符串，也就是一个字符4字节，浪费。</p>
+<p>###表示代码<br>不同的机器类型使用不同的且不兼容的指令和编码方式，二进制代码是不兼容的，即使一样的程序，编译出来的机器级代码也是不一样的。</p>
+<p>二进制代码很少能在不同机器和操作系统组合之间移植。</p>
+<p>所以说，不可移植在于不同的机器硬件和操作系统的组合。</p>
+<p>###布尔代数简介<br>布尔代数有很多有用的结论，记住就可以了，最好的一个是a^(b^a)=b。</p>
+<p>位向量一个很有用的应用就是表示有限集合。</p>
+<p>###c语言中的位级运算</p>
+<p>既然是位级运算，那就是对位的，不论操作数是什么类型，位级运算符不关心，就是对位的。位级运算的一个常见应用就是实现<strong>掩码</strong>运算</p>
+<p>掩码是一个位模式，表示从一个字中选出的位的集合。</p>
+<p>###c语言中的逻辑运算</p>
+<p>c语言中的移位操作中，向左移位是很简单的，丢弃高位的，低位补0，始终如此。<br>但向右移位有两种，一种是逻辑移位，一种是算术移位，逻辑移位高端补0，算术移位高端是1补1，是0补0。<br>存在两种右移，归根结底是机器提供了这两种形式。</p>
+<p>c语言标准没有明确定义使用那种右移。但有其他的限制：无符号数据必须逻辑右移，有符号数据则不能确定。<br>但实际上，总存在典型值的，那就是几乎所有的编译器/机器组合对有符号数据都执行算术右移。</p>
+<p>c语言标准也没有定义当移位（右移或者左移）的位数大于数据位数时该怎么做，典型值是取mod。比如32就变成了0，34变成了2。</p>
+<p>##整数表示</p>
+<p>用位来编码整数的两种不同的方式：一种只能表示非负数，而另一种能够表示负数、0和正数。<br>这是两种最常用的，但当然还有其他的用位编码整数的方式，不说，不代表不存在，也不代表没人用，重点是这里，目前，最多的使用的编码整数的方式是这两种。</p>
+<p>而且，这两种的数学属性和机器级实现方面密切关联。</p>
+<p>###整型数据类型<br>32位机和64位机上的c语言整数数据类型的典型字节数除了long之外都是一致的，char1，short2，int4，longlong8。<br>而long在32位是4字节，在64位是8字节。注意：这里是典型字节数。</p>
+
+      
+    </div>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2014/11/23/2014-11-23-Design-pattern-Decorator-Memento-State-Visitor-Mediator-Interpreter/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">设计模式--备忘录/状态/访问者/中介者/解释器</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<div class="share_jia">
+	<!-- JiaThis Button BEGIN -->
+	<div class="jiathis_style">
+		<span class="jiathis_txt">Share to: &nbsp; </span>
+		<a class="jiathis_button_facebook"></a> 
+    <a class="jiathis_button_twitter"></a>
+    <a class="jiathis_button_plus"></a> 
+    <a class="jiathis_button_tsina"></a>
+		<a class="jiathis_button_cqq"></a>
+		<a class="jiathis_button_douban"></a>
+		<a class="jiathis_button_weixin"></a>
+		<a class="jiathis_button_tumblr"></a>
+    <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+	</div>
+	<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1405949716054953" charset="utf-8"></script>
+	<!-- JiaThis Button END -->
+</div>
+
+
+
+
+
+
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="2014-11-25-CSAPP-chapter-2" data-title="CSAPP——信息的表示和处理" data-url="http://yoursite.com/2014/11/25/2014-11-25-CSAPP-chapter-2/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"flase"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+
+
+
+</div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2016 xiaoyifeibupt
+    	</div>
+      	<div class="footer-right">
+      		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
+      	</div>
+    </div>
+  </div>
+</footer>
+    </div>
+    
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+
+<script>
+	var yiliaConfig = {
+		fancybox: true,
+		mathjax: true,
+		animate: true,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: false
+	}
+</script>
+<script src="http://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+<script src="/js/main.js"></script>
+
+
+
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+  </div>
+</body>
+</html>

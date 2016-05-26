@@ -4,12 +4,12 @@
   <meta charset="utf-8">
   
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
-  <title>Archives: 2014 | xiaoyifeibupt&#39;s blog</title>
+  <title>xiaoyifeibupt&#39;s blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description">
 <meta property="og:type" content="website">
 <meta property="og:title" content="xiaoyifeibupt's blog">
-<meta property="og:url" content="http://yoursite.com/archives/2014/page/2/index.html">
+<meta property="og:url" content="http://yoursite.com/page/3/index.html">
 <meta property="og:site_name" content="xiaoyifeibupt's blog">
 <meta property="og:description">
 <meta name="twitter:card" content="summary">
@@ -177,242 +177,201 @@
 
       <div class="body-wrap">
   
+    <article id="post-2014-11-08-Design-pattern-Singleton" class="article article-type-post" itemscope itemprop="blogPost">
   
+    <div class="article-meta">
+      <a href="/2014/11/08/2014-11-08-Design-pattern-Singleton/" class="article-date">
+  	<time datetime="2014-11-08T11:18:08.000Z" itemprop="datePublished">2014-11-08</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
     
     
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2014/11/08/2014-11-08-Design-pattern-Singleton/">设计模式--单例模式</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>单例对象（Singleton）是一种常用的设计模式。在Java应用中，单例对象能保证在一个JVM中，该对象只有一个实例存在。这样的模式有几个好处：</p>
+<p>1.某些类创建比较频繁，对于一些大型的对象，这是一笔很大的系统开销。</p>
+<p>2.省去了<code>new</code>操作符，降低了系统内存的使用频率，减轻GC压力。</p>
+<p>3.有些类如交易所的核心交易引擎，控制着交易流程，如果该类可以创建多个的话，系统完全乱了。（比如一个军队出现了多个司令员同时指挥，肯定会乱成一团），所以只有使用单例模式，才能保证核心交易服务器独立控制整个流程。<br>
+      
+    </div>
+    
+    <div class="article-info article-info-index">
       
       
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2014" class="archive-year">2014</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2014/11/15/2014-11-15-Design-pattern-Decorator-Proxy-Facade-Bridge-Composite-Flyweight/" class="archive-article-date">
-  	<time datetime="2014-11-15T11:18:08.000Z" itemprop="datePublished">Nov 15</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2014/11/15/2014-11-15-Design-pattern-Decorator-Proxy-Facade-Bridge-Composite-Flyweight/">设计模式--装饰/代理/外观/桥接/组合/享元</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
 	<div class="article-tag tagcloud">
 		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Design-pattern/">Design-pattern</a></li></ul>
 	</div>
 
-          
+      
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
+      
+        <p class="article-more-link">
+          <a  href="/2014/11/08/2014-11-08-Design-pattern-Singleton/#more">more >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
   </div>
-</article>
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2014/11/12/2014-11-12-Design-pattern-Adapter/" class="archive-article-date">
-  	<time datetime="2014-11-12T11:18:08.000Z" itemprop="datePublished">Nov 12</time>
+</article>
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-2014-11-07-Design-pattern-Abstract-Factory" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2014/11/07/2014-11-07-Design-pattern-Abstract-Factory/" class="article-date">
+  	<time datetime="2014-11-07T11:18:08.000Z" itemprop="datePublished">2014-11-07</time>
 </a>
-        </div>
-    	 
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
   
     <h1 itemprop="name">
-      <a class="archive-article-title" href="/2014/11/12/2014-11-12-Design-pattern-Adapter/">设计模式--适配器模式</a>
+      <a class="article-title" href="/2014/11/07/2014-11-07-Design-pattern-Abstract-Factory/">设计模式--抽象工厂模式</a>
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>工厂方法模式有一个问题就是，类的创建依赖工厂类，也就是说，如果想要拓展程序，必须对工厂类进行修改，这违背了闭包原则，所以，从设计角度考虑，有一定的问题，如何解决？<br>就用到抽象工厂模式，创建多个工厂类，这样一旦需要增加新的功能，直接增加新的工厂类就可以了，不需要修改之前的代码。因为抽象工厂不太好理解，我们先看看图，然后就和代码，就比较容易理解。<br>
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Design-pattern/">Design-pattern</a></li></ul>
 	</div>
 
-          
+      
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
+      
+        <p class="article-more-link">
+          <a  href="/2014/11/07/2014-11-07-Design-pattern-Abstract-Factory/#more">more >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
   </div>
-</article>
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2014/11/10/2014-11-10-Design-pattern-Builder/" class="archive-article-date">
-  	<time datetime="2014-11-10T11:18:08.000Z" itemprop="datePublished">Nov 10</time>
+</article>
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-2014-11-05-Design-pattern-Factory-Method" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2014/11/05/2014-11-05-Design-pattern-Factory-Method/" class="article-date">
+  	<time datetime="2014-11-05T11:18:08.000Z" itemprop="datePublished">2014-11-05</time>
 </a>
-        </div>
-    	 
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
   
     <h1 itemprop="name">
-      <a class="archive-article-title" href="/2014/11/10/2014-11-10-Design-pattern-Builder/">设计模式--建造者模式</a>
+      <a class="article-title" href="/2014/11/05/2014-11-05-Design-pattern-Factory-Method/">设计模式--工程模式</a>
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>工厂方法模式分为三种：</p>
+<p>###普通工厂模式</p>
+<p>就是建立一个工厂类，对实现了同一接口的一些类进行实例的创建。</p>
+<p>举例如下：（我们举一个发送邮件和短信的例子）<br>首先，创建二者的共同接口：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Sender</span> </span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">Send</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>其次，创建实现类：</p>
+<p>邮件：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MailSender</span> <span class="keyword">implements</span> <span class="title">Sender</span> </span>&#123;</span><br><span class="line">	<span class="meta">@Override</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">Send</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		System.out.println(<span class="string">"this is mailsender!"</span>);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Design-pattern/">Design-pattern</a></li></ul>
 	</div>
 
-          
+      
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
+      
+        <p class="article-more-link">
+          <a  href="/2014/11/05/2014-11-05-Design-pattern-Factory-Method/#more">more >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
   </div>
+  
 </article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2014/11/09/2014-11-09-Design-pattern-Prototype/" class="archive-article-date">
-  	<time datetime="2014-11-09T11:18:08.000Z" itemprop="datePublished">Nov 9</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2014/11/09/2014-11-09-Design-pattern-Prototype/">设计模式--原型模式</a>
-    </h1>
-  
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Design-pattern/">Design-pattern</a></li></ul>
-	</div>
 
-          
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2014/11/08/2014-11-08-Design-pattern-Singleton/" class="archive-article-date">
-  	<time datetime="2014-11-08T11:18:08.000Z" itemprop="datePublished">Nov 8</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2014/11/08/2014-11-08-Design-pattern-Singleton/">设计模式--单例模式</a>
-    </h1>
-  
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Design-pattern/">Design-pattern</a></li></ul>
-	</div>
 
-          
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2014/11/07/2014-11-07-Design-pattern-Abstract-Factory/" class="archive-article-date">
-  	<time datetime="2014-11-07T11:18:08.000Z" itemprop="datePublished">Nov 7</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2014/11/07/2014-11-07-Design-pattern-Abstract-Factory/">设计模式--抽象工厂模式</a>
-    </h1>
-  
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Design-pattern/">Design-pattern</a></li></ul>
-	</div>
 
-          
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2014/11/05/2014-11-05-Design-pattern-Factory-Method/" class="archive-article-date">
-  	<time datetime="2014-11-05T11:18:08.000Z" itemprop="datePublished">Nov 5</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2014/11/05/2014-11-05-Design-pattern-Factory-Method/">设计模式--工程模式</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Design-pattern/">Design-pattern</a></li></ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
   
   
-    </div></section>
-  
-
-    
     <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/archives/2014/">&laquo; Prev</a><a class="page-number" href="/archives/2014/">1</a><span class="page-number current">2</span>
+      <a class="extend prev" rel="prev" href="/page/2/">&laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span>
     </nav>
   
-
 </div>
       <footer id="footer">
   <div class="outer">
@@ -436,9 +395,9 @@
 		fancybox: true,
 		mathjax: true,
 		animate: true,
-		isHome: false,
+		isHome: true,
 		isPost: false,
-		isArchive: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false

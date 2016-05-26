@@ -4,18 +4,18 @@
   <meta charset="utf-8">
   
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
-  <title>从零开始实现自己的httpd——Makefile | xiaoyifeibupt&#39;s blog</title>
+  <title>Effective C++ —— 继承与面向对象设计 | xiaoyifeibupt&#39;s blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="一个工程中的源文件不计其数，其按类型、功能、模块分别放在若干个目录中，makefile定义了一系列的规则来指定，哪些文件需要先编译，哪些文件需要后编译，哪些文件需要重新编译，甚至于进行更复杂的功能操作，因为 makefile就像一个Shell脚本一样，其中也可以执行操作系统的命令。">
+  <meta name="description" content="如果你了解C++各种特性的意义，你会发现，你对OOP的看法改变了。它不再是一项用来划分语言特性的仪典，而是可以让你通过它说出你对软件系统的想法。一旦你知道该通过它说些什么，移转至C++世界也就不再是可怕的高要求了。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="从零开始实现自己的httpd——Makefile">
-<meta property="og:url" content="http://yoursite.com/2014/12/29/2014-12-29-xhttpd-makefile/index.html">
+<meta property="og:title" content="Effective C++ —— 继承与面向对象设计">
+<meta property="og:url" content="http://yoursite.com/2015/01/19/2015-01-19-effective-cpp-6/index.html">
 <meta property="og:site_name" content="xiaoyifeibupt's blog">
-<meta property="og:description" content="一个工程中的源文件不计其数，其按类型、功能、模块分别放在若干个目录中，makefile定义了一系列的规则来指定，哪些文件需要先编译，哪些文件需要后编译，哪些文件需要重新编译，甚至于进行更复杂的功能操作，因为 makefile就像一个Shell脚本一样，其中也可以执行操作系统的命令。">
-<meta property="og:updated_time" content="2016-05-26T02:51:40.000Z">
+<meta property="og:description" content="如果你了解C++各种特性的意义，你会发现，你对OOP的看法改变了。它不再是一项用来划分语言特性的仪典，而是可以让你通过它说出你对软件系统的想法。一旦你知道该通过它说些什么，移转至C++世界也就不再是可怕的高要求了。">
+<meta property="og:updated_time" content="2016-05-26T11:42:33.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="从零开始实现自己的httpd——Makefile">
-<meta name="twitter:description" content="一个工程中的源文件不计其数，其按类型、功能、模块分别放在若干个目录中，makefile定义了一系列的规则来指定，哪些文件需要先编译，哪些文件需要后编译，哪些文件需要重新编译，甚至于进行更复杂的功能操作，因为 makefile就像一个Shell脚本一样，其中也可以执行操作系统的命令。">
+<meta name="twitter:title" content="Effective C++ —— 继承与面向对象设计">
+<meta name="twitter:description" content="如果你了解C++各种特性的意义，你会发现，你对OOP的看法改变了。它不再是一项用来划分语言特性的仪典，而是可以让你通过它说出你对软件系统的想法。一旦你知道该通过它说些什么，移转至C++世界也就不再是可怕的高要求了。">
   
     <link rel="alternative" href="/atom.xml" title="xiaoyifeibupt&#39;s blog" type="application/atom+xml">
   
@@ -176,11 +176,11 @@
 	</div>
 </nav>
 
-      <div class="body-wrap"><article id="post-2014-12-29-xhttpd-makefile" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-2015-01-19-effective-cpp-6" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2014/12/29/2014-12-29-xhttpd-makefile/" class="article-date">
-  	<time datetime="2014-12-29T05:18:08.000Z" itemprop="datePublished">2014-12-29</time>
+      <a href="/2015/01/19/2015-01-19-effective-cpp-6/" class="article-date">
+  	<time datetime="2015-01-19T05:18:08.000Z" itemprop="datePublished">2015-01-19</time>
 </a>
     </div>
   
@@ -193,7 +193,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      从零开始实现自己的httpd——Makefile
+      Effective C++ —— 继承与面向对象设计
     </h1>
   
 
@@ -202,7 +202,7 @@
       <div class="article-info article-info-post">
         
 	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/http/">http</a></li></ul>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C/">C++</a></li></ul>
 	</div>
 
         
@@ -213,15 +213,63 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>一个工程中的源文件不计其数，其按类型、功能、模块分别放在若干个目录中，makefile定义了一系列的规则来指定，哪些文件需要先编译，哪些文件需要后编译，哪些文件需要重新编译，甚至于进行更复杂的功能操作，因为 makefile就像一个Shell脚本一样，其中也可以执行操作系统的命令。</p>
+        <p>如果你了解C++各种特性的意义，你会发现，你对OOP的看法改变了。它不再是一项用来划分语言特性的仪典，而是可以让你通过它说出你对软件系统的想法。一旦你知道该通过它说些什么，移转至C++世界也就不再是可怕的高要求了。</p>
 <a id="more"></a>
-<p>###自动化编译</p>
-<p>###主要功能</p>
-<p>Make工具最主要也是最基本的功能就是通过makefile文件来描述源程序之间的相互关系并自动维护编译工作。而makefile 文件需要按照某种语法进行编写，文件中需要说明如何编译各个源文件并连接生成可执行文件，并要求定义源文件之间的依赖关系。</p>
-<p>###规则</p>
-<p>让我们先来粗略地看一看Makefile的规则。</p>
-<p>target … : prerequisites …<br>command<br>…<br>…</p>
-<p>目标：依赖<br>执行指令 …<br>target也就是一个目标文件，可以是Object File，也可以是执行文件。还可以是一个标签（Label）。<br>① prerequisites就是，要生成那个target所需要的文件或是目标。<br>② command也就是make需要执行的命令。（任意的Shell命令）<br>这是一个文件的依赖关系，也就是说，target这一个或多个的目标文件依赖于prerequisites中的文件，其生成规则定义在command中。说白一点就是说，prerequisites中如果有一个以上的文件比target文件要新的话，command所定义的命令就会被执行(command一定要以Tab键开始，否者编译器无法识别command），减少重复编译，提高了其软件工程管理效率。<br>文件定义与命令<br>Makefile文件作为一种描述文档一般需要包含以下<br>命令行中执行makefile<br>命令行中执行makefile<br>内容:<br>宏定义<br>源文件之间的相互依赖关系<br>可执行的命令<br>Makefile中允许使用简单的宏指代源文件及其相关编译信息，在Linux中也称宏为变量。在引用宏时只需在变量前加$符号，但值得注意的是，如果变量名的长度超过一个字符，在引用时就必须加圆括号（）。</p>
+<p>##条款32：确定你的public继承塑模出is-a关系</p>
+<p>以C++进行面向对象编程，最重要的一个规则是：public inheritance（公有继承）意味is-a（是一种）的关系。</p>
+<p>如果你令class D以public形式继承class B，你便是告诉C++编译器（以及你的代码读者）说，每一个类型为D的对象同时也是一个类型为B的对象，反之不成立。你的意思是B比D表现出更一般化得概念，而D比B表现出更特殊化的概念。你主张：“B对象可派上用场的任何地方，D对象一样可以派上用场”，因为每一个D对象都是一种（是一个）B对象。反之如果你需要一个D对象，B对象无法效劳，因为虽然每个D对象都是一个B对象，反之并不成立。</p>
+<p>在C++领域中，任何函数如果期望获得一个类型为基类的实参（而不管是传指针或是引用），都也愿意接受一个派生类对象（而不管是传指针或是引用）。（只对public继承才成立。）</p>
+<p>好的接口可以防止无效的代码通过编译，因此你应该宁可采取“在编译期拒绝”的设计，而不是“运行期才侦测”的设计。</p>
+<p><strong>请记住：</strong></p>
+<ul>
+<li>“public继承”意味is-a。适用于base classes身上的每一件事情一定也使用于derived classes身上，因为每一个derived classes对象也都是一个base classes对象。    </li>
+</ul>
+<p>##条款33：避免遮掩继承而来的名称</p>
+<p>C++的名称遮掩规则所做的唯一事情就是：遮掩名称。至于名称是否是相同或不同的类型，并不重要。即，只要名称相同就覆盖基类相应的成员，不管是类型，参数个数，都无关紧要。派生类的作用域嵌套在基类的作用域内。</p>
+<p>C++的继承关系的遮掩名称也并不管成员函数是纯虚函数，非纯虚函数或非虚函数等。只和名称有关。 </p>
+<p>如果你真的需要用到基类的被名称遮掩的函数，可以使用using声明式，引入基类的成员函数。</p>
+<p><strong>请记住：</strong></p>
+<ul>
+<li>derived calsses内的名称会遮掩base classes内的名称。在public继承下从来没有人希望如此。   </li>
+<li>为了让被遮掩的名称再见天日，可使用using声明式或转交函数（forwarding function）。</li>
+</ul>
+<p>##条款34：区分接口继承和实现继承</p>
+<p>表面上直截了当的public继承概念，经过更严密的检查之后，发现它由两部分组成：函数接口继承和函数实现继承。</p>
+<p>成员函数的接口总是会被继承。</p>
+<p>声明一个纯虚函数的目的是为了让派生类只继承函数接口。</p>
+<p>声明一个虚函数的目的是让派生类继承该函数的接口和缺省实现。</p>
+<p>声明一个非虚函数的目的是为了令派生类继承函数的接口及一份强制性实现。</p>
+<p><strong>请记住：</strong></p>
+<ul>
+<li>接口继承和实现继承不同。在public继承之下，derived classes总是继承base class的接口。</li>
+<li>pure virtual函数只具体制定接口继承。</li>
+<li>简朴的（非纯）impure virtual函数具体制定接口继承及缺省实现继承。</li>
+<li>non-virtual函数具体制定接口继承以及强制性实现继承。</li>
+</ul>
+<p>##条款35：考虑virtual函数以外的其它选择</p>
+<p><strong>请记住：</strong></p>
+<ul>
+<li>virtual函数的替代方案包括NVI手法及Strategy设计模式的多种形式。NVI手法自身是一个特殊形式的Template Method设计模式。</li>
+<li>将机能从成员函数移到class外部函数，带来的一个缺点是，非成员函数无法访问class的non-public成员。</li>
+<li>tr1::function对象的行为就像一般函数指针。这样的对象可接纳“与给定之目标签名式（target signature）兼容”的所有可调用物（callable entities）。   </li>
+</ul>
+<p>##条款36：绝不重新定义继承而来的non-virtual函数</p>
+<p><strong>请记住：</strong></p>
+<ul>
+<li>绝对不要重新定义继承而来的non-virtual函数。   </li>
+</ul>
+<p>##条款37：绝不重新定义继承而来的缺省参数值</p>
+<p>对于non-virtual函数，上一条款说到，“绝不重新定义继承而来的non-virtual函数”，而对于继承一个带有缺省参数值的virtual函数，也是如此。即绝不重新定义继承而来的缺省参数值。因为：virtual函数系动态绑定（dynamically bound），而缺省参数值确实静态绑定（statically bound）。意思是你可能会在“调用一个定义于派生类内的虚函数”的同时，却使用基类为它所指定的缺省参数值。</p>
+<p><strong>请记住：</strong></p>
+<ul>
+<li>绝对不要重新定义一个继承而来的缺省参数值，因为缺省参数值都是静态绑定，而virtual函数——你唯一应该覆写的东西——却是动态绑定。</li>
+</ul>
+<p>条款38：通过符合塑模出has-a或“根据某物实现出”</p>
+<p><strong>请记住：</strong></p>
+<ul>
+<li>复合（composition）的意义和public继承完全不同。</li>
+<li>在应用域（application domain），复合意味has-a（有一个）。在实现域（implementation domain），复合意味is-implemented-in-terms-of（根据某物实现出）。    </li>
+</ul>
 
       
     </div>
@@ -231,18 +279,9 @@
     
 <nav id="article-nav">
   
-    <a href="/2015/01/09/2015-01-09-effective-cpp-1/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption"><</strong>
-      <div class="article-nav-title">
-        
-          Effective C++ —— 让自己习惯C++
-        
-      </div>
-    </a>
   
-  
-    <a href="/2014/12/23/2014-12-23-xhttpd-epollnote/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">从零开始实现自己的httpd——epoll读写数据的注意事项</div>
+    <a href="/2015/01/18/2015-01-18-effective-cpp-5/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Effective C++ —— 实现</div>
       <strong class="article-nav-caption">></strong>
     </a>
   
@@ -277,7 +316,7 @@
 
 <div class="duoshuo">
 	<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="2014-12-29-xhttpd-makefile" data-title="从零开始实现自己的httpd——Makefile" data-url="http://yoursite.com/2014/12/29/2014-12-29-xhttpd-makefile/"></div>
+	<div class="ds-thread" data-thread-key="2015-01-19-effective-cpp-6" data-title="Effective C++ —— 继承与面向对象设计" data-url="http://yoursite.com/2015/01/19/2015-01-19-effective-cpp-6/"></div>
 	<!-- 多说评论框 end -->
 	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 	<script type="text/javascript">

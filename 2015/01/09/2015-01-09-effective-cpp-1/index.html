@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+  <title>Effective C++ —— 让自己习惯C++ | xiaoyifeibupt&#39;s blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="##条款01：视C++为一个语言联邦为了更好的理解C++，我们将C++分解为四个主要次语言：
+
+C：说到底C++仍是以C为基础。区块，语句，预处理器，内置数据类型，数组，指针统统来自C。
+Object-Oreinted C++：这一部分是面向对象设计之古典守则在C++上的最直接实施。类，封装，继承，多态，virtual函数等等…
+Template C++：这是C++泛型编程部分。
+STL：STL是">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Effective C++ —— 让自己习惯C++">
+<meta property="og:url" content="http://yoursite.com/2015/01/09/2015-01-09-effective-cpp-1/index.html">
+<meta property="og:site_name" content="xiaoyifeibupt's blog">
+<meta property="og:description" content="##条款01：视C++为一个语言联邦为了更好的理解C++，我们将C++分解为四个主要次语言：
+
+C：说到底C++仍是以C为基础。区块，语句，预处理器，内置数据类型，数组，指针统统来自C。
+Object-Oreinted C++：这一部分是面向对象设计之古典守则在C++上的最直接实施。类，封装，继承，多态，virtual函数等等…
+Template C++：这是C++泛型编程部分。
+STL：STL是">
+<meta property="og:updated_time" content="2016-05-26T11:49:15.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Effective C++ —— 让自己习惯C++">
+<meta name="twitter:description" content="##条款01：视C++为一个语言联邦为了更好的理解C++，我们将C++分解为四个主要次语言：
+
+C：说到底C++仍是以C为基础。区块，语句，预处理器，内置数据类型，数组，指针统统来自C。
+Object-Oreinted C++：这一部分是面向对象设计之古典守则在C++上的最直接实施。类，封装，继承，多态，virtual函数等等…
+Template C++：这是C++泛型编程部分。
+STL：STL是">
+  
+    <link rel="alternative" href="/atom.xml" title="xiaoyifeibupt&#39;s blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			
+			<img lazy-src="/face.jpg" class="js-avatar">
+			
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">xiaoyifeibupt</a></h1>
+		</hgroup>
+
+		
+
+		
+			<div class="switch-btn">
+				<div class="icon">
+					<div class="icon-ctn">
+						<div class="icon-wrap icon-house" data-idx="0">
+							<div class="birdhouse"></div>
+							<div class="birdhouse_holes"></div>
+						</div>
+						<div class="icon-wrap icon-ribbon hide" data-idx="1">
+							<div class="ribbon"></div>
+						</div>
+						
+						
+						<div class="icon-wrap icon-me hide" data-idx="3">
+							<div class="user"></div>
+							<div class="shoulder"></div>
+						</div>
+						
+					</div>
+					
+				</div>
+				<div class="tips-box hide">
+					<div class="tips-arrow"></div>
+					<ul class="tips-inner">
+						<li>Menu</li>
+						<li>Tags</li>
+						
+						
+						<li>Über</li>
+						
+					</ul>
+				</div>
+			</div>
+		
+
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/">主页</a></li>
+				        
+							<li><a href="/archives">所有文章</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+								<a class="github" target="_blank" href="https://github.com/xiaoyifeibupt" title="github">github</a>
+					        
+								<a class="weibo" target="_blank" href="http://weibo.com/yifeixiao/" title="weibo">weibo</a>
+					        
+								<a class="zhihu" target="_blank" href="https://www.zhihu.com/people/xiao-yifei" title="zhihu">zhihu</a>
+					        
+								<a class="mail" target="_blank" href="/xiaoyifeibupt@163.com" title="mail">mail</a>
+					        
+								<a class="facebook" target="_blank" href="https://www.facebook.com/profile.php?id=100011123822524" title="facebook">facebook</a>
+					        
+						</div>
+					</nav>
+				</section>
+				
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud" id="js-tagcloud">
+						<a href="/tags/C/" style="font-size: 13.33px;">C++</a> <a href="/tags/CSAPP/" style="font-size: 10px;">CSAPP</a> <a href="/tags/Design-pattern/" style="font-size: 20px;">Design-pattern</a> <a href="/tags/http/" style="font-size: 16.67px;">http</a>
+					</div>
+				</section>
+				
+				
+				
+
+				
+				
+				<section class="switch-part switch-part3">
+				
+					<div id="js-aboutme">我是谁，我从哪里来，我到哪里去？我就是我，是颜色不一样的吃货…</div>
+				</section>
+				
+			</div>
+		</div>
+	</header>				
+</div>
+
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"></div>
+  		<h1 class="header-author js-mobile-header hide">xiaoyifeibupt</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+			
+				<img lazy-src="/face.jpg" class="js-avatar">
+			
+			</div>
+			<hgroup>
+			  <h1 class="header-author">xiaoyifeibupt</h1>
+			</hgroup>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/archives">所有文章</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="https://github.com/xiaoyifeibupt" title="github">github</a>
+			        
+						<a class="weibo" target="_blank" href="http://weibo.com/yifeixiao/" title="weibo">weibo</a>
+			        
+						<a class="zhihu" target="_blank" href="https://www.zhihu.com/people/xiao-yifei" title="zhihu">zhihu</a>
+			        
+						<a class="mail" target="_blank" href="/xiaoyifeibupt@163.com" title="mail">mail</a>
+			        
+						<a class="facebook" target="_blank" href="https://www.facebook.com/profile.php?id=100011123822524" title="facebook">facebook</a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+
+      <div class="body-wrap"><article id="post-2015-01-09-effective-cpp-1" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2015/01/09/2015-01-09-effective-cpp-1/" class="article-date">
+  	<time datetime="2015-01-09T05:18:08.000Z" itemprop="datePublished">2015-01-09</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Effective C++ —— 让自己习惯C++
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C/">C++</a></li></ul>
+	</div>
+
+        
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>##条款01：视C++为一个语言联邦<br>为了更好的理解C++，我们将C++分解为四个主要次语言：</p>
+<ul>
+<li>C：说到底C++仍是以C为基础。区块，语句，预处理器，内置数据类型，数组，指针统统来自C。</li>
+<li>Object-Oreinted C++：这一部分是面向对象设计之古典守则在C++上的最直接实施。类，封装，继承，多态，virtual函数等等…</li>
+<li>Template C++：这是C++泛型编程部分。</li>
+<li>STL：STL是个template程序库。容器（containers），迭代器（iterators），算法（algorithms）以及函数对象（function objects）…</li>
+</ul>
+<a id="more"></a>
+<pre><code>**请记住：**
+这四个次语言，当你从某个次语言切换到另一个，导致高效编程守则要求你改变策略。C++高效编程守则视状况而变化，取决于你使用C++的哪一部分。
+</code></pre><p>##条款02：尽量以const，enum，inline替换#define     </p>
+<p>这个条款或许可以改为“宁可 以编译器替换预处理器”。<strong>即尽量少用预处理。</strong></p>
+<p>编译过程：.c文件－－预处理－－&gt;.i文件－－编译-－&gt;.o文件－-链接－－&gt;bin文件</p>
+<p>预处理过程扫描源代码，对其进行初步的转换，产生新的源代码提供给编译器。检查包含预处理指令的语句和宏定义，并对源代码进行相应的转换。预处理过程还会删除程序中的注释和多余的空白字符。可见预处理过程先于编译器对源代码进行处理。预处理指令是以#号开头的代码行。例</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">define</span> ASPECT_RATIO 1.653</span></span><br></pre></td></tr></table></figure>
+<p>记号名称<code>ASPECT_RATIO</code>也许从未被编译器看见，也许在编译器开始处理源代码之前它就被预处理器移走了。即编译源代码时<code>ASPECT_RATIO</code>已被1.653取代。<code>ASPECT_RATIO</code>可能并未进入记号表（symbol table）。替换：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">double</span> AspectRatio = <span class="number">1.653</span>；</span><br></pre></td></tr></table></figure>
+<p>好处应该有：多了类型检查，因为<code>#define</code>只是单纯的替换，而这种替换在目标码中可能出现多份1.653；改用常量绝不会出现相同情况。</p>
+<p>常量替换#define两点<strong>注意：</strong></p>
+<ul>
+<li>定义常量指针：</li>
+</ul>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">char</span> *authorName = <span class="string">"Shenzi"</span>;</span><br><span class="line">cosnt <span class="built_in">std</span>::<span class="function"><span class="built_in">string</span> <span class="title">authorName</span><span class="params">(<span class="string">"Shenzi"</span>)</span></span>;</span><br><span class="line">```	</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">-	类专属常量：`<span class="keyword">static</span> <span class="keyword">const</span> <span class="keyword">int</span> NumTurns = <span class="number">5</span>；`<span class="comment">//static 静态常量 所有的对象只有一份拷贝。</span></span><br><span class="line">    万一你编译器不允许“<span class="keyword">static</span>整数型<span class="keyword">class</span>常量”完成“in calss初值设定”（即在类的声明中设定静态整形的初值），我们可以通过枚举类型予以补偿：`<span class="keyword">enum</span> &#123; NumTurns = <span class="number">5</span> &#125;；`</span><br><span class="line">-	取一个<span class="keyword">const</span>的地址是合法的，但取一个<span class="keyword">enum</span>的地址就不合法，而取一个#define的地址通常也不合法.如果你不想让别人获取一个pointer或reference指向你的某个整数常量，<span class="keyword">enum</span>可以帮助你实现这个约束。</span><br><span class="line"></span><br><span class="line">例：`#define CALL_WITH_MAX(a,b)    f((a) &gt; (b)) ? (a) : (b))`</span><br><span class="line">宏看起来像函数，但不会招致函数调用带来的额外开销，而是一种简单的替换。替换：</span><br><span class="line"></span><br><span class="line">```cpp</span><br><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line"><span class="keyword">inline</span> <span class="keyword">void</span> callWithMax(cosnt T &amp;a, cosnt T &amp;b) &#123;</span><br><span class="line">	f(a &gt; b ? a : b);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><code>callWithMax</code>是个真正的函数，它遵循作用于和访问规则。</p>
+<p><strong>请记住：</strong></p>
+<ul>
+<li>对于单纯常量，最好以<code>const</code>对象或<code>enums</code>替换<code>#defines</code>；</li>
+<li>对于形似函数的宏，最好改用<code>inline</code>函数替换<code>#defines</code>。        </li>
+</ul>
+<p>##条款03：尽可能使用const<br><code>const</code>允许你告诉编译器和其他程序员某值应保持不变，只要“某值”确实是不该被改变的，那就该确实说出来。<br>关键字<code>const</code>多才多艺：</p>
+<p>例：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">char</span> greeting[] = <span class="string">"Hello"</span>;</span><br><span class="line"><span class="keyword">char</span> *p = greeting;    <span class="comment">//指针p及所指的字符串都可改变；</span></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">char</span> *p = greeting; <span class="comment">//指针p本身可以改变，如p = &amp;Anyother；p所指的字符串不可改变；</span></span><br><span class="line"><span class="keyword">char</span> * cosnt p = greeting;  <span class="comment">//指针p不可改变，所指对象可改变；</span></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">char</span> * <span class="keyword">const</span> p = greeting;    <span class="comment">//指针p及所致对象都不可改变；</span></span><br></pre></td></tr></table></figure>
+<p>说明：</p>
+<ul>
+<li>如果关键字<code>const</code>出现在星号左边，表示被指物事常量。<code>const char *p</code>和<code>char const *p</code>两种写法意义一样，都说明所致对象为常量；</li>
+<li>如果关键字<code>const</code>出现在星号右边，表示指针自身是常量。STL例子：</li>
+</ul>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="built_in">std</span>::<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;::interator iter = vec.begin();</span><br><span class="line">	<span class="comment">//作用像T *const, ++iter 错误：iter是const</span></span><br><span class="line">	</span><br><span class="line"><span class="built_in">std</span>::<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;::const_iterator cIter = vec.begin();</span><br><span class="line">	<span class="comment">//作用像const T*，*cIter = 10 错误：*cIter是const</span></span><br></pre></td></tr></table></figure>
+<p><strong>以下几点注意：</strong></p>
+<ul>
+<li>令函数返回一个常量值，往往可以降低因客户错误而造成的意外，而不至于放弃安全性和高效性。<br>例：<code>const Rational operator* （const Rational &amp;lhs, cosnt Rational &amp;rhs）;</code></li>
+<li><code>const</code>成员函数使class接口比较容易被理解，它们使“操作const对象”称为可能；<br>说明：声明为<code>const</code>的成员函数，不可改变<code>non-static</code>成员变量，在成员变量声明之前添加<code>mutable</code>可让其在<code>const</code>成员函数中可被改变。</li>
+</ul>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const_cast</span>&lt;<span class="keyword">char</span> &amp;&gt;(<span class="keyword">static_cast</span>&lt;<span class="keyword">const</span> TextBlock &amp;&gt;(*<span class="keyword">this</span>))[position];</span><br><span class="line"><span class="comment">//static_cast 将TextBlock &amp;转为const TextBlock &amp;；</span></span><br><span class="line"><span class="comment">//const_cast将返回值去掉const约束；</span></span><br></pre></td></tr></table></figure>
+<p><strong>请记住：</strong></p>
+<ul>
+<li>将某些东西声明为<code>const</code>可帮助编译器侦测出错误用法。<code>const</code>可被施加于任何作用域内的对象、函数参数、函数返回类型、成员函数本体；</li>
+<li>编译器强制实施<code>bitwise constness</code>，但你编写程序时应该使用“概念上的车辆”（conceptual constness）；</li>
+<li>当<code>cosnt</code>和<code>non-const</code>成员函数有着实质等价的实现时，令<code>non-const</code>版本调用<code>const</code>版本可避免代码重复。</li>
+</ul>
+<p>##条款04：确定对象被使用前已先被初始化<br>永远在使用对象之前先将它初始化。对于无任何成员的内置类型，你必须手工完成此事。至于内置类型以外的任何其它东西，初始化责任落在构造函数身上，确保每一个构造函数都将对象的每一个成员初始化。</p>
+<p>赋值和初始化：<br>C++规定，对象的成员变量的初始化动作发生在进入构造函数本体之前。所以应将成员变量的初始化置于构造函数的初始化列表中。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">ABEntry::ABEntry(<span class="keyword">const</span> <span class="built_in">std</span>::<span class="built_in">string</span>&amp; name, <span class="keyword">const</span> <span class="built_in">std</span>::<span class="built_in">string</span>&amp; address,<span class="keyword">const</span> <span class="built_in">std</span>::<span class="built_in">list</span>&lt;PhoneNumber&gt;&amp; phones) &#123; </span><br><span class="line">	theName = name;                <span class="comment">//这些都是赋值，而非初始化</span></span><br><span class="line">	theAddress = address;          <span class="comment">//这些成员变量在进入函数体之前已调用默认构造函数，接着又调用赋值函数，</span></span><br><span class="line">	thePhones = phones;            <span class="comment">//即要经过两次的函数调用。            </span></span><br><span class="line">	numTimesConsulted = <span class="number">0</span>;</span><br><span class="line">&#125; </span><br><span class="line"></span><br><span class="line">ABEntry::ABEntry(<span class="keyword">const</span> <span class="built_in">std</span>::<span class="built_in">string</span>&amp; name, <span class="keyword">const</span> <span class="built_in">std</span>::<span class="built_in">string</span>&amp; address,<span class="keyword">const</span> <span class="built_in">std</span>::<span class="built_in">list</span>&lt;PhoneNumber&gt;&amp; phones) </span><br><span class="line">	: theName(name),                    <span class="comment">//这些才是初始化 </span></span><br><span class="line">	theAddress(address),                <span class="comment">//这些成员变量只用相应的值进行拷贝构造函数，所以通常效率更高</span></span><br><span class="line">	thePhones(phones),</span><br><span class="line">	numTimesConsulted(<span class="number">0</span>)</span><br><span class="line">	&#123;    </span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
+<p>所以，对于非内置类型变量的初始化应在初始化列表中完成，以提高效率。而对于内置类型对象，如<code>numTimesConsulted（int）</code>，其初始化和赋值的成本相同，但为了一致性最好也通过成员初始化表来初始化。如果成员变量时<code>const</code>或<code>reference</code>，它们就一定需要初值，不能被赋值。</p>
+<p>C++有着十分固定的“成员初始化次序”。基类总是在派生类之前被初始化，而类的成员变量总是以其说明次序被初始化。所以：当在成员初始化列表中列各成员时，最好总是以其声明次序为次序。<br>请记住：</p>
+<ul>
+<li>为内置对象进行手工初始化，因为C++不保证初始化它们；</li>
+<li>构造函数最好使用成员初始化列表，而不要在构造函数本体内使用赋值操作。初始化列表列出的成员变量，其排列次序应该和它们在类中的声明次序相同；</li>
+<li>为免除“跨编译单元之初始化次序”问题，请以<code>local static</code>对象替换<code>non-local static</code>对象。   </li>
+</ul>
+
+      
+    </div>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2015/01/11/2015-01-11-effective-cpp-2/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption"><</strong>
+      <div class="article-nav-title">
+        
+          Effective C++ —— 构造析构赋值运算
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2014/12/29/2014-12-29-xhttpd-makefile/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">从零开始实现自己的httpd——Makefile</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<div class="share_jia">
+	<!-- JiaThis Button BEGIN -->
+	<div class="jiathis_style">
+		<span class="jiathis_txt">Share to: &nbsp; </span>
+		<a class="jiathis_button_facebook"></a> 
+    <a class="jiathis_button_twitter"></a>
+    <a class="jiathis_button_plus"></a> 
+    <a class="jiathis_button_tsina"></a>
+		<a class="jiathis_button_cqq"></a>
+		<a class="jiathis_button_douban"></a>
+		<a class="jiathis_button_weixin"></a>
+		<a class="jiathis_button_tumblr"></a>
+    <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+	</div>
+	<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1405949716054953" charset="utf-8"></script>
+	<!-- JiaThis Button END -->
+</div>
+
+
+
+
+
+
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="2015-01-09-effective-cpp-1" data-title="Effective C++ —— 让自己习惯C++" data-url="http://yoursite.com/2015/01/09/2015-01-09-effective-cpp-1/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"flase"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+
+
+
+</div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2016 xiaoyifeibupt
+    	</div>
+      	<div class="footer-right">
+      		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
+      	</div>
+    </div>
+  </div>
+</footer>
+    </div>
+    
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+
+<script>
+	var yiliaConfig = {
+		fancybox: true,
+		mathjax: true,
+		animate: true,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: false
+	}
+</script>
+<script src="http://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+<script src="/js/main.js"></script>
+
+
+
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+  </div>
+</body>
+</html>

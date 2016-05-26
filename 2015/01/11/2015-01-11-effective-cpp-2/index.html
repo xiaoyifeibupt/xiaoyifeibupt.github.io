@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+  <title>Effective C++ —— 构造析构赋值运算 | xiaoyifeibupt&#39;s blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="几乎你写的每个类都会有一或多个构造函数、一个析构函数、一个拷贝赋值操作符。如果这些函数犯错，会导致深远且令人不愉快的后果，遍及整个类。所以确保它们行为正确时生死攸关的大事。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Effective C++ —— 构造析构赋值运算">
+<meta property="og:url" content="http://yoursite.com/2015/01/11/2015-01-11-effective-cpp-2/index.html">
+<meta property="og:site_name" content="xiaoyifeibupt's blog">
+<meta property="og:description" content="几乎你写的每个类都会有一或多个构造函数、一个析构函数、一个拷贝赋值操作符。如果这些函数犯错，会导致深远且令人不愉快的后果，遍及整个类。所以确保它们行为正确时生死攸关的大事。">
+<meta property="og:updated_time" content="2016-05-26T11:50:36.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Effective C++ —— 构造析构赋值运算">
+<meta name="twitter:description" content="几乎你写的每个类都会有一或多个构造函数、一个析构函数、一个拷贝赋值操作符。如果这些函数犯错，会导致深远且令人不愉快的后果，遍及整个类。所以确保它们行为正确时生死攸关的大事。">
+  
+    <link rel="alternative" href="/atom.xml" title="xiaoyifeibupt&#39;s blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			
+			<img lazy-src="/face.jpg" class="js-avatar">
+			
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">xiaoyifeibupt</a></h1>
+		</hgroup>
+
+		
+
+		
+			<div class="switch-btn">
+				<div class="icon">
+					<div class="icon-ctn">
+						<div class="icon-wrap icon-house" data-idx="0">
+							<div class="birdhouse"></div>
+							<div class="birdhouse_holes"></div>
+						</div>
+						<div class="icon-wrap icon-ribbon hide" data-idx="1">
+							<div class="ribbon"></div>
+						</div>
+						
+						
+						<div class="icon-wrap icon-me hide" data-idx="3">
+							<div class="user"></div>
+							<div class="shoulder"></div>
+						</div>
+						
+					</div>
+					
+				</div>
+				<div class="tips-box hide">
+					<div class="tips-arrow"></div>
+					<ul class="tips-inner">
+						<li>Menu</li>
+						<li>Tags</li>
+						
+						
+						<li>Über</li>
+						
+					</ul>
+				</div>
+			</div>
+		
+
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/">主页</a></li>
+				        
+							<li><a href="/archives">所有文章</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+								<a class="github" target="_blank" href="https://github.com/xiaoyifeibupt" title="github">github</a>
+					        
+								<a class="weibo" target="_blank" href="http://weibo.com/yifeixiao/" title="weibo">weibo</a>
+					        
+								<a class="zhihu" target="_blank" href="https://www.zhihu.com/people/xiao-yifei" title="zhihu">zhihu</a>
+					        
+								<a class="mail" target="_blank" href="/xiaoyifeibupt@163.com" title="mail">mail</a>
+					        
+								<a class="facebook" target="_blank" href="https://www.facebook.com/profile.php?id=100011123822524" title="facebook">facebook</a>
+					        
+						</div>
+					</nav>
+				</section>
+				
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud" id="js-tagcloud">
+						<a href="/tags/C/" style="font-size: 13.33px;">C++</a> <a href="/tags/CSAPP/" style="font-size: 10px;">CSAPP</a> <a href="/tags/Design-pattern/" style="font-size: 20px;">Design-pattern</a> <a href="/tags/http/" style="font-size: 16.67px;">http</a>
+					</div>
+				</section>
+				
+				
+				
+
+				
+				
+				<section class="switch-part switch-part3">
+				
+					<div id="js-aboutme">我是谁，我从哪里来，我到哪里去？我就是我，是颜色不一样的吃货…</div>
+				</section>
+				
+			</div>
+		</div>
+	</header>				
+</div>
+
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"></div>
+  		<h1 class="header-author js-mobile-header hide">xiaoyifeibupt</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+			
+				<img lazy-src="/face.jpg" class="js-avatar">
+			
+			</div>
+			<hgroup>
+			  <h1 class="header-author">xiaoyifeibupt</h1>
+			</hgroup>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/archives">所有文章</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="https://github.com/xiaoyifeibupt" title="github">github</a>
+			        
+						<a class="weibo" target="_blank" href="http://weibo.com/yifeixiao/" title="weibo">weibo</a>
+			        
+						<a class="zhihu" target="_blank" href="https://www.zhihu.com/people/xiao-yifei" title="zhihu">zhihu</a>
+			        
+						<a class="mail" target="_blank" href="/xiaoyifeibupt@163.com" title="mail">mail</a>
+			        
+						<a class="facebook" target="_blank" href="https://www.facebook.com/profile.php?id=100011123822524" title="facebook">facebook</a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+
+      <div class="body-wrap"><article id="post-2015-01-11-effective-cpp-2" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2015/01/11/2015-01-11-effective-cpp-2/" class="article-date">
+  	<time datetime="2015-01-11T05:18:08.000Z" itemprop="datePublished">2015-01-11</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Effective C++ —— 构造析构赋值运算
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C/">C++</a></li></ul>
+	</div>
+
+        
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>几乎你写的每个类都会有一或多个构造函数、一个析构函数、一个拷贝赋值操作符。如果这些函数犯错，会导致深远且令人不愉快的后果，遍及整个类。所以确保它们行为正确时生死攸关的大事。</p>
+<a id="more"></a>
+<p>##条款05：了解C++默默编写并调用哪些函数<br>如果你自己美声明，编译器就会为类声明（编译器版本的）一个拷贝构造函数，一个拷贝赋值操作符和一个析构函数。此外如果你没有声明任何构造函数，编译器也会成为你声明一个默认构造函数。所有这些函数都是public且inline。</p>
+<p>惟有当这些函数被需要（被调用），它们才会被编译器创建出来。即有需求，编译器才会创建它们。</p>
+<p>默认构造函数和析构函数主要是给编译器一个地方用来放置“藏身幕后”的代码，像是调用基类和非静态成员变量的构造函数和析构函数(要不然它们该在哪里被调用呢？？)。</p>
+<p><strong>注意</strong>：编译器产生的析构函数是个<code>non-virtual</code>，除非这个类的基类自身声明有<code>virtual</code>析构函数。</p>
+<p>至于拷贝构造函数和拷贝赋值操作符，编译器创建的版本只是单纯地将来源对象的每一个非静态成员变量拷贝到目标对象。</p>
+<p>如一个类声明了一个构造函数（无论有没参数），编译器就不再为它创建默认构造函数。</p>
+<p>编译器生成的拷贝赋值操作符：对于成员变量中有指针，引用，常量类型，我们都应考虑建立自己“合适”的拷贝赋值操作符。因为指向同块内存的指针是个潜在危险，引用不可改变，常量不可改变。</p>
+<p><strong>请记住：</strong></p>
+<ul>
+<li>编译器可以暗自为类创建默认构造函数、拷贝构造函数、拷贝赋值操作符，以及析构函数。   </li>
+</ul>
+<p>##条款06：若不想使用编译器自动生成的函数，就该明确拒绝<br>通常如果你不希望类支持某一特定技能，只要不说明对应函数就是了。但这个策略对拷贝构造函数和拷贝赋值操作符却不起作用。因为编译器会“自作多情”的声明它们，并在需要的时候调用它们。</p>
+<p>由于编译器产生的函数都是public类型，因此可以将拷贝构造函数或拷贝赋值操作符声明为private。通过这个小“伎俩”可以阻止人们在外部调用它，但是类中的成员函数和友元函数还是可以调用private函数。解决方法可能是在一个专门为了阻止拷贝动作而设计的基类。（Boost提供的那个类名为noncopyable）。</p>
+<p><strong>请记住：</strong></p>
+<ul>
+<li>为驳回编译器自动（暗自）提供的机能，可将相应的成员函数声明为private并且不予实现。使用像noncopyable这样的基类也是一种做法。   </li>
+</ul>
+<p>##条款07：为多态基类声明virtual析构函数<br>当基类的指针指向派生类的对象的时候，当我们使用完，对其调用delete的时候，其结果将是未有定义——基类成分通常会被销毁，而派生类的充分可能还留在堆里。这可是形成资源泄漏、败坏之数据结构、在调试器上消费许多时间。</p>
+<p>消除以上问题的做法很简单：给基类一个virtual析构函数。此后删除派生类对象就会如你想要的那般。</p>
+<p>任何类只要带有virtual函数都几乎确定应该也有一个virtual析构函数。</p>
+<p>如果一个类不含virtual函数，通常表示它并不意图被用做一个基类，当类不企图被当做基类的时候，令其析构函数为virtual往往是个馊主意。因为实现virtual函数，需要额外的开销（指向虚函数表的指针vptr）。</p>
+<p>STL容器都不带virtual析构函数，所以最好别派生它们。</p>
+<p><strong>请记住：</strong></p>
+<ul>
+<li>带有多态性质的基类应该声明一个virtual析构函数。如果一个类带有任何virtual函数，它就应该拥有一个virtual析构函数。</li>
+<li>一个类的设计目的不是作为基类使用，或不是为了具备多态性，就不该声明virtual析构函数。   </li>
+</ul>
+<p>##条款08：别让异常逃离析构函数<br>C++并不禁止析构函数吐出异常，但它不鼓励你这样做。C++不喜欢析构函数吐出异常。<br>如果可能导致异常：</p>
+<ul>
+<li>如果抛出异常，就结束程序。（强迫结束程序是个合理选项，毕竟它可以阻止异常从析构函数传播出去。）</li>
+<li>捕获异常，但什么也不做。   </li>
+<li>如果某个操作可能在失败时抛出异常，而又存在某种需要必须处理该异常，那么这个异常必须来自析构函数以外的某个函数。</li>
+</ul>
+<p><strong>请记住：</strong></p>
+<ul>
+<li>析构函数绝对不要吐出异常。如果一个被析构函数调用的函数可能抛出异常，析构函数应该捕捉任何异常，然后吞下它们（不传播）或结束程序。</li>
+<li>如果客户需要对某个操作函数运行期间抛出的异常做出反应，那么类应该提供一个普通函数（而非在析构函数中）执行该操作。   </li>
+</ul>
+<p>##条款09：决不让构造和析构过程中调用virtual函数<br>你不该在构造函数和析构函数中调用virtual函数，因为这样的调用不会带来你预想的结果。</p>
+<p>因为：基类的构造函数的执行要早于派生类的构造函数，当基类的构造函数执行时，派生类的成员变量尚未初始化。派生类的成员变量没初始化，即为指向虚函数表的指针vptr没被初始化又怎么去调用派生类的virtual函数呢？析构函数也相同，派生类先于基类被析构，又如何去找派生类相应的虚函数？</p>
+<p>唯一好的做法是：确定你的构造函数和析构函数都没有调用虚函数，而它们调用的所有函数也不应该调用虚函数。</p>
+<p>解决的方法可能是：既然你无法使用虚函数从基类向下调用，那么我们可以使派生类将必要的构造信息向上传递至基类构造函数。即在派生类的构造函数的成员初始化列表中显示调用相应基类构造函数，并传入所需传递信息。</p>
+<p><strong>请记住：</strong></p>
+<ul>
+<li>在构造和析构函数期间不要调用虚函数，因为这类调用从不下降至派生类。   </li>
+</ul>
+<p>##条款10：令operator= 返回一个reference to *this<br>对于赋值操作符，我们常常要达到这种类似效果，即连续赋值：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> x, y, z;</span><br><span class="line">x = y = z = <span class="number">15</span>;</span><br></pre></td></tr></table></figure>
+<p>为了实现“连锁赋值”，赋值操作符必须返回一个“引用”指向操作符的左侧实参。<br>即：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Widget &amp; <span class="keyword">operator</span> = (<span class="keyword">const</span> Widget &amp;rhs)&#123;</span><br><span class="line">	...</span><br><span class="line">	<span class="keyword">return</span> *<span class="keyword">this</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>所有内置类型和标准程序库提供的类型如<code>string，vector，complex</code>或即将提供的类型共同遵守。</p>
+<p>请记住：</p>
+<ul>
+<li>令赋值操作符返回一个<code>reference to *this</code>。     </li>
+</ul>
+<p>##条款11：在operator =中处理“自我赋值”<br>先举几个自我赋值的例子：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Widget w；</span><br><span class="line">w = w；</span><br><span class="line">a[i] = a[j]; <span class="comment">//i == j or i != j</span></span><br><span class="line">*px = *py;<span class="comment">// px,py指向同个地址；</span></span><br></pre></td></tr></table></figure>
+<p>以上情况都是对“值”的赋值，但我们涉及对“指针”和“引用”进行赋值操作的时候，才是我们真正要考虑的问题了。看下面的例子：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Widget&amp; Widget::<span class="keyword">operator</span>=(<span class="keyword">const</span> Widget&amp; rhs) &#123;     </span><br><span class="line">	<span class="keyword">delete</span> pb;   <span class="comment">//这里对pb指向内存对象进行delete，试想 *this == rhs？情况会如何</span></span><br><span class="line">	pb = <span class="keyword">new</span> Bitmap(*rhs.pb);  <span class="comment">//如果*this == rhs，那么这里还能new吗？“大事不妙”。</span></span><br><span class="line">	<span class="keyword">return</span> *<span class="keyword">this</span>; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>也许以下代码能解决以上问题：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">Widget&amp; Widget::<span class="keyword">operator</span>=(<span class="keyword">const</span> Widget&amp; rhs) &#123; </span><br><span class="line">	<span class="keyword">if</span> (<span class="keyword">this</span> == &amp;rhs) </span><br><span class="line">		<span class="keyword">return</span> *<span class="keyword">this</span>; <span class="comment">//解决了自我赋值的问题。</span></span><br><span class="line">	</span><br><span class="line">	<span class="keyword">delete</span> pb; </span><br><span class="line">	pb = <span class="keyword">new</span> Bitmap(*rhs.pb); </span><br><span class="line">	<span class="keyword">return</span> *<span class="keyword">this</span>; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>“许多时候一群精心安排的语句就可以导出异常安全（以及自我赋值安全）的代码。”，以上代码同样存在异常安全问题。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Widget&amp; Widget::<span class="keyword">operator</span>=(<span class="keyword">const</span> Widget&amp; rhs) &#123; </span><br><span class="line">	Bitmap *pOrig = pb; <span class="comment">//记住原先的pb</span></span><br><span class="line">	pb = <span class="keyword">new</span> Bitmap(*rhs.pb);<span class="comment">//令pb指向*pb的一个复本</span></span><br><span class="line">	<span class="keyword">delete</span> pOrig;<span class="comment">//删除原先的pb</span></span><br><span class="line">	<span class="keyword">return</span> *<span class="keyword">this</span>;<span class="comment">//这样既解决了自我赋值，又解决了异常安全问题。自我赋值，将pb所指对象换了个存储地址。</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>请记住：</strong></p>
+<ul>
+<li>确保当对象自我赋值时<code>operator =</code>有良好行为。其中技术包括比较“来源对象”和“目标对象”的地址、精心周到的语句顺序、以及copy-and-swap。</li>
+<li>确定任何函数如果操作一个以上的对象，而其中多个对象是同一个对象时，其行为仍然正确。   </li>
+</ul>
+<p>##条款12：复制对象时勿忘其每一个成员<br>还记得条款5中提到编译器在必要时会为我们提供拷贝构造函数和拷贝赋值函数，它们也许工作的不错，但有时候我们需要自己编写自己的拷贝构造函数和拷贝赋值函数。如果这样，我们应确保对“每一个”成员进行拷贝（复制）。</p>
+<p>如果你在类中添加一个成员变量，你必须同时修改相应的copying函数（所有的构造函数，拷贝构造函数以及拷贝赋值操作符）。</p>
+<p>在派生类的构造函数，拷贝构造函数和拷贝赋值操作符中应当显示调用基类相对应的函数，否则编译器可能又“自作聪明了”。</p>
+<p>当你编写一个copying函数，请确保：</p>
+<ol>
+<li>复制所有local成员变量；</li>
+<li>调用所有基类内的适当copying函数。   </li>
+</ol>
+<p>但是，我们不该令拷贝赋值操作符调用拷贝构造函数，也不该令拷贝构造函数调用拷贝赋值操作符。想想，一个是拷贝(建立对象)，一个是赋值(对象已经存在)。</p>
+<p><strong>请记住：</strong></p>
+<ul>
+<li>Copying函数应该确保复制“对象内的所有成员变量”及“所有基类成员”；</li>
+<li>不要尝试以某个copying函数实现另一个copying函数。应该将共同机能放进第三个函数中，并由两个copying函数共同调用。</li>
+</ul>
+
+      
+    </div>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2015/01/16/2015-01-16-effective-cpp-3/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption"><</strong>
+      <div class="article-nav-title">
+        
+          Effective C++ —— 资源管理
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2015/01/09/2015-01-09-effective-cpp-1/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Effective C++ —— 让自己习惯C++</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<div class="share_jia">
+	<!-- JiaThis Button BEGIN -->
+	<div class="jiathis_style">
+		<span class="jiathis_txt">Share to: &nbsp; </span>
+		<a class="jiathis_button_facebook"></a> 
+    <a class="jiathis_button_twitter"></a>
+    <a class="jiathis_button_plus"></a> 
+    <a class="jiathis_button_tsina"></a>
+		<a class="jiathis_button_cqq"></a>
+		<a class="jiathis_button_douban"></a>
+		<a class="jiathis_button_weixin"></a>
+		<a class="jiathis_button_tumblr"></a>
+    <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+	</div>
+	<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1405949716054953" charset="utf-8"></script>
+	<!-- JiaThis Button END -->
+</div>
+
+
+
+
+
+
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="2015-01-11-effective-cpp-2" data-title="Effective C++ —— 构造析构赋值运算" data-url="http://yoursite.com/2015/01/11/2015-01-11-effective-cpp-2/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"flase"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+
+
+
+</div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2016 xiaoyifeibupt
+    	</div>
+      	<div class="footer-right">
+      		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
+      	</div>
+    </div>
+  </div>
+</footer>
+    </div>
+    
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+
+<script>
+	var yiliaConfig = {
+		fancybox: true,
+		mathjax: true,
+		animate: true,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: false
+	}
+</script>
+<script src="http://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+<script src="/js/main.js"></script>
+
+
+
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+  </div>
+</body>
+</html>

@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+  <title>Effective C++ —— 设计与声明 | xiaoyifeibupt&#39;s blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="所谓软件设计，是“令软件做出你希望它做的事情”的步骤和做法，通常以颇为一般性的构想开始，最终变成十足的细节，以允许特殊接口的开发。
+##条款18：让接口容易被正确使用，不易被误用理想上，如果客户企图使用某个接口而却没有获得他所预期的行为，这个代码不该通过编译；如果代码通过了编译，它的作为就该是客户所想要的。
+欲开发一个“容易被正确使用，不容易被误用”的接口，首先必须考虑客户可能做出什么样的错误。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Effective C++ —— 设计与声明">
+<meta property="og:url" content="http://yoursite.com/2015/01/17/2015-01-17-effective-cpp-4/index.html">
+<meta property="og:site_name" content="xiaoyifeibupt's blog">
+<meta property="og:description" content="所谓软件设计，是“令软件做出你希望它做的事情”的步骤和做法，通常以颇为一般性的构想开始，最终变成十足的细节，以允许特殊接口的开发。
+##条款18：让接口容易被正确使用，不易被误用理想上，如果客户企图使用某个接口而却没有获得他所预期的行为，这个代码不该通过编译；如果代码通过了编译，它的作为就该是客户所想要的。
+欲开发一个“容易被正确使用，不容易被误用”的接口，首先必须考虑客户可能做出什么样的错误。">
+<meta property="og:updated_time" content="2016-05-26T11:59:04.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Effective C++ —— 设计与声明">
+<meta name="twitter:description" content="所谓软件设计，是“令软件做出你希望它做的事情”的步骤和做法，通常以颇为一般性的构想开始，最终变成十足的细节，以允许特殊接口的开发。
+##条款18：让接口容易被正确使用，不易被误用理想上，如果客户企图使用某个接口而却没有获得他所预期的行为，这个代码不该通过编译；如果代码通过了编译，它的作为就该是客户所想要的。
+欲开发一个“容易被正确使用，不容易被误用”的接口，首先必须考虑客户可能做出什么样的错误。">
+  
+    <link rel="alternative" href="/atom.xml" title="xiaoyifeibupt&#39;s blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			
+			<img lazy-src="/face.jpg" class="js-avatar">
+			
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">xiaoyifeibupt</a></h1>
+		</hgroup>
+
+		
+
+		
+			<div class="switch-btn">
+				<div class="icon">
+					<div class="icon-ctn">
+						<div class="icon-wrap icon-house" data-idx="0">
+							<div class="birdhouse"></div>
+							<div class="birdhouse_holes"></div>
+						</div>
+						<div class="icon-wrap icon-ribbon hide" data-idx="1">
+							<div class="ribbon"></div>
+						</div>
+						
+						
+						<div class="icon-wrap icon-me hide" data-idx="3">
+							<div class="user"></div>
+							<div class="shoulder"></div>
+						</div>
+						
+					</div>
+					
+				</div>
+				<div class="tips-box hide">
+					<div class="tips-arrow"></div>
+					<ul class="tips-inner">
+						<li>Menu</li>
+						<li>Tags</li>
+						
+						
+						<li>Über</li>
+						
+					</ul>
+				</div>
+			</div>
+		
+
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/">主页</a></li>
+				        
+							<li><a href="/archives">所有文章</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+								<a class="github" target="_blank" href="https://github.com/xiaoyifeibupt" title="github">github</a>
+					        
+								<a class="weibo" target="_blank" href="http://weibo.com/yifeixiao/" title="weibo">weibo</a>
+					        
+								<a class="zhihu" target="_blank" href="https://www.zhihu.com/people/xiao-yifei" title="zhihu">zhihu</a>
+					        
+								<a class="mail" target="_blank" href="/xiaoyifeibupt@163.com" title="mail">mail</a>
+					        
+								<a class="facebook" target="_blank" href="https://www.facebook.com/profile.php?id=100011123822524" title="facebook">facebook</a>
+					        
+						</div>
+					</nav>
+				</section>
+				
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud" id="js-tagcloud">
+						<a href="/tags/C/" style="font-size: 13.33px;">C++</a> <a href="/tags/CSAPP/" style="font-size: 10px;">CSAPP</a> <a href="/tags/Design-pattern/" style="font-size: 20px;">Design-pattern</a> <a href="/tags/http/" style="font-size: 16.67px;">http</a>
+					</div>
+				</section>
+				
+				
+				
+
+				
+				
+				<section class="switch-part switch-part3">
+				
+					<div id="js-aboutme">我是谁，我从哪里来，我到哪里去？我就是我，是颜色不一样的吃货…</div>
+				</section>
+				
+			</div>
+		</div>
+	</header>				
+</div>
+
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"></div>
+  		<h1 class="header-author js-mobile-header hide">xiaoyifeibupt</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+			
+				<img lazy-src="/face.jpg" class="js-avatar">
+			
+			</div>
+			<hgroup>
+			  <h1 class="header-author">xiaoyifeibupt</h1>
+			</hgroup>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/archives">所有文章</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="https://github.com/xiaoyifeibupt" title="github">github</a>
+			        
+						<a class="weibo" target="_blank" href="http://weibo.com/yifeixiao/" title="weibo">weibo</a>
+			        
+						<a class="zhihu" target="_blank" href="https://www.zhihu.com/people/xiao-yifei" title="zhihu">zhihu</a>
+			        
+						<a class="mail" target="_blank" href="/xiaoyifeibupt@163.com" title="mail">mail</a>
+			        
+						<a class="facebook" target="_blank" href="https://www.facebook.com/profile.php?id=100011123822524" title="facebook">facebook</a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+
+      <div class="body-wrap"><article id="post-2015-01-17-effective-cpp-4" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2015/01/17/2015-01-17-effective-cpp-4/" class="article-date">
+  	<time datetime="2015-01-17T05:18:08.000Z" itemprop="datePublished">2015-01-17</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Effective C++ —— 设计与声明
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C/">C++</a></li></ul>
+	</div>
+
+        
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>所谓软件设计，是“令软件做出你希望它做的事情”的步骤和做法，通常以颇为一般性的构想开始，最终变成十足的细节，以允许特殊接口的开发。</p>
+<p>##条款18：让接口容易被正确使用，不易被误用<br>理想上，如果客户企图使用某个接口而却没有获得他所预期的行为，这个代码不该通过编译；如果代码通过了编译，它的作为就该是客户所想要的。</p>
+<p>欲开发一个“容易被正确使用，不容易被误用”的接口，首先必须考虑客户可能做出什么样的错误。<br><a id="more"></a></p>
+<p>许多客户端错误可以因为导入新类型而获得预防。在防范“不值得拥有的代码”上，类型系统是你的主要同盟国。</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">struct Day &#123; </span><br><span class="line">	explicit Day(int d)        //explicit 避免隐式的转换。</span><br><span class="line">		:val(d) &#123;&#125;</span><br><span class="line">	int val; </span><br><span class="line">&#125;;</span><br><span class="line">```   </span><br><span class="line"></span><br><span class="line"></span><br><span class="line">对日期进行类似的类型封装，能有效地避免不恰当的日期赋值。</span><br><span class="line"></span><br><span class="line">“除非有好的理由，否则应该尽量令你的类型（定义的类）的行为与内置类型一致”。</span><br><span class="line"></span><br><span class="line">在资源管理方面，也许我们应该“先发制人”，即让函数返回一个资源的指针改为返回一个只能指针。</span><br><span class="line"></span><br><span class="line">例如：</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">```cpp</span><br><span class="line">std::tr1::shared_ptr&lt;Investment&gt; createInvestment();</span><br></pre></td></tr></table></figure>
+<p>这便实质上强迫客户将返回值存储于一个<code>tr1::shared_ptr</code>内，几乎消除了忘记删除底部<code>Investment</code>对象的可能性。</p>
+<p><code>tr1::shared_ptr</code>提供的某个构造函数接受两个实参：一个是被管理的指针，另一个是引用次数变成0时被调用的“删除器”。但我们自己制定第二个参数，当然这是安全的。但是留给客户，那也许存在危险。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">std</span>::tr1::<span class="built_in">shared_ptr</span>&lt;Investment&gt; <span class="comment">//tr1::shared_ptr构造函数坚持第一个参数必须是个指针。</span></span><br><span class="line">pInv(<span class="keyword">static_cast</span>&lt;Investment*&gt;(<span class="number">0</span>), getRidOfInvestment);</span><br></pre></td></tr></table></figure>
+<p><code>tr1::shared_ptr</code>有一个特别好的性质是：它会自动使用它的“每个指针专属的删除器”，因而消除另一个潜在的客户错误：所谓的“cross-DLL problem”。因为它缺省的删除器是来自“tr1::shared_ptr诞生所在的那个DLL”的delete。</p>
+<p><strong>请记住：</strong></p>
+<ul>
+<li>好的接口很容易被正确使用，不容易被误用。你应该在你的所有接口中努力达成这些性质。</li>
+<li>“促进正确使用”的办法包括接口的一致性，以及与内置类型的行为兼容。</li>
+<li>“阻止误用”的办法包括建立新类型、限制类型上的操作，束缚对象值，以及消除客户的资源管理责任。</li>
+<li><code>tr1::shared_ptr</code>支持定制删除器。这可防范DLL问题，可被用来自动解除互斥量等等。   </li>
+</ul>
+<p>##条款19：设计class犹如设计type</p>
+<p>C++就像在其它面向对象编程语言一样，当你定义一个新class，也就定义了一个新type。这意味着你并不只是类的设计者，更是类型的设计者。重载函数和操作符、控制内存的分配和归还、定义对象的初始化和终结……全部在你手上。</p>
+<p>设计优秀的类是一项艰巨的工作，因为涉及好的类型是一项艰巨的工作。好的类型有自然的语法，直观的语义，以及一或多个高效实现品。</p>
+<p>设计一个良好的类，或者称作类型，考虑一下设计规范：</p>
+<ul>
+<li>新类型的对象应该如何被创建和销毁？</li>
+<li>对象的初始化和对象的赋值该有什么样的差别？</li>
+<li>新类型的对象如果被passed by value（值传递），意味着什么？</li>
+<li>什么是新类型的“合法值”？</li>
+<li>你的新类型需要配合某个继承图系吗？</li>
+<li>你的新类型需要什么样的转换？</li>
+<li>什么样的操作符和函数对此新类型而言是合理的？</li>
+<li>什么样的标准函数应该驳回？</li>
+<li>谁该取用新类型的成员？</li>
+<li>什么是新类型的“未声明接口”？</li>
+<li>你的新类型有多少一般化？</li>
+<li>你真的需要一个新类型吗？   </li>
+</ul>
+<p><strong>请记住：</strong></p>
+<ul>
+<li>Class的设计就是type的设计。在定义一个新的type之前，请确定你已经考虑过本条款覆盖的所有讨论主题。</li>
+</ul>
+<p>##条款20：宁以pass-by-reference-to-const替代psss-by-value</p>
+<p>缺省情况下C++以by value方式传递对象至函数。除非你另外指定，否则函数参数都是以实际实参的副本为初值，而调用端所获得的亦是返回值的一个副本。这些副本由对象的拷贝构造函数产生。</p>
+<p>所以在以对象为by value时，可能会调用相应的构造函数（成员对象的构造、基类对象的构造），然后调用对应的析构函数。所以以by value的形式开销还是比较大的。</p>
+<p>如果我们用<code>pass-by-reference-to-const</code>，例如：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">validateStudent</span><span class="params">(<span class="keyword">const</span> Student&amp; s)</span></span>; <span class="comment">//const，希望别对传入对象进行不恰当的修改；</span></span><br></pre></td></tr></table></figure>
+<p>这种传递方式效率高得多：没有任何构造函数或析构函数被调用，因为没有任何新对象被创建。</p>
+<p>以传引用方式传递参数也可以避免对象切割问题：即当一个派生类对象以传值的方式传递并被视为一个基类对象，基类对象的拷贝构造函数会被调用，而“造成此对象的行为像个派生类对象”的那些特化性质全被切割掉了，仅仅留下了基类对象。这一般不是你想要的。</p>
+<p>所以我们一般的做法应该是这样：内置对象和STL的迭代器和函数对象，我们一般以传值的方式传递，而其它的任何东西都以传引用的方式传递。</p>
+<p><strong>请记住：</strong></p>
+<ul>
+<li>尽量以pass-by-reference-to-const替代pass-by-value。前者通常比较高效，并可避免切割问题。</li>
+<li>以上规则并不使用于内置类型，以及STL的迭代器和函数对象。对它们而言，pass-by-value往往比较适当。   </li>
+</ul>
+<p>##条款21：必须返回对象时，别妄想返回其reference</p>
+<p>当我们领悟条款20中传值的开销后，总是避免于少用传值，然而在返回对象时，要格外小心了，因为你可能：传递一些引用或指针指向其实已经不存在的对象。这可不是件好事。</p>
+<p>任何时候看到一个reference声明式，你都应该立刻问自己，它的另一个名称是什么？</p>
+<p>函数创建新对象的途径有二：在栈空间和堆空间</p>
+<p><strong>栈上：</strong>即在函数内的局部变量。局部变量在函数返回后就没有存在的意义，若还对它“念念不忘”，将带来灾难性后果。所以传引用在栈上不可行。</p>
+<p><strong>堆上：</strong>在堆上构造一个对象，并返回。看似可行，也埋下了资源泄漏的危险。谁该对这对象实施delete呢？别把这种对资源的管理寄托完全寄托于用户。所以传引用在堆上不可行。</p>
+<p>可能还有一种想法：把“让返回的引用指向一个被定义于函数内部的静态对象”。出于我们对多线程安全性的疑虑，以及当线程中两个函数对单份对象的处理也可能带来不可测行为。所以静态对象也是不可行的。</p>
+<p>一个“必须返回新对象”的函数的正确写法是：就让那个函数返回一个新对象。</p>
+<p>编译器实现者实行最优化，用以改善产出码的效率却不改变其观察的行为。所以我们还是老老实实的返回一个对象吧。</p>
+<p><strong>请记住：</strong></p>
+<ul>
+<li>绝不要返回pointer或reference指向一个local stack对象，或返回reference指向一个heap-allocated对象，或返回pointer或reference指向一个local static对象而有可能同时需要多个这样的对象。   </li>
+</ul>
+<p>##条款22：将成员变量声明为private</p>
+<p>将成员变量隐藏在函数接口的背后，可以为“所有可能的实现”提供弹性。例如,这可使得成员变量被读或写时轻松通知其它对象、可以验证calss的约束条件以及函数的前提和事后状态、可以在多线程环境中执行同步控制……</p>
+<p>不封装意味不可改变！成员变量的封装性与“成员变量的内容改变时所坏量的代码数量”成反比。</p>
+<p><strong>请记住：</strong></p>
+<ul>
+<li>切记将成员变量声明为private。这可赋予客户访问数据的一致性、可细微划分访问控制、允许约束条件获得保护，并提供class作者以充分的实现弹性。</li>
+<li>protected并不比public更具封装性。   </li>
+</ul>
+<p>##条款23：宁以non-member、non-friend替换member函数</p>
+<p>一般我们相当然以为类中的成员函数更具封装性，而实际上并不是那么一回事，因为成员函数不仅可以访问private成员变量，也可以取用private函数、enums、typedefs等等。而非成员非友元函数能实现更大的封装性，因为它只能访问public函数。</p>
+<p>将所有便利函数放在多个头文件内但隶属同一个命名空间，意味客户可以轻松扩展这一组便利函数。需要做的就是添加更多non-member non-friend函数到此命名空间内。</p>
+<p><strong>请记住：</strong></p>
+<ul>
+<li>宁可拿non-member non-friend函数替代member函数。这样做可以增加封装性、包裹弹性和机能扩充性。   </li>
+</ul>
+<p>##条款24：若所有参数皆需类型转换，请为此采用non-member函数</p>
+<p>通常，令类支持隐式类型转换通常是个糟糕的主意。当然这条规则有其例外，最常见的例外是在建立数值类型时。</p>
+<p>例：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> Rational <span class="keyword">operator</span>*(<span class="keyword">const</span> Rational&amp; rhs) <span class="keyword">const</span>;</span><br></pre></td></tr></table></figure>
+<p>如果定义一个有理数类，并实现*操作符为成员函数，如上所示；那么考虑一下调用：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">Rational <span class="title">oneHalf</span><span class="params">(<span class="number">1</span>, <span class="number">2</span>)</span></span>; </span><br><span class="line">result = oneHalf * <span class="number">2</span>; <span class="comment">// 正确，2被隐式转换为Rational（2，1）</span></span><br><span class="line"><span class="comment">//编译器眼中应该是这样：const Rational temp(2); result = oneHalf * temp; </span></span><br><span class="line">result = <span class="number">2</span> * oneHalf; <span class="comment">// 错误，2，可不被认为是Rational对象；因此无法调用operator*</span></span><br></pre></td></tr></table></figure>
+<p>可见，这样并不准确，因为乘法（*）应该满足交换律，不是吗？</p>
+<p>所以，支持混合式算术运算的可行之道应该是：让operator*成为一个non-member函数，允许编译器在每一个实参上执行隐式类型转换：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> Rational &#123;</span><br><span class="line">	... <span class="comment">// contains no operator* </span></span><br><span class="line">&#125;; </span><br><span class="line"><span class="keyword">const</span> Rational <span class="keyword">operator</span>*(<span class="keyword">const</span> Rational&amp; lhs,  Rational&amp; rhs) &#123; </span><br><span class="line">	<span class="keyword">return</span> Rational(lhs.numerator() * rhs.numerator(),lhs.denominator() * rhs.denominator()); </span><br><span class="line">&#125; </span><br><span class="line"><span class="function">Rational <span class="title">oneFourth</span><span class="params">(<span class="number">1</span>, <span class="number">4</span>)</span></span>; </span><br><span class="line">Rational result; </span><br><span class="line">result = oneFourth * <span class="number">2</span>; </span><br><span class="line">result = <span class="number">2</span> * oneFourth;  <span class="comment">//这下两个都工作的很好，通过隐式转换实现</span></span><br></pre></td></tr></table></figure>
+<p>成员函数的方面是非成员函数，而不是友元函数。</p>
+<p>可以用类中的public接口实现的函数，最好就是非成员函数，而不是采用友元函数。</p>
+<p><strong>请记住：</strong></p>
+<ul>
+<li>如果你需要为某个函数的所有参数（包括被this指针所指的那个隐喻参数）进行类型转换，那么这个函数必须是个non-member。   </li>
+</ul>
+<p>##条款25：考虑写出一个不抛异常的swap函数</p>
+<p><strong>请记住：</strong></p>
+<ul>
+<li>当std::swap对你的类型效率不高时，提供一个swap成员函数，并确定这个函数不抛出异常。</li>
+<li>如果你提供一个member swap，也该提供一个non-member swap用来调用前者。对于class（而非templates），也请特化std::swap。</li>
+<li>调用swap时应针对std::swap使用using声明式，然后调用swap并且不带任何“命名空间资格修饰”。</li>
+<li>为“用户定义类型”进行std templates全特化是好的，但千万不要尝试在std内加入某些对std而言全新的东西。   </li>
+</ul>
+
+      
+    </div>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2015/01/18/2015-01-18-effective-cpp-5/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption"><</strong>
+      <div class="article-nav-title">
+        
+          Effective C++ —— 实现
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2015/01/16/2015-01-16-effective-cpp-3/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Effective C++ —— 资源管理</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<div class="share_jia">
+	<!-- JiaThis Button BEGIN -->
+	<div class="jiathis_style">
+		<span class="jiathis_txt">Share to: &nbsp; </span>
+		<a class="jiathis_button_facebook"></a> 
+    <a class="jiathis_button_twitter"></a>
+    <a class="jiathis_button_plus"></a> 
+    <a class="jiathis_button_tsina"></a>
+		<a class="jiathis_button_cqq"></a>
+		<a class="jiathis_button_douban"></a>
+		<a class="jiathis_button_weixin"></a>
+		<a class="jiathis_button_tumblr"></a>
+    <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+	</div>
+	<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1405949716054953" charset="utf-8"></script>
+	<!-- JiaThis Button END -->
+</div>
+
+
+
+
+
+
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="2015-01-17-effective-cpp-4" data-title="Effective C++ —— 设计与声明" data-url="http://yoursite.com/2015/01/17/2015-01-17-effective-cpp-4/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"flase"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+
+
+
+</div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2016 xiaoyifeibupt
+    	</div>
+      	<div class="footer-right">
+      		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
+      	</div>
+    </div>
+  </div>
+</footer>
+    </div>
+    
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+
+<script>
+	var yiliaConfig = {
+		fancybox: true,
+		mathjax: true,
+		animate: true,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: false
+	}
+</script>
+<script src="http://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+<script src="/js/main.js"></script>
+
+
+
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+  </div>
+</body>
+</html>

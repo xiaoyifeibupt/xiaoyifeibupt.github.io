@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+  <title>字符串相关库函数 | xiaoyifeibupt&#39;s blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="###strstr库函数
+1234567891011121314151617181920212223//在字符串中查找指定字符串的第一次出现，不能找到则返回-1        int strstr(char *string, char *substring) &amp;#123;           if (string == NULL || substring == NULL)">
+<meta property="og:type" content="article">
+<meta property="og:title" content="字符串相关库函数">
+<meta property="og:url" content="http://yoursite.com/2015/04/15/2015-04-15-string-function/index.html">
+<meta property="og:site_name" content="xiaoyifeibupt's blog">
+<meta property="og:description" content="###strstr库函数
+1234567891011121314151617181920212223//在字符串中查找指定字符串的第一次出现，不能找到则返回-1        int strstr(char *string, char *substring) &amp;#123;           if (string == NULL || substring == NULL)">
+<meta property="og:updated_time" content="2016-05-27T07:05:16.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="字符串相关库函数">
+<meta name="twitter:description" content="###strstr库函数
+1234567891011121314151617181920212223//在字符串中查找指定字符串的第一次出现，不能找到则返回-1        int strstr(char *string, char *substring) &amp;#123;           if (string == NULL || substring == NULL)">
+  
+    <link rel="alternative" href="/atom.xml" title="xiaoyifeibupt&#39;s blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			
+			<img lazy-src="/face.jpg" class="js-avatar">
+			
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">xiaoyifeibupt</a></h1>
+		</hgroup>
+
+		
+
+		
+			<div class="switch-btn">
+				<div class="icon">
+					<div class="icon-ctn">
+						<div class="icon-wrap icon-house" data-idx="0">
+							<div class="birdhouse"></div>
+							<div class="birdhouse_holes"></div>
+						</div>
+						<div class="icon-wrap icon-ribbon hide" data-idx="1">
+							<div class="ribbon"></div>
+						</div>
+						
+						
+						<div class="icon-wrap icon-me hide" data-idx="3">
+							<div class="user"></div>
+							<div class="shoulder"></div>
+						</div>
+						
+					</div>
+					
+				</div>
+				<div class="tips-box hide">
+					<div class="tips-arrow"></div>
+					<ul class="tips-inner">
+						<li>Menu</li>
+						<li>Tags</li>
+						
+						
+						<li>About</li>
+						
+					</ul>
+				</div>
+			</div>
+		
+
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/">主页</a></li>
+				        
+							<li><a href="/archives">所有文章</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+								<a class="github" target="_blank" href="https://github.com/xiaoyifeibupt" title="github">github</a>
+					        
+								<a class="weibo" target="_blank" href="http://weibo.com/yifeixiao/" title="weibo">weibo</a>
+					        
+								<a class="zhihu" target="_blank" href="https://www.zhihu.com/people/xiao-yifei" title="zhihu">zhihu</a>
+					        
+								<a class="mail" target="_blank" href="/xiaoyifeibupt@163.com" title="mail">mail</a>
+					        
+								<a class="facebook" target="_blank" href="https://www.facebook.com/profile.php?id=100011123822524" title="facebook">facebook</a>
+					        
+						</div>
+					</nav>
+				</section>
+				
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud" id="js-tagcloud">
+						<a href="/tags/C/" style="font-size: 15px;">C++</a> <a href="/tags/CSAPP/" style="font-size: 10px;">CSAPP</a> <a href="/tags/Design-pattern/" style="font-size: 20px;">Design-pattern</a> <a href="/tags/http/" style="font-size: 15px;">http</a>
+					</div>
+				</section>
+				
+				
+				
+
+				
+				
+				<section class="switch-part switch-part3">
+				
+					<div id="js-aboutme">我是谁，我从哪里来，我到哪里去？我就是我，是颜色不一样的吃货…</div>
+				</section>
+				
+			</div>
+		</div>
+	</header>				
+</div>
+
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"></div>
+  		<h1 class="header-author js-mobile-header hide">xiaoyifeibupt</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+			
+				<img lazy-src="/face.jpg" class="js-avatar">
+			
+			</div>
+			<hgroup>
+			  <h1 class="header-author">xiaoyifeibupt</h1>
+			</hgroup>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/archives">所有文章</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="https://github.com/xiaoyifeibupt" title="github">github</a>
+			        
+						<a class="weibo" target="_blank" href="http://weibo.com/yifeixiao/" title="weibo">weibo</a>
+			        
+						<a class="zhihu" target="_blank" href="https://www.zhihu.com/people/xiao-yifei" title="zhihu">zhihu</a>
+			        
+						<a class="mail" target="_blank" href="/xiaoyifeibupt@163.com" title="mail">mail</a>
+			        
+						<a class="facebook" target="_blank" href="https://www.facebook.com/profile.php?id=100011123822524" title="facebook">facebook</a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+
+      <div class="body-wrap"><article id="post-2015-04-15-string-function" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2015/04/15/2015-04-15-string-function/" class="article-date">
+  	<time datetime="2015-04-15T05:18:08.000Z" itemprop="datePublished">2015-04-15</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      字符串相关库函数
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C/">C++</a></li></ul>
+	</div>
+
+        
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>###strstr库函数</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//在字符串中查找指定字符串的第一次出现，不能找到则返回-1        </span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">strstr</span><span class="params">(<span class="keyword">char</span> *<span class="built_in">string</span>, <span class="keyword">char</span> *substring)</span> </span>&#123;       </span><br><span class="line">    <span class="keyword">if</span> (<span class="built_in">string</span> == <span class="literal">NULL</span> || substring == <span class="literal">NULL</span>)          </span><br><span class="line">        <span class="keyword">return</span> <span class="number">-1</span>;          </span><br><span class="line">  </span><br><span class="line">    <span class="keyword">int</span> lenstr = <span class="built_in">strlen</span>(<span class="built_in">string</span>);       </span><br><span class="line">    <span class="keyword">int</span> lensub = <span class="built_in">strlen</span>(substring);       </span><br><span class="line">  </span><br><span class="line">    <span class="keyword">if</span> (lenstr &lt; lensub)          </span><br><span class="line">        <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">  </span><br><span class="line">    <span class="keyword">int</span> len = lenstr - lensub;</span><br><span class="line">    <span class="keyword">int</span> i,j;</span><br><span class="line">    <span class="keyword">for</span> (i = <span class="number">0</span>; i &lt;= len; i++) &#123;       </span><br><span class="line">        <span class="keyword">for</span> (j = <span class="number">0</span>; j &lt; lensub; j++) &#123;       </span><br><span class="line">            <span class="keyword">if</span> (<span class="built_in">string</span>[i+j] != substring[j])       </span><br><span class="line">                <span class="keyword">break</span>;       </span><br><span class="line">        &#125;       </span><br><span class="line">        <span class="keyword">if</span> (j == lensub)       </span><br><span class="line">            <span class="keyword">return</span> i + <span class="number">1</span>; </span><br><span class="line">    &#125;       </span><br><span class="line">    <span class="keyword">return</span> <span class="number">-1</span>; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<a id="more"></a>
+<p>###strcpy库函数</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//得2分       </span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">strcpy</span><span class="params">( <span class="keyword">char</span> *strDest, <span class="keyword">char</span> *strSrc )</span> </span>&#123;       </span><br><span class="line">    <span class="keyword">while</span>( (*strDest++ = * strSrc++) != <span class="string">'\0'</span> ); </span><br><span class="line">&#125;        </span><br><span class="line">  </span><br><span class="line"><span class="comment">//得4分       </span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">strcpy</span><span class="params">( <span class="keyword">char</span> *strDest, <span class="keyword">const</span> <span class="keyword">char</span> *strSrc )</span> </span>&#123;       </span><br><span class="line">    <span class="comment">//将源字符串加const，表明其为输入参数，加2分       </span></span><br><span class="line">    <span class="keyword">while</span>( (*strDest++ = * strSrc++) != <span class="string">'\0'</span> );       </span><br><span class="line">&#125;        </span><br><span class="line">  </span><br><span class="line"><span class="comment">//得7分       </span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">strcpy</span><span class="params">(<span class="keyword">char</span> *strDest, <span class="keyword">const</span> <span class="keyword">char</span> *strSrc)</span> </span>&#123;       </span><br><span class="line">    <span class="comment">//对源地址和目的地址加非0断言，加3分       </span></span><br><span class="line">    assert( (strDest != <span class="literal">NULL</span>) &amp;&amp; (strSrc != <span class="literal">NULL</span>) );       </span><br><span class="line">    <span class="keyword">while</span>( (*strDest++ = * strSrc++) != <span class="string">'\0'</span> );       </span><br><span class="line">&#125;        </span><br><span class="line">  </span><br><span class="line"><span class="comment">//得9分       </span></span><br><span class="line"><span class="comment">//为了实现链式操作，将目的地址返回，加2分！       </span></span><br><span class="line"><span class="function"><span class="keyword">char</span> * <span class="title">strcpy</span><span class="params">( <span class="keyword">char</span> *strDest, <span class="keyword">const</span> <span class="keyword">char</span> *strSrc )</span> </span>&#123;       </span><br><span class="line">    assert( (strDest != <span class="literal">NULL</span>) &amp;&amp; (strSrc != <span class="literal">NULL</span>) );       </span><br><span class="line">    <span class="keyword">char</span> *address = strDest;        </span><br><span class="line">    <span class="keyword">while</span>( (*strDest++ = * strSrc++) != <span class="string">'\0'</span> );        </span><br><span class="line">    <span class="keyword">return</span> address;       </span><br><span class="line">&#125;      </span><br><span class="line">  </span><br><span class="line"><span class="comment">//得10分，基本上所有的情况，都考虑到了    </span></span><br><span class="line"><span class="comment">//如果有考虑到源目所指区域有重叠的情况，加1分！       </span></span><br><span class="line"><span class="function"><span class="keyword">char</span> * <span class="title">strcpy</span><span class="params">( <span class="keyword">char</span> *strDest, <span class="keyword">const</span> <span class="keyword">char</span> *strSrc )</span> </span>&#123;       </span><br><span class="line">    <span class="keyword">if</span>(strDest == strSrc) &#123; <span class="keyword">return</span> strDest; &#125;    </span><br><span class="line">    assert( (strDest != <span class="literal">NULL</span>) &amp;&amp; (strSrc != <span class="literal">NULL</span>) );       </span><br><span class="line">    <span class="keyword">char</span> *address = strDest;        </span><br><span class="line">    <span class="keyword">while</span>( (*strDest++ = * strSrc++) != <span class="string">'\0'</span> );        </span><br><span class="line">    <span class="keyword">return</span> address;       </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>###其他</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br><span class="line">208</span><br><span class="line">209</span><br><span class="line">210</span><br><span class="line">211</span><br><span class="line">212</span><br><span class="line">213</span><br><span class="line">214</span><br><span class="line">215</span><br><span class="line">216</span><br><span class="line">217</span><br><span class="line">218</span><br><span class="line">219</span><br><span class="line">220</span><br><span class="line">221</span><br><span class="line">222</span><br><span class="line">223</span><br><span class="line">224</span><br><span class="line">225</span><br><span class="line">226</span><br><span class="line">227</span><br><span class="line">228</span><br><span class="line">229</span><br><span class="line">230</span><br><span class="line">231</span><br><span class="line">232</span><br><span class="line">233</span><br><span class="line">234</span><br><span class="line">235</span><br><span class="line">236</span><br><span class="line">237</span><br><span class="line">238</span><br><span class="line">239</span><br><span class="line">240</span><br><span class="line">241</span><br><span class="line">242</span><br><span class="line">243</span><br><span class="line">244</span><br><span class="line">245</span><br><span class="line">246</span><br><span class="line">247</span><br><span class="line">248</span><br><span class="line">249</span><br><span class="line">250</span><br><span class="line">251</span><br><span class="line">252</span><br><span class="line">253</span><br><span class="line">254</span><br><span class="line">255</span><br><span class="line">256</span><br><span class="line">257</span><br><span class="line">258</span><br><span class="line">259</span><br><span class="line">260</span><br><span class="line">261</span><br><span class="line">262</span><br><span class="line">263</span><br><span class="line">264</span><br><span class="line">265</span><br><span class="line">266</span><br><span class="line">267</span><br><span class="line">268</span><br><span class="line">269</span><br><span class="line">270</span><br><span class="line">271</span><br><span class="line">272</span><br><span class="line">273</span><br><span class="line">274</span><br><span class="line">275</span><br><span class="line">276</span><br><span class="line">277</span><br><span class="line">278</span><br><span class="line">279</span><br><span class="line">280</span><br><span class="line">281</span><br><span class="line">282</span><br><span class="line">283</span><br><span class="line">284</span><br><span class="line">285</span><br><span class="line">286</span><br><span class="line">287</span><br><span class="line">288</span><br><span class="line">289</span><br><span class="line">290</span><br><span class="line">291</span><br><span class="line">292</span><br><span class="line">293</span><br><span class="line">294</span><br><span class="line">295</span><br><span class="line">296</span><br><span class="line">297</span><br><span class="line">298</span><br><span class="line">299</span><br><span class="line">300</span><br><span class="line">301</span><br><span class="line">302</span><br><span class="line">303</span><br><span class="line">304</span><br><span class="line">305</span><br><span class="line">306</span><br><span class="line">307</span><br><span class="line">308</span><br><span class="line">309</span><br><span class="line">310</span><br><span class="line">311</span><br><span class="line">312</span><br><span class="line">313</span><br><span class="line">314</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//@yansha:字串末尾要加结束符'\0'，不然输出错位结果    </span></span><br><span class="line"><span class="function"><span class="keyword">char</span> *<span class="title">strncpy</span><span class="params">(<span class="keyword">char</span> *strDes, <span class="keyword">const</span> <span class="keyword">char</span> *strSrc, <span class="keyword">unsigned</span> <span class="keyword">int</span> count)</span> </span>&#123;        </span><br><span class="line">    assert(strDes != <span class="literal">NULL</span> &amp;&amp; strSrc != <span class="literal">NULL</span>);        </span><br><span class="line">    <span class="keyword">char</span> *address = strDes;        </span><br><span class="line">    <span class="keyword">while</span> (count-- &amp;&amp; *strSrc != <span class="string">'\0'</span>)        </span><br><span class="line">        *strDes++ = *strSrc++;     </span><br><span class="line">    *strDes = <span class="string">'\0'</span>;    </span><br><span class="line">    <span class="keyword">return</span> address;        </span><br><span class="line">&#125;     </span><br><span class="line">  </span><br><span class="line"><span class="comment">//查找字符串s中首次出现字符c的位置     </span></span><br><span class="line"><span class="function"><span class="keyword">char</span> *<span class="title">strchr</span><span class="params">(<span class="keyword">const</span> <span class="keyword">char</span> *str, <span class="keyword">int</span> c)</span> </span>&#123;     </span><br><span class="line">    assert(str != <span class="literal">NULL</span>);     </span><br><span class="line">    <span class="keyword">for</span> (; *str != (<span class="keyword">char</span>)c; ++ str)     </span><br><span class="line">        <span class="keyword">if</span> (*str == <span class="string">'\0'</span>)     </span><br><span class="line">            <span class="keyword">return</span> <span class="literal">NULL</span>;     </span><br><span class="line">        <span class="keyword">return</span> str;     </span><br><span class="line">&#125;     </span><br><span class="line">  </span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">strcmp</span><span class="params">(<span class="keyword">const</span> <span class="keyword">char</span> *s, <span class="keyword">const</span> <span class="keyword">char</span> *t)</span> </span>&#123;     </span><br><span class="line">    assert(s != <span class="literal">NULL</span> &amp;&amp; t != <span class="literal">NULL</span>);     </span><br><span class="line">    <span class="keyword">while</span> (*s &amp;&amp; *t &amp;&amp; *s == *t) &#123;     </span><br><span class="line">        ++ s;     </span><br><span class="line">        ++ t;     </span><br><span class="line">    &#125;     </span><br><span class="line">    <span class="keyword">return</span> (*s - *t);     </span><br><span class="line">&#125;     </span><br><span class="line">  </span><br><span class="line"><span class="function"><span class="keyword">char</span> *<span class="title">strcat</span><span class="params">(<span class="keyword">char</span> *strDes, <span class="keyword">const</span> <span class="keyword">char</span> *strSrc)</span> </span>&#123;     </span><br><span class="line">    assert((strDes != <span class="literal">NULL</span>) &amp;&amp; (strSrc != <span class="literal">NULL</span>));     </span><br><span class="line">    <span class="keyword">char</span> *address = strDes;     </span><br><span class="line">    <span class="keyword">while</span> (*strDes != <span class="string">'\0'</span>)     </span><br><span class="line">        ++ strDes;     </span><br><span class="line">    <span class="keyword">while</span> ((*strDes ++ = *strSrc ++) != <span class="string">'\0'</span>)     </span><br><span class="line">        <span class="literal">NULL</span>;     </span><br><span class="line">    <span class="keyword">return</span> address;     </span><br><span class="line">&#125;     </span><br><span class="line">  </span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">strlen</span><span class="params">(<span class="keyword">const</span> <span class="keyword">char</span> *str)</span> </span>&#123;     </span><br><span class="line">    assert(str != <span class="literal">NULL</span>);     </span><br><span class="line">    <span class="keyword">int</span> len = <span class="number">0</span>;     </span><br><span class="line">    <span class="keyword">while</span> (*str ++ != <span class="string">'\0'</span>)     </span><br><span class="line">        ++ len;     </span><br><span class="line">    <span class="keyword">return</span> len;     </span><br><span class="line">&#125;     </span><br><span class="line">  </span><br><span class="line"><span class="comment">//此函数，修改如下       </span></span><br><span class="line"><span class="function"><span class="keyword">char</span> *<span class="title">strdup_</span><span class="params">(<span class="keyword">char</span> *strSrc)</span>       </span><br><span class="line"><span class="comment">//将字符串拷贝到新的位置       </span></span><br><span class="line"></span>&#123;       </span><br><span class="line">    <span class="keyword">if</span>(strSrc!=<span class="literal">NULL</span>) &#123;       </span><br><span class="line">        <span class="keyword">char</span> *start=strSrc;       </span><br><span class="line">        <span class="keyword">int</span> len=<span class="number">0</span>;       </span><br><span class="line">        <span class="keyword">while</span>(*strSrc++!=<span class="string">'\0'</span>)       </span><br><span class="line">            len++;       </span><br><span class="line">  </span><br><span class="line">        <span class="keyword">char</span> *address=(<span class="keyword">char</span> *)<span class="built_in">malloc</span>(len+<span class="number">1</span>);       </span><br><span class="line">        assert(address != <span class="literal">NULL</span>);    </span><br><span class="line">  </span><br><span class="line">        <span class="keyword">while</span>((*address++=*start++)!=<span class="string">'\0'</span>);        </span><br><span class="line">        <span class="keyword">return</span> address-(len+<span class="number">1</span>);        </span><br><span class="line">    &#125;       </span><br><span class="line">    <span class="keyword">return</span> <span class="literal">NULL</span>;       </span><br><span class="line">&#125;       </span><br><span class="line">  </span><br><span class="line"><span class="function"><span class="keyword">char</span> *<span class="title">strstr</span><span class="params">(<span class="keyword">const</span> <span class="keyword">char</span> *strSrc, <span class="keyword">const</span> <span class="keyword">char</span> *str)</span> </span>&#123;     </span><br><span class="line">    assert(strSrc != <span class="literal">NULL</span> &amp;&amp; str != <span class="literal">NULL</span>);     </span><br><span class="line">    <span class="keyword">const</span> <span class="keyword">char</span> *s = strSrc;     </span><br><span class="line">    <span class="keyword">const</span> <span class="keyword">char</span> *t = str;     </span><br><span class="line">    <span class="keyword">for</span> (; *strSrc != <span class="string">'\0'</span>; ++ strSrc) &#123;     </span><br><span class="line">        <span class="keyword">for</span> (s = strSrc, t = str; *t != <span class="string">'\0'</span> &amp;&amp; *s == *t; ++s, ++t)     </span><br><span class="line">            <span class="literal">NULL</span>;     </span><br><span class="line">        <span class="keyword">if</span> (*t == <span class="string">'\0'</span>)     </span><br><span class="line">            <span class="keyword">return</span> (<span class="keyword">char</span> *) strSrc;     </span><br><span class="line">    &#125;     </span><br><span class="line">    <span class="keyword">return</span> <span class="literal">NULL</span>;     </span><br><span class="line">&#125;     </span><br><span class="line">  </span><br><span class="line"><span class="function"><span class="keyword">char</span> *<span class="title">strncat</span><span class="params">(<span class="keyword">char</span> *strDes, <span class="keyword">const</span> <span class="keyword">char</span> *strSrc, <span class="keyword">unsigned</span> <span class="keyword">int</span> count)</span> </span>&#123;     </span><br><span class="line">    assert((strDes != <span class="literal">NULL</span>) &amp;&amp; (strSrc != <span class="literal">NULL</span>));     </span><br><span class="line">    <span class="keyword">char</span> *address = strDes;     </span><br><span class="line">    <span class="keyword">while</span> (*strDes != <span class="string">'\0'</span>)     </span><br><span class="line">        ++ strDes;     </span><br><span class="line">    <span class="keyword">while</span> (count -- &amp;&amp; *strSrc != <span class="string">'\0'</span> )     </span><br><span class="line">        *strDes ++ = *strSrc ++;     </span><br><span class="line">    *strDes = <span class="string">'\0'</span>;     </span><br><span class="line">    <span class="keyword">return</span> address;     </span><br><span class="line">&#125;     </span><br><span class="line">  </span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">strncmp</span><span class="params">(<span class="keyword">const</span> <span class="keyword">char</span> *s, <span class="keyword">const</span> <span class="keyword">char</span> *t, <span class="keyword">unsigned</span> <span class="keyword">int</span> count)</span> </span>&#123;     </span><br><span class="line">    assert((s != <span class="literal">NULL</span>) &amp;&amp; (t != <span class="literal">NULL</span>));     </span><br><span class="line">    <span class="keyword">while</span> (*s &amp;&amp; *t &amp;&amp; *s == *t &amp;&amp; count --) &#123;     </span><br><span class="line">        ++ s;     </span><br><span class="line">        ++ t;     </span><br><span class="line">    &#125;     </span><br><span class="line">    <span class="keyword">return</span> (*s - *t);     </span><br><span class="line">&#125;     </span><br><span class="line">  </span><br><span class="line"><span class="function"><span class="keyword">char</span> *<span class="title">strpbrk</span><span class="params">(<span class="keyword">const</span> <span class="keyword">char</span> *strSrc, <span class="keyword">const</span> <span class="keyword">char</span> *str)</span> </span>&#123;     </span><br><span class="line">    assert((strSrc != <span class="literal">NULL</span>) &amp;&amp; (str != <span class="literal">NULL</span>));     </span><br><span class="line">    <span class="keyword">const</span> <span class="keyword">char</span> *s;     </span><br><span class="line">    <span class="keyword">while</span> (*strSrc != <span class="string">'\0'</span>) &#123;     </span><br><span class="line">        s = str;     </span><br><span class="line">        <span class="keyword">while</span> (*s != <span class="string">'\0'</span>) &#123;     </span><br><span class="line">            <span class="keyword">if</span> (*strSrc == *s)     </span><br><span class="line">                <span class="keyword">return</span> (<span class="keyword">char</span> *) strSrc;     </span><br><span class="line">            ++ s;     </span><br><span class="line">        &#125;     </span><br><span class="line">        ++ strSrc;     </span><br><span class="line">    &#125;     </span><br><span class="line">    <span class="keyword">return</span> <span class="literal">NULL</span>;     </span><br><span class="line">&#125;     </span><br><span class="line">  </span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">strcspn</span><span class="params">(<span class="keyword">const</span> <span class="keyword">char</span> *strSrc, <span class="keyword">const</span> <span class="keyword">char</span> *str)</span> </span>&#123;     </span><br><span class="line">    assert((strSrc != <span class="literal">NULL</span>) &amp;&amp; (str != <span class="literal">NULL</span>));     </span><br><span class="line">    <span class="keyword">const</span> <span class="keyword">char</span> *s;     </span><br><span class="line">    <span class="keyword">const</span> <span class="keyword">char</span> *t = strSrc;     </span><br><span class="line">    <span class="keyword">while</span> (*t != <span class="string">'\0'</span>) &#123;     </span><br><span class="line">        s = str;     </span><br><span class="line">        <span class="keyword">while</span> (*s != <span class="string">'\0'</span>) &#123;     </span><br><span class="line">            <span class="keyword">if</span> (*t == *s)     </span><br><span class="line">                <span class="keyword">return</span> t - strSrc;     </span><br><span class="line">            ++ s;     </span><br><span class="line">        &#125;     </span><br><span class="line">        ++ t;     </span><br><span class="line">    &#125;     </span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;     </span><br><span class="line">&#125;     </span><br><span class="line">  </span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">strspn</span><span class="params">(<span class="keyword">const</span> <span class="keyword">char</span> *strSrc, <span class="keyword">const</span> <span class="keyword">char</span> *str)</span> </span>&#123;     </span><br><span class="line">    assert((strSrc != <span class="literal">NULL</span>) &amp;&amp; (str != <span class="literal">NULL</span>));     </span><br><span class="line">    <span class="keyword">const</span> <span class="keyword">char</span> *s;     </span><br><span class="line">    <span class="keyword">const</span> <span class="keyword">char</span> *t = strSrc;     </span><br><span class="line">    <span class="keyword">while</span> (*t != <span class="string">'\0'</span>) &#123;     </span><br><span class="line">        s = str;     </span><br><span class="line">        <span class="keyword">while</span> (*s != <span class="string">'\0'</span>) &#123;     </span><br><span class="line">            <span class="keyword">if</span> (*t == *s)     </span><br><span class="line">                <span class="keyword">break</span>;     </span><br><span class="line">            ++ s;     </span><br><span class="line">        &#125;     </span><br><span class="line">        <span class="keyword">if</span> (*s == <span class="string">'\0'</span>)     </span><br><span class="line">            <span class="keyword">return</span> t - strSrc;     </span><br><span class="line">        ++ t;     </span><br><span class="line">    &#125;     </span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;     </span><br><span class="line">&#125;     </span><br><span class="line">  </span><br><span class="line"><span class="function"><span class="keyword">char</span> *<span class="title">strrchr</span><span class="params">(<span class="keyword">const</span> <span class="keyword">char</span> *str, <span class="keyword">int</span> c)</span> </span>&#123;     </span><br><span class="line">    assert(str != <span class="literal">NULL</span>);     </span><br><span class="line">    <span class="keyword">const</span> <span class="keyword">char</span> *s = str;     </span><br><span class="line">    <span class="keyword">while</span> (*s != <span class="string">'\0'</span>)     </span><br><span class="line">        ++ s;     </span><br><span class="line">    <span class="keyword">for</span> (-- s; *s != (<span class="keyword">char</span>) c; -- s)     </span><br><span class="line">        <span class="keyword">if</span> (s == str)     </span><br><span class="line">            <span class="keyword">return</span> <span class="literal">NULL</span>;     </span><br><span class="line">        <span class="keyword">return</span> (<span class="keyword">char</span> *) s;     </span><br><span class="line">&#125;     </span><br><span class="line">  </span><br><span class="line"><span class="function"><span class="keyword">char</span>* <span class="title">strrev</span><span class="params">(<span class="keyword">char</span> *str)</span> </span>&#123;     </span><br><span class="line">    assert(str != <span class="literal">NULL</span>);     </span><br><span class="line">    <span class="keyword">char</span> *s = str, *t = str, c;     </span><br><span class="line">    <span class="keyword">while</span> (*t != <span class="string">'\0'</span>)     </span><br><span class="line">        ++ t;     </span><br><span class="line">    <span class="keyword">for</span> (-- t; s &lt; t; ++ s, -- t) &#123;     </span><br><span class="line">        c = *s;     </span><br><span class="line">        *s = *t;     </span><br><span class="line">        *t = c;     </span><br><span class="line">    &#125;     </span><br><span class="line">    <span class="keyword">return</span> str;     </span><br><span class="line">&#125;     </span><br><span class="line">  </span><br><span class="line"><span class="function"><span class="keyword">char</span> *<span class="title">strnset</span><span class="params">(<span class="keyword">char</span> *str, <span class="keyword">int</span> c, <span class="keyword">unsigned</span> <span class="keyword">int</span> count)</span> </span>&#123;     </span><br><span class="line">    assert(str != <span class="literal">NULL</span>);     </span><br><span class="line">    <span class="keyword">char</span> *s = str;     </span><br><span class="line">    <span class="keyword">for</span> (; *s != <span class="string">'\0'</span> &amp;&amp; s - str &lt; count; ++ s)     </span><br><span class="line">        *s = (<span class="keyword">char</span>) c;     </span><br><span class="line">    <span class="keyword">return</span> str;     </span><br><span class="line">&#125;     </span><br><span class="line">  </span><br><span class="line"><span class="function"><span class="keyword">char</span> *<span class="title">strset</span><span class="params">(<span class="keyword">char</span> *str, <span class="keyword">int</span> c)</span> </span>&#123;     </span><br><span class="line">    assert(str != <span class="literal">NULL</span>);     </span><br><span class="line">    <span class="keyword">char</span> *s = str;     </span><br><span class="line">    <span class="keyword">for</span> (; *s != <span class="string">'\0'</span>; ++ s)     </span><br><span class="line">        *s = (<span class="keyword">char</span>) c;     </span><br><span class="line">    <span class="keyword">return</span> str;     </span><br><span class="line">&#125;     </span><br><span class="line"></span><br><span class="line"><span class="comment">//对原 strtok 的修改，根据MSDN,strToken可以为NULL.实际上第一次call strtok给定一字串，    </span></span><br><span class="line"><span class="comment">//再call strtok时可以输入NULL代表要接着处理给定字串。    </span></span><br><span class="line"><span class="comment">//所以需要用一 static 保存没有处理完的字串。同时也需要处理多个分隔符在一起的情况。    </span></span><br><span class="line"><span class="function"><span class="keyword">char</span> *<span class="title">strtok</span><span class="params">(<span class="keyword">char</span> *strToken, <span class="keyword">const</span> <span class="keyword">char</span> *str)</span> </span>&#123;    </span><br><span class="line">    assert(str != <span class="literal">NULL</span>);    </span><br><span class="line">    <span class="keyword">static</span> <span class="keyword">char</span> *last;    </span><br><span class="line">  </span><br><span class="line">    <span class="keyword">if</span> (strToken == <span class="literal">NULL</span> &amp;&amp; (strToken = last) == <span class="literal">NULL</span>)    </span><br><span class="line">        <span class="keyword">return</span> (<span class="literal">NULL</span>);    </span><br><span class="line">  </span><br><span class="line">    <span class="keyword">char</span> *s = strToken;    </span><br><span class="line">    <span class="keyword">const</span> <span class="keyword">char</span> *t = str;    </span><br><span class="line">    <span class="keyword">while</span> (*s != <span class="string">'\0'</span>) &#123;    </span><br><span class="line">        t = str;    </span><br><span class="line">        <span class="keyword">while</span> (*t != <span class="string">'\0'</span>) &#123;    </span><br><span class="line">            <span class="keyword">if</span> (*s == *t) &#123;    </span><br><span class="line">                last = s + <span class="number">1</span>;    </span><br><span class="line">                <span class="keyword">if</span> (s - strToken == <span class="number">0</span>) &#123;    </span><br><span class="line">                    strToken = last;    </span><br><span class="line">                    <span class="keyword">break</span>;    </span><br><span class="line">                &#125;    </span><br><span class="line">                *(strToken + (s - strToken)) = <span class="string">'\0'</span>;    </span><br><span class="line">                <span class="keyword">return</span> strToken;    </span><br><span class="line">            &#125;    </span><br><span class="line">            ++ t;    </span><br><span class="line">        &#125;    </span><br><span class="line">        ++ s;    </span><br><span class="line">    &#125;    </span><br><span class="line">    <span class="keyword">return</span> <span class="literal">NULL</span>;    </span><br><span class="line">&#125;    </span><br><span class="line">  </span><br><span class="line"><span class="function"><span class="keyword">char</span> *<span class="title">strupr</span><span class="params">(<span class="keyword">char</span> *str)</span> </span>&#123;     </span><br><span class="line">    assert(str != <span class="literal">NULL</span>);     </span><br><span class="line">    <span class="keyword">char</span> *s = str;     </span><br><span class="line">    <span class="keyword">while</span> (*s != <span class="string">'\0'</span>) &#123;     </span><br><span class="line">        <span class="keyword">if</span> (*s &gt;= <span class="string">'a'</span> &amp;&amp; *s &lt;= <span class="string">'z'</span>)     </span><br><span class="line">            *s -= <span class="number">0x20</span>;     </span><br><span class="line">        s ++;     </span><br><span class="line">    &#125;     </span><br><span class="line">    <span class="keyword">return</span> str;     </span><br><span class="line">&#125;     </span><br><span class="line">  </span><br><span class="line"><span class="function"><span class="keyword">char</span> *<span class="title">strlwr</span><span class="params">(<span class="keyword">char</span> *str)</span> </span>&#123;     </span><br><span class="line">    assert(str != <span class="literal">NULL</span>);     </span><br><span class="line">    <span class="keyword">char</span> *s = str;     </span><br><span class="line">    <span class="keyword">while</span> (*s != <span class="string">'\0'</span>) &#123;     </span><br><span class="line">        <span class="keyword">if</span> (*s &gt;= <span class="string">'A'</span> &amp;&amp; *s &lt;= <span class="string">'Z'</span>)     </span><br><span class="line">            *s += <span class="number">0x20</span>;     </span><br><span class="line">        s ++;     </span><br><span class="line">    &#125;     </span><br><span class="line">    <span class="keyword">return</span> str;     </span><br><span class="line">&#125;     </span><br><span class="line">  </span><br><span class="line"><span class="function"><span class="keyword">void</span> *<span class="title">memcpy</span><span class="params">(<span class="keyword">void</span> *dest, <span class="keyword">const</span> <span class="keyword">void</span> *src, <span class="keyword">unsigned</span> <span class="keyword">int</span> count)</span> </span>&#123;     </span><br><span class="line">    assert((dest != <span class="literal">NULL</span>) &amp;&amp; (src != <span class="literal">NULL</span>));     </span><br><span class="line">    <span class="keyword">void</span> *address = dest;     </span><br><span class="line">    <span class="keyword">while</span> (count --) &#123;     </span><br><span class="line">        *(<span class="keyword">char</span> *) dest = *(<span class="keyword">char</span> *) src;     </span><br><span class="line">        dest = (<span class="keyword">char</span> *) dest + <span class="number">1</span>;     </span><br><span class="line">        src = (<span class="keyword">char</span> *) src + <span class="number">1</span>;     </span><br><span class="line">    &#125;     </span><br><span class="line">    <span class="keyword">return</span> address;     </span><br><span class="line">&#125;     </span><br><span class="line">  </span><br><span class="line"><span class="function"><span class="keyword">void</span> *<span class="title">memccpy</span><span class="params">(<span class="keyword">void</span> *dest, <span class="keyword">const</span> <span class="keyword">void</span> *src, <span class="keyword">int</span> c, <span class="keyword">unsigned</span> <span class="keyword">int</span> count)</span> </span>&#123;     </span><br><span class="line">    assert((dest != <span class="literal">NULL</span>) &amp;&amp; (src != <span class="literal">NULL</span>));     </span><br><span class="line">    <span class="keyword">while</span> (count --) &#123;     </span><br><span class="line">        *(<span class="keyword">char</span> *) dest = *(<span class="keyword">char</span> *) src;     </span><br><span class="line">        <span class="keyword">if</span> (* (<span class="keyword">char</span> *) src == (<span class="keyword">char</span>) c)     </span><br><span class="line">            <span class="keyword">return</span> ((<span class="keyword">char</span> *)dest + <span class="number">1</span>);     </span><br><span class="line">        dest = (<span class="keyword">char</span> *) dest + <span class="number">1</span>;     </span><br><span class="line">        src = (<span class="keyword">char</span> *) src + <span class="number">1</span>;     </span><br><span class="line">    &#125;     </span><br><span class="line">    <span class="keyword">return</span> <span class="literal">NULL</span>;     </span><br><span class="line">&#125;     </span><br><span class="line">  </span><br><span class="line"><span class="function"><span class="keyword">void</span> *<span class="title">memchr</span><span class="params">(<span class="keyword">const</span> <span class="keyword">void</span> *buf, <span class="keyword">int</span> c, <span class="keyword">unsigned</span> <span class="keyword">int</span> count)</span> </span>&#123;     </span><br><span class="line">    assert(buf != <span class="literal">NULL</span>);     </span><br><span class="line">    <span class="keyword">while</span> (count --) &#123;     </span><br><span class="line">        <span class="keyword">if</span> (*(<span class="keyword">char</span> *) buf == c)     </span><br><span class="line">            <span class="keyword">return</span> (<span class="keyword">void</span> *) buf;     </span><br><span class="line">        buf = (<span class="keyword">char</span> *) buf + <span class="number">1</span>;     </span><br><span class="line">    &#125;     </span><br><span class="line">    <span class="keyword">return</span> <span class="literal">NULL</span>;     </span><br><span class="line">&#125;     </span><br><span class="line">  </span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">memcmp</span><span class="params">(<span class="keyword">const</span> <span class="keyword">void</span> *s, <span class="keyword">const</span> <span class="keyword">void</span> *t, <span class="keyword">unsigned</span> <span class="keyword">int</span> count)</span> </span>&#123;     </span><br><span class="line">    assert((s != <span class="literal">NULL</span>) &amp;&amp; (t != <span class="literal">NULL</span>));     </span><br><span class="line">    <span class="keyword">while</span> (*(<span class="keyword">char</span> *) s &amp;&amp; *(<span class="keyword">char</span> *) t &amp;&amp; *(<span class="keyword">char</span> *) s == *(<span class="keyword">char</span> *) t &amp;&amp; count --) &#123;     </span><br><span class="line">        s = (<span class="keyword">char</span> *) s + <span class="number">1</span>;     </span><br><span class="line">        t = (<span class="keyword">char</span> *) t + <span class="number">1</span>;     </span><br><span class="line">    &#125;     </span><br><span class="line">    <span class="keyword">return</span> (*(<span class="keyword">char</span> *) s - *(<span class="keyword">char</span> *) t);     </span><br><span class="line">&#125;     </span><br><span class="line"></span><br><span class="line">  </span><br><span class="line"><span class="comment">//要处理src和dest有重叠的情况，不是从尾巴开始移动就没问题了。    </span></span><br><span class="line"><span class="comment">//一种情况是dest小于src有重叠，这个时候要从头开始移动，    </span></span><br><span class="line"><span class="comment">//另一种是dest大于src有重叠，这个时候要从尾开始移动。    </span></span><br><span class="line"><span class="function"><span class="keyword">void</span> *<span class="title">memmove</span><span class="params">(<span class="keyword">void</span> *dest, <span class="keyword">const</span> <span class="keyword">void</span> *src, <span class="keyword">unsigned</span> <span class="keyword">int</span> count)</span> </span>&#123;    </span><br><span class="line">    assert(dest != <span class="literal">NULL</span> &amp;&amp; src != <span class="literal">NULL</span>);    </span><br><span class="line">    <span class="keyword">char</span>* pdest = (<span class="keyword">char</span>*) dest;    </span><br><span class="line">    <span class="keyword">char</span>* psrc = (<span class="keyword">char</span>*) src;    </span><br><span class="line">  </span><br><span class="line">    <span class="comment">//pdest在psrc后面，且两者距离小于count时，从尾部开始移动. 其他情况从头部开始移动    </span></span><br><span class="line">    <span class="keyword">if</span> (pdest &gt; psrc &amp;&amp; pdest - psrc &lt; count) &#123;    </span><br><span class="line">        <span class="keyword">while</span> (count--) &#123;    </span><br><span class="line">            *(pdest + count) = *(psrc + count);    </span><br><span class="line">        &#125;    </span><br><span class="line">    &#125; </span><br><span class="line">    <span class="keyword">else</span> &#123;    </span><br><span class="line">        <span class="keyword">while</span> (count--) &#123;    </span><br><span class="line">            *pdest++ = *psrc++;    </span><br><span class="line">        &#125;    </span><br><span class="line">    &#125;    </span><br><span class="line">    <span class="keyword">return</span> dest;    </span><br><span class="line">&#125;    </span><br><span class="line">  </span><br><span class="line"><span class="function"><span class="keyword">void</span> *<span class="title">memset</span><span class="params">(<span class="keyword">void</span> *str, <span class="keyword">int</span> c, <span class="keyword">unsigned</span> <span class="keyword">int</span> count)</span> </span>&#123;     </span><br><span class="line">    assert(str != <span class="literal">NULL</span>);     </span><br><span class="line">    <span class="keyword">void</span> *s = str;     </span><br><span class="line">    <span class="keyword">while</span> (count --) &#123;     </span><br><span class="line">        *(<span class="keyword">char</span> *) s = (<span class="keyword">char</span>) c;     </span><br><span class="line">        s = (<span class="keyword">char</span> *) s + <span class="number">1</span>;     </span><br><span class="line">    &#125;     </span><br><span class="line">    <span class="keyword">return</span> str;     </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>###string类赋值构造函数</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> myString &#123;</span><br><span class="line">pbulic:</span><br><span class="line">    myString(<span class="keyword">char</span> *pData = <span class="literal">NULL</span>);</span><br><span class="line">    myString(<span class="keyword">const</span> myString &amp;str);</span><br><span class="line">    ~myString();</span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    <span class="keyword">char</span>* m_pData;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">myString&amp; myString::<span class="keyword">operator</span> =(<span class="keyword">const</span> myString &amp;str) &#123;</span><br><span class="line">    <span class="keyword">if</span>(<span class="keyword">this</span> == &amp;str)</span><br><span class="line">        <span class="keyword">return</span> *<span class="keyword">this</span>;</span><br><span class="line">    <span class="keyword">delete</span> []m_pData;</span><br><span class="line">    m_pData = <span class="literal">NULL</span>;</span><br><span class="line">    m_pData = <span class="keyword">new</span> <span class="keyword">char</span>[<span class="built_in">strlen</span>(str.m_pData) + <span class="number">1</span>];</span><br><span class="line">    <span class="built_in">strcpy</span>(m_pData, str.m_pData);</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> *<span class="keyword">this</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2015/01/19/2015-01-19-effective-cpp-6/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Effective C++ —— 继承与面向对象设计</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<div class="share_jia">
+	<!-- JiaThis Button BEGIN -->
+	<div class="jiathis_style">
+		<span class="jiathis_txt">Share to: &nbsp; </span>
+		<a class="jiathis_button_facebook"></a> 
+    <a class="jiathis_button_twitter"></a>
+    <a class="jiathis_button_plus"></a> 
+    <a class="jiathis_button_tsina"></a>
+		<a class="jiathis_button_cqq"></a>
+		<a class="jiathis_button_douban"></a>
+		<a class="jiathis_button_weixin"></a>
+		<a class="jiathis_button_tumblr"></a>
+    <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+	</div>
+	<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1405949716054953" charset="utf-8"></script>
+	<!-- JiaThis Button END -->
+</div>
+
+
+
+
+
+
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="2015-04-15-string-function" data-title="字符串相关库函数" data-url="http://yoursite.com/2015/04/15/2015-04-15-string-function/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"flase"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+
+
+
+</div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2016 xiaoyifeibupt
+    	</div>
+      	<div class="footer-right">
+      		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
+      	</div>
+    </div>
+  </div>
+</footer>
+    </div>
+    
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+
+<script>
+	var yiliaConfig = {
+		fancybox: true,
+		mathjax: true,
+		animate: true,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: false
+	}
+</script>
+<script src="http://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+<script src="/js/main.js"></script>
+
+
+
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+  </div>
+</body>
+</html>

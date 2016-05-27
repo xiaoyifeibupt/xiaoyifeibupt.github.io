@@ -70,7 +70,7 @@
 						<li>Tags</li>
 						
 						
-						<li>Über</li>
+						<li>About</li>
 						
 					</ul>
 				</div>
@@ -109,7 +109,7 @@
 				
 				<section class="switch-part switch-part2">
 					<div class="widget tagcloud" id="js-tagcloud">
-						<a href="/tags/C/" style="font-size: 13.33px;">C++</a> <a href="/tags/CSAPP/" style="font-size: 10px;">CSAPP</a> <a href="/tags/Design-pattern/" style="font-size: 20px;">Design-pattern</a> <a href="/tags/http/" style="font-size: 16.67px;">http</a>
+						<a href="/tags/C/" style="font-size: 15px;">C++</a> <a href="/tags/CSAPP/" style="font-size: 10px;">CSAPP</a> <a href="/tags/Design-pattern/" style="font-size: 20px;">Design-pattern</a> <a href="/tags/http/" style="font-size: 15px;">http</a>
 					</div>
 				</section>
 				
@@ -176,6 +176,67 @@
 </nav>
 
       <div class="body-wrap">
+  
+    <article id="post-2015-04-15-string-function" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2015/04/15/2015-04-15-string-function/" class="article-date">
+  	<time datetime="2015-04-15T05:18:08.000Z" itemprop="datePublished">2015-04-15</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/04/15/2015-04-15-string-function/">字符串相关库函数</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>###strstr库函数</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//在字符串中查找指定字符串的第一次出现，不能找到则返回-1        </span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">strstr</span><span class="params">(<span class="keyword">char</span> *<span class="built_in">string</span>, <span class="keyword">char</span> *substring)</span> </span>&#123;       </span><br><span class="line">    <span class="keyword">if</span> (<span class="built_in">string</span> == <span class="literal">NULL</span> || substring == <span class="literal">NULL</span>)          </span><br><span class="line">        <span class="keyword">return</span> <span class="number">-1</span>;          </span><br><span class="line">  </span><br><span class="line">    <span class="keyword">int</span> lenstr = <span class="built_in">strlen</span>(<span class="built_in">string</span>);       </span><br><span class="line">    <span class="keyword">int</span> lensub = <span class="built_in">strlen</span>(substring);       </span><br><span class="line">  </span><br><span class="line">    <span class="keyword">if</span> (lenstr &lt; lensub)          </span><br><span class="line">        <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">  </span><br><span class="line">    <span class="keyword">int</span> len = lenstr - lensub;</span><br><span class="line">    <span class="keyword">int</span> i,j;</span><br><span class="line">    <span class="keyword">for</span> (i = <span class="number">0</span>; i &lt;= len; i++) &#123;       </span><br><span class="line">        <span class="keyword">for</span> (j = <span class="number">0</span>; j &lt; lensub; j++) &#123;       </span><br><span class="line">            <span class="keyword">if</span> (<span class="built_in">string</span>[i+j] != substring[j])       </span><br><span class="line">                <span class="keyword">break</span>;       </span><br><span class="line">        &#125;       </span><br><span class="line">        <span class="keyword">if</span> (j == lensub)       </span><br><span class="line">            <span class="keyword">return</span> i + <span class="number">1</span>; </span><br><span class="line">    &#125;       </span><br><span class="line">    <span class="keyword">return</span> <span class="number">-1</span>; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C/">C++</a></li></ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a  href="/2015/04/15/2015-04-15-string-function/#more">more >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
   
     <article id="post-2015-01-19-effective-cpp-6" class="article article-type-post" itemscope itemprop="blogPost">
   
@@ -708,68 +769,6 @@
       
         <p class="article-more-link">
           <a  href="/2014/12/21/2014-12-21-xhttpd-epoll/#more">more >></a>
-        </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-2014-12-19-xhttpd-socket" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2014/12/19/2014-12-19-xhttpd-socket/" class="article-date">
-  	<time datetime="2014-12-19T05:18:08.000Z" itemprop="datePublished">2014-12-19</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2014/12/19/2014-12-19-xhttpd-socket/">从零开始实现自己的httpd——socket</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>根据连接启动的方式以及本地套接字要连接的目标，套接字之间的连接过程可以分为三个步骤：服务器监听，客户端请求，连接确认。</p>
-<p>（1）服务器监听：是服务器端套接字并不定位具体的客户端套接字，而是处于等待连接的状态，实时监控网络状态。</p>
-<p>（2）客户端请求：是指由客户端的套接字提出连接请求，要连接的目标是服务器端的套接字。为此，客户端的套接字必须首先描述它要连接的服务器的套接字，指出服务器端套接字的地址和端口号，然后就向服务器端套接字提出连接请求。</p>
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/http/">http</a></li></ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a  href="/2014/12/19/2014-12-19-xhttpd-socket/#more">more >></a>
         </p>
       
       <div class="clearfix"></div>

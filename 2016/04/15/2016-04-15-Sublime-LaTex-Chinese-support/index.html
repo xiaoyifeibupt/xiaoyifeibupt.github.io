@@ -3,18 +3,18 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Effective C++ —— 继承与面向对象设计 | xiaoyifeibupt&#39;s blog</title>
+  <title>部署Mac OS X上的Sublime Text + LaTex中文环境 | xiaoyifeibupt&#39;s blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="如果你了解C++各种特性的意义，你会发现，你对OOP的看法改变了。它不再是一项用来划分语言特性的仪典，而是可以让你通过它说出你对软件系统的想法。一旦你知道该通过它说些什么，移转至C++世界也就不再是可怕的高要求了。">
+  <meta name="description" content="MAC上的LaTex部署，一般是两条思路，一个是直接安装MacTex，自带编写环境什么的；另一个是Sublime Text（或者Textmate等其他编辑器）+LaTexTools插件。方式二其实也是需要依赖MacTex的，但相对来说体量小、不需要经常切换编辑器，所以果断的介绍方式二。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Effective C++ —— 继承与面向对象设计">
-<meta property="og:url" content="http://xiaoyifeibupt.github.io/2015/01/19/2015-01-19-effective-cpp-6/index.html">
+<meta property="og:title" content="部署Mac OS X上的Sublime Text + LaTex中文环境">
+<meta property="og:url" content="http://xiaoyifeibupt.github.io/2016/04/15/2016-04-15-Sublime-LaTex-Chinese-support/index.html">
 <meta property="og:site_name" content="xiaoyifeibupt's blog">
-<meta property="og:description" content="如果你了解C++各种特性的意义，你会发现，你对OOP的看法改变了。它不再是一项用来划分语言特性的仪典，而是可以让你通过它说出你对软件系统的想法。一旦你知道该通过它说些什么，移转至C++世界也就不再是可怕的高要求了。">
-<meta property="og:updated_time" content="2016-05-28T05:49:52.000Z">
+<meta property="og:description" content="MAC上的LaTex部署，一般是两条思路，一个是直接安装MacTex，自带编写环境什么的；另一个是Sublime Text（或者Textmate等其他编辑器）+LaTexTools插件。方式二其实也是需要依赖MacTex的，但相对来说体量小、不需要经常切换编辑器，所以果断的介绍方式二。">
+<meta property="og:updated_time" content="2016-05-28T06:22:58.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Effective C++ —— 继承与面向对象设计">
-<meta name="twitter:description" content="如果你了解C++各种特性的意义，你会发现，你对OOP的看法改变了。它不再是一项用来划分语言特性的仪典，而是可以让你通过它说出你对软件系统的想法。一旦你知道该通过它说些什么，移转至C++世界也就不再是可怕的高要求了。">
+<meta name="twitter:title" content="部署Mac OS X上的Sublime Text + LaTex中文环境">
+<meta name="twitter:description" content="MAC上的LaTex部署，一般是两条思路，一个是直接安装MacTex，自带编写环境什么的；另一个是Sublime Text（或者Textmate等其他编辑器）+LaTexTools插件。方式二其实也是需要依赖MacTex的，但相对来说体量小、不需要经常切换编辑器，所以果断的介绍方式二。">
   
     <link rel="alternative" href="/atom.xml" title="xiaoyifeibupt&#39;s blog" type="application/atom+xml">
   
@@ -200,11 +200,11 @@
         </header>                
     </div>
 </nav>
-      <div class="body-wrap"><article id="post-2015-01-19-effective-cpp-6" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-2016-04-15-Sublime-LaTex-Chinese-support" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2015/01/19/2015-01-19-effective-cpp-6/" class="article-date">
-      <time datetime="2015-01-19T05:18:08.000Z" itemprop="datePublished">2015-01-19</time>
+      <a href="/2016/04/15/2016-04-15-Sublime-LaTex-Chinese-support/" class="article-date">
+      <time datetime="2016-04-15T05:18:08.000Z" itemprop="datePublished">2016-04-15</time>
 </a>
     </div>
   
@@ -217,7 +217,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      Effective C++ —— 继承与面向对象设计
+      部署Mac OS X上的Sublime Text + LaTex中文环境
     </h1>
   
 
@@ -226,13 +226,13 @@
       <div class="article-info article-info-post">
         
     <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/C-进阶/">C++进阶</a>
+    <a class="article-category-link" href="/categories/工具/">工具</a>
     </div>
 
 
         
     <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C/">C++</a></li></ul>
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/LaTex/">LaTex</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/OS-X/">OS X</a></li></ul>
     </div>
 
         <div class="clearfix"></div>
@@ -242,57 +242,45 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <p>如果你了解C++各种特性的意义，你会发现，你对OOP的看法改变了。它不再是一项用来划分语言特性的仪典，而是可以让你通过它说出你对软件系统的想法。一旦你知道该通过它说些什么，移转至C++世界也就不再是可怕的高要求了。</p>
+        <p>MAC上的LaTex部署，一般是两条思路，一个是直接安装MacTex，自带编写环境什么的；另一个是Sublime Text（或者Textmate等其他编辑器）+LaTexTools插件。方式二其实也是需要依赖MacTex的，但相对来说体量小、不需要经常切换编辑器，所以果断的介绍方式二。</p>
 <a id="more"></a>
-<h2 id="条款32：确定你的public继承塑模出is-a关系"><a href="#条款32：确定你的public继承塑模出is-a关系" class="headerlink" title="条款32：确定你的public继承塑模出is-a关系"></a>条款32：确定你的public继承塑模出is-a关系</h2><p>以C++进行面向对象编程，最重要的一个规则是：public inheritance（公有继承）意味is-a（是一种）的关系。</p>
-<p>如果你令class D以public形式继承class B，你便是告诉C++编译器（以及你的代码读者）说，每一个类型为D的对象同时也是一个类型为B的对象，反之不成立。你的意思是B比D表现出更一般化得概念，而D比B表现出更特殊化的概念。你主张：“B对象可派上用场的任何地方，D对象一样可以派上用场”，因为每一个D对象都是一种（是一个）B对象。反之如果你需要一个D对象，B对象无法效劳，因为虽然每个D对象都是一个B对象，反之并不成立。</p>
-<p>在C++领域中，任何函数如果期望获得一个类型为基类的实参（而不管是传指针或是引用），都也愿意接受一个派生类对象（而不管是传指针或是引用）。（只对public继承才成立。）</p>
-<p>好的接口可以防止无效的代码通过编译，因此你应该宁可采取“在编译期拒绝”的设计，而不是“运行期才侦测”的设计。</p>
-<p><strong>请记住：</strong></p>
-<ul>
-<li>“public继承”意味is-a。适用于base classes身上的每一件事情一定也使用于derived classes身上，因为每一个derived classes对象也都是一个base classes对象。    </li>
-</ul>
-<h2 id="条款33：避免遮掩继承而来的名称"><a href="#条款33：避免遮掩继承而来的名称" class="headerlink" title="条款33：避免遮掩继承而来的名称"></a>条款33：避免遮掩继承而来的名称</h2><p>C++的名称遮掩规则所做的唯一事情就是：遮掩名称。至于名称是否是相同或不同的类型，并不重要。即，只要名称相同就覆盖基类相应的成员，不管是类型，参数个数，都无关紧要。派生类的作用域嵌套在基类的作用域内。</p>
-<p>C++的继承关系的遮掩名称也并不管成员函数是纯虚函数，非纯虚函数或非虚函数等。只和名称有关。 </p>
-<p>如果你真的需要用到基类的被名称遮掩的函数，可以使用using声明式，引入基类的成员函数。</p>
-<p><strong>请记住：</strong></p>
-<ul>
-<li>derived calsses内的名称会遮掩base classes内的名称。在public继承下从来没有人希望如此。   </li>
-<li>为了让被遮掩的名称再见天日，可使用using声明式或转交函数（forwarding function）。</li>
-</ul>
-<h2 id="条款34：区分接口继承和实现继承"><a href="#条款34：区分接口继承和实现继承" class="headerlink" title="条款34：区分接口继承和实现继承"></a>条款34：区分接口继承和实现继承</h2><p>表面上直截了当的public继承概念，经过更严密的检查之后，发现它由两部分组成：函数接口继承和函数实现继承。</p>
-<p>成员函数的接口总是会被继承。</p>
-<p>声明一个纯虚函数的目的是为了让派生类只继承函数接口。</p>
-<p>声明一个虚函数的目的是让派生类继承该函数的接口和缺省实现。</p>
-<p>声明一个非虚函数的目的是为了令派生类继承函数的接口及一份强制性实现。</p>
-<p><strong>请记住：</strong></p>
-<ul>
-<li>接口继承和实现继承不同。在public继承之下，derived classes总是继承base class的接口。</li>
-<li>pure virtual函数只具体制定接口继承。</li>
-<li>简朴的（非纯）impure virtual函数具体制定接口继承及缺省实现继承。</li>
-<li>non-virtual函数具体制定接口继承以及强制性实现继承。</li>
-</ul>
-<h2 id="条款35：考虑virtual函数以外的其它选择"><a href="#条款35：考虑virtual函数以外的其它选择" class="headerlink" title="条款35：考虑virtual函数以外的其它选择"></a>条款35：考虑virtual函数以外的其它选择</h2><p><strong>请记住：</strong></p>
-<ul>
-<li>virtual函数的替代方案包括NVI手法及Strategy设计模式的多种形式。NVI手法自身是一个特殊形式的Template Method设计模式。</li>
-<li>将机能从成员函数移到class外部函数，带来的一个缺点是，非成员函数无法访问class的non-public成员。</li>
-<li>tr1::function对象的行为就像一般函数指针。这样的对象可接纳“与给定之目标签名式（target signature）兼容”的所有可调用物（callable entities）。   </li>
-</ul>
-<h2 id="条款36：绝不重新定义继承而来的non-virtual函数"><a href="#条款36：绝不重新定义继承而来的non-virtual函数" class="headerlink" title="条款36：绝不重新定义继承而来的non-virtual函数"></a>条款36：绝不重新定义继承而来的non-virtual函数</h2><p><strong>请记住：</strong></p>
-<ul>
-<li>绝对不要重新定义继承而来的non-virtual函数。   </li>
-</ul>
-<h2 id="条款37：绝不重新定义继承而来的缺省参数值"><a href="#条款37：绝不重新定义继承而来的缺省参数值" class="headerlink" title="条款37：绝不重新定义继承而来的缺省参数值"></a>条款37：绝不重新定义继承而来的缺省参数值</h2><p>对于non-virtual函数，上一条款说到，“绝不重新定义继承而来的non-virtual函数”，而对于继承一个带有缺省参数值的virtual函数，也是如此。即绝不重新定义继承而来的缺省参数值。因为：virtual函数系动态绑定（dynamically bound），而缺省参数值确实静态绑定（statically bound）。意思是你可能会在“调用一个定义于派生类内的虚函数”的同时，却使用基类为它所指定的缺省参数值。</p>
-<p><strong>请记住：</strong></p>
-<ul>
-<li>绝对不要重新定义一个继承而来的缺省参数值，因为缺省参数值都是静态绑定，而virtual函数——你唯一应该覆写的东西——却是动态绑定。</li>
-</ul>
-<p>条款38：通过符合塑模出has-a或“根据某物实现出”</p>
-<p><strong>请记住：</strong></p>
-<ul>
-<li>复合（composition）的意义和public继承完全不同。</li>
-<li>在应用域（application domain），复合意味has-a（有一个）。在实现域（implementation domain），复合意味is-implemented-in-terms-of（根据某物实现出）。    </li>
-</ul>
+<p>首先需要安装Sublime Text 2/3和Package Control</p>
+<p>MacTex现在是一个超过2G+的大型软件包，但是里面很多东西我们不需要，所以本着节约精神，我们安装MacTex_Basic包就行了，现在的版本大概是100M以内。这个安装也是很简单的，推荐使用brew安装。</p>
+<p>在Sublime Text里<code>Command + Shift + P</code>调出命令窗口，输入<code>Install</code>，之后选择LaTexTools，网络OK的话，很快就完成了插件安装。<br>LaTexTools插件会在编译你的Tex文件后，调用Skim这个PDF阅读器打开编译出的PDF文件，因此你还需要安装Skim.</p>
+<p>运行一下Skim，进入偏好设置——同步，在PDF-Tex同步支持那里选择自定义，输入<code>/Applications/Sublime Text.app/Contents/SharedSupport/bin/subl</code>，第二行不用动。这样，当你在Sublime Text里修改tex文件时，Skim预览也会相应变更。</p>
+<p>完成上面所有步骤，其实就已经搭建完成基本环境。创建一个test.tex文档，保存一下以后，Sublime Text会自动套用LaTex语法显示和编译。贴上我后面附的测试代码，一般来说Command+B应该可能会报fontspec错误；如果能正常编译，则会调用Skim显示一个PDF文档了。只是中间的中文不见了。<br>让我们最后来修改编译和中文环境：<br>打开终端，运行：</p>
+<pre><code>sudo tlmgr update --self
+sudo tlmgr install latexmk
+</code></pre><p>在ST里打开LaTeXTools.sublime-settings（也就是LaTeXTools的用户设置，如果你是从旧版本升级上来或者担心这个配置文件出现问题，可以依次点击Preferences——Package Settings——LaTeXTools——Reconfigure LaTeXTools and migrate settings重建配置文件），在builder-settings下面新增两项配置：</p>
+<pre><code>&quot;program&quot; : &quot;xelatex&quot;,
+&quot;command&quot; : [&quot;latexmk&quot;, &quot;-cd&quot;, &quot;-e&quot;, &quot;$pdflatex = &apos;xelatex -interaction=nonstopmode -synctex=1 %S %O&apos;&quot;, &quot;-f&quot;, &quot;-pdf&quot;],
+</code></pre><p>另外注意之前应该有<code>&quot;builder&quot;: &quot;default&quot;</code>（或直接设置为空或”traditional”）。</p>
+<p>（ 更新后废除此方法 ：原来是通过下面方式修改：<br>打开编辑~/Library/Application\ Support/Sublime\ Text/Packages/Users/LaTeX.sublime-settings，将其中”builder”条目改为：<br><code>&quot;builder&quot;: &quot;simple&quot;</code><br>接着打开编辑~/Library/Application\ Support/Sublime\ Text/Packages/LaTeXTools/builders/simpleBuilder.py<br>找到其中大概第41行</p>
+<pre><code>pdflatex = [&quot;pdflatex&quot;, &quot;-interaction=nonstopmode&quot;, &quot;-synctex=1&quot;]
+</code></pre><p>修改为</p>
+<pre><code>pdflatex = [&quot;xelatex&quot;, &quot;-interaction=nonstopmode&quot;, &quot;-synctex=1&quot;]
+</code></pre><p>以上步骤是修改了源代码，既然现在可以通过用户设置的方式来自定义，那显然新方式适应性更好，不会一次更新就得从头修改）</p>
+<p>保存配置文件后关闭，重新编译一下，中文正常啦！</p>
+<p>LaTeXTools默认调用Skim来打开生成的PDF文件，如果你更喜欢使用OS X自带的“预览”，现在可以直接在用户设置中增加：<br><code>&quot;viewer&quot;: &quot;preview&quot;,</code><br>目前还不支持其他PDF工具。</p>
+<p>(更新后废除此方法 ：最后再给一个个性化设置。上面写了，LaTeXTools默认调用Skim，这一方面是因为LaTeXTools是跨平台的插件，Skim也同样跨平台开源，另一方面Skim确实对LaTeX的PDF支持很好。但是用OS X的网友们其实还有个选择，就是调用系统默认的PDF程序来打开编译后的成果，特别是“预览”还是很好用的。目前LaTeXTools的开发者还没有给出设置方法，所以，仍然要靠改代码：<br>修改<code>~/Library/Application\ Support/Sublime\ Text/Packages/LaTeXTools/jumpToPDF.py</code>, 将其中<code>if plat == &#39;darwin&#39;:</code>之后开始的两段直接注释掉，替换为：<br><code>subprocess.Popen([&#39;open&#39;] + [pdffile])</code><br>同样保存后就生效啦。目前用起来，系统自带的预览还是能满足我的需求滴。)</p>
+<p>测试代码</p>
+<pre><code>\documentclass{article}
+\usepackage{fontspec, xunicode, xltxtra}  
+\setmainfont{Hiragino Sans GB}  
+
+\title{Title}
+\author{}
+
+\begin{document}
+
+\maketitle{}
+
+\section{Introduction}
+
+This is where you will write your content. 在这里写上内容。
+
+\end{document}
+</code></pre><p>LaTex的其他选择，如果觉得修改设置看起来很复杂，可以在每篇文档前增加%!TEX program = xelatex，这会强制使用xelatex，也是解决中文的一个方法。</p>
 
       
     </div>
@@ -301,13 +289,13 @@
   
     
     <div class="copyright">
-        <p><span>本文标题:</span><a href="/2015/01/19/2015-01-19-effective-cpp-6/">Effective C++ —— 继承与面向对象设计</a></p>
+        <p><span>本文标题:</span><a href="/2016/04/15/2016-04-15-Sublime-LaTex-Chinese-support/">部署Mac OS X上的Sublime Text + LaTex中文环境</a></p>
         <p><span>文章作者:</span><a href="/" title="访问 xiaoyifeibupt 的个人博客">xiaoyifeibupt</a></p>
-        <p><span>发布时间:</span>2015年01月19日 - 13时18分</p>
-        <p><span>最后更新:</span>2016年05月28日 - 13时49分</p>
+        <p><span>发布时间:</span>2016年04月15日 - 13时18分</p>
+        <p><span>最后更新:</span>2016年05月28日 - 14时22分</p>
         <p>
-            <span>原始链接:</span><a class="post-url" href="/2015/01/19/2015-01-19-effective-cpp-6/" title="Effective C++ —— 继承与面向对象设计">http://xiaoyifeibupt.github.io/2015/01/19/2015-01-19-effective-cpp-6/</a>
-            <span class="copy-path" data-clipboard-text="原文: http://xiaoyifeibupt.github.io/2015/01/19/2015-01-19-effective-cpp-6/　　作者: xiaoyifeibupt" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <span>原始链接:</span><a class="post-url" href="/2016/04/15/2016-04-15-Sublime-LaTex-Chinese-support/" title="部署Mac OS X上的Sublime Text + LaTex中文环境">http://xiaoyifeibupt.github.io/2016/04/15/2016-04-15-Sublime-LaTex-Chinese-support/</a>
+            <span class="copy-path" data-clipboard-text="原文: http://xiaoyifeibupt.github.io/2016/04/15/2016-04-15-Sublime-LaTex-Chinese-support/　　作者: xiaoyifeibupt" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
             <script src="/js/clipboard.min.js"></script>
             <script> var clipboard = new Clipboard('.copy-path'); </script>
         </p>
@@ -320,18 +308,9 @@
 
 <nav id="article-nav">
   
-    <a href="/2015/04/15/2015-04-15-string-function/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption"><</strong>
-      <div class="article-nav-title">
-        
-          字符串相关库函数
-        
-      </div>
-    </a>
   
-  
-    <a href="/2015/01/18/2015-01-18-effective-cpp-5/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">Effective C++ —— 实现</div>
+    <a href="/2015/04/15/2015-04-15-string-function/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">字符串相关库函数</div>
       <strong class="article-nav-caption">></strong>
     </a>
   
@@ -342,7 +321,7 @@
 
     <div id="toc" class="toc-article">
     <strong class="toc-title">文章目录</strong>
-    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#条款32：确定你的public继承塑模出is-a关系"><span class="toc-number">1.</span> <span class="toc-text">条款32：确定你的public继承塑模出is-a关系</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#条款33：避免遮掩继承而来的名称"><span class="toc-number">2.</span> <span class="toc-text">条款33：避免遮掩继承而来的名称</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#条款34：区分接口继承和实现继承"><span class="toc-number">3.</span> <span class="toc-text">条款34：区分接口继承和实现继承</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#条款35：考虑virtual函数以外的其它选择"><span class="toc-number">4.</span> <span class="toc-text">条款35：考虑virtual函数以外的其它选择</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#条款36：绝不重新定义继承而来的non-virtual函数"><span class="toc-number">5.</span> <span class="toc-text">条款36：绝不重新定义继承而来的non-virtual函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#条款37：绝不重新定义继承而来的缺省参数值"><span class="toc-number">6.</span> <span class="toc-text">条款37：绝不重新定义继承而来的缺省参数值</span></a></li></ol>
+    
 </div>
 <input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
 
@@ -393,13 +372,11 @@
 
     <div class="scroll" id="post-nav-button">
         
-            <a href="/2015/04/15/2015-04-15-string-function/" title="上一篇: 字符串相关库函数">
-                <i class="fa fa-angle-left"></i>
-            </a>
+            <a href="/" title="回到主页"><i class="fa fa-home"></i></a>
         
         <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
         
-            <a href="/2015/01/18/2015-01-18-effective-cpp-5/" title="下一篇: Effective C++ —— 实现">
+            <a href="/2015/04/15/2015-04-15-string-function/" title="下一篇: 字符串相关库函数">
                 <i class="fa fa-angle-right"></i>
             </a>
         

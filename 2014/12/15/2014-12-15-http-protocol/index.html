@@ -3,16 +3,15 @@
 <head>
   <meta charset="utf-8">
   
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <title>HTTP协议介绍 | xiaoyifeibupt&#39;s blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="超文本传输协议（HTTP，HyperText Transfer Protocol)是互联网上应用最为广泛的一种网络协议。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="HTTP协议介绍">
-<meta property="og:url" content="http://yoursite.com/2014/12/15/2014-12-15-http-protocol/index.html">
+<meta property="og:url" content="http://xiaoyifeibupt.github.io/2014/12/15/2014-12-15-http-protocol/index.html">
 <meta property="og:site_name" content="xiaoyifeibupt's blog">
 <meta property="og:description" content="超文本传输协议（HTTP，HyperText Transfer Protocol)是互联网上应用最为广泛的一种网络协议。">
-<meta property="og:updated_time" content="2016-05-26T02:46:08.000Z">
+<meta property="og:updated_time" content="2016-05-28T03:10:40.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="HTTP协议介绍">
 <meta name="twitter:description" content="超文本传输协议（HTTP，HyperText Transfer Protocol)是互联网上应用最为广泛的一种网络协议。">
@@ -20,167 +19,188 @@
     <link rel="alternative" href="/atom.xml" title="xiaoyifeibupt&#39;s blog" type="application/atom+xml">
   
   
-    <link rel="icon" href="/favicon.ico">
+    <link rel="icon" href="/img/favicon.ico">
+  
+  
+  <link rel="stylesheet" href="//cdn.bootcss.com/animate.css/3.5.0/animate.min.css">
   
   <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/font-awesome/css/font-awesome.min.css">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  
+  
+      <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  
+  <!-- 加载特效 -->
+    <script src="/js/pace.js"></script>
+    <link href="/css/pace/pace-theme-flash.css" rel="stylesheet" />
+  <script>
+      var yiliaConfig = {
+          fancybox: true,
+          animate: true,
+          isHome: false,
+          isPost: true,
+          isArchive: false,
+          isTag: false,
+          isCategory: false,
+          open_in_new: false
+      }
+  </script>
 </head>
-
 <body>
   <div id="container">
     <div class="left-col">
     <div class="overlay"></div>
 <div class="intrude-less">
-	<header id="header" class="inner">
-		<a href="/" class="profilepic">
-			
-			<img lazy-src="/face.jpg" class="js-avatar">
-			
-		</a>
+    <header id="header" class="inner">
+        <a href="/" class="profilepic">
+            
+            <img lazy-src="/img/face.jpg" class="js-avatar">
+            
+        </a>
 
-		<hgroup>
-		  <h1 class="header-author"><a href="/">xiaoyifeibupt</a></h1>
-		</hgroup>
+        <hgroup>
+          <h1 class="header-author"><a href="/">xiaoyifeibupt</a></h1>
+        </hgroup>
 
-		
+        
+        
+        
+            <div id="switch-btn" class="switch-btn">
+                <div class="icon">
+                    <div class="icon-ctn">
+                        <div class="icon-wrap icon-house" data-idx="0">
+                            <div class="birdhouse"></div>
+                            <div class="birdhouse_holes"></div>
+                        </div>
+                        <div class="icon-wrap icon-ribbon hide" data-idx="1">
+                            <div class="ribbon"></div>
+                        </div>
+                        
+                        
+                        <div class="icon-wrap icon-me hide" data-idx="3">
+                            <div class="user"></div>
+                            <div class="shoulder"></div>
+                        </div>
+                        
+                    </div>
+                    
+                </div>
+                <div class="tips-box hide">
+                    <div class="tips-arrow"></div>
+                    <ul class="tips-inner">
+                        <li>菜单</li>
+                        <li>标签</li>
+                        
+                        
+                        <li>关于我</li>
+                        
+                    </ul>
+                </div>
+            </div>
+        
 
-		
-			<div class="switch-btn">
-				<div class="icon">
-					<div class="icon-ctn">
-						<div class="icon-wrap icon-house" data-idx="0">
-							<div class="birdhouse"></div>
-							<div class="birdhouse_holes"></div>
-						</div>
-						<div class="icon-wrap icon-ribbon hide" data-idx="1">
-							<div class="ribbon"></div>
-						</div>
-						
-						
-						<div class="icon-wrap icon-me hide" data-idx="3">
-							<div class="user"></div>
-							<div class="shoulder"></div>
-						</div>
-						
-					</div>
-					
-				</div>
-				<div class="tips-box hide">
-					<div class="tips-arrow"></div>
-					<ul class="tips-inner">
-						<li>Menu</li>
-						<li>Tags</li>
-						
-						
-						<li>About</li>
-						
-					</ul>
-				</div>
-			</div>
-		
+        <div id="switch-area" class="switch-area">
+            <div class="switch-wrap">
+                <section class="switch-part switch-part1">
+                    <nav class="header-menu">
+                        <ul>
+                        
+                            <li><a href="/">博客首页</a></li>
+                        
+                            <li><a href="/about">关于</a></li>
+                        
+                        </ul>
+                    </nav>
+                    <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fl mail" target="_blank" href="mailto:xiaoyifeibupt@163.com" title="mail">mail</a>
+                            
+                                <a class="fl github" target="_blank" href="https://github.com/xiaoyifeibupt" title="github">github</a>
+                            
+                                <a class="fl zhihu" target="_blank" href="https://www.zhihu.com/people/xiao-yifei" title="zhihu">zhihu</a>
+                            
+                                <a class="fl weibo" target="_blank" href="http://weibo.com/yifeixiao/" title="weibo">weibo</a>
+                            
+                                <a class="fl facebook" target="_blank" href="https://www.facebook.com/profile.php?id=100011123822524" title="facebook">facebook</a>
+                            
+                        </ul>
+                    </nav>
+                </section>
+                
+                
+                <section class="switch-part switch-part2">
+                    <div class="widget tagcloud" id="js-tagcloud">
+                        <a href="/tags/C/" style="font-size: 15px;">C++</a> <a href="/tags/CSAPP/" style="font-size: 10px;">CSAPP</a> <a href="/tags/Design-pattern/" style="font-size: 20px;">Design-pattern</a> <a href="/tags/http/" style="font-size: 15px;">http</a>
+                    </div>
+                </section>
+                
+                
+                
 
-		<div class="switch-area">
-			<div class="switch-wrap">
-				<section class="switch-part switch-part1">
-					<nav class="header-menu">
-						<ul>
-						
-							<li><a href="/">主页</a></li>
-				        
-							<li><a href="/archives">所有文章</a></li>
-				        
-						</ul>
-					</nav>
-					<nav class="header-nav">
-						<div class="social">
-							
-								<a class="github" target="_blank" href="https://github.com/xiaoyifeibupt" title="github">github</a>
-					        
-								<a class="weibo" target="_blank" href="http://weibo.com/yifeixiao/" title="weibo">weibo</a>
-					        
-								<a class="zhihu" target="_blank" href="https://www.zhihu.com/people/xiao-yifei" title="zhihu">zhihu</a>
-					        
-								<a class="mail" target="_blank" href="/xiaoyifeibupt@163.com" title="mail">mail</a>
-					        
-								<a class="facebook" target="_blank" href="https://www.facebook.com/profile.php?id=100011123822524" title="facebook">facebook</a>
-					        
-						</div>
-					</nav>
-				</section>
-				
-				
-				<section class="switch-part switch-part2">
-					<div class="widget tagcloud" id="js-tagcloud">
-						<a href="/tags/C/" style="font-size: 15px;">C++</a> <a href="/tags/CSAPP/" style="font-size: 10px;">CSAPP</a> <a href="/tags/Design-pattern/" style="font-size: 20px;">Design-pattern</a> <a href="/tags/http/" style="font-size: 15px;">http</a>
-					</div>
-				</section>
-				
-				
-				
-
-				
-				
-				<section class="switch-part switch-part3">
-				
-					<div id="js-aboutme">我是谁，我从哪里来，我到哪里去？我就是我，是颜色不一样的吃货…</div>
-				</section>
-				
-			</div>
-		</div>
-	</header>				
+                
+                
+                <section class="switch-part switch-part3">
+                
+                    <div id="js-aboutme">爱运动、爱交友、爱旅行、喜欢接触新鲜事物、迎接新的挑战，更爱游离于错综复杂的编码与逻辑中</div>
+                </section>
+                
+            </div>
+        </div>
+    </header>                
 </div>
-
     </div>
     <div class="mid-col">
       <nav id="mobile-nav">
-  	<div class="overlay">
-  		<div class="slider-trigger"></div>
-  		<h1 class="header-author js-mobile-header hide">xiaoyifeibupt</h1>
-  	</div>
-	<div class="intrude-less">
-		<header id="header" class="inner">
-			<div class="profilepic">
-			
-				<img lazy-src="/face.jpg" class="js-avatar">
-			
-			</div>
-			<hgroup>
-			  <h1 class="header-author">xiaoyifeibupt</h1>
-			</hgroup>
-			
-			<nav class="header-menu">
-				<ul>
-				
-					<li><a href="/">主页</a></li>
-		        
-					<li><a href="/archives">所有文章</a></li>
-		        
-		        <div class="clearfix"></div>
-				</ul>
-			</nav>
-			<nav class="header-nav">
-				<div class="social">
-					
-						<a class="github" target="_blank" href="https://github.com/xiaoyifeibupt" title="github">github</a>
-			        
-						<a class="weibo" target="_blank" href="http://weibo.com/yifeixiao/" title="weibo">weibo</a>
-			        
-						<a class="zhihu" target="_blank" href="https://www.zhihu.com/people/xiao-yifei" title="zhihu">zhihu</a>
-			        
-						<a class="mail" target="_blank" href="/xiaoyifeibupt@163.com" title="mail">mail</a>
-			        
-						<a class="facebook" target="_blank" href="https://www.facebook.com/profile.php?id=100011123822524" title="facebook">facebook</a>
-			        
-				</div>
-			</nav>
-		</header>				
-	</div>
+      <div class="overlay">
+          <div class="slider-trigger"></div>
+          <h1 class="header-author js-mobile-header hide"><a href="/" title="回到主页">xiaoyifeibupt</a></h1>
+      </div>
+    <div class="intrude-less">
+        <header id="header" class="inner">
+            <a href="/" class="profilepic">
+                
+                    <img lazy-src="/img/face.jpg" class="js-avatar">
+                
+            </a>
+            <hgroup>
+              <h1 class="header-author"><a href="/" title="回到主页">xiaoyifeibupt</a></h1>
+            </hgroup>
+            
+            <nav class="header-menu">
+                <ul>
+                
+                    <li><a href="/">博客首页</a></li>
+                
+                    <li><a href="/about">关于</a></li>
+                
+                <div class="clearfix"></div>
+                </ul>
+            </nav>
+            <nav class="header-nav">
+                <div class="social">
+                    
+                        <a class="mail" target="_blank" href="mailto:xiaoyifeibupt@163.com" title="mail">mail</a>
+                    
+                        <a class="github" target="_blank" href="https://github.com/xiaoyifeibupt" title="github">github</a>
+                    
+                        <a class="zhihu" target="_blank" href="https://www.zhihu.com/people/xiao-yifei" title="zhihu">zhihu</a>
+                    
+                        <a class="weibo" target="_blank" href="http://weibo.com/yifeixiao/" title="weibo">weibo</a>
+                    
+                        <a class="facebook" target="_blank" href="https://www.facebook.com/profile.php?id=100011123822524" title="facebook">facebook</a>
+                    
+                </div>
+            </nav>
+        </header>                
+    </div>
 </nav>
-
       <div class="body-wrap"><article id="post-2014-12-15-http-protocol" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
       <a href="/2014/12/15/2014-12-15-http-protocol/" class="article-date">
-  	<time datetime="2014-12-15T05:18:08.000Z" itemprop="datePublished">2014-12-15</time>
+      <time datetime="2014-12-15T05:18:08.000Z" itemprop="datePublished">2014-12-15</time>
 </a>
     </div>
   
@@ -201,11 +221,11 @@
       
       <div class="article-info article-info-post">
         
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/http/">http</a></li></ul>
-	</div>
 
         
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/http/">http</a></li></ul>
+    </div>
 
         <div class="clearfix"></div>
       </div>
@@ -213,21 +233,19 @@
     
     <div class="article-entry" itemprop="articleBody">
       
+          
         <p>超文本传输协议（HTTP，HyperText Transfer Protocol)是互联网上应用最为广泛的一种网络协议。<br> <a id="more"></a></p>
-<p>###HTTP协议的主要特点</p>
-<ul>
+<h2 id="HTTP协议的主要特点"><a href="#HTTP协议的主要特点" class="headerlink" title="HTTP协议的主要特点"></a>HTTP协议的主要特点</h2><ul>
 <li>支持客户/服务器模式。</li>
 <li>简单快速：客户向服务器请求服务时，只需传送请求方法和路径。请求方法常用的有GET、HEAD、POST。每种方法规定了客户与服务器联系的类型不同。由于HTTP协议简单，使得HTTP服务器的程序规模小，因而通信速度很快。</li>
 <li>灵活：HTTP允许传输任意类型的数据对象。正在传输的类型由Content-Type加以标记。</li>
 <li>无连接：无连接的含义是限制每次连接只处理一个请求。服务器处理完客户的请求，并收到客户的应答后，即断开连接。采用这种方式可以节省传输时间。</li>
 <li>无状态：HTTP协议是无状态协议。无状态是指协议对于事务处理没有记忆能力。缺少状态意味着如果后续处理需要前面的信息，则它必须重传，这样可能导致每次连接传送的数据量增大。另一方面，在服务器不需要先前信息时它的应答就较快。</li>
 </ul>
-<p>###URL</p>
-<p>HTTP（超文本传输协议）是一个基于请求与响应模式的、无状态的、应用层的协议，常基于TCP的连接方式，HTTP1.1版本中给出一种持续连接的机制，绝大多数的Web开发，都是构建在HTTP协议之上的Web应用。</p>
+<h2 id="URL"><a href="#URL" class="headerlink" title="URL"></a>URL</h2><p>HTTP（超文本传输协议）是一个基于请求与响应模式的、无状态的、应用层的协议，常基于TCP的连接方式，HTTP1.1版本中给出一种持续连接的机制，绝大多数的Web开发，都是构建在HTTP协议之上的Web应用。</p>
 <p>HTTP URL (URL是一种特殊类型的URI，包含了用于查找某个资源的足够的信息)的格式如下：<br><code>http://host[&quot;:&quot;port][abs_path]</code><br>http表示要通过HTTP协议来定位网络资源；host表示合法的Internet主机域名或者IP地址；port指定一个端口号，为空则使用缺省端口80；abs_path指定请求资源的URI；如果URL中没有给出abs_path，那么当它作为请求URI时，必须以“/”的形式给出，通常这个工作浏览器自动帮我们完成。</p>
 <p>通常HTTP消息包括客户机向服务器的请求消息和服务器向客户机的响应消息。这两种类型的消息由<strong>一个起始行</strong>，<strong>一个或者多个头域</strong>，<strong>一个指示头域结束的空行</strong>和<strong>可选的消息体</strong>组成。HTTP的头域包括<strong>通用头</strong>，<strong>请求头</strong>，<strong>响应头</strong>和<strong>实体头</strong>四个部分。每个头域由<strong>一个域名，冒号（:）和域值</strong>三部分组成。域名是大小写无关的，域值前可以添加任何数量的空格符，头域可以被扩展为多行，在每行开始处，使用至少一个空格或制表符。</p>
-<p>###HTTP请求</p>
-<p>http请求由三部分组成，分别是：请求行、消息报头、请求正文</p>
+<h2 id="HTTP请求"><a href="#HTTP请求" class="headerlink" title="HTTP请求"></a>HTTP请求</h2><p>http请求由三部分组成，分别是：请求行、消息报头、请求正文</p>
 <p>1、请求行以一个方法符号开头，以空格分开，后面跟着请求的URI和协议的版本，格式如下：<code>Method Request-URI HTTP-Version CRLF</code><br>其中 Method表示请求方法；Request-URI是一个统一资源标识符；HTTP-Version表示请求的HTTP协议版本；CRLF表示回车和换行（除了作为结尾的CRLF外，不允许出现单独的CR或LF字符）。</p>
 <p>请求方法（所有方法全为大写）有多种，各个方法的解释如下：</p>
 <ul>
@@ -256,8 +274,7 @@ user=jeffrey&amp;pwd=1234  //此行以下为提交的数据
 </code></pre><p>HEAD方法与GET方法几乎是一样的，对于HEAD请求的回应部分来说，它的HTTP头部中包含的信息与通过GET请求所得到的信息是相同的。利用这个方法，不必传输整个资源内容，就可以得到Request-URI所标识的资源的信息。该方法常用于测试超链接的有效性，是否可以访问，以及最近是否更新。</p>
 <p>2、请求报头后述</p>
 <p>3、请求正文(略) </p>
-<p>###HTTP响应</p>
-<p>在接收和解释请求消息后，服务器返回一个HTTP响应消息。</p>
+<h2 id="HTTP响应"><a href="#HTTP响应" class="headerlink" title="HTTP响应"></a>HTTP响应</h2><p>在接收和解释请求消息后，服务器返回一个HTTP响应消息。</p>
 <p>HTTP响应也是由三个部分组成，分别是：状态行、消息报头、响应正文</p>
 <p>1、状态行格式如下：<code>HTTP-Version Status-Code Reason-Phrase CRLF</code>，其中，HTTP-Version表示服务器HTTP协议的版本；Status-Code表示服务器发回的响应状态代码；Reason-Phrase表示状态代码的文本描述。</p>
 <p>状态代码有三位数字组成，第一个数字定义了响应的类别，且有五种可能取值：</p>
@@ -282,11 +299,9 @@ user=jeffrey&amp;pwd=1234  //此行以下为提交的数据
 <pre><code>HTTP/1.1 200 OK （CRLF）
 </code></pre><p>2、响应报头后述</p>
 <p>3、响应正文就是服务器返回的资源的内容 </p>
-<p>###HTTP消息报头</p>
-<p>HTTP消息由客户端到服务器的请求和服务器到客户端的响应组成。请求消息和响应消息都是由开始行（对于请求消息，开始行就是请求行，对于响应消息，开始行就是状态行），消息报头（可选），空行（只有CRLF的行），消息正文（可选）组成。</p>
+<h2 id="HTTP消息报头"><a href="#HTTP消息报头" class="headerlink" title="HTTP消息报头"></a>HTTP消息报头</h2><p>HTTP消息由客户端到服务器的请求和服务器到客户端的响应组成。请求消息和响应消息都是由开始行（对于请求消息，开始行就是请求行，对于响应消息，开始行就是状态行），消息报头（可选），空行（只有CRLF的行），消息正文（可选）组成。</p>
 <p>HTTP消息报头包括普通报头、请求报头、响应报头、实体报头。<br>每一个报头域都是由名字+“：”+空格+值 组成，消息报头域的名字是大小写无关的。</p>
-<p>####1、普通报头</p>
-<p>在普通报头中，有少数报头域用于所有的请求和响应消息，但并不用于被传输的实体，只用于传输的消息。</p>
+<h3 id="1、普通报头"><a href="#1、普通报头" class="headerlink" title="1、普通报头"></a>1、普通报头</h3><p>在普通报头中，有少数报头域用于所有的请求和响应消息，但并不用于被传输的实体，只用于传输的消息。</p>
 <p>eg：</p>
 <p><strong>Cache-Control</strong> ：用于指定缓存指令，缓存指令是单向的（响应中出现的缓存指令在请求中未必会出现），且是独立的（一个消息的缓存指令不会影响另一个消息处理的缓存机制），HTTP1.0使用的类似的报头域为Pragma。</p>
 <ul>
@@ -299,7 +314,7 @@ user=jeffrey&amp;pwd=1234  //此行以下为提交的数据
 <p>这句代码将在发送的响应消息中设置普通报头域：Cache-Control:no-cache</p>
 <p><strong>Date</strong> ：表示消息产生的日期和时间</p>
 <p><strong>Connection</strong>：允许发送指定连接的选项。例如指定连接是连续，或者指定“close”选项，通知服务器，在响应完成后，关闭连接</p>
-<p>####2、请求报头<br>请求报头允许客户端向服务器端传递请求的附加信息以及客户端自身的信息。</p>
+<h3 id="2、请求报头"><a href="#2、请求报头" class="headerlink" title="2、请求报头"></a>2、请求报头</h3><p>请求报头允许客户端向服务器端传递请求的附加信息以及客户端自身的信息。</p>
 <p>常用的请求报头</p>
 <p><strong>Accept</strong> ：Accept请求报头域用于指定客户端接受哪些类型的信息。eg：Accept：image/gif，表明客户端希望接受GIF图象格式的资源；Accept：text/html，表明客户端希望接受html文本。</p>
 <p><strong>Accept-Charset</strong> ：Accept-Charset请求报头域用于指定客户端接受的字符集。eg：Accept-Charset:iso-8859-1,gb2312.如果在请求消息中没有设置这个域，缺省是任何字符集都可以接受。</p>
@@ -319,16 +334,14 @@ User-Agent:Mozilla/4.0(compatible;MSIE6.0;Windows NT 5.0) (CRLF)
 Host:www.guet.edu.cn (CRLF)
 Connection:Keep-Alive (CRLF)
 (CRLF)
-</code></pre><p>####3、响应报头</p>
-<p>响应报头允许服务器传递不能放在状态行中的附加响应信息，以及关于服务器的信息和对Request-URI所标识的资源进行下一步访问的信息。</p>
+</code></pre><h3 id="3、响应报头"><a href="#3、响应报头" class="headerlink" title="3、响应报头"></a>3、响应报头</h3><p>响应报头允许服务器传递不能放在状态行中的附加响应信息，以及关于服务器的信息和对Request-URI所标识的资源进行下一步访问的信息。</p>
 <p>常用的响应报头</p>
 <p><strong>Location</strong> ：用于重定向接受者到一个新的位置，常用在更换域名的时候。</p>
 <p><strong>Server</strong> ：包含了服务器用来处理请求的软件信息。与User-Agent请求报头域是相对应的。下面是Server响应报头域的一个例子：</p>
 <pre><code>Server：Apache-Coyote/1.1
 </code></pre><p><strong>WWW-Authenticate</strong> ：必须被包含在401（未授权的）响应消息中，客户端收到401响应消息时候，并发送Authorization报头域请求服务器对其进行验证时，服务端响应报头就包含该报头域。eg：</p>
 <pre><code>WWW-Authenticate:Basic realm=&quot;Basic Auth Test!&quot;  //可以看出服务器对请求资源采用的是基本验证机制。
-</code></pre><p>####4、实体报头</p>
-<p>请求和响应消息都可以传送一个实体。一个实体由实体报头域和实体正文组成，但并不是说实体报头域和实体正文要在一起发送，可以只发送实体报头域。实体报头定义了关于实体正文（eg：有无实体正文）和请求所标识的资源的元信息。</p>
+</code></pre><h3 id="4、实体报头"><a href="#4、实体报头" class="headerlink" title="4、实体报头"></a>4、实体报头</h3><p>请求和响应消息都可以传送一个实体。一个实体由实体报头域和实体正文组成，但并不是说实体报头域和实体正文要在一起发送，可以只发送实体报头域。实体报头定义了关于实体正文（eg：有无实体正文）和请求所标识的资源的元信息。</p>
 <p>常用的实体报头</p>
 <p><strong>Content-Encoding</strong> ：被用作媒体类型的修饰符，它的值指示了已经被应用到实体正文的附加内容的编码，因而要获得Content-Type报头域中所引用的媒体类型，必须采用相应的解码机制。Content-Encoding这样用于记录文档的压缩方法，eg：</p>
 <pre><code>Content-Encoding：gzip
@@ -349,6 +362,24 @@ Content-Type:text/html;charset=GB2312
   </div>
   
     
+    <div class="copyright">
+        <p><span>本文标题:</span><a href="/2014/12/15/2014-12-15-http-protocol/">HTTP协议介绍</a></p>
+        <p><span>文章作者:</span><a href="/" title="访问 xiaoyifeibupt 的个人博客">xiaoyifeibupt</a></p>
+        <p><span>发布时间:</span>2014年12月15日 - 13时18分</p>
+        <p><span>最后更新:</span>2016年05月28日 - 11时10分</p>
+        <p>
+            <span>原始链接:</span><a class="post-url" href="/2014/12/15/2014-12-15-http-protocol/" title="HTTP协议介绍">http://xiaoyifeibupt.github.io/2014/12/15/2014-12-15-http-protocol/</a>
+            <span class="copy-path" data-clipboard-text="原文: http://xiaoyifeibupt.github.io/2014/12/15/2014-12-15-http-protocol/　　作者: xiaoyifeibupt" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <script src="/js/clipboard.min.js"></script>
+            <script> var clipboard = new Clipboard('.copy-path'); </script>
+        </p>
+        <p>
+            <span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/cn/" title="中国大陆 (CC BY-NC-SA 3.0 CN)" target = "_blank">"署名-非商用-相同方式共享 3.0"</a> 转载请保留原文链接及作者。
+        </p>
+    </div>
+
+
+
 <nav id="article-nav">
   
     <a href="/2014/12/16/2014-12-16-http- tinyhttpd/" id="article-nav-newer" class="article-nav-link-wrap">
@@ -371,109 +402,167 @@ Content-Type:text/html;charset=GB2312
   
 </article>
 
-
-<div class="share_jia">
-	<!-- JiaThis Button BEGIN -->
-	<div class="jiathis_style">
-		<span class="jiathis_txt">Share to: &nbsp; </span>
-		<a class="jiathis_button_facebook"></a> 
-    <a class="jiathis_button_twitter"></a>
-    <a class="jiathis_button_plus"></a> 
-    <a class="jiathis_button_tsina"></a>
-		<a class="jiathis_button_cqq"></a>
-		<a class="jiathis_button_douban"></a>
-		<a class="jiathis_button_weixin"></a>
-		<a class="jiathis_button_tumblr"></a>
-    <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
-	</div>
-	<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1405949716054953" charset="utf-8"></script>
-	<!-- JiaThis Button END -->
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#HTTP协议的主要特点"><span class="toc-number">1.</span> <span class="toc-text">HTTP协议的主要特点</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#URL"><span class="toc-number">2.</span> <span class="toc-text">URL</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#HTTP请求"><span class="toc-number">3.</span> <span class="toc-text">HTTP请求</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#HTTP响应"><span class="toc-number">4.</span> <span class="toc-text">HTTP响应</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#HTTP消息报头"><span class="toc-number">5.</span> <span class="toc-text">HTTP消息报头</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1、普通报头"><span class="toc-number">5.1.</span> <span class="toc-text">1、普通报头</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2、请求报头"><span class="toc-number">5.2.</span> <span class="toc-text">2、请求报头</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3、响应报头"><span class="toc-number">5.3.</span> <span class="toc-text">3、响应报头</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4、实体报头"><span class="toc-number">5.4.</span> <span class="toc-text">4、实体报头</span></a></li></ol></li></ol>
 </div>
+<input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
+
+<script src="http://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+<script>
+    var valueHide = "隐藏目录";
+    var valueShow = "显示目录";
+
+    if ($(".left-col").is(":hidden")) {
+        $("#tocButton").attr("value", valueShow);
+    }
+    $("#tocButton").click(function() {
+        if ($("#toc").is(":hidden")) {
+            $("#tocButton").attr("value", valueHide);
+            $("#toc").slideDown(320);
+        }
+        else {
+            $("#tocButton").attr("value", valueShow);
+            $("#toc").slideUp(350);
+        }
+    })
+    if ($(".toc").length < 1) {
+        $("#toc, #tocButton").hide();
+    }
+</script>
 
 
 
 
 
-
-<div class="duoshuo">
-	<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="2014-12-15-http-protocol" data-title="HTTP协议介绍" data-url="http://yoursite.com/2014/12/15/2014-12-15-http-protocol/"></div>
-	<!-- 多说评论框 end -->
-	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
-	<script type="text/javascript">
-	var duoshuoQuery = {short_name:"flase"};
-	(function() {
-		var ds = document.createElement('script');
-		ds.type = 'text/javascript';ds.async = true;
-		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
-		ds.charset = 'UTF-8';
-		(document.getElementsByTagName('head')[0] 
-		 || document.getElementsByTagName('body')[0]).appendChild(ds);
-	})();
-	</script>
-	<!-- 多说公共JS代码 end -->
+<div class="bdsharebuttonbox">
+	<a href="#" class="fx fa-weibo bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+	<a href="#" class="fx fa-weixin bds_weixin" data-cmd="weixin" title="分享到微信"></a>
+	<a href="#" class="fx fa-qq bds_sqq" data-cmd="sqq" title="分享到QQ好友"></a>
+	<a href="#" class="fx fa-facebook-official bds_fbook" data-cmd="fbook" title="分享到Facebook"></a>
+	<a href="#" class="fx fa-twitter bds_twi" data-cmd="twi" title="分享到Twitter"></a>
+	<a href="#" class="fx fa-linkedin bds_linkedin" data-cmd="linkedin" title="分享到linkedin"></a>
+	<a href="#" class="fx fa-files-o bds_copy" data-cmd="copy" title="分享到复制网址"></a>
 </div>
+<script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"2","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
 
 
 
 
+    
+
+
+
+    <div class="scroll" id="post-nav-button">
+        
+            <a href="/2014/12/16/2014-12-16-http- tinyhttpd/" title="上一篇: C 语言实现最简单的 HTTP 服务器tinyhttpd详解">
+                <i class="fa fa-angle-left"></i>
+            </a>
+        
+        <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+        
+            <a href="/2014/11/25/2014-11-25-CSAPP-chapter-2/" title="下一篇: CSAPP——信息的表示和处理">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        
+    </div>
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2015/04/15/2015-04-15-string-function/">字符串相关库函数</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/01/19/2015-01-19-effective-cpp-6/">Effective C++ —— 继承与面向对象设计</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/01/18/2015-01-18-effective-cpp-5/">Effective C++ —— 实现</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/01/17/2015-01-17-effective-cpp-4/">Effective C++ —— 设计与声明</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/01/16/2015-01-16-effective-cpp-3/">Effective C++ —— 资源管理</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/01/11/2015-01-11-effective-cpp-2/">Effective C++ —— 构造析构赋值运算</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/01/09/2015-01-09-effective-cpp-1/">Effective C++ —— 让自己习惯C++</a></li><li class="post-list-item"><a class="post-list-link" href="/2014/12/29/2014-12-29-xhttpd-makefile/">从零开始实现自己的httpd——Makefile</a></li><li class="post-list-item"><a class="post-list-link" href="/2014/12/23/2014-12-23-xhttpd-epollnote/">从零开始实现自己的httpd——epoll读写数据的注意事项</a></li><li class="post-list-item"><a class="post-list-link" href="/2014/12/21/2014-12-21-xhttpd-epoll/">从零开始实现自己的httpd——epoll</a></li><li class="post-list-item"><a class="post-list-link" href="/2014/12/19/2014-12-19-xhttpd-socket/">从零开始实现自己的httpd——socket</a></li><li class="post-list-item"><a class="post-list-link" href="/2014/12/18/2014-12-18-xhttpd-buffer/">从零开始实现自己的httpd——buffer</a></li><li class="post-list-item"><a class="post-list-link" href="/2014/12/16/2014-12-16-http- tinyhttpd/">C 语言实现最简单的 HTTP 服务器tinyhttpd详解</a></li><li class="post-list-item"><a class="post-list-link" href="/2014/12/15/2014-12-15-http-protocol/">HTTP协议介绍</a></li><li class="post-list-item"><a class="post-list-link" href="/2014/11/25/2014-11-25-CSAPP-chapter-2/">CSAPP——信息的表示和处理</a></li><li class="post-list-item"><a class="post-list-link" href="/2014/11/23/2014-11-23-Design-pattern-Decorator-Memento-State-Visitor-Mediator-Interpreter/">设计模式--备忘录/状态/访问者/中介者/解释器</a></li><li class="post-list-item"><a class="post-list-link" href="/2014/11/18/2014-11-18-Design-pattern-strategy-Template-Observer-Iterator-ChainofResponsibility-Command/">设计模式--策略/模板方法/观察者/迭代子/责任链/命令</a></li><li class="post-list-item"><a class="post-list-link" href="/2014/11/15/2014-11-15-Design-pattern-Decorator-Proxy-Facade-Bridge-Composite-Flyweight/">设计模式--装饰/代理/外观/桥接/组合/享元</a></li><li class="post-list-item"><a class="post-list-link" href="/2014/11/12/2014-11-12-Design-pattern-Adapter/">设计模式--适配器模式</a></li><li class="post-list-item"><a class="post-list-link" href="/2014/11/10/2014-11-10-Design-pattern-Builder/">设计模式--建造者模式</a></li><li class="post-list-item"><a class="post-list-link" href="/2014/11/09/2014-11-09-Design-pattern-Prototype/">设计模式--原型模式</a></li><li class="post-list-item"><a class="post-list-link" href="/2014/11/08/2014-11-08-Design-pattern-Singleton/">设计模式--单例模式</a></li><li class="post-list-item"><a class="post-list-link" href="/2014/11/07/2014-11-07-Design-pattern-Abstract-Factory/">设计模式--抽象工厂模式</a></li><li class="post-list-item"><a class="post-list-link" href="/2014/11/05/2014-11-05-Design-pattern-Factory-Method/">设计模式--工程模式</a></li></ul>
+    <script src="http://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+    <script>
+        $(".post-list").addClass("toc-article");
+        $(".post-list-item a").attr("target","_blank");
+        $("#post-nav-button > a:nth-child(2)").click(function() {
+            $(".fa-bars, .fa-times").toggle();
+            $(".post-list").toggle(300);
+            if ($(".toc").length > 0) {
+                $("#toc, #tocButton").toggle(200, function() {
+                    if ($(".switch-area").is(":visible")) {
+                        $("#tocButton").attr("value", valueHide);
+                        }
+                    })
+            }
+            else {
+            }
+        })
+    </script>
+
+
+
+    <script>
+        
+    </script>
 </div>
       <footer id="footer">
-  <div class="outer">
-    <div id="footer-info">
-    	<div class="footer-left">
-    		&copy; 2016 xiaoyifeibupt
-    	</div>
-      	<div class="footer-right">
-      		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
-      	</div>
+    <div class="outer">
+        <div id="footer-info">
+            <div class="footer-left">
+                &copy; 2016 xiaoyifeibupt
+            </div>
+            <div class="footer-right">
+                <a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/luuman/hexo-theme-spfk" target="_blank">spfk</a> by luuman
+            </div>
+        </div>
+        
     </div>
-  </div>
 </footer>
+
     </div>
-    
-  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
-
-
-<script>
-	var yiliaConfig = {
-		fancybox: true,
-		mathjax: true,
-		animate: true,
-		isHome: false,
-		isPost: true,
-		isArchive: false,
-		isTag: false,
-		isCategory: false,
-		open_in_new: false
-	}
-</script>
-<script src="http://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+    <script src="http://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
 <script src="/js/main.js"></script>
 
+    <script>
+        $(document).ready(function() {
+            var backgroundnum = 24;
+            var backgroundimg = "url(/background/bg-x.jpg)".replace(/x/gi, Math.ceil(Math.random() * backgroundnum));
+            $("#mobile-nav").css({"background-image": backgroundimg,"background-size": "cover","background-position": "center"});
+            $(".left-col").css({"background-image": backgroundimg,"background-size": "cover","background-position": "center"});
+        })
+    </script>
 
 
 
 
 
-<script type="text/x-mathjax-config">
-MathJax.Hub.Config({
-    tex2jax: {
-        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
-        processEscapes: true,
-        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
-    }
-});
-
-MathJax.Hub.Queue(function() {
-    var all = MathJax.Hub.getAllJax(), i;
-    for(i=0; i < all.length; i += 1) {
-        all[i].SourceElement().parentNode.className += ' has-jax';                 
-    }       
-});
+<div class="scroll" id="scroll">
+    <a href="#"><i class="fa fa-arrow-up"></i></a>
+    <a href="#comments"><i class="fa fa-comments-o"></i></a>
+    <a href="#footer"><i class="fa fa-arrow-down"></i></a>
+</div>
+<script>
+    $(document).ready(function() {
+        if ($("#comments").length < 1) {
+            $("#scroll > a:nth-child(2)").hide();
+        };
+    })
 </script>
 
-<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+
+  <script language="javascript">
+    $(function() {
+        $("a[title]").each(function() {
+            var a = $(this);
+            var title = a.attr('title');
+            if (title == undefined || title == "") return;
+            a.data('title', title).removeAttr('title').hover(
+
+            function() {
+                var offset = a.offset();
+                $("<div id=\"anchortitlecontainer\"></div>").appendTo($("body")).html(title).css({
+                    top: offset.top - a.outerHeight() - 15,
+                    left: offset.left + a.outerWidth()/2 + 1
+                }).fadeIn(function() {
+                    var pop = $(this);
+                    setTimeout(function() {
+                        pop.remove();
+                    }, pop.text().length * 800);
+                });
+            }, function() {
+                $("#anchortitlecontainer").remove();
+            });
+        });
+    });
 </script>
 
 

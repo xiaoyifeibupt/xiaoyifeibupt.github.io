@@ -3,13 +3,12 @@
 <head>
   <meta charset="utf-8">
   
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <title>xiaoyifeibupt&#39;s blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description">
 <meta property="og:type" content="website">
 <meta property="og:title" content="xiaoyifeibupt's blog">
-<meta property="og:url" content="http://yoursite.com/index.html">
+<meta property="og:url" content="http://xiaoyifeibupt.github.io/index.html">
 <meta property="og:site_name" content="xiaoyifeibupt's blog">
 <meta property="og:description">
 <meta name="twitter:card" content="summary">
@@ -19,169 +18,193 @@
     <link rel="alternative" href="/atom.xml" title="xiaoyifeibupt&#39;s blog" type="application/atom+xml">
   
   
-    <link rel="icon" href="/favicon.ico">
+    <link rel="icon" href="/img/favicon.ico">
+  
+  
+  <link rel="stylesheet" href="//cdn.bootcss.com/animate.css/3.5.0/animate.min.css">
   
   <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/font-awesome/css/font-awesome.min.css">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  
+    
+    
+  
+  
+      <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  
+  <!-- 加载特效 -->
+    <script src="/js/pace.js"></script>
+    <link href="/css/pace/pace-theme-flash.css" rel="stylesheet" />
+  <script>
+      var yiliaConfig = {
+          fancybox: true,
+          animate: true,
+          isHome: true,
+          isPost: false,
+          isArchive: false,
+          isTag: false,
+          isCategory: false,
+          open_in_new: false
+      }
+  </script>
 </head>
-
 <body>
   <div id="container">
     <div class="left-col">
     <div class="overlay"></div>
 <div class="intrude-less">
-	<header id="header" class="inner">
-		<a href="/" class="profilepic">
-			
-			<img lazy-src="/face.jpg" class="js-avatar">
-			
-		</a>
+    <header id="header" class="inner">
+        <a href="/" class="profilepic">
+            
+            <img lazy-src="/img/face.jpg" class="js-avatar">
+            
+        </a>
 
-		<hgroup>
-		  <h1 class="header-author"><a href="/">xiaoyifeibupt</a></h1>
-		</hgroup>
+        <hgroup>
+          <h1 class="header-author"><a href="/">xiaoyifeibupt</a></h1>
+        </hgroup>
 
-		
+        
+        
+        
+            <div id="switch-btn" class="switch-btn">
+                <div class="icon">
+                    <div class="icon-ctn">
+                        <div class="icon-wrap icon-house" data-idx="0">
+                            <div class="birdhouse"></div>
+                            <div class="birdhouse_holes"></div>
+                        </div>
+                        <div class="icon-wrap icon-ribbon hide" data-idx="1">
+                            <div class="ribbon"></div>
+                        </div>
+                        
+                        
+                        <div class="icon-wrap icon-me hide" data-idx="3">
+                            <div class="user"></div>
+                            <div class="shoulder"></div>
+                        </div>
+                        
+                    </div>
+                    
+                </div>
+                <div class="tips-box hide">
+                    <div class="tips-arrow"></div>
+                    <ul class="tips-inner">
+                        <li>菜单</li>
+                        <li>标签</li>
+                        
+                        
+                        <li>关于我</li>
+                        
+                    </ul>
+                </div>
+            </div>
+        
 
-		
-			<div class="switch-btn">
-				<div class="icon">
-					<div class="icon-ctn">
-						<div class="icon-wrap icon-house" data-idx="0">
-							<div class="birdhouse"></div>
-							<div class="birdhouse_holes"></div>
-						</div>
-						<div class="icon-wrap icon-ribbon hide" data-idx="1">
-							<div class="ribbon"></div>
-						</div>
-						
-						
-						<div class="icon-wrap icon-me hide" data-idx="3">
-							<div class="user"></div>
-							<div class="shoulder"></div>
-						</div>
-						
-					</div>
-					
-				</div>
-				<div class="tips-box hide">
-					<div class="tips-arrow"></div>
-					<ul class="tips-inner">
-						<li>Menu</li>
-						<li>Tags</li>
-						
-						
-						<li>About</li>
-						
-					</ul>
-				</div>
-			</div>
-		
+        <div id="switch-area" class="switch-area">
+            <div class="switch-wrap">
+                <section class="switch-part switch-part1">
+                    <nav class="header-menu">
+                        <ul>
+                        
+                            <li><a href="/">博客首页</a></li>
+                        
+                            <li><a href="/about">关于</a></li>
+                        
+                        </ul>
+                    </nav>
+                    <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fl mail" target="_blank" href="mailto:xiaoyifeibupt@163.com" title="mail">mail</a>
+                            
+                                <a class="fl github" target="_blank" href="https://github.com/xiaoyifeibupt" title="github">github</a>
+                            
+                                <a class="fl zhihu" target="_blank" href="https://www.zhihu.com/people/xiao-yifei" title="zhihu">zhihu</a>
+                            
+                                <a class="fl weibo" target="_blank" href="http://weibo.com/yifeixiao/" title="weibo">weibo</a>
+                            
+                                <a class="fl facebook" target="_blank" href="https://www.facebook.com/profile.php?id=100011123822524" title="facebook">facebook</a>
+                            
+                        </ul>
+                    </nav>
+                </section>
+                
+                
+                <section class="switch-part switch-part2">
+                    <div class="widget tagcloud" id="js-tagcloud">
+                        <a href="/tags/C/" style="font-size: 15px;">C++</a> <a href="/tags/CSAPP/" style="font-size: 10px;">CSAPP</a> <a href="/tags/Design-pattern/" style="font-size: 20px;">Design-pattern</a> <a href="/tags/http/" style="font-size: 15px;">http</a>
+                    </div>
+                </section>
+                
+                
+                
 
-		<div class="switch-area">
-			<div class="switch-wrap">
-				<section class="switch-part switch-part1">
-					<nav class="header-menu">
-						<ul>
-						
-							<li><a href="/">主页</a></li>
-				        
-							<li><a href="/archives">所有文章</a></li>
-				        
-						</ul>
-					</nav>
-					<nav class="header-nav">
-						<div class="social">
-							
-								<a class="github" target="_blank" href="https://github.com/xiaoyifeibupt" title="github">github</a>
-					        
-								<a class="weibo" target="_blank" href="http://weibo.com/yifeixiao/" title="weibo">weibo</a>
-					        
-								<a class="zhihu" target="_blank" href="https://www.zhihu.com/people/xiao-yifei" title="zhihu">zhihu</a>
-					        
-								<a class="mail" target="_blank" href="/xiaoyifeibupt@163.com" title="mail">mail</a>
-					        
-								<a class="facebook" target="_blank" href="https://www.facebook.com/profile.php?id=100011123822524" title="facebook">facebook</a>
-					        
-						</div>
-					</nav>
-				</section>
-				
-				
-				<section class="switch-part switch-part2">
-					<div class="widget tagcloud" id="js-tagcloud">
-						<a href="/tags/C/" style="font-size: 15px;">C++</a> <a href="/tags/CSAPP/" style="font-size: 10px;">CSAPP</a> <a href="/tags/Design-pattern/" style="font-size: 20px;">Design-pattern</a> <a href="/tags/http/" style="font-size: 15px;">http</a>
-					</div>
-				</section>
-				
-				
-				
-
-				
-				
-				<section class="switch-part switch-part3">
-				
-					<div id="js-aboutme">我是谁，我从哪里来，我到哪里去？我就是我，是颜色不一样的吃货…</div>
-				</section>
-				
-			</div>
-		</div>
-	</header>				
+                
+                
+                <section class="switch-part switch-part3">
+                
+                    <div id="js-aboutme">爱运动、爱交友、爱旅行、喜欢接触新鲜事物、迎接新的挑战，更爱游离于错综复杂的编码与逻辑中</div>
+                </section>
+                
+            </div>
+        </div>
+    </header>                
 </div>
-
     </div>
     <div class="mid-col">
       <nav id="mobile-nav">
-  	<div class="overlay">
-  		<div class="slider-trigger"></div>
-  		<h1 class="header-author js-mobile-header hide">xiaoyifeibupt</h1>
-  	</div>
-	<div class="intrude-less">
-		<header id="header" class="inner">
-			<div class="profilepic">
-			
-				<img lazy-src="/face.jpg" class="js-avatar">
-			
-			</div>
-			<hgroup>
-			  <h1 class="header-author">xiaoyifeibupt</h1>
-			</hgroup>
-			
-			<nav class="header-menu">
-				<ul>
-				
-					<li><a href="/">主页</a></li>
-		        
-					<li><a href="/archives">所有文章</a></li>
-		        
-		        <div class="clearfix"></div>
-				</ul>
-			</nav>
-			<nav class="header-nav">
-				<div class="social">
-					
-						<a class="github" target="_blank" href="https://github.com/xiaoyifeibupt" title="github">github</a>
-			        
-						<a class="weibo" target="_blank" href="http://weibo.com/yifeixiao/" title="weibo">weibo</a>
-			        
-						<a class="zhihu" target="_blank" href="https://www.zhihu.com/people/xiao-yifei" title="zhihu">zhihu</a>
-			        
-						<a class="mail" target="_blank" href="/xiaoyifeibupt@163.com" title="mail">mail</a>
-			        
-						<a class="facebook" target="_blank" href="https://www.facebook.com/profile.php?id=100011123822524" title="facebook">facebook</a>
-			        
-				</div>
-			</nav>
-		</header>				
-	</div>
+      <div class="overlay">
+          <div class="slider-trigger"></div>
+          <h1 class="header-author js-mobile-header hide"><a href="/" title="回到主页">xiaoyifeibupt</a></h1>
+      </div>
+    <div class="intrude-less">
+        <header id="header" class="inner">
+            <a href="/" class="profilepic">
+                
+                    <img lazy-src="/img/face.jpg" class="js-avatar">
+                
+            </a>
+            <hgroup>
+              <h1 class="header-author"><a href="/" title="回到主页">xiaoyifeibupt</a></h1>
+            </hgroup>
+            
+            <nav class="header-menu">
+                <ul>
+                
+                    <li><a href="/">博客首页</a></li>
+                
+                    <li><a href="/about">关于</a></li>
+                
+                <div class="clearfix"></div>
+                </ul>
+            </nav>
+            <nav class="header-nav">
+                <div class="social">
+                    
+                        <a class="mail" target="_blank" href="mailto:xiaoyifeibupt@163.com" title="mail">mail</a>
+                    
+                        <a class="github" target="_blank" href="https://github.com/xiaoyifeibupt" title="github">github</a>
+                    
+                        <a class="zhihu" target="_blank" href="https://www.zhihu.com/people/xiao-yifei" title="zhihu">zhihu</a>
+                    
+                        <a class="weibo" target="_blank" href="http://weibo.com/yifeixiao/" title="weibo">weibo</a>
+                    
+                        <a class="facebook" target="_blank" href="https://www.facebook.com/profile.php?id=100011123822524" title="facebook">facebook</a>
+                    
+                </div>
+            </nav>
+        </header>                
+    </div>
 </nav>
-
       <div class="body-wrap">
   
     <article id="post-2015-04-15-string-function" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
       <a href="/2015/04/15/2015-04-15-string-function/" class="article-date">
-  	<time datetime="2015-04-15T05:18:08.000Z" itemprop="datePublished">2015-04-15</time>
+      <time datetime="2015-04-15T05:18:08.000Z" itemprop="datePublished">2015-04-15</time>
 </a>
     </div>
   
@@ -203,23 +226,24 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>###strstr库函数</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//在字符串中查找指定字符串的第一次出现，不能找到则返回-1        </span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">strstr</span><span class="params">(<span class="keyword">char</span> *<span class="built_in">string</span>, <span class="keyword">char</span> *substring)</span> </span>&#123;       </span><br><span class="line">    <span class="keyword">if</span> (<span class="built_in">string</span> == <span class="literal">NULL</span> || substring == <span class="literal">NULL</span>)          </span><br><span class="line">        <span class="keyword">return</span> <span class="number">-1</span>;          </span><br><span class="line">  </span><br><span class="line">    <span class="keyword">int</span> lenstr = <span class="built_in">strlen</span>(<span class="built_in">string</span>);       </span><br><span class="line">    <span class="keyword">int</span> lensub = <span class="built_in">strlen</span>(substring);       </span><br><span class="line">  </span><br><span class="line">    <span class="keyword">if</span> (lenstr &lt; lensub)          </span><br><span class="line">        <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">  </span><br><span class="line">    <span class="keyword">int</span> len = lenstr - lensub;</span><br><span class="line">    <span class="keyword">int</span> i,j;</span><br><span class="line">    <span class="keyword">for</span> (i = <span class="number">0</span>; i &lt;= len; i++) &#123;       </span><br><span class="line">        <span class="keyword">for</span> (j = <span class="number">0</span>; j &lt; lensub; j++) &#123;       </span><br><span class="line">            <span class="keyword">if</span> (<span class="built_in">string</span>[i+j] != substring[j])       </span><br><span class="line">                <span class="keyword">break</span>;       </span><br><span class="line">        &#125;       </span><br><span class="line">        <span class="keyword">if</span> (j == lensub)       </span><br><span class="line">            <span class="keyword">return</span> i + <span class="number">1</span>; </span><br><span class="line">    &#125;       </span><br><span class="line">    <span class="keyword">return</span> <span class="number">-1</span>; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+          
+              <h3 id="strstr库函数"><a href="#strstr库函数" class="headerlink" title="strstr库函数"></a>strstr库函数</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//在字符串中查找指定字符串的第一次出现，不能找到则返回-1        </span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">strstr</span><span class="params">(<span class="keyword">char</span> *<span class="built_in">string</span>, <span class="keyword">char</span> *substring)</span> </span>&#123;       </span><br><span class="line">    <span class="keyword">if</span> (<span class="built_in">string</span> == <span class="literal">NULL</span> || substring == <span class="literal">NULL</span>)          </span><br><span class="line">        <span class="keyword">return</span> <span class="number">-1</span>;          </span><br><span class="line">  </span><br><span class="line">    <span class="keyword">int</span> lenstr = <span class="built_in">strlen</span>(<span class="built_in">string</span>);       </span><br><span class="line">    <span class="keyword">int</span> lensub = <span class="built_in">strlen</span>(substring);       </span><br><span class="line">  </span><br><span class="line">    <span class="keyword">if</span> (lenstr &lt; lensub)          </span><br><span class="line">        <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">  </span><br><span class="line">    <span class="keyword">int</span> len = lenstr - lensub;</span><br><span class="line">    <span class="keyword">int</span> i,j;</span><br><span class="line">    <span class="keyword">for</span> (i = <span class="number">0</span>; i &lt;= len; i++) &#123;       </span><br><span class="line">        <span class="keyword">for</span> (j = <span class="number">0</span>; j &lt; lensub; j++) &#123;       </span><br><span class="line">            <span class="keyword">if</span> (<span class="built_in">string</span>[i+j] != substring[j])       </span><br><span class="line">                <span class="keyword">break</span>;       </span><br><span class="line">        &#125;       </span><br><span class="line">        <span class="keyword">if</span> (j == lensub)       </span><br><span class="line">            <span class="keyword">return</span> i + <span class="number">1</span>; </span><br><span class="line">    &#125;       </span><br><span class="line">    <span class="keyword">return</span> <span class="number">-1</span>; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+          
       
     </div>
     
     <div class="article-info article-info-index">
       
       
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C/">C++</a></li></ul>
-	</div>
 
       
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C/">C++</a></li></ul>
+    </div>
 
       
         <p class="article-more-link">
-          <a  href="/2015/04/15/2015-04-15-string-function/#more">more >></a>
+          <a  href="/2015/04/15/2015-04-15-string-function/#more">深入了解 >></a>
         </p>
       
       <div class="clearfix"></div>
@@ -242,7 +266,7 @@
   
     <div class="article-meta">
       <a href="/2015/01/19/2015-01-19-effective-cpp-6/" class="article-date">
-  	<time datetime="2015-01-19T05:18:08.000Z" itemprop="datePublished">2015-01-19</time>
+      <time datetime="2015-01-19T05:18:08.000Z" itemprop="datePublished">2015-01-19</time>
 </a>
     </div>
   
@@ -264,22 +288,24 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>如果你了解C++各种特性的意义，你会发现，你对OOP的看法改变了。它不再是一项用来划分语言特性的仪典，而是可以让你通过它说出你对软件系统的想法。一旦你知道该通过它说些什么，移转至C++世界也就不再是可怕的高要求了。</p>
+          
+              <p>如果你了解C++各种特性的意义，你会发现，你对OOP的看法改变了。它不再是一项用来划分语言特性的仪典，而是可以让你通过它说出你对软件系统的想法。一旦你知道该通过它说些什么，移转至C++世界也就不再是可怕的高要求了。</p>
+          
       
     </div>
     
     <div class="article-info article-info-index">
       
       
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C/">C++</a></li></ul>
-	</div>
 
       
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C/">C++</a></li></ul>
+    </div>
 
       
         <p class="article-more-link">
-          <a  href="/2015/01/19/2015-01-19-effective-cpp-6/#more">more >></a>
+          <a  href="/2015/01/19/2015-01-19-effective-cpp-6/#more">深入了解 >></a>
         </p>
       
       <div class="clearfix"></div>
@@ -302,7 +328,7 @@
   
     <div class="article-meta">
       <a href="/2015/01/18/2015-01-18-effective-cpp-5/" class="article-date">
-  	<time datetime="2015-01-18T05:18:08.000Z" itemprop="datePublished">2015-01-18</time>
+      <time datetime="2015-01-18T05:18:08.000Z" itemprop="datePublished">2015-01-18</time>
 </a>
     </div>
   
@@ -324,22 +350,24 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>大多数情况下，适当提出拟的类定义以及函数声明，是花费最多心力的两件事。尽管如此，还是有很多东西需要小心：太快定义变量可能造成效率上的拖延；过度使用转型（casts）可能导致代码变慢又难维护，又招来微妙难解的错误；返回对象“内部数据之号码牌（handls）”可能会破坏封装并留给客户虚吊号码牌；为考虑异常带来的冲击则可能导致资源泄漏和数据败坏；过度热心地inlining可能引起代码膨胀；过度耦合则可能导致让人不满意的冗长建置时间。   </p>
+          
+              <p>大多数情况下，适当提出拟的类定义以及函数声明，是花费最多心力的两件事。尽管如此，还是有很多东西需要小心：太快定义变量可能造成效率上的拖延；过度使用转型（casts）可能导致代码变慢又难维护，又招来微妙难解的错误；返回对象“内部数据之号码牌（handls）”可能会破坏封装并留给客户虚吊号码牌；为考虑异常带来的冲击则可能导致资源泄漏和数据败坏；过度热心地inlining可能引起代码膨胀；过度耦合则可能导致让人不满意的冗长建置时间。   </p>
+          
       
     </div>
     
     <div class="article-info article-info-index">
       
       
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C/">C++</a></li></ul>
-	</div>
 
       
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C/">C++</a></li></ul>
+    </div>
 
       
         <p class="article-more-link">
-          <a  href="/2015/01/18/2015-01-18-effective-cpp-5/#more">more >></a>
+          <a  href="/2015/01/18/2015-01-18-effective-cpp-5/#more">深入了解 >></a>
         </p>
       
       <div class="clearfix"></div>
@@ -362,7 +390,7 @@
   
     <div class="article-meta">
       <a href="/2015/01/17/2015-01-17-effective-cpp-4/" class="article-date">
-  	<time datetime="2015-01-17T05:18:08.000Z" itemprop="datePublished">2015-01-17</time>
+      <time datetime="2015-01-17T05:18:08.000Z" itemprop="datePublished">2015-01-17</time>
 </a>
     </div>
   
@@ -384,24 +412,26 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>所谓软件设计，是“令软件做出你希望它做的事情”的步骤和做法，通常以颇为一般性的构想开始，最终变成十足的细节，以允许特殊接口的开发。</p>
-<p>##条款18：让接口容易被正确使用，不易被误用<br>理想上，如果客户企图使用某个接口而却没有获得他所预期的行为，这个代码不该通过编译；如果代码通过了编译，它的作为就该是客户所想要的。</p>
+          
+              <p>所谓软件设计，是“令软件做出你希望它做的事情”的步骤和做法，通常以颇为一般性的构想开始，最终变成十足的细节，以允许特殊接口的开发。</p>
+<h2 id="条款18：让接口容易被正确使用，不易被误用"><a href="#条款18：让接口容易被正确使用，不易被误用" class="headerlink" title="条款18：让接口容易被正确使用，不易被误用"></a>条款18：让接口容易被正确使用，不易被误用</h2><p>理想上，如果客户企图使用某个接口而却没有获得他所预期的行为，这个代码不该通过编译；如果代码通过了编译，它的作为就该是客户所想要的。</p>
 <p>欲开发一个“容易被正确使用，不容易被误用”的接口，首先必须考虑客户可能做出什么样的错误。<br>
+          
       
     </div>
     
     <div class="article-info article-info-index">
       
       
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C/">C++</a></li></ul>
-	</div>
 
       
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C/">C++</a></li></ul>
+    </div>
 
       
         <p class="article-more-link">
-          <a  href="/2015/01/17/2015-01-17-effective-cpp-4/#more">more >></a>
+          <a  href="/2015/01/17/2015-01-17-effective-cpp-4/#more">深入了解 >></a>
         </p>
       
       <div class="clearfix"></div>
@@ -424,7 +454,7 @@
   
     <div class="article-meta">
       <a href="/2015/01/16/2015-01-16-effective-cpp-3/" class="article-date">
-  	<time datetime="2015-01-16T05:18:08.000Z" itemprop="datePublished">2015-01-16</time>
+      <time datetime="2015-01-16T05:18:08.000Z" itemprop="datePublished">2015-01-16</time>
 </a>
     </div>
   
@@ -446,23 +476,25 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>所谓资源就是，一旦用了它，将来必须还给系统。C++程序中最常使用的资源就好似动态分配内存（如果你<code>new</code>了，却忘了<code>delete</code>，会导致内存泄露），但内存只是你必须管理的众多资源之一。其它常见的有文件描述符（file descriptors）、互斥器（mutex）、图形界面中的字形和画刷。数据库连接以及网络sockets。当你不使用它们时，记得还给系统。</p>
+          
+              <p>所谓资源就是，一旦用了它，将来必须还给系统。C++程序中最常使用的资源就好似动态分配内存（如果你<code>new</code>了，却忘了<code>delete</code>，会导致内存泄露），但内存只是你必须管理的众多资源之一。其它常见的有文件描述符（file descriptors）、互斥器（mutex）、图形界面中的字形和画刷。数据库连接以及网络sockets。当你不使用它们时，记得还给系统。</p>
 <p>当你考虑到异常、函数内多重回传路径、程序维护员改动软件却没能充分理解随之而来的冲击，那么资源管理就显得复杂的多。</p>
+          
       
     </div>
     
     <div class="article-info article-info-index">
       
       
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C/">C++</a></li></ul>
-	</div>
 
       
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C/">C++</a></li></ul>
+    </div>
 
       
         <p class="article-more-link">
-          <a  href="/2015/01/16/2015-01-16-effective-cpp-3/#more">more >></a>
+          <a  href="/2015/01/16/2015-01-16-effective-cpp-3/#more">深入了解 >></a>
         </p>
       
       <div class="clearfix"></div>
@@ -485,7 +517,7 @@
   
     <div class="article-meta">
       <a href="/2015/01/11/2015-01-11-effective-cpp-2/" class="article-date">
-  	<time datetime="2015-01-11T05:18:08.000Z" itemprop="datePublished">2015-01-11</time>
+      <time datetime="2015-01-11T05:18:08.000Z" itemprop="datePublished">2015-01-11</time>
 </a>
     </div>
   
@@ -507,22 +539,24 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>几乎你写的每个类都会有一或多个构造函数、一个析构函数、一个拷贝赋值操作符。如果这些函数犯错，会导致深远且令人不愉快的后果，遍及整个类。所以确保它们行为正确时生死攸关的大事。</p>
+          
+              <p>几乎你写的每个类都会有一或多个构造函数、一个析构函数、一个拷贝赋值操作符。如果这些函数犯错，会导致深远且令人不愉快的后果，遍及整个类。所以确保它们行为正确时生死攸关的大事。</p>
+          
       
     </div>
     
     <div class="article-info article-info-index">
       
       
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C/">C++</a></li></ul>
-	</div>
 
       
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C/">C++</a></li></ul>
+    </div>
 
       
         <p class="article-more-link">
-          <a  href="/2015/01/11/2015-01-11-effective-cpp-2/#more">more >></a>
+          <a  href="/2015/01/11/2015-01-11-effective-cpp-2/#more">深入了解 >></a>
         </p>
       
       <div class="clearfix"></div>
@@ -545,7 +579,7 @@
   
     <div class="article-meta">
       <a href="/2015/01/09/2015-01-09-effective-cpp-1/" class="article-date">
-  	<time datetime="2015-01-09T05:18:08.000Z" itemprop="datePublished">2015-01-09</time>
+      <time datetime="2015-01-09T05:18:08.000Z" itemprop="datePublished">2015-01-09</time>
 </a>
     </div>
   
@@ -567,28 +601,30 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>##条款01：视C++为一个语言联邦<br>为了更好的理解C++，我们将C++分解为四个主要次语言：</p>
+          
+              <h2 id="条款01：视C-为一个语言联邦"><a href="#条款01：视C-为一个语言联邦" class="headerlink" title="条款01：视C++为一个语言联邦"></a>条款01：视C++为一个语言联邦</h2><p>为了更好的理解C++，我们将C++分解为四个主要次语言：</p>
 <ul>
 <li>C：说到底C++仍是以C为基础。区块，语句，预处理器，内置数据类型，数组，指针统统来自C。</li>
 <li>Object-Oreinted C++：这一部分是面向对象设计之古典守则在C++上的最直接实施。类，封装，继承，多态，virtual函数等等…</li>
 <li>Template C++：这是C++泛型编程部分。</li>
 <li>STL：STL是个template程序库。容器（containers），迭代器（iterators），算法（algorithms）以及函数对象（function objects）…</li>
 </ul>
+          
       
     </div>
     
     <div class="article-info article-info-index">
       
       
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C/">C++</a></li></ul>
-	</div>
 
       
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C/">C++</a></li></ul>
+    </div>
 
       
         <p class="article-more-link">
-          <a  href="/2015/01/09/2015-01-09-effective-cpp-1/#more">more >></a>
+          <a  href="/2015/01/09/2015-01-09-effective-cpp-1/#more">深入了解 >></a>
         </p>
       
       <div class="clearfix"></div>
@@ -611,7 +647,7 @@
   
     <div class="article-meta">
       <a href="/2014/12/29/2014-12-29-xhttpd-makefile/" class="article-date">
-  	<time datetime="2014-12-29T05:18:08.000Z" itemprop="datePublished">2014-12-29</time>
+      <time datetime="2014-12-29T05:18:08.000Z" itemprop="datePublished">2014-12-29</time>
 </a>
     </div>
   
@@ -633,22 +669,24 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>一个工程中的源文件不计其数，其按类型、功能、模块分别放在若干个目录中，makefile定义了一系列的规则来指定，哪些文件需要先编译，哪些文件需要后编译，哪些文件需要重新编译，甚至于进行更复杂的功能操作，因为 makefile就像一个Shell脚本一样，其中也可以执行操作系统的命令。</p>
+          
+              <p>一个工程中的源文件不计其数，其按类型、功能、模块分别放在若干个目录中，makefile定义了一系列的规则来指定，哪些文件需要先编译，哪些文件需要后编译，哪些文件需要重新编译，甚至于进行更复杂的功能操作，因为 makefile就像一个Shell脚本一样，其中也可以执行操作系统的命令。</p>
+          
       
     </div>
     
     <div class="article-info article-info-index">
       
       
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/http/">http</a></li></ul>
-	</div>
 
       
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/http/">http</a></li></ul>
+    </div>
 
       
         <p class="article-more-link">
-          <a  href="/2014/12/29/2014-12-29-xhttpd-makefile/#more">more >></a>
+          <a  href="/2014/12/29/2014-12-29-xhttpd-makefile/#more">深入了解 >></a>
         </p>
       
       <div class="clearfix"></div>
@@ -671,7 +709,7 @@
   
     <div class="article-meta">
       <a href="/2014/12/23/2014-12-23-xhttpd-epollnote/" class="article-date">
-  	<time datetime="2014-12-23T05:18:08.000Z" itemprop="datePublished">2014-12-23</time>
+      <time datetime="2014-12-23T05:18:08.000Z" itemprop="datePublished">2014-12-23</time>
 </a>
     </div>
   
@@ -693,22 +731,24 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>Linux中 ”一切皆文件的概念“使得我们可以很方便地理解与文件相关的操作。网络编程中遇到的基本函数是 select、epoll、accept、read、write这5个，在阻塞和非阻塞模式下，对他们的调用，尤其是对返回值的判断处理很不同，下面做深入描述</p>
+          
+              <p>Linux中 ”一切皆文件的概念“使得我们可以很方便地理解与文件相关的操作。网络编程中遇到的基本函数是 select、epoll、accept、read、write这5个，在阻塞和非阻塞模式下，对他们的调用，尤其是对返回值的判断处理很不同，下面做深入描述</p>
+          
       
     </div>
     
     <div class="article-info article-info-index">
       
       
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/http/">http</a></li></ul>
-	</div>
 
       
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/http/">http</a></li></ul>
+    </div>
 
       
         <p class="article-more-link">
-          <a  href="/2014/12/23/2014-12-23-xhttpd-epollnote/#more">more >></a>
+          <a  href="/2014/12/23/2014-12-23-xhttpd-epollnote/#more">深入了解 >></a>
         </p>
       
       <div class="clearfix"></div>
@@ -731,7 +771,7 @@
   
     <div class="article-meta">
       <a href="/2014/12/21/2014-12-21-xhttpd-epoll/" class="article-date">
-  	<time datetime="2014-12-21T05:18:08.000Z" itemprop="datePublished">2014-12-21</time>
+      <time datetime="2014-12-21T05:18:08.000Z" itemprop="datePublished">2014-12-21</time>
 </a>
     </div>
   
@@ -753,22 +793,24 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>epoll是Linux内核为处理大批量文件描述符而作了改进的epoll，是Linux下多路复用IO接口select/poll的增强版本，它能显著提高程序在大量并发连接中只有少量活跃的情况下的系统CPU利用率。另一点原因就是获取事件的时候，它无须遍历整个被侦听的描述符集，只要遍历那些被内核IO事件异步唤醒而加入Ready队列的描述符集合就行了。epoll除了提供select/poll那种IO事件的水平触发（Level Triggered）外，还提供了边缘触发（Edge Triggered），这就使得用户空间程序有可能缓存IO状态，减少epoll_wait/epoll_pwait的调用，提高应用程序效率。</p>
+          
+              <p>epoll是Linux内核为处理大批量文件描述符而作了改进的epoll，是Linux下多路复用IO接口select/poll的增强版本，它能显著提高程序在大量并发连接中只有少量活跃的情况下的系统CPU利用率。另一点原因就是获取事件的时候，它无须遍历整个被侦听的描述符集，只要遍历那些被内核IO事件异步唤醒而加入Ready队列的描述符集合就行了。epoll除了提供select/poll那种IO事件的水平触发（Level Triggered）外，还提供了边缘触发（Edge Triggered），这就使得用户空间程序有可能缓存IO状态，减少epoll_wait/epoll_pwait的调用，提高应用程序效率。</p>
+          
       
     </div>
     
     <div class="article-info article-info-index">
       
       
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/http/">http</a></li></ul>
-	</div>
 
       
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/http/">http</a></li></ul>
+    </div>
 
       
         <p class="article-more-link">
-          <a  href="/2014/12/21/2014-12-21-xhttpd-epoll/#more">more >></a>
+          <a  href="/2014/12/21/2014-12-21-xhttpd-epoll/#more">深入了解 >></a>
         </p>
       
       <div class="clearfix"></div>
@@ -794,61 +836,76 @@
   
 </div>
       <footer id="footer">
-  <div class="outer">
-    <div id="footer-info">
-    	<div class="footer-left">
-    		&copy; 2016 xiaoyifeibupt
-    	</div>
-      	<div class="footer-right">
-      		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
-      	</div>
+    <div class="outer">
+        <div id="footer-info">
+            <div class="footer-left">
+                &copy; 2016 xiaoyifeibupt
+            </div>
+            <div class="footer-right">
+                <a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/luuman/hexo-theme-spfk" target="_blank">spfk</a> by luuman
+            </div>
+        </div>
+        
     </div>
-  </div>
 </footer>
+
     </div>
-    
-  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
-
-
-<script>
-	var yiliaConfig = {
-		fancybox: true,
-		mathjax: true,
-		animate: true,
-		isHome: true,
-		isPost: false,
-		isArchive: false,
-		isTag: false,
-		isCategory: false,
-		open_in_new: false
-	}
-</script>
-<script src="http://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+    <script src="http://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
 <script src="/js/main.js"></script>
 
+    <script>
+        $(document).ready(function() {
+            var backgroundnum = 24;
+            var backgroundimg = "url(/background/bg-x.jpg)".replace(/x/gi, Math.ceil(Math.random() * backgroundnum));
+            $("#mobile-nav").css({"background-image": backgroundimg,"background-size": "cover","background-position": "center"});
+            $(".left-col").css({"background-image": backgroundimg,"background-size": "cover","background-position": "center"});
+        })
+    </script>
 
 
 
 
 
-<script type="text/x-mathjax-config">
-MathJax.Hub.Config({
-    tex2jax: {
-        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
-        processEscapes: true,
-        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
-    }
-});
-
-MathJax.Hub.Queue(function() {
-    var all = MathJax.Hub.getAllJax(), i;
-    for(i=0; i < all.length; i += 1) {
-        all[i].SourceElement().parentNode.className += ' has-jax';                 
-    }       
-});
+<div class="scroll" id="scroll">
+    <a href="#"><i class="fa fa-arrow-up"></i></a>
+    <a href="#comments"><i class="fa fa-comments-o"></i></a>
+    <a href="#footer"><i class="fa fa-arrow-down"></i></a>
+</div>
+<script>
+    $(document).ready(function() {
+        if ($("#comments").length < 1) {
+            $("#scroll > a:nth-child(2)").hide();
+        };
+    })
 </script>
 
-<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+
+  <script language="javascript">
+    $(function() {
+        $("a[title]").each(function() {
+            var a = $(this);
+            var title = a.attr('title');
+            if (title == undefined || title == "") return;
+            a.data('title', title).removeAttr('title').hover(
+
+            function() {
+                var offset = a.offset();
+                $("<div id=\"anchortitlecontainer\"></div>").appendTo($("body")).html(title).css({
+                    top: offset.top - a.outerHeight() - 15,
+                    left: offset.left + a.outerWidth()/2 + 1
+                }).fadeIn(function() {
+                    var pop = $(this);
+                    setTimeout(function() {
+                        pop.remove();
+                    }, pop.text().length * 800);
+                });
+            }, function() {
+                $("#anchortitlecontainer").remove();
+            });
+        });
+    });
 </script>
 
 

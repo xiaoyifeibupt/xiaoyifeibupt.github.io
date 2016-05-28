@@ -3,7 +3,6 @@
 <head>
   <meta charset="utf-8">
   
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <title>设计模式--策略/模板方法/观察者/迭代子/责任链/命令 | xiaoyifeibupt&#39;s blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="第一类：通过父类与子类的关系进行实现。第二类：两个类之间。第三类：类的状态。第四类：通过中间类
@@ -42,11 +41,10 @@
 
 
 
-###策略模式（strategy）
-策略模式定义了一系列算法，并">
+策略模式（strategy）策略模式定义了一系列算法，并将每个算">
 <meta property="og:type" content="article">
 <meta property="og:title" content="设计模式--策略/模板方法/观察者/迭代子/责任链/命令">
-<meta property="og:url" content="http://yoursite.com/2014/11/18/2014-11-18-Design-pattern-strategy-Template-Observer-Iterator-ChainofResponsibility-Command/index.html">
+<meta property="og:url" content="http://xiaoyifeibupt.github.io/2014/11/18/2014-11-18-Design-pattern-strategy-Template-Observer-Iterator-ChainofResponsibility-Command/index.html">
 <meta property="og:site_name" content="xiaoyifeibupt's blog">
 <meta property="og:description" content="第一类：通过父类与子类的关系进行实现。第二类：两个类之间。第三类：类的状态。第四类：通过中间类
 
@@ -84,9 +82,8 @@
 
 
 
-###策略模式（strategy）
-策略模式定义了一系列算法，并">
-<meta property="og:updated_time" content="2016-05-24T11:59:46.000Z">
+策略模式（strategy）策略模式定义了一系列算法，并将每个算">
+<meta property="og:updated_time" content="2016-05-28T03:12:35.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="设计模式--策略/模板方法/观察者/迭代子/责任链/命令">
 <meta name="twitter:description" content="第一类：通过父类与子类的关系进行实现。第二类：两个类之间。第三类：类的状态。第四类：通过中间类
@@ -125,173 +122,193 @@
 
 
 
-###策略模式（strategy）
-策略模式定义了一系列算法，并">
+策略模式（strategy）策略模式定义了一系列算法，并将每个算">
   
     <link rel="alternative" href="/atom.xml" title="xiaoyifeibupt&#39;s blog" type="application/atom+xml">
   
   
-    <link rel="icon" href="/favicon.ico">
+    <link rel="icon" href="/img/favicon.ico">
+  
+  
+  <link rel="stylesheet" href="//cdn.bootcss.com/animate.css/3.5.0/animate.min.css">
   
   <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/font-awesome/css/font-awesome.min.css">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  
+  
+      <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  
+  <!-- 加载特效 -->
+    <script src="/js/pace.js"></script>
+    <link href="/css/pace/pace-theme-flash.css" rel="stylesheet" />
+  <script>
+      var yiliaConfig = {
+          fancybox: true,
+          animate: true,
+          isHome: false,
+          isPost: true,
+          isArchive: false,
+          isTag: false,
+          isCategory: false,
+          open_in_new: false
+      }
+  </script>
 </head>
-
 <body>
   <div id="container">
     <div class="left-col">
     <div class="overlay"></div>
 <div class="intrude-less">
-	<header id="header" class="inner">
-		<a href="/" class="profilepic">
-			
-			<img lazy-src="/face.jpg" class="js-avatar">
-			
-		</a>
+    <header id="header" class="inner">
+        <a href="/" class="profilepic">
+            
+            <img lazy-src="/img/face.jpg" class="js-avatar">
+            
+        </a>
 
-		<hgroup>
-		  <h1 class="header-author"><a href="/">xiaoyifeibupt</a></h1>
-		</hgroup>
+        <hgroup>
+          <h1 class="header-author"><a href="/">xiaoyifeibupt</a></h1>
+        </hgroup>
 
-		
+        
+        
+        
+            <div id="switch-btn" class="switch-btn">
+                <div class="icon">
+                    <div class="icon-ctn">
+                        <div class="icon-wrap icon-house" data-idx="0">
+                            <div class="birdhouse"></div>
+                            <div class="birdhouse_holes"></div>
+                        </div>
+                        <div class="icon-wrap icon-ribbon hide" data-idx="1">
+                            <div class="ribbon"></div>
+                        </div>
+                        
+                        
+                        <div class="icon-wrap icon-me hide" data-idx="3">
+                            <div class="user"></div>
+                            <div class="shoulder"></div>
+                        </div>
+                        
+                    </div>
+                    
+                </div>
+                <div class="tips-box hide">
+                    <div class="tips-arrow"></div>
+                    <ul class="tips-inner">
+                        <li>菜单</li>
+                        <li>标签</li>
+                        
+                        
+                        <li>关于我</li>
+                        
+                    </ul>
+                </div>
+            </div>
+        
 
-		
-			<div class="switch-btn">
-				<div class="icon">
-					<div class="icon-ctn">
-						<div class="icon-wrap icon-house" data-idx="0">
-							<div class="birdhouse"></div>
-							<div class="birdhouse_holes"></div>
-						</div>
-						<div class="icon-wrap icon-ribbon hide" data-idx="1">
-							<div class="ribbon"></div>
-						</div>
-						
-						
-						<div class="icon-wrap icon-me hide" data-idx="3">
-							<div class="user"></div>
-							<div class="shoulder"></div>
-						</div>
-						
-					</div>
-					
-				</div>
-				<div class="tips-box hide">
-					<div class="tips-arrow"></div>
-					<ul class="tips-inner">
-						<li>Menu</li>
-						<li>Tags</li>
-						
-						
-						<li>About</li>
-						
-					</ul>
-				</div>
-			</div>
-		
+        <div id="switch-area" class="switch-area">
+            <div class="switch-wrap">
+                <section class="switch-part switch-part1">
+                    <nav class="header-menu">
+                        <ul>
+                        
+                            <li><a href="/">博客首页</a></li>
+                        
+                            <li><a href="/about">关于</a></li>
+                        
+                        </ul>
+                    </nav>
+                    <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fl mail" target="_blank" href="mailto:xiaoyifeibupt@163.com" title="mail">mail</a>
+                            
+                                <a class="fl github" target="_blank" href="https://github.com/xiaoyifeibupt" title="github">github</a>
+                            
+                                <a class="fl zhihu" target="_blank" href="https://www.zhihu.com/people/xiao-yifei" title="zhihu">zhihu</a>
+                            
+                                <a class="fl weibo" target="_blank" href="http://weibo.com/yifeixiao/" title="weibo">weibo</a>
+                            
+                                <a class="fl facebook" target="_blank" href="https://www.facebook.com/profile.php?id=100011123822524" title="facebook">facebook</a>
+                            
+                        </ul>
+                    </nav>
+                </section>
+                
+                
+                <section class="switch-part switch-part2">
+                    <div class="widget tagcloud" id="js-tagcloud">
+                        <a href="/tags/C/" style="font-size: 15px;">C++</a> <a href="/tags/CSAPP/" style="font-size: 10px;">CSAPP</a> <a href="/tags/Design-pattern/" style="font-size: 20px;">Design-pattern</a> <a href="/tags/http/" style="font-size: 15px;">http</a>
+                    </div>
+                </section>
+                
+                
+                
 
-		<div class="switch-area">
-			<div class="switch-wrap">
-				<section class="switch-part switch-part1">
-					<nav class="header-menu">
-						<ul>
-						
-							<li><a href="/">主页</a></li>
-				        
-							<li><a href="/archives">所有文章</a></li>
-				        
-						</ul>
-					</nav>
-					<nav class="header-nav">
-						<div class="social">
-							
-								<a class="github" target="_blank" href="https://github.com/xiaoyifeibupt" title="github">github</a>
-					        
-								<a class="weibo" target="_blank" href="http://weibo.com/yifeixiao/" title="weibo">weibo</a>
-					        
-								<a class="zhihu" target="_blank" href="https://www.zhihu.com/people/xiao-yifei" title="zhihu">zhihu</a>
-					        
-								<a class="mail" target="_blank" href="/xiaoyifeibupt@163.com" title="mail">mail</a>
-					        
-								<a class="facebook" target="_blank" href="https://www.facebook.com/profile.php?id=100011123822524" title="facebook">facebook</a>
-					        
-						</div>
-					</nav>
-				</section>
-				
-				
-				<section class="switch-part switch-part2">
-					<div class="widget tagcloud" id="js-tagcloud">
-						<a href="/tags/C/" style="font-size: 15px;">C++</a> <a href="/tags/CSAPP/" style="font-size: 10px;">CSAPP</a> <a href="/tags/Design-pattern/" style="font-size: 20px;">Design-pattern</a> <a href="/tags/http/" style="font-size: 15px;">http</a>
-					</div>
-				</section>
-				
-				
-				
-
-				
-				
-				<section class="switch-part switch-part3">
-				
-					<div id="js-aboutme">我是谁，我从哪里来，我到哪里去？我就是我，是颜色不一样的吃货…</div>
-				</section>
-				
-			</div>
-		</div>
-	</header>				
+                
+                
+                <section class="switch-part switch-part3">
+                
+                    <div id="js-aboutme">爱运动、爱交友、爱旅行、喜欢接触新鲜事物、迎接新的挑战，更爱游离于错综复杂的编码与逻辑中</div>
+                </section>
+                
+            </div>
+        </div>
+    </header>                
 </div>
-
     </div>
     <div class="mid-col">
       <nav id="mobile-nav">
-  	<div class="overlay">
-  		<div class="slider-trigger"></div>
-  		<h1 class="header-author js-mobile-header hide">xiaoyifeibupt</h1>
-  	</div>
-	<div class="intrude-less">
-		<header id="header" class="inner">
-			<div class="profilepic">
-			
-				<img lazy-src="/face.jpg" class="js-avatar">
-			
-			</div>
-			<hgroup>
-			  <h1 class="header-author">xiaoyifeibupt</h1>
-			</hgroup>
-			
-			<nav class="header-menu">
-				<ul>
-				
-					<li><a href="/">主页</a></li>
-		        
-					<li><a href="/archives">所有文章</a></li>
-		        
-		        <div class="clearfix"></div>
-				</ul>
-			</nav>
-			<nav class="header-nav">
-				<div class="social">
-					
-						<a class="github" target="_blank" href="https://github.com/xiaoyifeibupt" title="github">github</a>
-			        
-						<a class="weibo" target="_blank" href="http://weibo.com/yifeixiao/" title="weibo">weibo</a>
-			        
-						<a class="zhihu" target="_blank" href="https://www.zhihu.com/people/xiao-yifei" title="zhihu">zhihu</a>
-			        
-						<a class="mail" target="_blank" href="/xiaoyifeibupt@163.com" title="mail">mail</a>
-			        
-						<a class="facebook" target="_blank" href="https://www.facebook.com/profile.php?id=100011123822524" title="facebook">facebook</a>
-			        
-				</div>
-			</nav>
-		</header>				
-	</div>
+      <div class="overlay">
+          <div class="slider-trigger"></div>
+          <h1 class="header-author js-mobile-header hide"><a href="/" title="回到主页">xiaoyifeibupt</a></h1>
+      </div>
+    <div class="intrude-less">
+        <header id="header" class="inner">
+            <a href="/" class="profilepic">
+                
+                    <img lazy-src="/img/face.jpg" class="js-avatar">
+                
+            </a>
+            <hgroup>
+              <h1 class="header-author"><a href="/" title="回到主页">xiaoyifeibupt</a></h1>
+            </hgroup>
+            
+            <nav class="header-menu">
+                <ul>
+                
+                    <li><a href="/">博客首页</a></li>
+                
+                    <li><a href="/about">关于</a></li>
+                
+                <div class="clearfix"></div>
+                </ul>
+            </nav>
+            <nav class="header-nav">
+                <div class="social">
+                    
+                        <a class="mail" target="_blank" href="mailto:xiaoyifeibupt@163.com" title="mail">mail</a>
+                    
+                        <a class="github" target="_blank" href="https://github.com/xiaoyifeibupt" title="github">github</a>
+                    
+                        <a class="zhihu" target="_blank" href="https://www.zhihu.com/people/xiao-yifei" title="zhihu">zhihu</a>
+                    
+                        <a class="weibo" target="_blank" href="http://weibo.com/yifeixiao/" title="weibo">weibo</a>
+                    
+                        <a class="facebook" target="_blank" href="https://www.facebook.com/profile.php?id=100011123822524" title="facebook">facebook</a>
+                    
+                </div>
+            </nav>
+        </header>                
+    </div>
 </nav>
-
       <div class="body-wrap"><article id="post-2014-11-18-Design-pattern-strategy-Template-Observer-Iterator-ChainofResponsibility-Command" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
       <a href="/2014/11/18/2014-11-18-Design-pattern-strategy-Template-Observer-Iterator-ChainofResponsibility-Command/" class="article-date">
-  	<time datetime="2014-11-18T11:18:08.000Z" itemprop="datePublished">2014-11-18</time>
+      <time datetime="2014-11-18T11:18:08.000Z" itemprop="datePublished">2014-11-18</time>
 </a>
     </div>
   
@@ -312,11 +329,11 @@
       
       <div class="article-info article-info-post">
         
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Design-pattern/">Design-pattern</a></li></ul>
-	</div>
 
         
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Design-pattern/">Design-pattern</a></li></ul>
+    </div>
 
         <div class="clearfix"></div>
       </div>
@@ -324,6 +341,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
+          
         <p>第一类：通过父类与子类的关系进行实现。第二类：两个类之间。第三类：类的状态。第四类：通过中间类</p>
 <table>
 <thead>
@@ -360,8 +378,7 @@
 </tr>
 </tbody>
 </table>
-<p>###策略模式（strategy）</p>
-<p>策略模式定义了一系列算法，并将每个算法封装起来，使他们可以相互替换，且算法的变化不会影响到使用算法的客户。需要设计一个接口，为一系列实现类提供统一的方法，多个实现类实现该接口，设计一个抽象类（可有可无，属于辅助类），提供辅助函数，关系图如下：<br><a id="more"></a></p>
+<h2 id="策略模式（strategy）"><a href="#策略模式（strategy）" class="headerlink" title="策略模式（strategy）"></a>策略模式（strategy）</h2><p>策略模式定义了一系列算法，并将每个算法封装起来，使他们可以相互替换，且算法的变化不会影响到使用算法的客户。需要设计一个接口，为一系列实现类提供统一的方法，多个实现类实现该接口，设计一个抽象类（可有可无，属于辅助类），提供辅助函数，关系图如下：<br><a id="more"></a></p>
 <p>图中ICalculator提供同意的方法，<br>AbstractCalculator是辅助类，提供辅助方法，接下来，依次实现下每个类：</p>
 <p>首先统一接口：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">ICalculator</span> </span>&#123;  </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">calculate</span><span class="params">(String exp)</span></span>;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -375,16 +392,14 @@
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">StrategyTest</span> </span>&#123;  </span><br><span class="line">  </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;  </span><br><span class="line">        String exp = <span class="string">"2+8"</span>;  </span><br><span class="line">        ICalculator cal = <span class="keyword">new</span> Plus();  </span><br><span class="line">        <span class="keyword">int</span> result = cal.calculate(exp);  </span><br><span class="line">        System.out.println(result);  </span><br><span class="line">    &#125;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>输出：10</p>
 <p>策略模式的决定权在用户，系统本身提供不同算法的实现，新增或者删除算法，对各种算法做封装。因此，策略模式多用在算法决策系统中，外部用户只需要决定用哪个算法即可。</p>
-<p>###模板方法模式（Template Method）</p>
-<p>解释一下模板方法模式，就是指：一个抽象类中，有一个主方法，再定义1…n个方法，可以是抽象的，也可以是实际的方法，定义一个类，继承该抽象类，重写抽象方法，通过调用抽象类，实现对子类的调用，先看个关系图：</p>
+<h2 id="模板方法模式（Template-Method）"><a href="#模板方法模式（Template-Method）" class="headerlink" title="模板方法模式（Template Method）"></a>模板方法模式（Template Method）</h2><p>解释一下模板方法模式，就是指：一个抽象类中，有一个主方法，再定义1…n个方法，可以是抽象的，也可以是实际的方法，定义一个类，继承该抽象类，重写抽象方法，通过调用抽象类，实现对子类的调用，先看个关系图：</p>
 <p>就是在AbstractCalculator类中定义一个主方法calculate，calculate()调用spilt()等，Plus和Minus分别继承AbstractCalculator类，通过对AbstractCalculator的调用实现对子类的调用，看下面的例子：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="class"><span class="keyword">class</span> <span class="title">AbstractCalculator</span> </span>&#123;  </span><br><span class="line">      </span><br><span class="line">    <span class="comment">// 主方法，实现对本类其它方法的调用</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">final</span> <span class="keyword">int</span> <span class="title">calculate</span><span class="params">(String exp,String opt)</span></span>&#123;  </span><br><span class="line">        <span class="keyword">int</span> array[] = split(exp,opt);  </span><br><span class="line">        <span class="keyword">return</span> calculate(array[<span class="number">0</span>],array[<span class="number">1</span>]);  </span><br><span class="line">    &#125;  </span><br><span class="line">      </span><br><span class="line">    <span class="comment">// 被子类重写的方法</span></span><br><span class="line">    <span class="function"><span class="keyword">abstract</span> <span class="keyword">public</span> <span class="keyword">int</span> <span class="title">calculate</span><span class="params">(<span class="keyword">int</span> num1,<span class="keyword">int</span> num2)</span></span>;  </span><br><span class="line">      </span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">int</span>[] split(String exp,String opt)&#123;  </span><br><span class="line">        String array[] = exp.split(opt);  </span><br><span class="line">        <span class="keyword">int</span> arrayInt[] = <span class="keyword">new</span> <span class="keyword">int</span>[<span class="number">2</span>];  </span><br><span class="line">        arrayInt[<span class="number">0</span>] = Integer.parseInt(array[<span class="number">0</span>]);  </span><br><span class="line">        arrayInt[<span class="number">1</span>] = Integer.parseInt(array[<span class="number">1</span>]);  </span><br><span class="line">        <span class="keyword">return</span> arrayInt;  </span><br><span class="line">    &#125;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Plus</span> <span class="keyword">extends</span> <span class="title">AbstractCalculator</span> </span>&#123;  </span><br><span class="line">  </span><br><span class="line">    <span class="meta">@Override</span>  </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">calculate</span><span class="params">(<span class="keyword">int</span> num1,<span class="keyword">int</span> num2)</span> </span>&#123;  </span><br><span class="line">        <span class="keyword">return</span> num1 + num2;  </span><br><span class="line">    &#125;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>测试类：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">StrategyTest</span> </span>&#123;  </span><br><span class="line">  </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;  </span><br><span class="line">        String exp = <span class="string">"8+8"</span>;  </span><br><span class="line">        AbstractCalculator cal = <span class="keyword">new</span> Plus();  </span><br><span class="line">        <span class="keyword">int</span> result = cal.calculate(exp, <span class="string">"\\+"</span>);  </span><br><span class="line">        System.out.println(result);  </span><br><span class="line">    &#125;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>我跟踪下这个小程序的执行过程：首先将exp和”\+”做参数，调用AbstractCalculator类里的calculate(String,String)方法，在calculate(String,String)里调用同类的split()，之后再调用calculate(int ,int)方法，从这个方法进入到子类中，执行完return num1 + num2后，将值返回到AbstractCalculator类，赋给result，打印出来。正好验证了我们开头的思路。</p>
-<p>###观察者模式（Observer）</p>
-<p>包括这个模式在内的接下来的四个模式，都是类和类之间的关系，不涉及到继承，学的时候应该 记得归纳，记得本文最开始的那个图。观察者模式很好理解，类似于邮件订阅和RSS订阅，当我们浏览一些博客或wiki时，经常会看到RSS图标，就这的意思是，当你订阅了该文章，如果后续有更新，会及时通知你。其实，简单来讲就一句话：当一个对象变化时，其它依赖该对象的对象都会收到通知，并且随着变化！对象之间是一种一对多的关系。先来看看关系图：</p>
+<h2 id="观察者模式（Observer）"><a href="#观察者模式（Observer）" class="headerlink" title="观察者模式（Observer）"></a>观察者模式（Observer）</h2><p>包括这个模式在内的接下来的四个模式，都是类和类之间的关系，不涉及到继承，学的时候应该 记得归纳，记得本文最开始的那个图。观察者模式很好理解，类似于邮件订阅和RSS订阅，当我们浏览一些博客或wiki时，经常会看到RSS图标，就这的意思是，当你订阅了该文章，如果后续有更新，会及时通知你。其实，简单来讲就一句话：当一个对象变化时，其它依赖该对象的对象都会收到通知，并且随着变化！对象之间是一种一对多的关系。先来看看关系图：</p>
 <p>我解释下这些类的作用：MySubject类就是我们的主对象，Observer1和Observer2是依赖于MySubject的对象，当MySubject变化时，Observer1和Observer2必然变化。AbstractSubject类中定义着需要监控的对象列表，可以对其进行修改：增加或删除被监控对象，且当MySubject变化时，负责通知在列表内存在的对象。我们看实现代码：</p>
 <p>一个Observer接口：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Observer</span> </span>&#123;  </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">update</span><span class="params">()</span></span>;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -401,8 +416,7 @@
 <p>update self!</p>
 <p>observer1 has received!</p>
 <p>observer2 has received!</p>
-<p>###迭代子模式（Iterator）</p>
-<p>顾名思义，迭代器模式就是顺序访问聚集中的对象，一般来说，集合中非常常见，如果对集合类比较熟悉的话，理解本模式会十分轻松。这句话包含两层意思：一是需要遍历的对象，即聚集对象，二是迭代器对象，用于对聚集对象进行遍历访问。我们看下关系图：</p>
+<h2 id="迭代子模式（Iterator）"><a href="#迭代子模式（Iterator）" class="headerlink" title="迭代子模式（Iterator）"></a>迭代子模式（Iterator）</h2><p>顾名思义，迭代器模式就是顺序访问聚集中的对象，一般来说，集合中非常常见，如果对集合类比较熟悉的话，理解本模式会十分轻松。这句话包含两层意思：一是需要遍历的对象，即聚集对象，二是迭代器对象，用于对聚集对象进行遍历访问。我们看下关系图：</p>
 <p>这个思路和我们常用的一模一样，MyCollection中定义了集合的一些操作，MyIterator中定义了一系列迭代操作，且持有Collection实例，我们来看看实现代码：</p>
 <p>两个接口：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Collection</span> </span>&#123;  </span><br><span class="line">      </span><br><span class="line">    <span class="function"><span class="keyword">public</span> Iterator <span class="title">iterator</span><span class="params">()</span></span>;  </span><br><span class="line">      </span><br><span class="line">    <span class="comment">// 取得集合元素  </span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Object <span class="title">get</span><span class="params">(<span class="keyword">int</span> i)</span></span>;  </span><br><span class="line">      </span><br><span class="line">    <span class="comment">// 取得集合大小 </span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">size</span><span class="params">()</span></span>;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -414,7 +428,7 @@
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Test</span> </span>&#123;  </span><br><span class="line">  </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;  </span><br><span class="line">        Collection collection = <span class="keyword">new</span> MyCollection();  </span><br><span class="line">        Iterator it = collection.iterator();  </span><br><span class="line">          </span><br><span class="line">        <span class="keyword">while</span>(it.hasNext())&#123;  </span><br><span class="line">            System.out.println(it.next());  </span><br><span class="line">        &#125;  </span><br><span class="line">    &#125;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>输出：A B C D E</p>
 <p>此处我们貌似模拟了一个集合类的过程，感觉是不是很爽？其实JDK中各个类也都是这些基本的东西，加一些设计模式，再加一些优化放到一起的，只要我们把这些东西学会了，掌握好了，我们也可以写出自己的集合类，甚至框架！</p>
-<p>###责任链模式（Chain of Responsibility）<br>接下来我们将要谈谈责任链模式，有多个对象，每个对象持有对下一个对象的引用，这样就会形成一条链，请求在这条链上传递，直到某一对象决定处理该请求。但是发出者并不清楚到底最终那个对象会处理该请求，所以，责任链模式可以实现，在隐瞒客户端的情况下，对系统进行动态的调整。先看看关系图：</p>
+<h2 id="责任链模式（Chain-of-Responsibility）"><a href="#责任链模式（Chain-of-Responsibility）" class="headerlink" title="责任链模式（Chain of Responsibility）"></a>责任链模式（Chain of Responsibility）</h2><p>接下来我们将要谈谈责任链模式，有多个对象，每个对象持有对下一个对象的引用，这样就会形成一条链，请求在这条链上传递，直到某一对象决定处理该请求。但是发出者并不清楚到底最终那个对象会处理该请求，所以，责任链模式可以实现，在隐瞒客户端的情况下，对系统进行动态的调整。先看看关系图：</p>
 <p>Abstracthandler类提供了get和set方法，方便MyHandle类设置和修改引用对象，MyHandle类是核心，实例化后生成一系列相互持有的对象，构成一条链。</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Handler</span> </span>&#123;  </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">operator</span><span class="params">()</span></span>;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="class"><span class="keyword">class</span> <span class="title">AbstractHandler</span> </span>&#123;  </span><br><span class="line">      </span><br><span class="line">    <span class="keyword">private</span> Handler handler;  </span><br><span class="line">  </span><br><span class="line">    <span class="function"><span class="keyword">public</span> Handler <span class="title">getHandler</span><span class="params">()</span> </span>&#123;  </span><br><span class="line">        <span class="keyword">return</span> handler;  </span><br><span class="line">    &#125;  </span><br><span class="line">  </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setHandler</span><span class="params">(Handler handler)</span> </span>&#123;  </span><br><span class="line">        <span class="keyword">this</span>.handler = handler;  </span><br><span class="line">    &#125;  </span><br><span class="line">      </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -425,8 +439,7 @@
 <p>h2deal!</p>
 <p>h3deal!</p>
 <p>此处强调一点就是，链接上的请求可以是一条链，可以是一个树，还可以是一个环，模式本身不约束这个，需要我们自己去实现，同时，在一个时刻，命令只允许由一个对象传给另一个对象，而不允许传给多个对象。</p>
-<p>###命令模式（Command）</p>
-<p>命令模式很好理解，举个例子，司令员下令让士兵去干件事情，从整个事情的角度来考虑，司令员的作用是，发出口令，口令经过传递，传到了士兵耳朵里，士兵去执行。这个过程好在，三者相互解耦，任何一方都不用去依赖其他人，只需要做好自己的事儿就行，司令员要的是结果，不会去关注到底士兵是怎么实现的。我们看看关系图：</p>
+<h2 id="命令模式（Command）"><a href="#命令模式（Command）" class="headerlink" title="命令模式（Command）"></a>命令模式（Command）</h2><p>命令模式很好理解，举个例子，司令员下令让士兵去干件事情，从整个事情的角度来考虑，司令员的作用是，发出口令，口令经过传递，传到了士兵耳朵里，士兵去执行。这个过程好在，三者相互解耦，任何一方都不用去依赖其他人，只需要做好自己的事儿就行，司令员要的是结果，不会去关注到底士兵是怎么实现的。我们看看关系图：</p>
 <p>Invoker是调用者（司令员），Receiver是被调用者（士兵），MyCommand是命令，实现了Command接口，持有接收对象，看实现代码：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Command</span> </span>&#123;  </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">exe</span><span class="params">()</span></span>;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyCommand</span> <span class="keyword">implements</span> <span class="title">Command</span> </span>&#123;  </span><br><span class="line">  </span><br><span class="line">    <span class="keyword">private</span> Receiver receiver;  </span><br><span class="line">      </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">MyCommand</span><span class="params">(Receiver receiver)</span> </span>&#123;  </span><br><span class="line">        <span class="keyword">this</span>.receiver = receiver;  </span><br><span class="line">    &#125;  </span><br><span class="line">  </span><br><span class="line">    <span class="meta">@Override</span>  </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">exe</span><span class="params">()</span> </span>&#123;  </span><br><span class="line">        receiver.action();  </span><br><span class="line">    &#125;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -442,6 +455,24 @@
   </div>
   
     
+    <div class="copyright">
+        <p><span>本文标题:</span><a href="/2014/11/18/2014-11-18-Design-pattern-strategy-Template-Observer-Iterator-ChainofResponsibility-Command/">设计模式--策略/模板方法/观察者/迭代子/责任链/命令</a></p>
+        <p><span>文章作者:</span><a href="/" title="访问 xiaoyifeibupt 的个人博客">xiaoyifeibupt</a></p>
+        <p><span>发布时间:</span>2014年11月18日 - 19时18分</p>
+        <p><span>最后更新:</span>2016年05月28日 - 11时12分</p>
+        <p>
+            <span>原始链接:</span><a class="post-url" href="/2014/11/18/2014-11-18-Design-pattern-strategy-Template-Observer-Iterator-ChainofResponsibility-Command/" title="设计模式--策略/模板方法/观察者/迭代子/责任链/命令">http://xiaoyifeibupt.github.io/2014/11/18/2014-11-18-Design-pattern-strategy-Template-Observer-Iterator-ChainofResponsibility-Command/</a>
+            <span class="copy-path" data-clipboard-text="原文: http://xiaoyifeibupt.github.io/2014/11/18/2014-11-18-Design-pattern-strategy-Template-Observer-Iterator-ChainofResponsibility-Command/　　作者: xiaoyifeibupt" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <script src="/js/clipboard.min.js"></script>
+            <script> var clipboard = new Clipboard('.copy-path'); </script>
+        </p>
+        <p>
+            <span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/cn/" title="中国大陆 (CC BY-NC-SA 3.0 CN)" target = "_blank">"署名-非商用-相同方式共享 3.0"</a> 转载请保留原文链接及作者。
+        </p>
+    </div>
+
+
+
 <nav id="article-nav">
   
     <a href="/2014/11/23/2014-11-23-Design-pattern-Decorator-Memento-State-Visitor-Mediator-Interpreter/" id="article-nav-newer" class="article-nav-link-wrap">
@@ -464,109 +495,167 @@
   
 </article>
 
-
-<div class="share_jia">
-	<!-- JiaThis Button BEGIN -->
-	<div class="jiathis_style">
-		<span class="jiathis_txt">Share to: &nbsp; </span>
-		<a class="jiathis_button_facebook"></a> 
-    <a class="jiathis_button_twitter"></a>
-    <a class="jiathis_button_plus"></a> 
-    <a class="jiathis_button_tsina"></a>
-		<a class="jiathis_button_cqq"></a>
-		<a class="jiathis_button_douban"></a>
-		<a class="jiathis_button_weixin"></a>
-		<a class="jiathis_button_tumblr"></a>
-    <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
-	</div>
-	<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1405949716054953" charset="utf-8"></script>
-	<!-- JiaThis Button END -->
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#策略模式（strategy）"><span class="toc-number">1.</span> <span class="toc-text">策略模式（strategy）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#模板方法模式（Template-Method）"><span class="toc-number">2.</span> <span class="toc-text">模板方法模式（Template Method）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#观察者模式（Observer）"><span class="toc-number">3.</span> <span class="toc-text">观察者模式（Observer）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#迭代子模式（Iterator）"><span class="toc-number">4.</span> <span class="toc-text">迭代子模式（Iterator）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#责任链模式（Chain-of-Responsibility）"><span class="toc-number">5.</span> <span class="toc-text">责任链模式（Chain of Responsibility）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#命令模式（Command）"><span class="toc-number">6.</span> <span class="toc-text">命令模式（Command）</span></a></li></ol>
 </div>
+<input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
+
+<script src="http://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+<script>
+    var valueHide = "隐藏目录";
+    var valueShow = "显示目录";
+
+    if ($(".left-col").is(":hidden")) {
+        $("#tocButton").attr("value", valueShow);
+    }
+    $("#tocButton").click(function() {
+        if ($("#toc").is(":hidden")) {
+            $("#tocButton").attr("value", valueHide);
+            $("#toc").slideDown(320);
+        }
+        else {
+            $("#tocButton").attr("value", valueShow);
+            $("#toc").slideUp(350);
+        }
+    })
+    if ($(".toc").length < 1) {
+        $("#toc, #tocButton").hide();
+    }
+</script>
 
 
 
 
 
-
-<div class="duoshuo">
-	<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="2014-11-18-Design-pattern-strategy-Template-Observer-Iterator-ChainofResponsibility-Command" data-title="设计模式--策略/模板方法/观察者/迭代子/责任链/命令" data-url="http://yoursite.com/2014/11/18/2014-11-18-Design-pattern-strategy-Template-Observer-Iterator-ChainofResponsibility-Command/"></div>
-	<!-- 多说评论框 end -->
-	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
-	<script type="text/javascript">
-	var duoshuoQuery = {short_name:"flase"};
-	(function() {
-		var ds = document.createElement('script');
-		ds.type = 'text/javascript';ds.async = true;
-		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
-		ds.charset = 'UTF-8';
-		(document.getElementsByTagName('head')[0] 
-		 || document.getElementsByTagName('body')[0]).appendChild(ds);
-	})();
-	</script>
-	<!-- 多说公共JS代码 end -->
+<div class="bdsharebuttonbox">
+	<a href="#" class="fx fa-weibo bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+	<a href="#" class="fx fa-weixin bds_weixin" data-cmd="weixin" title="分享到微信"></a>
+	<a href="#" class="fx fa-qq bds_sqq" data-cmd="sqq" title="分享到QQ好友"></a>
+	<a href="#" class="fx fa-facebook-official bds_fbook" data-cmd="fbook" title="分享到Facebook"></a>
+	<a href="#" class="fx fa-twitter bds_twi" data-cmd="twi" title="分享到Twitter"></a>
+	<a href="#" class="fx fa-linkedin bds_linkedin" data-cmd="linkedin" title="分享到linkedin"></a>
+	<a href="#" class="fx fa-files-o bds_copy" data-cmd="copy" title="分享到复制网址"></a>
 </div>
+<script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"2","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
 
 
 
 
+    
+
+
+
+    <div class="scroll" id="post-nav-button">
+        
+            <a href="/2014/11/23/2014-11-23-Design-pattern-Decorator-Memento-State-Visitor-Mediator-Interpreter/" title="上一篇: 设计模式--备忘录/状态/访问者/中介者/解释器">
+                <i class="fa fa-angle-left"></i>
+            </a>
+        
+        <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+        
+            <a href="/2014/11/15/2014-11-15-Design-pattern-Decorator-Proxy-Facade-Bridge-Composite-Flyweight/" title="下一篇: 设计模式--装饰/代理/外观/桥接/组合/享元">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        
+    </div>
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2015/04/15/2015-04-15-string-function/">字符串相关库函数</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/01/19/2015-01-19-effective-cpp-6/">Effective C++ —— 继承与面向对象设计</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/01/18/2015-01-18-effective-cpp-5/">Effective C++ —— 实现</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/01/17/2015-01-17-effective-cpp-4/">Effective C++ —— 设计与声明</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/01/16/2015-01-16-effective-cpp-3/">Effective C++ —— 资源管理</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/01/11/2015-01-11-effective-cpp-2/">Effective C++ —— 构造析构赋值运算</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/01/09/2015-01-09-effective-cpp-1/">Effective C++ —— 让自己习惯C++</a></li><li class="post-list-item"><a class="post-list-link" href="/2014/12/29/2014-12-29-xhttpd-makefile/">从零开始实现自己的httpd——Makefile</a></li><li class="post-list-item"><a class="post-list-link" href="/2014/12/23/2014-12-23-xhttpd-epollnote/">从零开始实现自己的httpd——epoll读写数据的注意事项</a></li><li class="post-list-item"><a class="post-list-link" href="/2014/12/21/2014-12-21-xhttpd-epoll/">从零开始实现自己的httpd——epoll</a></li><li class="post-list-item"><a class="post-list-link" href="/2014/12/19/2014-12-19-xhttpd-socket/">从零开始实现自己的httpd——socket</a></li><li class="post-list-item"><a class="post-list-link" href="/2014/12/18/2014-12-18-xhttpd-buffer/">从零开始实现自己的httpd——buffer</a></li><li class="post-list-item"><a class="post-list-link" href="/2014/12/16/2014-12-16-http- tinyhttpd/">C 语言实现最简单的 HTTP 服务器tinyhttpd详解</a></li><li class="post-list-item"><a class="post-list-link" href="/2014/12/15/2014-12-15-http-protocol/">HTTP协议介绍</a></li><li class="post-list-item"><a class="post-list-link" href="/2014/11/25/2014-11-25-CSAPP-chapter-2/">CSAPP——信息的表示和处理</a></li><li class="post-list-item"><a class="post-list-link" href="/2014/11/23/2014-11-23-Design-pattern-Decorator-Memento-State-Visitor-Mediator-Interpreter/">设计模式--备忘录/状态/访问者/中介者/解释器</a></li><li class="post-list-item"><a class="post-list-link" href="/2014/11/18/2014-11-18-Design-pattern-strategy-Template-Observer-Iterator-ChainofResponsibility-Command/">设计模式--策略/模板方法/观察者/迭代子/责任链/命令</a></li><li class="post-list-item"><a class="post-list-link" href="/2014/11/15/2014-11-15-Design-pattern-Decorator-Proxy-Facade-Bridge-Composite-Flyweight/">设计模式--装饰/代理/外观/桥接/组合/享元</a></li><li class="post-list-item"><a class="post-list-link" href="/2014/11/12/2014-11-12-Design-pattern-Adapter/">设计模式--适配器模式</a></li><li class="post-list-item"><a class="post-list-link" href="/2014/11/10/2014-11-10-Design-pattern-Builder/">设计模式--建造者模式</a></li><li class="post-list-item"><a class="post-list-link" href="/2014/11/09/2014-11-09-Design-pattern-Prototype/">设计模式--原型模式</a></li><li class="post-list-item"><a class="post-list-link" href="/2014/11/08/2014-11-08-Design-pattern-Singleton/">设计模式--单例模式</a></li><li class="post-list-item"><a class="post-list-link" href="/2014/11/07/2014-11-07-Design-pattern-Abstract-Factory/">设计模式--抽象工厂模式</a></li><li class="post-list-item"><a class="post-list-link" href="/2014/11/05/2014-11-05-Design-pattern-Factory-Method/">设计模式--工程模式</a></li></ul>
+    <script src="http://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+    <script>
+        $(".post-list").addClass("toc-article");
+        $(".post-list-item a").attr("target","_blank");
+        $("#post-nav-button > a:nth-child(2)").click(function() {
+            $(".fa-bars, .fa-times").toggle();
+            $(".post-list").toggle(300);
+            if ($(".toc").length > 0) {
+                $("#toc, #tocButton").toggle(200, function() {
+                    if ($(".switch-area").is(":visible")) {
+                        $("#tocButton").attr("value", valueHide);
+                        }
+                    })
+            }
+            else {
+            }
+        })
+    </script>
+
+
+
+    <script>
+        
+    </script>
 </div>
       <footer id="footer">
-  <div class="outer">
-    <div id="footer-info">
-    	<div class="footer-left">
-    		&copy; 2016 xiaoyifeibupt
-    	</div>
-      	<div class="footer-right">
-      		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
-      	</div>
+    <div class="outer">
+        <div id="footer-info">
+            <div class="footer-left">
+                &copy; 2016 xiaoyifeibupt
+            </div>
+            <div class="footer-right">
+                <a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/luuman/hexo-theme-spfk" target="_blank">spfk</a> by luuman
+            </div>
+        </div>
+        
     </div>
-  </div>
 </footer>
+
     </div>
-    
-  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
-
-
-<script>
-	var yiliaConfig = {
-		fancybox: true,
-		mathjax: true,
-		animate: true,
-		isHome: false,
-		isPost: true,
-		isArchive: false,
-		isTag: false,
-		isCategory: false,
-		open_in_new: false
-	}
-</script>
-<script src="http://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+    <script src="http://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
 <script src="/js/main.js"></script>
 
+    <script>
+        $(document).ready(function() {
+            var backgroundnum = 24;
+            var backgroundimg = "url(/background/bg-x.jpg)".replace(/x/gi, Math.ceil(Math.random() * backgroundnum));
+            $("#mobile-nav").css({"background-image": backgroundimg,"background-size": "cover","background-position": "center"});
+            $(".left-col").css({"background-image": backgroundimg,"background-size": "cover","background-position": "center"});
+        })
+    </script>
 
 
 
 
 
-<script type="text/x-mathjax-config">
-MathJax.Hub.Config({
-    tex2jax: {
-        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
-        processEscapes: true,
-        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
-    }
-});
-
-MathJax.Hub.Queue(function() {
-    var all = MathJax.Hub.getAllJax(), i;
-    for(i=0; i < all.length; i += 1) {
-        all[i].SourceElement().parentNode.className += ' has-jax';                 
-    }       
-});
+<div class="scroll" id="scroll">
+    <a href="#"><i class="fa fa-arrow-up"></i></a>
+    <a href="#comments"><i class="fa fa-comments-o"></i></a>
+    <a href="#footer"><i class="fa fa-arrow-down"></i></a>
+</div>
+<script>
+    $(document).ready(function() {
+        if ($("#comments").length < 1) {
+            $("#scroll > a:nth-child(2)").hide();
+        };
+    })
 </script>
 
-<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+
+  <script language="javascript">
+    $(function() {
+        $("a[title]").each(function() {
+            var a = $(this);
+            var title = a.attr('title');
+            if (title == undefined || title == "") return;
+            a.data('title', title).removeAttr('title').hover(
+
+            function() {
+                var offset = a.offset();
+                $("<div id=\"anchortitlecontainer\"></div>").appendTo($("body")).html(title).css({
+                    top: offset.top - a.outerHeight() - 15,
+                    left: offset.left + a.outerWidth()/2 + 1
+                }).fadeIn(function() {
+                    var pop = $(this);
+                    setTimeout(function() {
+                        pop.remove();
+                    }, pop.text().length * 800);
+                });
+            }, function() {
+                $("#anchortitlecontainer").remove();
+            });
+        });
+    });
 </script>
 
 

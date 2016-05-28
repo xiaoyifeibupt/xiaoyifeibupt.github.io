@@ -3,190 +3,210 @@
 <head>
   <meta charset="utf-8">
   
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <title>Effective C++ —— 设计与声明 | xiaoyifeibupt&#39;s blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="所谓软件设计，是“令软件做出你希望它做的事情”的步骤和做法，通常以颇为一般性的构想开始，最终变成十足的细节，以允许特殊接口的开发。
-##条款18：让接口容易被正确使用，不易被误用理想上，如果客户企图使用某个接口而却没有获得他所预期的行为，这个代码不该通过编译；如果代码通过了编译，它的作为就该是客户所想要的。
+条款18：让接口容易被正确使用，不易被误用理想上，如果客户企图使用某个接口而却没有获得他所预期的行为，这个代码不该通过编译；如果代码通过了编译，它的作为就该是客户所想要的。
 欲开发一个“容易被正确使用，不容易被误用”的接口，首先必须考虑客户可能做出什么样的错误。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Effective C++ —— 设计与声明">
-<meta property="og:url" content="http://yoursite.com/2015/01/17/2015-01-17-effective-cpp-4/index.html">
+<meta property="og:url" content="http://xiaoyifeibupt.github.io/2015/01/17/2015-01-17-effective-cpp-4/index.html">
 <meta property="og:site_name" content="xiaoyifeibupt's blog">
 <meta property="og:description" content="所谓软件设计，是“令软件做出你希望它做的事情”的步骤和做法，通常以颇为一般性的构想开始，最终变成十足的细节，以允许特殊接口的开发。
-##条款18：让接口容易被正确使用，不易被误用理想上，如果客户企图使用某个接口而却没有获得他所预期的行为，这个代码不该通过编译；如果代码通过了编译，它的作为就该是客户所想要的。
+条款18：让接口容易被正确使用，不易被误用理想上，如果客户企图使用某个接口而却没有获得他所预期的行为，这个代码不该通过编译；如果代码通过了编译，它的作为就该是客户所想要的。
 欲开发一个“容易被正确使用，不容易被误用”的接口，首先必须考虑客户可能做出什么样的错误。">
-<meta property="og:updated_time" content="2016-05-26T11:59:04.000Z">
+<meta property="og:updated_time" content="2016-05-28T03:05:15.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Effective C++ —— 设计与声明">
 <meta name="twitter:description" content="所谓软件设计，是“令软件做出你希望它做的事情”的步骤和做法，通常以颇为一般性的构想开始，最终变成十足的细节，以允许特殊接口的开发。
-##条款18：让接口容易被正确使用，不易被误用理想上，如果客户企图使用某个接口而却没有获得他所预期的行为，这个代码不该通过编译；如果代码通过了编译，它的作为就该是客户所想要的。
+条款18：让接口容易被正确使用，不易被误用理想上，如果客户企图使用某个接口而却没有获得他所预期的行为，这个代码不该通过编译；如果代码通过了编译，它的作为就该是客户所想要的。
 欲开发一个“容易被正确使用，不容易被误用”的接口，首先必须考虑客户可能做出什么样的错误。">
   
     <link rel="alternative" href="/atom.xml" title="xiaoyifeibupt&#39;s blog" type="application/atom+xml">
   
   
-    <link rel="icon" href="/favicon.ico">
+    <link rel="icon" href="/img/favicon.ico">
+  
+  
+  <link rel="stylesheet" href="//cdn.bootcss.com/animate.css/3.5.0/animate.min.css">
   
   <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/font-awesome/css/font-awesome.min.css">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  
+  
+      <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  
+  <!-- 加载特效 -->
+    <script src="/js/pace.js"></script>
+    <link href="/css/pace/pace-theme-flash.css" rel="stylesheet" />
+  <script>
+      var yiliaConfig = {
+          fancybox: true,
+          animate: true,
+          isHome: false,
+          isPost: true,
+          isArchive: false,
+          isTag: false,
+          isCategory: false,
+          open_in_new: false
+      }
+  </script>
 </head>
-
 <body>
   <div id="container">
     <div class="left-col">
     <div class="overlay"></div>
 <div class="intrude-less">
-	<header id="header" class="inner">
-		<a href="/" class="profilepic">
-			
-			<img lazy-src="/face.jpg" class="js-avatar">
-			
-		</a>
+    <header id="header" class="inner">
+        <a href="/" class="profilepic">
+            
+            <img lazy-src="/img/face.jpg" class="js-avatar">
+            
+        </a>
 
-		<hgroup>
-		  <h1 class="header-author"><a href="/">xiaoyifeibupt</a></h1>
-		</hgroup>
+        <hgroup>
+          <h1 class="header-author"><a href="/">xiaoyifeibupt</a></h1>
+        </hgroup>
 
-		
+        
+        
+        
+            <div id="switch-btn" class="switch-btn">
+                <div class="icon">
+                    <div class="icon-ctn">
+                        <div class="icon-wrap icon-house" data-idx="0">
+                            <div class="birdhouse"></div>
+                            <div class="birdhouse_holes"></div>
+                        </div>
+                        <div class="icon-wrap icon-ribbon hide" data-idx="1">
+                            <div class="ribbon"></div>
+                        </div>
+                        
+                        
+                        <div class="icon-wrap icon-me hide" data-idx="3">
+                            <div class="user"></div>
+                            <div class="shoulder"></div>
+                        </div>
+                        
+                    </div>
+                    
+                </div>
+                <div class="tips-box hide">
+                    <div class="tips-arrow"></div>
+                    <ul class="tips-inner">
+                        <li>菜单</li>
+                        <li>标签</li>
+                        
+                        
+                        <li>关于我</li>
+                        
+                    </ul>
+                </div>
+            </div>
+        
 
-		
-			<div class="switch-btn">
-				<div class="icon">
-					<div class="icon-ctn">
-						<div class="icon-wrap icon-house" data-idx="0">
-							<div class="birdhouse"></div>
-							<div class="birdhouse_holes"></div>
-						</div>
-						<div class="icon-wrap icon-ribbon hide" data-idx="1">
-							<div class="ribbon"></div>
-						</div>
-						
-						
-						<div class="icon-wrap icon-me hide" data-idx="3">
-							<div class="user"></div>
-							<div class="shoulder"></div>
-						</div>
-						
-					</div>
-					
-				</div>
-				<div class="tips-box hide">
-					<div class="tips-arrow"></div>
-					<ul class="tips-inner">
-						<li>Menu</li>
-						<li>Tags</li>
-						
-						
-						<li>About</li>
-						
-					</ul>
-				</div>
-			</div>
-		
+        <div id="switch-area" class="switch-area">
+            <div class="switch-wrap">
+                <section class="switch-part switch-part1">
+                    <nav class="header-menu">
+                        <ul>
+                        
+                            <li><a href="/">博客首页</a></li>
+                        
+                            <li><a href="/about">关于</a></li>
+                        
+                        </ul>
+                    </nav>
+                    <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fl mail" target="_blank" href="mailto:xiaoyifeibupt@163.com" title="mail">mail</a>
+                            
+                                <a class="fl github" target="_blank" href="https://github.com/xiaoyifeibupt" title="github">github</a>
+                            
+                                <a class="fl zhihu" target="_blank" href="https://www.zhihu.com/people/xiao-yifei" title="zhihu">zhihu</a>
+                            
+                                <a class="fl weibo" target="_blank" href="http://weibo.com/yifeixiao/" title="weibo">weibo</a>
+                            
+                                <a class="fl facebook" target="_blank" href="https://www.facebook.com/profile.php?id=100011123822524" title="facebook">facebook</a>
+                            
+                        </ul>
+                    </nav>
+                </section>
+                
+                
+                <section class="switch-part switch-part2">
+                    <div class="widget tagcloud" id="js-tagcloud">
+                        <a href="/tags/C/" style="font-size: 15px;">C++</a> <a href="/tags/CSAPP/" style="font-size: 10px;">CSAPP</a> <a href="/tags/Design-pattern/" style="font-size: 20px;">Design-pattern</a> <a href="/tags/http/" style="font-size: 15px;">http</a>
+                    </div>
+                </section>
+                
+                
+                
 
-		<div class="switch-area">
-			<div class="switch-wrap">
-				<section class="switch-part switch-part1">
-					<nav class="header-menu">
-						<ul>
-						
-							<li><a href="/">主页</a></li>
-				        
-							<li><a href="/archives">所有文章</a></li>
-				        
-						</ul>
-					</nav>
-					<nav class="header-nav">
-						<div class="social">
-							
-								<a class="github" target="_blank" href="https://github.com/xiaoyifeibupt" title="github">github</a>
-					        
-								<a class="weibo" target="_blank" href="http://weibo.com/yifeixiao/" title="weibo">weibo</a>
-					        
-								<a class="zhihu" target="_blank" href="https://www.zhihu.com/people/xiao-yifei" title="zhihu">zhihu</a>
-					        
-								<a class="mail" target="_blank" href="/xiaoyifeibupt@163.com" title="mail">mail</a>
-					        
-								<a class="facebook" target="_blank" href="https://www.facebook.com/profile.php?id=100011123822524" title="facebook">facebook</a>
-					        
-						</div>
-					</nav>
-				</section>
-				
-				
-				<section class="switch-part switch-part2">
-					<div class="widget tagcloud" id="js-tagcloud">
-						<a href="/tags/C/" style="font-size: 15px;">C++</a> <a href="/tags/CSAPP/" style="font-size: 10px;">CSAPP</a> <a href="/tags/Design-pattern/" style="font-size: 20px;">Design-pattern</a> <a href="/tags/http/" style="font-size: 15px;">http</a>
-					</div>
-				</section>
-				
-				
-				
-
-				
-				
-				<section class="switch-part switch-part3">
-				
-					<div id="js-aboutme">我是谁，我从哪里来，我到哪里去？我就是我，是颜色不一样的吃货…</div>
-				</section>
-				
-			</div>
-		</div>
-	</header>				
+                
+                
+                <section class="switch-part switch-part3">
+                
+                    <div id="js-aboutme">爱运动、爱交友、爱旅行、喜欢接触新鲜事物、迎接新的挑战，更爱游离于错综复杂的编码与逻辑中</div>
+                </section>
+                
+            </div>
+        </div>
+    </header>                
 </div>
-
     </div>
     <div class="mid-col">
       <nav id="mobile-nav">
-  	<div class="overlay">
-  		<div class="slider-trigger"></div>
-  		<h1 class="header-author js-mobile-header hide">xiaoyifeibupt</h1>
-  	</div>
-	<div class="intrude-less">
-		<header id="header" class="inner">
-			<div class="profilepic">
-			
-				<img lazy-src="/face.jpg" class="js-avatar">
-			
-			</div>
-			<hgroup>
-			  <h1 class="header-author">xiaoyifeibupt</h1>
-			</hgroup>
-			
-			<nav class="header-menu">
-				<ul>
-				
-					<li><a href="/">主页</a></li>
-		        
-					<li><a href="/archives">所有文章</a></li>
-		        
-		        <div class="clearfix"></div>
-				</ul>
-			</nav>
-			<nav class="header-nav">
-				<div class="social">
-					
-						<a class="github" target="_blank" href="https://github.com/xiaoyifeibupt" title="github">github</a>
-			        
-						<a class="weibo" target="_blank" href="http://weibo.com/yifeixiao/" title="weibo">weibo</a>
-			        
-						<a class="zhihu" target="_blank" href="https://www.zhihu.com/people/xiao-yifei" title="zhihu">zhihu</a>
-			        
-						<a class="mail" target="_blank" href="/xiaoyifeibupt@163.com" title="mail">mail</a>
-			        
-						<a class="facebook" target="_blank" href="https://www.facebook.com/profile.php?id=100011123822524" title="facebook">facebook</a>
-			        
-				</div>
-			</nav>
-		</header>				
-	</div>
+      <div class="overlay">
+          <div class="slider-trigger"></div>
+          <h1 class="header-author js-mobile-header hide"><a href="/" title="回到主页">xiaoyifeibupt</a></h1>
+      </div>
+    <div class="intrude-less">
+        <header id="header" class="inner">
+            <a href="/" class="profilepic">
+                
+                    <img lazy-src="/img/face.jpg" class="js-avatar">
+                
+            </a>
+            <hgroup>
+              <h1 class="header-author"><a href="/" title="回到主页">xiaoyifeibupt</a></h1>
+            </hgroup>
+            
+            <nav class="header-menu">
+                <ul>
+                
+                    <li><a href="/">博客首页</a></li>
+                
+                    <li><a href="/about">关于</a></li>
+                
+                <div class="clearfix"></div>
+                </ul>
+            </nav>
+            <nav class="header-nav">
+                <div class="social">
+                    
+                        <a class="mail" target="_blank" href="mailto:xiaoyifeibupt@163.com" title="mail">mail</a>
+                    
+                        <a class="github" target="_blank" href="https://github.com/xiaoyifeibupt" title="github">github</a>
+                    
+                        <a class="zhihu" target="_blank" href="https://www.zhihu.com/people/xiao-yifei" title="zhihu">zhihu</a>
+                    
+                        <a class="weibo" target="_blank" href="http://weibo.com/yifeixiao/" title="weibo">weibo</a>
+                    
+                        <a class="facebook" target="_blank" href="https://www.facebook.com/profile.php?id=100011123822524" title="facebook">facebook</a>
+                    
+                </div>
+            </nav>
+        </header>                
+    </div>
 </nav>
-
       <div class="body-wrap"><article id="post-2015-01-17-effective-cpp-4" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
       <a href="/2015/01/17/2015-01-17-effective-cpp-4/" class="article-date">
-  	<time datetime="2015-01-17T05:18:08.000Z" itemprop="datePublished">2015-01-17</time>
+      <time datetime="2015-01-17T05:18:08.000Z" itemprop="datePublished">2015-01-17</time>
 </a>
     </div>
   
@@ -207,11 +227,11 @@
       
       <div class="article-info article-info-post">
         
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C/">C++</a></li></ul>
-	</div>
 
         
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C/">C++</a></li></ul>
+    </div>
 
         <div class="clearfix"></div>
       </div>
@@ -219,8 +239,9 @@
     
     <div class="article-entry" itemprop="articleBody">
       
+          
         <p>所谓软件设计，是“令软件做出你希望它做的事情”的步骤和做法，通常以颇为一般性的构想开始，最终变成十足的细节，以允许特殊接口的开发。</p>
-<p>##条款18：让接口容易被正确使用，不易被误用<br>理想上，如果客户企图使用某个接口而却没有获得他所预期的行为，这个代码不该通过编译；如果代码通过了编译，它的作为就该是客户所想要的。</p>
+<h2 id="条款18：让接口容易被正确使用，不易被误用"><a href="#条款18：让接口容易被正确使用，不易被误用" class="headerlink" title="条款18：让接口容易被正确使用，不易被误用"></a>条款18：让接口容易被正确使用，不易被误用</h2><p>理想上，如果客户企图使用某个接口而却没有获得他所预期的行为，这个代码不该通过编译；如果代码通过了编译，它的作为就该是客户所想要的。</p>
 <p>欲开发一个“容易被正确使用，不容易被误用”的接口，首先必须考虑客户可能做出什么样的错误。<br><a id="more"></a></p>
 <p>许多客户端错误可以因为导入新类型而获得预防。在防范“不值得拥有的代码”上，类型系统是你的主要同盟国。</p>
 <figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">struct Day &#123; </span><br><span class="line">	explicit Day(int d)        //explicit 避免隐式的转换。</span><br><span class="line">		:val(d) &#123;&#125;</span><br><span class="line">	int val; </span><br><span class="line">&#125;;</span><br><span class="line">```   </span><br><span class="line"></span><br><span class="line"></span><br><span class="line">对日期进行类似的类型封装，能有效地避免不恰当的日期赋值。</span><br><span class="line"></span><br><span class="line">“除非有好的理由，否则应该尽量令你的类型（定义的类）的行为与内置类型一致”。</span><br><span class="line"></span><br><span class="line">在资源管理方面，也许我们应该“先发制人”，即让函数返回一个资源的指针改为返回一个只能指针。</span><br><span class="line"></span><br><span class="line">例如：</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">```cpp</span><br><span class="line">std::tr1::shared_ptr&lt;Investment&gt; createInvestment();</span><br></pre></td></tr></table></figure>
@@ -235,8 +256,7 @@
 <li>“阻止误用”的办法包括建立新类型、限制类型上的操作，束缚对象值，以及消除客户的资源管理责任。</li>
 <li><code>tr1::shared_ptr</code>支持定制删除器。这可防范DLL问题，可被用来自动解除互斥量等等。   </li>
 </ul>
-<p>##条款19：设计class犹如设计type</p>
-<p>C++就像在其它面向对象编程语言一样，当你定义一个新class，也就定义了一个新type。这意味着你并不只是类的设计者，更是类型的设计者。重载函数和操作符、控制内存的分配和归还、定义对象的初始化和终结……全部在你手上。</p>
+<h2 id="条款19：设计class犹如设计type"><a href="#条款19：设计class犹如设计type" class="headerlink" title="条款19：设计class犹如设计type"></a>条款19：设计class犹如设计type</h2><p>C++就像在其它面向对象编程语言一样，当你定义一个新class，也就定义了一个新type。这意味着你并不只是类的设计者，更是类型的设计者。重载函数和操作符、控制内存的分配和归还、定义对象的初始化和终结……全部在你手上。</p>
 <p>设计优秀的类是一项艰巨的工作，因为涉及好的类型是一项艰巨的工作。好的类型有自然的语法，直观的语义，以及一或多个高效实现品。</p>
 <p>设计一个良好的类，或者称作类型，考虑一下设计规范：</p>
 <ul>
@@ -257,8 +277,7 @@
 <ul>
 <li>Class的设计就是type的设计。在定义一个新的type之前，请确定你已经考虑过本条款覆盖的所有讨论主题。</li>
 </ul>
-<p>##条款20：宁以pass-by-reference-to-const替代psss-by-value</p>
-<p>缺省情况下C++以by value方式传递对象至函数。除非你另外指定，否则函数参数都是以实际实参的副本为初值，而调用端所获得的亦是返回值的一个副本。这些副本由对象的拷贝构造函数产生。</p>
+<h2 id="条款20：宁以pass-by-reference-to-const替代psss-by-value"><a href="#条款20：宁以pass-by-reference-to-const替代psss-by-value" class="headerlink" title="条款20：宁以pass-by-reference-to-const替代psss-by-value"></a>条款20：宁以pass-by-reference-to-const替代psss-by-value</h2><p>缺省情况下C++以by value方式传递对象至函数。除非你另外指定，否则函数参数都是以实际实参的副本为初值，而调用端所获得的亦是返回值的一个副本。这些副本由对象的拷贝构造函数产生。</p>
 <p>所以在以对象为by value时，可能会调用相应的构造函数（成员对象的构造、基类对象的构造），然后调用对应的析构函数。所以以by value的形式开销还是比较大的。</p>
 <p>如果我们用<code>pass-by-reference-to-const</code>，例如：</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">validateStudent</span><span class="params">(<span class="keyword">const</span> Student&amp; s)</span></span>; <span class="comment">//const，希望别对传入对象进行不恰当的修改；</span></span><br></pre></td></tr></table></figure>
@@ -270,8 +289,7 @@
 <li>尽量以pass-by-reference-to-const替代pass-by-value。前者通常比较高效，并可避免切割问题。</li>
 <li>以上规则并不使用于内置类型，以及STL的迭代器和函数对象。对它们而言，pass-by-value往往比较适当。   </li>
 </ul>
-<p>##条款21：必须返回对象时，别妄想返回其reference</p>
-<p>当我们领悟条款20中传值的开销后，总是避免于少用传值，然而在返回对象时，要格外小心了，因为你可能：传递一些引用或指针指向其实已经不存在的对象。这可不是件好事。</p>
+<h2 id="条款21：必须返回对象时，别妄想返回其reference"><a href="#条款21：必须返回对象时，别妄想返回其reference" class="headerlink" title="条款21：必须返回对象时，别妄想返回其reference"></a>条款21：必须返回对象时，别妄想返回其reference</h2><p>当我们领悟条款20中传值的开销后，总是避免于少用传值，然而在返回对象时，要格外小心了，因为你可能：传递一些引用或指针指向其实已经不存在的对象。这可不是件好事。</p>
 <p>任何时候看到一个reference声明式，你都应该立刻问自己，它的另一个名称是什么？</p>
 <p>函数创建新对象的途径有二：在栈空间和堆空间</p>
 <p><strong>栈上：</strong>即在函数内的局部变量。局部变量在函数返回后就没有存在的意义，若还对它“念念不忘”，将带来灾难性后果。所以传引用在栈上不可行。</p>
@@ -283,23 +301,20 @@
 <ul>
 <li>绝不要返回pointer或reference指向一个local stack对象，或返回reference指向一个heap-allocated对象，或返回pointer或reference指向一个local static对象而有可能同时需要多个这样的对象。   </li>
 </ul>
-<p>##条款22：将成员变量声明为private</p>
-<p>将成员变量隐藏在函数接口的背后，可以为“所有可能的实现”提供弹性。例如,这可使得成员变量被读或写时轻松通知其它对象、可以验证calss的约束条件以及函数的前提和事后状态、可以在多线程环境中执行同步控制……</p>
+<h2 id="条款22：将成员变量声明为private"><a href="#条款22：将成员变量声明为private" class="headerlink" title="条款22：将成员变量声明为private"></a>条款22：将成员变量声明为private</h2><p>将成员变量隐藏在函数接口的背后，可以为“所有可能的实现”提供弹性。例如,这可使得成员变量被读或写时轻松通知其它对象、可以验证calss的约束条件以及函数的前提和事后状态、可以在多线程环境中执行同步控制……</p>
 <p>不封装意味不可改变！成员变量的封装性与“成员变量的内容改变时所坏量的代码数量”成反比。</p>
 <p><strong>请记住：</strong></p>
 <ul>
 <li>切记将成员变量声明为private。这可赋予客户访问数据的一致性、可细微划分访问控制、允许约束条件获得保护，并提供class作者以充分的实现弹性。</li>
 <li>protected并不比public更具封装性。   </li>
 </ul>
-<p>##条款23：宁以non-member、non-friend替换member函数</p>
-<p>一般我们相当然以为类中的成员函数更具封装性，而实际上并不是那么一回事，因为成员函数不仅可以访问private成员变量，也可以取用private函数、enums、typedefs等等。而非成员非友元函数能实现更大的封装性，因为它只能访问public函数。</p>
+<h2 id="条款23：宁以non-member、non-friend替换member函数"><a href="#条款23：宁以non-member、non-friend替换member函数" class="headerlink" title="条款23：宁以non-member、non-friend替换member函数"></a>条款23：宁以non-member、non-friend替换member函数</h2><p>一般我们相当然以为类中的成员函数更具封装性，而实际上并不是那么一回事，因为成员函数不仅可以访问private成员变量，也可以取用private函数、enums、typedefs等等。而非成员非友元函数能实现更大的封装性，因为它只能访问public函数。</p>
 <p>将所有便利函数放在多个头文件内但隶属同一个命名空间，意味客户可以轻松扩展这一组便利函数。需要做的就是添加更多non-member non-friend函数到此命名空间内。</p>
 <p><strong>请记住：</strong></p>
 <ul>
 <li>宁可拿non-member non-friend函数替代member函数。这样做可以增加封装性、包裹弹性和机能扩充性。   </li>
 </ul>
-<p>##条款24：若所有参数皆需类型转换，请为此采用non-member函数</p>
-<p>通常，令类支持隐式类型转换通常是个糟糕的主意。当然这条规则有其例外，最常见的例外是在建立数值类型时。</p>
+<h2 id="条款24：若所有参数皆需类型转换，请为此采用non-member函数"><a href="#条款24：若所有参数皆需类型转换，请为此采用non-member函数" class="headerlink" title="条款24：若所有参数皆需类型转换，请为此采用non-member函数"></a>条款24：若所有参数皆需类型转换，请为此采用non-member函数</h2><p>通常，令类支持隐式类型转换通常是个糟糕的主意。当然这条规则有其例外，最常见的例外是在建立数值类型时。</p>
 <p>例：</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> Rational <span class="keyword">operator</span>*(<span class="keyword">const</span> Rational&amp; rhs) <span class="keyword">const</span>;</span><br></pre></td></tr></table></figure>
 <p>如果定义一个有理数类，并实现*操作符为成员函数，如上所示；那么考虑一下调用：</p>
@@ -313,8 +328,7 @@
 <ul>
 <li>如果你需要为某个函数的所有参数（包括被this指针所指的那个隐喻参数）进行类型转换，那么这个函数必须是个non-member。   </li>
 </ul>
-<p>##条款25：考虑写出一个不抛异常的swap函数</p>
-<p><strong>请记住：</strong></p>
+<h2 id="条款25：考虑写出一个不抛异常的swap函数"><a href="#条款25：考虑写出一个不抛异常的swap函数" class="headerlink" title="条款25：考虑写出一个不抛异常的swap函数"></a>条款25：考虑写出一个不抛异常的swap函数</h2><p><strong>请记住：</strong></p>
 <ul>
 <li>当std::swap对你的类型效率不高时，提供一个swap成员函数，并确定这个函数不抛出异常。</li>
 <li>如果你提供一个member swap，也该提供一个non-member swap用来调用前者。对于class（而非templates），也请特化std::swap。</li>
@@ -328,6 +342,24 @@
   </div>
   
     
+    <div class="copyright">
+        <p><span>本文标题:</span><a href="/2015/01/17/2015-01-17-effective-cpp-4/">Effective C++ —— 设计与声明</a></p>
+        <p><span>文章作者:</span><a href="/" title="访问 xiaoyifeibupt 的个人博客">xiaoyifeibupt</a></p>
+        <p><span>发布时间:</span>2015年01月17日 - 13时18分</p>
+        <p><span>最后更新:</span>2016年05月28日 - 11时05分</p>
+        <p>
+            <span>原始链接:</span><a class="post-url" href="/2015/01/17/2015-01-17-effective-cpp-4/" title="Effective C++ —— 设计与声明">http://xiaoyifeibupt.github.io/2015/01/17/2015-01-17-effective-cpp-4/</a>
+            <span class="copy-path" data-clipboard-text="原文: http://xiaoyifeibupt.github.io/2015/01/17/2015-01-17-effective-cpp-4/　　作者: xiaoyifeibupt" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <script src="/js/clipboard.min.js"></script>
+            <script> var clipboard = new Clipboard('.copy-path'); </script>
+        </p>
+        <p>
+            <span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/cn/" title="中国大陆 (CC BY-NC-SA 3.0 CN)" target = "_blank">"署名-非商用-相同方式共享 3.0"</a> 转载请保留原文链接及作者。
+        </p>
+    </div>
+
+
+
 <nav id="article-nav">
   
     <a href="/2015/01/18/2015-01-18-effective-cpp-5/" id="article-nav-newer" class="article-nav-link-wrap">
@@ -350,109 +382,167 @@
   
 </article>
 
-
-<div class="share_jia">
-	<!-- JiaThis Button BEGIN -->
-	<div class="jiathis_style">
-		<span class="jiathis_txt">Share to: &nbsp; </span>
-		<a class="jiathis_button_facebook"></a> 
-    <a class="jiathis_button_twitter"></a>
-    <a class="jiathis_button_plus"></a> 
-    <a class="jiathis_button_tsina"></a>
-		<a class="jiathis_button_cqq"></a>
-		<a class="jiathis_button_douban"></a>
-		<a class="jiathis_button_weixin"></a>
-		<a class="jiathis_button_tumblr"></a>
-    <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
-	</div>
-	<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1405949716054953" charset="utf-8"></script>
-	<!-- JiaThis Button END -->
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#条款18：让接口容易被正确使用，不易被误用"><span class="toc-number">1.</span> <span class="toc-text">条款18：让接口容易被正确使用，不易被误用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#条款19：设计class犹如设计type"><span class="toc-number">2.</span> <span class="toc-text">条款19：设计class犹如设计type</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#条款20：宁以pass-by-reference-to-const替代psss-by-value"><span class="toc-number">3.</span> <span class="toc-text">条款20：宁以pass-by-reference-to-const替代psss-by-value</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#条款21：必须返回对象时，别妄想返回其reference"><span class="toc-number">4.</span> <span class="toc-text">条款21：必须返回对象时，别妄想返回其reference</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#条款22：将成员变量声明为private"><span class="toc-number">5.</span> <span class="toc-text">条款22：将成员变量声明为private</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#条款23：宁以non-member、non-friend替换member函数"><span class="toc-number">6.</span> <span class="toc-text">条款23：宁以non-member、non-friend替换member函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#条款24：若所有参数皆需类型转换，请为此采用non-member函数"><span class="toc-number">7.</span> <span class="toc-text">条款24：若所有参数皆需类型转换，请为此采用non-member函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#条款25：考虑写出一个不抛异常的swap函数"><span class="toc-number">8.</span> <span class="toc-text">条款25：考虑写出一个不抛异常的swap函数</span></a></li></ol>
 </div>
+<input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
+
+<script src="http://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+<script>
+    var valueHide = "隐藏目录";
+    var valueShow = "显示目录";
+
+    if ($(".left-col").is(":hidden")) {
+        $("#tocButton").attr("value", valueShow);
+    }
+    $("#tocButton").click(function() {
+        if ($("#toc").is(":hidden")) {
+            $("#tocButton").attr("value", valueHide);
+            $("#toc").slideDown(320);
+        }
+        else {
+            $("#tocButton").attr("value", valueShow);
+            $("#toc").slideUp(350);
+        }
+    })
+    if ($(".toc").length < 1) {
+        $("#toc, #tocButton").hide();
+    }
+</script>
 
 
 
 
 
-
-<div class="duoshuo">
-	<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="2015-01-17-effective-cpp-4" data-title="Effective C++ —— 设计与声明" data-url="http://yoursite.com/2015/01/17/2015-01-17-effective-cpp-4/"></div>
-	<!-- 多说评论框 end -->
-	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
-	<script type="text/javascript">
-	var duoshuoQuery = {short_name:"flase"};
-	(function() {
-		var ds = document.createElement('script');
-		ds.type = 'text/javascript';ds.async = true;
-		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
-		ds.charset = 'UTF-8';
-		(document.getElementsByTagName('head')[0] 
-		 || document.getElementsByTagName('body')[0]).appendChild(ds);
-	})();
-	</script>
-	<!-- 多说公共JS代码 end -->
+<div class="bdsharebuttonbox">
+	<a href="#" class="fx fa-weibo bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+	<a href="#" class="fx fa-weixin bds_weixin" data-cmd="weixin" title="分享到微信"></a>
+	<a href="#" class="fx fa-qq bds_sqq" data-cmd="sqq" title="分享到QQ好友"></a>
+	<a href="#" class="fx fa-facebook-official bds_fbook" data-cmd="fbook" title="分享到Facebook"></a>
+	<a href="#" class="fx fa-twitter bds_twi" data-cmd="twi" title="分享到Twitter"></a>
+	<a href="#" class="fx fa-linkedin bds_linkedin" data-cmd="linkedin" title="分享到linkedin"></a>
+	<a href="#" class="fx fa-files-o bds_copy" data-cmd="copy" title="分享到复制网址"></a>
 </div>
+<script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"2","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
 
 
 
 
+    
+
+
+
+    <div class="scroll" id="post-nav-button">
+        
+            <a href="/2015/01/18/2015-01-18-effective-cpp-5/" title="上一篇: Effective C++ —— 实现">
+                <i class="fa fa-angle-left"></i>
+            </a>
+        
+        <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+        
+            <a href="/2015/01/16/2015-01-16-effective-cpp-3/" title="下一篇: Effective C++ —— 资源管理">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        
+    </div>
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2015/04/15/2015-04-15-string-function/">字符串相关库函数</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/01/19/2015-01-19-effective-cpp-6/">Effective C++ —— 继承与面向对象设计</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/01/18/2015-01-18-effective-cpp-5/">Effective C++ —— 实现</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/01/17/2015-01-17-effective-cpp-4/">Effective C++ —— 设计与声明</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/01/16/2015-01-16-effective-cpp-3/">Effective C++ —— 资源管理</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/01/11/2015-01-11-effective-cpp-2/">Effective C++ —— 构造析构赋值运算</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/01/09/2015-01-09-effective-cpp-1/">Effective C++ —— 让自己习惯C++</a></li><li class="post-list-item"><a class="post-list-link" href="/2014/12/29/2014-12-29-xhttpd-makefile/">从零开始实现自己的httpd——Makefile</a></li><li class="post-list-item"><a class="post-list-link" href="/2014/12/23/2014-12-23-xhttpd-epollnote/">从零开始实现自己的httpd——epoll读写数据的注意事项</a></li><li class="post-list-item"><a class="post-list-link" href="/2014/12/21/2014-12-21-xhttpd-epoll/">从零开始实现自己的httpd——epoll</a></li><li class="post-list-item"><a class="post-list-link" href="/2014/12/19/2014-12-19-xhttpd-socket/">从零开始实现自己的httpd——socket</a></li><li class="post-list-item"><a class="post-list-link" href="/2014/12/18/2014-12-18-xhttpd-buffer/">从零开始实现自己的httpd——buffer</a></li><li class="post-list-item"><a class="post-list-link" href="/2014/12/16/2014-12-16-http- tinyhttpd/">C 语言实现最简单的 HTTP 服务器tinyhttpd详解</a></li><li class="post-list-item"><a class="post-list-link" href="/2014/12/15/2014-12-15-http-protocol/">HTTP协议介绍</a></li><li class="post-list-item"><a class="post-list-link" href="/2014/11/25/2014-11-25-CSAPP-chapter-2/">CSAPP——信息的表示和处理</a></li><li class="post-list-item"><a class="post-list-link" href="/2014/11/23/2014-11-23-Design-pattern-Decorator-Memento-State-Visitor-Mediator-Interpreter/">设计模式--备忘录/状态/访问者/中介者/解释器</a></li><li class="post-list-item"><a class="post-list-link" href="/2014/11/18/2014-11-18-Design-pattern-strategy-Template-Observer-Iterator-ChainofResponsibility-Command/">设计模式--策略/模板方法/观察者/迭代子/责任链/命令</a></li><li class="post-list-item"><a class="post-list-link" href="/2014/11/15/2014-11-15-Design-pattern-Decorator-Proxy-Facade-Bridge-Composite-Flyweight/">设计模式--装饰/代理/外观/桥接/组合/享元</a></li><li class="post-list-item"><a class="post-list-link" href="/2014/11/12/2014-11-12-Design-pattern-Adapter/">设计模式--适配器模式</a></li><li class="post-list-item"><a class="post-list-link" href="/2014/11/10/2014-11-10-Design-pattern-Builder/">设计模式--建造者模式</a></li><li class="post-list-item"><a class="post-list-link" href="/2014/11/09/2014-11-09-Design-pattern-Prototype/">设计模式--原型模式</a></li><li class="post-list-item"><a class="post-list-link" href="/2014/11/08/2014-11-08-Design-pattern-Singleton/">设计模式--单例模式</a></li><li class="post-list-item"><a class="post-list-link" href="/2014/11/07/2014-11-07-Design-pattern-Abstract-Factory/">设计模式--抽象工厂模式</a></li><li class="post-list-item"><a class="post-list-link" href="/2014/11/05/2014-11-05-Design-pattern-Factory-Method/">设计模式--工程模式</a></li></ul>
+    <script src="http://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+    <script>
+        $(".post-list").addClass("toc-article");
+        $(".post-list-item a").attr("target","_blank");
+        $("#post-nav-button > a:nth-child(2)").click(function() {
+            $(".fa-bars, .fa-times").toggle();
+            $(".post-list").toggle(300);
+            if ($(".toc").length > 0) {
+                $("#toc, #tocButton").toggle(200, function() {
+                    if ($(".switch-area").is(":visible")) {
+                        $("#tocButton").attr("value", valueHide);
+                        }
+                    })
+            }
+            else {
+            }
+        })
+    </script>
+
+
+
+    <script>
+        
+    </script>
 </div>
       <footer id="footer">
-  <div class="outer">
-    <div id="footer-info">
-    	<div class="footer-left">
-    		&copy; 2016 xiaoyifeibupt
-    	</div>
-      	<div class="footer-right">
-      		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
-      	</div>
+    <div class="outer">
+        <div id="footer-info">
+            <div class="footer-left">
+                &copy; 2016 xiaoyifeibupt
+            </div>
+            <div class="footer-right">
+                <a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/luuman/hexo-theme-spfk" target="_blank">spfk</a> by luuman
+            </div>
+        </div>
+        
     </div>
-  </div>
 </footer>
+
     </div>
-    
-  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
-
-
-<script>
-	var yiliaConfig = {
-		fancybox: true,
-		mathjax: true,
-		animate: true,
-		isHome: false,
-		isPost: true,
-		isArchive: false,
-		isTag: false,
-		isCategory: false,
-		open_in_new: false
-	}
-</script>
-<script src="http://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+    <script src="http://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
 <script src="/js/main.js"></script>
 
+    <script>
+        $(document).ready(function() {
+            var backgroundnum = 24;
+            var backgroundimg = "url(/background/bg-x.jpg)".replace(/x/gi, Math.ceil(Math.random() * backgroundnum));
+            $("#mobile-nav").css({"background-image": backgroundimg,"background-size": "cover","background-position": "center"});
+            $(".left-col").css({"background-image": backgroundimg,"background-size": "cover","background-position": "center"});
+        })
+    </script>
 
 
 
 
 
-<script type="text/x-mathjax-config">
-MathJax.Hub.Config({
-    tex2jax: {
-        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
-        processEscapes: true,
-        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
-    }
-});
-
-MathJax.Hub.Queue(function() {
-    var all = MathJax.Hub.getAllJax(), i;
-    for(i=0; i < all.length; i += 1) {
-        all[i].SourceElement().parentNode.className += ' has-jax';                 
-    }       
-});
+<div class="scroll" id="scroll">
+    <a href="#"><i class="fa fa-arrow-up"></i></a>
+    <a href="#comments"><i class="fa fa-comments-o"></i></a>
+    <a href="#footer"><i class="fa fa-arrow-down"></i></a>
+</div>
+<script>
+    $(document).ready(function() {
+        if ($("#comments").length < 1) {
+            $("#scroll > a:nth-child(2)").hide();
+        };
+    })
 </script>
 
-<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+
+  <script language="javascript">
+    $(function() {
+        $("a[title]").each(function() {
+            var a = $(this);
+            var title = a.attr('title');
+            if (title == undefined || title == "") return;
+            a.data('title', title).removeAttr('title').hover(
+
+            function() {
+                var offset = a.offset();
+                $("<div id=\"anchortitlecontainer\"></div>").appendTo($("body")).html(title).css({
+                    top: offset.top - a.outerHeight() - 15,
+                    left: offset.left + a.outerWidth()/2 + 1
+                }).fadeIn(function() {
+                    var pop = $(this);
+                    setTimeout(function() {
+                        pop.remove();
+                    }, pop.text().length * 800);
+                });
+            }, function() {
+                $("#anchortitlecontainer").remove();
+            });
+        });
+    });
 </script>
 
 

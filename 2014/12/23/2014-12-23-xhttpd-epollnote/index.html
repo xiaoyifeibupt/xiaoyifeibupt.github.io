@@ -11,7 +11,7 @@
 <meta property="og:url" content="http://xiaoyifeibupt.github.io/2014/12/23/2014-12-23-xhttpd-epollnote/index.html">
 <meta property="og:site_name" content="xiaoyifeibupt's blog">
 <meta property="og:description" content="Linux中 ”一切皆文件的概念“使得我们可以很方便地理解与文件相关的操作。网络编程中遇到的基本函数是 select、epoll、accept、read、write这5个，在阻塞和非阻塞模式下，对他们的调用，尤其是对返回值的判断处理很不同，下面做深入描述">
-<meta property="og:updated_time" content="2016-05-26T02:50:38.000Z">
+<meta property="og:updated_time" content="2016-05-28T05:51:25.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="从零开始实现自己的httpd——epoll读写数据的注意事项">
 <meta name="twitter:description" content="Linux中 ”一切皆文件的概念“使得我们可以很方便地理解与文件相关的操作。网络编程中遇到的基本函数是 select、epoll、accept、read、write这5个，在阻塞和非阻塞模式下，对他们的调用，尤其是对返回值的判断处理很不同，下面做深入描述">
@@ -108,6 +108,8 @@
                         
                             <li><a href="/">博客首页</a></li>
                         
+                            <li><a href="/tags">分类标签</a></li>
+                        
                             <li><a href="/about">关于</a></li>
                         
                         </ul>
@@ -132,7 +134,7 @@
                 
                 <section class="switch-part switch-part2">
                     <div class="widget tagcloud" id="js-tagcloud">
-                        <a href="/tags/C/" style="font-size: 15px;">C++</a> <a href="/tags/CSAPP/" style="font-size: 10px;">CSAPP</a> <a href="/tags/Design-pattern/" style="font-size: 20px;">Design-pattern</a> <a href="/tags/http/" style="font-size: 15px;">http</a>
+                        <a href="/tags/C/" style="font-size: 20px;">C++</a> <a href="/tags/Design-pattern/" style="font-size: 16.67px;">Design-pattern</a> <a href="/tags/http/" style="font-size: 13.33px;">http</a> <a href="/tags/字符串/" style="font-size: 10px;">字符串</a> <a href="/tags/操作系统/" style="font-size: 10px;">操作系统</a> <a href="/tags/算法/" style="font-size: 10px;">算法</a>
                     </div>
                 </section>
                 
@@ -172,6 +174,8 @@
                 <ul>
                 
                     <li><a href="/">博客首页</a></li>
+                
+                    <li><a href="/tags">分类标签</a></li>
                 
                     <li><a href="/about">关于</a></li>
                 
@@ -221,10 +225,14 @@
       
       <div class="article-info article-info-post">
         
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/UNIX系统/">UNIX系统</a>
+    </div>
+
 
         
     <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/http/">http</a></li></ul>
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C/">C++</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/http/">http</a></li></ul>
     </div>
 
         <div class="clearfix"></div>
@@ -291,7 +299,7 @@
         <p><span>本文标题:</span><a href="/2014/12/23/2014-12-23-xhttpd-epollnote/">从零开始实现自己的httpd——epoll读写数据的注意事项</a></p>
         <p><span>文章作者:</span><a href="/" title="访问 xiaoyifeibupt 的个人博客">xiaoyifeibupt</a></p>
         <p><span>发布时间:</span>2014年12月23日 - 13时18分</p>
-        <p><span>最后更新:</span>2016年05月26日 - 10时50分</p>
+        <p><span>最后更新:</span>2016年05月28日 - 13时51分</p>
         <p>
             <span>原始链接:</span><a class="post-url" href="/2014/12/23/2014-12-23-xhttpd-epollnote/" title="从零开始实现自己的httpd——epoll读写数据的注意事项">http://xiaoyifeibupt.github.io/2014/12/23/2014-12-23-xhttpd-epollnote/</a>
             <span class="copy-path" data-clipboard-text="原文: http://xiaoyifeibupt.github.io/2014/12/23/2014-12-23-xhttpd-epollnote/　　作者: xiaoyifeibupt" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>

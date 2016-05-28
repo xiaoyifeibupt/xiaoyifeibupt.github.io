@@ -15,7 +15,7 @@
 <meta property="og:description" content="根据连接启动的方式以及本地套接字要连接的目标，套接字之间的连接过程可以分为三个步骤：服务器监听，客户端请求，连接确认。
 （1）服务器监听：是服务器端套接字并不定位具体的客户端套接字，而是处于等待连接的状态，实时监控网络状态。
 （2）客户端请求：是指由客户端的套接字提出连接请求，要连接的目标是服务器端的套接字。为此，客户端的套接字必须首先描述它要连接的服务器的套接字，指出服务器端套接字的地址和端口号">
-<meta property="og:updated_time" content="2016-05-28T03:08:57.000Z">
+<meta property="og:updated_time" content="2016-05-28T05:51:25.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="从零开始实现自己的httpd——socket">
 <meta name="twitter:description" content="根据连接启动的方式以及本地套接字要连接的目标，套接字之间的连接过程可以分为三个步骤：服务器监听，客户端请求，连接确认。
@@ -114,6 +114,8 @@
                         
                             <li><a href="/">博客首页</a></li>
                         
+                            <li><a href="/tags">分类标签</a></li>
+                        
                             <li><a href="/about">关于</a></li>
                         
                         </ul>
@@ -138,7 +140,7 @@
                 
                 <section class="switch-part switch-part2">
                     <div class="widget tagcloud" id="js-tagcloud">
-                        <a href="/tags/C/" style="font-size: 15px;">C++</a> <a href="/tags/CSAPP/" style="font-size: 10px;">CSAPP</a> <a href="/tags/Design-pattern/" style="font-size: 20px;">Design-pattern</a> <a href="/tags/http/" style="font-size: 15px;">http</a>
+                        <a href="/tags/C/" style="font-size: 20px;">C++</a> <a href="/tags/Design-pattern/" style="font-size: 16.67px;">Design-pattern</a> <a href="/tags/http/" style="font-size: 13.33px;">http</a> <a href="/tags/字符串/" style="font-size: 10px;">字符串</a> <a href="/tags/操作系统/" style="font-size: 10px;">操作系统</a> <a href="/tags/算法/" style="font-size: 10px;">算法</a>
                     </div>
                 </section>
                 
@@ -178,6 +180,8 @@
                 <ul>
                 
                     <li><a href="/">博客首页</a></li>
+                
+                    <li><a href="/tags">分类标签</a></li>
                 
                     <li><a href="/about">关于</a></li>
                 
@@ -227,10 +231,14 @@
       
       <div class="article-info article-info-post">
         
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/UNIX系统/">UNIX系统</a>
+    </div>
+
 
         
     <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/http/">http</a></li></ul>
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C/">C++</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/http/">http</a></li></ul>
     </div>
 
         <div class="clearfix"></div>
@@ -316,7 +324,7 @@
         <p><span>本文标题:</span><a href="/2014/12/19/2014-12-19-xhttpd-socket/">从零开始实现自己的httpd——socket</a></p>
         <p><span>文章作者:</span><a href="/" title="访问 xiaoyifeibupt 的个人博客">xiaoyifeibupt</a></p>
         <p><span>发布时间:</span>2014年12月19日 - 13时18分</p>
-        <p><span>最后更新:</span>2016年05月28日 - 11时08分</p>
+        <p><span>最后更新:</span>2016年05月28日 - 13时51分</p>
         <p>
             <span>原始链接:</span><a class="post-url" href="/2014/12/19/2014-12-19-xhttpd-socket/" title="从零开始实现自己的httpd——socket">http://xiaoyifeibupt.github.io/2014/12/19/2014-12-19-xhttpd-socket/</a>
             <span class="copy-path" data-clipboard-text="原文: http://xiaoyifeibupt.github.io/2014/12/19/2014-12-19-xhttpd-socket/　　作者: xiaoyifeibupt" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>

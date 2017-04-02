@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>用C实现C++中的多态性 | xiaoyifeibupt&#39;s blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="前言：关于多态，关于 C多态 (polymorphism) 一词最初来源于希腊语 polumorphos，含义是具有多种形式或形态的情形。在程序设计领域，一个广泛认可的定义是“一种将不同的特殊行为和单个泛化记号相关联的能力”。 然而在人们的直观感觉中，多态的含义大约等同于“同一个方法对于不同类型的输入参数均能做出正确的处理过程，并给出人们所期望获得的结果”，也许这正体现 了人们对于多态性所能达到的">
+<meta property="og:type" content="article">
+<meta property="og:title" content="用C实现C++中的多态性">
+<meta property="og:url" content="http://xiaoyifeibupt.github.io/2015/04/01/2015-04-01-C-CPP-polymorphism/index.html">
+<meta property="og:site_name" content="xiaoyifeibupt's blog">
+<meta property="og:description" content="前言：关于多态，关于 C多态 (polymorphism) 一词最初来源于希腊语 polumorphos，含义是具有多种形式或形态的情形。在程序设计领域，一个广泛认可的定义是“一种将不同的特殊行为和单个泛化记号相关联的能力”。 然而在人们的直观感觉中，多态的含义大约等同于“同一个方法对于不同类型的输入参数均能做出正确的处理过程，并给出人们所期望获得的结果”，也许这正体现 了人们对于多态性所能达到的">
+<meta property="og:updated_time" content="2017-04-02T02:22:28.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="用C实现C++中的多态性">
+<meta name="twitter:description" content="前言：关于多态，关于 C多态 (polymorphism) 一词最初来源于希腊语 polumorphos，含义是具有多种形式或形态的情形。在程序设计领域，一个广泛认可的定义是“一种将不同的特殊行为和单个泛化记号相关联的能力”。 然而在人们的直观感觉中，多态的含义大约等同于“同一个方法对于不同类型的输入参数均能做出正确的处理过程，并给出人们所期望获得的结果”，也许这正体现 了人们对于多态性所能达到的">
+  
+    <link rel="alternative" href="/atom.xml" title="xiaoyifeibupt&#39;s blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/img/favicon.ico">
+  
+  
+  <link rel="stylesheet" href="//cdn.bootcss.com/animate.css/3.5.0/animate.min.css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/font-awesome/css/font-awesome.min.css">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  
+  
+      <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  
+  <!-- 加载特效 -->
+    <script src="/js/pace.js"></script>
+    <link href="/css/pace/pace-theme-flash.css" rel="stylesheet" />
+  <script>
+      var yiliaConfig = {
+          fancybox: true,
+          animate: true,
+          isHome: false,
+          isPost: true,
+          isArchive: false,
+          isTag: false,
+          isCategory: false,
+          open_in_new: false
+      }
+  </script>
+</head>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+    <header id="header" class="inner">
+        <a href="/" class="profilepic">
+            
+            <img lazy-src="/img/face.jpg" class="js-avatar">
+            
+        </a>
+
+        <hgroup>
+          <h1 class="header-author"><a href="/">xiaoyifeibupt</a></h1>
+        </hgroup>
+
+        
+        
+        
+            <div id="switch-btn" class="switch-btn">
+                <div class="icon">
+                    <div class="icon-ctn">
+                        <div class="icon-wrap icon-house" data-idx="0">
+                            <div class="birdhouse"></div>
+                            <div class="birdhouse_holes"></div>
+                        </div>
+                        <div class="icon-wrap icon-ribbon hide" data-idx="1">
+                            <div class="ribbon"></div>
+                        </div>
+                        
+                        
+                        <div class="icon-wrap icon-me hide" data-idx="3">
+                            <div class="user"></div>
+                            <div class="shoulder"></div>
+                        </div>
+                        
+                    </div>
+                    
+                </div>
+                <div class="tips-box hide">
+                    <div class="tips-arrow"></div>
+                    <ul class="tips-inner">
+                        <li>菜单</li>
+                        <li>标签</li>
+                        
+                        
+                        <li>关于我</li>
+                        
+                    </ul>
+                </div>
+            </div>
+        
+
+        <div id="switch-area" class="switch-area">
+            <div class="switch-wrap">
+                <section class="switch-part switch-part1">
+                    <nav class="header-menu">
+                        <ul>
+                        
+                            <li><a href="/">博客首页</a></li>
+                        
+                            <li><a href="/tags">分类标签</a></li>
+                        
+                            <li><a href="/about">关于</a></li>
+                        
+                        </ul>
+                    </nav>
+                    <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fl mail" target="_blank" href="mailto:xiaoyifeibupt@163.com" title="mail">mail</a>
+                            
+                                <a class="fl github" target="_blank" href="https://github.com/xiaoyifeibupt" title="github">github</a>
+                            
+                                <a class="fl zhihu" target="_blank" href="https://www.zhihu.com/people/xiao-yifei" title="zhihu">zhihu</a>
+                            
+                                <a class="fl weibo" target="_blank" href="http://weibo.com/yifeixiao/" title="weibo">weibo</a>
+                            
+                                <a class="fl facebook" target="_blank" href="https://www.facebook.com/profile.php?id=100011123822524" title="facebook">facebook</a>
+                            
+                        </ul>
+                    </nav>
+                </section>
+                
+                
+                <section class="switch-part switch-part2">
+                    <div class="widget tagcloud" id="js-tagcloud">
+                        <a href="/tags/C/" style="font-size: 20px;">C++</a> <a href="/tags/Design-pattern/" style="font-size: 17.5px;">Design-pattern</a> <a href="/tags/LaTex/" style="font-size: 10px;">LaTex</a> <a href="/tags/OS-X/" style="font-size: 10px;">OS X</a> <a href="/tags/TCP/" style="font-size: 10px;">TCP</a> <a href="/tags/http/" style="font-size: 15px;">http</a> <a href="/tags/字符串/" style="font-size: 10px;">字符串</a> <a href="/tags/操作系统/" style="font-size: 10px;">操作系统</a> <a href="/tags/算法/" style="font-size: 12.5px;">算法</a>
+                    </div>
+                </section>
+                
+                
+                
+
+                
+                
+                <section class="switch-part switch-part3">
+                
+                    <div id="js-aboutme">爱运动、爱交友、爱旅行、喜欢接触新鲜事物、迎接新的挑战，更爱游离于错综复杂的编码与逻辑中</div>
+                </section>
+                
+            </div>
+        </div>
+    </header>                
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+      <div class="overlay">
+          <div class="slider-trigger"></div>
+          <h1 class="header-author js-mobile-header hide"><a href="/" title="回到主页">xiaoyifeibupt</a></h1>
+      </div>
+    <div class="intrude-less">
+        <header id="header" class="inner">
+            <a href="/" class="profilepic">
+                
+                    <img lazy-src="/img/face.jpg" class="js-avatar">
+                
+            </a>
+            <hgroup>
+              <h1 class="header-author"><a href="/" title="回到主页">xiaoyifeibupt</a></h1>
+            </hgroup>
+            
+            <nav class="header-menu">
+                <ul>
+                
+                    <li><a href="/">博客首页</a></li>
+                
+                    <li><a href="/tags">分类标签</a></li>
+                
+                    <li><a href="/about">关于</a></li>
+                
+                <div class="clearfix"></div>
+                </ul>
+            </nav>
+            <nav class="header-nav">
+                <div class="social">
+                    
+                        <a class="mail" target="_blank" href="mailto:xiaoyifeibupt@163.com" title="mail">mail</a>
+                    
+                        <a class="github" target="_blank" href="https://github.com/xiaoyifeibupt" title="github">github</a>
+                    
+                        <a class="zhihu" target="_blank" href="https://www.zhihu.com/people/xiao-yifei" title="zhihu">zhihu</a>
+                    
+                        <a class="weibo" target="_blank" href="http://weibo.com/yifeixiao/" title="weibo">weibo</a>
+                    
+                        <a class="facebook" target="_blank" href="https://www.facebook.com/profile.php?id=100011123822524" title="facebook">facebook</a>
+                    
+                </div>
+            </nav>
+        </header>                
+    </div>
+</nav>
+      <div class="body-wrap"><article id="post-2015-04-01-C-CPP-polymorphism" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2015/04/01/2015-04-01-C-CPP-polymorphism/" class="article-date">
+      <time datetime="2015-04-01T05:18:08.000Z" itemprop="datePublished">2015-04-01</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      用C实现C++中的多态性
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/C/">C++</a>
+    </div>
+
+
+        
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/算法/">算法</a></li></ul>
+    </div>
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <h3 id="前言：关于多态，关于-C"><a href="#前言：关于多态，关于-C" class="headerlink" title="前言：关于多态，关于 C"></a>前言：关于多态，关于 C</h3><p>多态 (polymorphism) 一词最初来源于希腊语 polumorphos，含义是具有多种形式或形态的情形。在程序设计领域，一个广泛认可的定义是<strong>“一种将不同的特殊行为和单个泛化记号相关联的能力”</strong>。 然而在人们的直观感觉中，多态的含义大约等同于<strong>“同一个方法对于不同类型的输入参数均能做出正确的处理过程，并给出人们所期望获得的结果”</strong>，也许这正体现 了人们对于多态性所能达到的效果所寄予的期望：使程序能够做到越来越智能化，越来越易于使用，越来越能够使设计者透过形形色色的表象看到代码所要触及到的 问题本质。<br><a id="more"></a></p>
+<p>作为读者的你或许对于面向对象编程已有着精深的见解，或许对于多态的方便与神奇你也有了深入的认识。这时候你讶异的开始质疑了：“多态，那是面向对象编程才有的技术，C语言是面向过程的啊！”而我想说的是，<strong>C 语言作为一种编程语言，也许并不是为了面向对象编程而设计，但这并不意味着它不能实现面向对象编程所能实现的功能</strong>，就比如说，多态性。</p>
+<p>在本文中我们使用一个简单的单链表作为例子，展示 C 语言是如何体现多态性的。</p>
+<h3 id="结构体：不得不说的故事"><a href="#结构体：不得不说的故事" class="headerlink" title="结构体：不得不说的故事"></a>结构体：不得不说的故事</h3><p>许多从写 C 代码开始，逐渐走向 C++ 的程序员都知道，其实 C++ 里面的 class，其前身正是 C 语言中的 structure。很多基于C语言背景介绍 C++ 的书籍，在介绍到 class 这一章的时候都会向读者清晰地展示，一个 C 语言里的 structure 是怎样逐渐变成一个典型的 C++ class 的，甚至最后得出结论：“structure 就是一个所有成员都公有的类”。当然了，class 还是 class，不能简单的把它看做一个复杂化了的 structure 而已。</p>
+<p>下面我们来看看在 C 语言中定义一个简单的存储整型数据的单链表节点是怎么做的，当然是用结构体。大部分人会像我一样，在 linkList.h 文件里定义：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="keyword">struct</span> Node* linkList; </span><br><span class="line"><span class="keyword">struct</span> Node                                       <span class="comment">// 链表节点</span></span><br><span class="line">&#123; </span><br><span class="line">   <span class="keyword">int</span> data;                                 <span class="comment">// 存储的整型数据</span></span><br><span class="line">   linkList next;                            <span class="comment">// 指向下一个链表节点</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>链表有了，下面就是你想要实现的一些链表的功能，当然是定义成函数。我们只举几个常用功能：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">linkList <span class="title">initialLinklist</span><span class="params">()</span></span>;                         <span class="comment">// 初始化链表</span></span><br><span class="line"><span class="function">link <span class="title">newLinkList</span> <span class="params">(<span class="keyword">int</span> data)</span></span>;                        <span class="comment">// 建立新节点</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">insertFirst</span><span class="params">(linkList h,<span class="keyword">int</span> data)</span></span>;              <span class="comment">// 在已有链表的表头进行插入节点操作</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">linkListOutput</span><span class="params">(linkList h)</span></span>;                   <span class="comment">// 输出链表中数据到控制台</span></span><br></pre></td></tr></table></figure>
+<p>这些都是再自然不过的 C 语言的编程过程，然后我们就可以在 linkList.c 文件中实现上述两个函数，继而在 main.c 中调用它们了。</p>
+<p>然而上面我们定义的链表还只能对整型数据进行操作，如果下次你要用到一个存储字符串类型的链表，就只好把上面的过程重新来过。也许你觉得这个在原有代码基础上做略微修改的过程并不复杂，可是也许我们会不断的增加对于链表这个数据结构的操作，而需要用链表来存储的数据类型也越来越多，这些都意味着海量的代码和繁琐的后期维护工作。当你有了上百个存储不同数据类型的链表结构，每当你要增加一个操作，或者修改某个操作的传入参数，工作量会变大到像一 场灾难。</p>
+<p>但是我们可以改造上述代码，让它能够处理你所想要让它处理的任何数据类型：实行，字符型，乃至任何你自己定义的 structure 类型。</p>
+<h4 id="void-：万能的指针“挂钩”"><a href="#void-：万能的指针“挂钩”" class="headerlink" title="void*：万能的指针“挂钩”"></a>void*：万能的指针“挂钩”</h4><p>几乎所有讲授 C 语言课程的老师都会告诉你：“指针是整个 C 语言的精髓所在。”而你也一直敬畏着指针，又爱又恨地使用着它。许多教材都告诉你，int <em> 叫做指向整型的指针，而 char </em> 是指向字符型的指针，等等不一而足。然而这里有一个另类的指针家族成员—— void *。不要按照通常的命名方式叫它做指向 void 类型的指针，它的正式的名字叫做：可以指向任意类型的指针。你一定注意到了“任意类型”这四个字，没错，实现多态，我们靠的就是它。</p>
+<p>下面来改造我们的链表代码，在 linkList.h 里，如下：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="keyword">struct</span> Node* linkList; </span><br><span class="line"><span class="keyword">struct</span> Node                                       <span class="comment">// 链表节点</span></span><br><span class="line">&#123; </span><br><span class="line">   <span class="keyword">void</span> *data;                               <span class="comment">// 存储的数据指针</span></span><br><span class="line">   linkList next;                            <span class="comment">// 指向下一个链表节点</span></span><br><span class="line">&#125;; </span><br><span class="line"></span><br><span class="line"><span class="function">linkList <span class="title">initialLinklist</span><span class="params">()</span></span>;                             <span class="comment">// 初始化链表</span></span><br><span class="line"><span class="function">link <span class="title">newLinkList</span> <span class="params">(<span class="keyword">void</span> *data)</span></span>;                    <span class="comment">// 建立新节点</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">insertFirst</span><span class="params">(linkList h, <span class="keyword">void</span> *data)</span></span>;         <span class="comment">// 在已有链表的表头进行插入节点操作</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">linkListOutput</span><span class="params">(linkList h)</span></span>;                         <span class="comment">// 输出链表中数据到控制台</span></span><br></pre></td></tr></table></figure>
+<p>我们来看看现在这个链表和刚才那个只能存储整型数据的链表的区别。</p>
+<p>当你把 Node 结构体里面的成员定义为一个整型数据，就好像把这个链表节点打造成了一个大小形状固定的盒子，你定义一个链表节点，程序进行编译的时候编译器就为你打造一 个这样的盒子：装一个 int 类型的数据，然后装一个 linkList 类型的指针。如果你想强行在这个盒子里装别的东西，编译器会告诉你，对不起，盒子的大小形状并不合适。所以你必须为了装各种各样类型的数据打造出不同的生 产盒子的流水线，想要装哪种类型数据的盒子，就开启对应的流水线来生产。</p>
+<p>但是当你把结构体成员定义为 void <em>，一切都变得不同了。这时的链表节点不再像个大小形状固定的盒子，而更像一个挂钩，它可以挂上一个任意类型的数据。不管你需要存储什么类型的数据，你只要传递一个指针，把它存储到 Node 节点中去，就相当于把这个数据“挂”了上去，无论何时你都可以根据指针找到它。这时的链表仿佛变成了一排粘贴在墙上的衣帽钩，你可以挂一排大衣，可以挂一 排帽子，可以挂一排围巾，甚至，你可以并排挂一件大衣一顶帽子一条围巾在墙上。void </em> 初露狰狞，多态离 C 语言并不遥远。</p>
+<h3 id="实现：你的多态你做主"><a href="#实现：你的多态你做主" class="headerlink" title="实现：你的多态你做主"></a>实现：你的多态你做主</h3><p>当你真正开始着手做这个工作的时候，你会发现把数据放入链表中的操作和普通的存放 int 类型的链表的实现并没有什么大的区别，很方便。但是当你要把已经存进去的数据读取出来的时候，就有一点麻烦了。对于 void <em> 类型的指针，编译器只知道它里面存储了一个地址，但是关于这个地址里的数据类型，编译器是没有任何概念的。毕竟我们不能指望编译器什么都知道，什么都能替你做好，所以存进去的数据的类型，作为程序员的我们必须清楚的知道，并且在取出这个数据的时候，用这一类型的指针来对 void </em> 做强制类型转换。</p>
+<p>为了方便的做到这一点，我采取的方法是在 Node 结构体中增加一个标识数据类型的域，并用一个枚举类型来存放这些数据类型。这时的 linkList.h 如下所示：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">ifndef</span> LINKLIST_H </span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> LINKLIST_H </span></span><br><span class="line"></span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">struct</span> Node* linkList; </span><br><span class="line"></span><br><span class="line"><span class="keyword">enum</span> dataType </span><br><span class="line">&#123; </span><br><span class="line">   INT, </span><br><span class="line">   DOUBLE, </span><br><span class="line">   CHAR, </span><br><span class="line">   STRING </span><br><span class="line">&#125;; </span><br><span class="line"></span><br><span class="line"><span class="keyword">struct</span> Node                                               <span class="comment">// 链表节点</span></span><br><span class="line">&#123; </span><br><span class="line">   <span class="keyword">void</span> *data;                                       <span class="comment">// 存储的数据指针</span></span><br><span class="line">   <span class="keyword">int</span> dataType;                                     <span class="comment">// 存储数据类型</span></span><br><span class="line">   linkList next;                                    <span class="comment">// 指向下一个链表节点</span></span><br><span class="line">&#125;; </span><br><span class="line"></span><br><span class="line"><span class="function">linkList <span class="title">initialLinklist</span><span class="params">()</span></span>;                               <span class="comment">// 初始化链表</span></span><br><span class="line"><span class="function">linkList <span class="title">newLinkList</span> <span class="params">(<span class="keyword">void</span> *data, <span class="keyword">int</span> dataType)</span></span>;          <span class="comment">// 建立新节点</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">insertFirst</span><span class="params">(linkList h, <span class="keyword">void</span> *data, <span class="keyword">int</span> dataType)</span></span>;   <span class="comment">// 在已有链表的表头进行插入节点操作</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">linkListOutput</span><span class="params">(linkList h)</span></span>;                          <span class="comment">// 输出链表中数据到控制台</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></span><br></pre></td></tr></table></figure>
+<p>初始化链表，代码如下：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">linkList <span class="title">initialLinklist</span><span class="params">()</span> </span><br><span class="line"></span>&#123; </span><br><span class="line">linkList link = (linkList*)<span class="built_in">malloc</span>(<span class="keyword">sizeof</span>(*link)); </span><br><span class="line">   link-&gt;data = <span class="literal">NULL</span>; </span><br><span class="line">   link-&gt;dataType = <span class="number">-1</span>; </span><br><span class="line">   link-&gt;next = <span class="literal">NULL</span>; </span><br><span class="line"></span><br><span class="line">   <span class="keyword">return</span> link; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>建立新节点，代码如下：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">linkList <span class="title">newLinkList</span> <span class="params">(<span class="keyword">void</span> *data, <span class="keyword">int</span> dataType)</span> </span><br><span class="line"></span>&#123; </span><br><span class="line">    linkList link = (linkList*)<span class="built_in">malloc</span>(<span class="keyword">sizeof</span>(*link)); </span><br><span class="line">    link-&gt;data = data; </span><br><span class="line">    link-&gt;dataType = dataType; </span><br><span class="line">    link-&gt;next = <span class="literal">NULL</span>; </span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> link; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>在已有链表的表头进行插入节点，代码如下：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">insertFirst</span><span class="params">(linkList h, <span class="keyword">void</span> *data, <span class="keyword">int</span> dataType)</span> </span><br><span class="line"></span>&#123; </span><br><span class="line">    linkList l = newLinkList(data, dataType); </span><br><span class="line">    l-&gt;next = h-&gt;next; </span><br><span class="line">    h-&gt;next = l; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>输出链表中数据到控制台，代码如下：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">linkListOutput</span><span class="params">(linkList h)</span> </span>&#123; </span><br><span class="line">    linkList p = h; </span><br><span class="line"></span><br><span class="line">    p = p-&gt;next; </span><br><span class="line">    <span class="keyword">while</span>(p != <span class="literal">NULL</span>) &#123; </span><br><span class="line">        <span class="keyword">switch</span>(p-&gt;dataType) &#123; </span><br><span class="line">            <span class="keyword">case</span> <span class="number">0</span>: &#123; </span><br><span class="line">                <span class="built_in">printf</span>(<span class="string">"%4d"</span>, *(<span class="keyword">int</span>*)(p-&gt;data)); </span><br><span class="line">                <span class="keyword">break</span>; </span><br><span class="line">            &#125; </span><br><span class="line">           <span class="keyword">case</span> <span class="number">1</span>: &#123; </span><br><span class="line">                <span class="built_in">printf</span>(<span class="string">"%4f"</span>, *(<span class="keyword">double</span>*)(p-&gt;data)); </span><br><span class="line">                <span class="keyword">break</span>; </span><br><span class="line">           &#125; </span><br><span class="line">           <span class="keyword">case</span> <span class="number">2</span>: &#123; </span><br><span class="line">                <span class="built_in">printf</span>(<span class="string">"%4c"</span>, *(<span class="keyword">char</span>*)(p-&gt;data)); </span><br><span class="line">                <span class="keyword">break</span>; </span><br><span class="line">            &#125; </span><br><span class="line">            <span class="keyword">case</span> <span class="number">3</span>: &#123; </span><br><span class="line">                <span class="built_in">printf</span>(<span class="string">"%s "</span>, (<span class="keyword">char</span>*)(p-&gt;data)); </span><br><span class="line">                <span class="keyword">break</span>; </span><br><span class="line">            &#125; </span><br><span class="line">        &#125; </span><br><span class="line">        p = p-&gt;next; </span><br><span class="line">    &#125; </span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"\n"</span>); </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h3><p>通过上面这个链表的小例子，大家可能已经看到了 C 语言的灵活性。这段代码虽然短并且功能简单，但是已经实现了多态性。这篇文章的本意并不在于想要告诉大家用 C 实现多态的方法，而多态的含义也无疑是更加广泛的。这篇文章的初衷其实是基于这样一点认识：面向对象是一种程序设计思想，而 C 语言则是一种编程语言。也许它并不是专门为了面向对象编程而设计，但是这绝不意味着它不能实现面向对象的程序设计。当然以上所展示的这几个操作，如果是用 别的编程语言，可能只要寥寥几行就可以完成，但是 C 语言想告诉我们的是：也许我不擅长，但是并不意味着我做不到。</p>
+<hr>
+<h3 id="C语言实现C-继承"><a href="#C语言实现C-继承" class="headerlink" title="C语言实现C++继承"></a>C语言实现C++继承</h3><pre><code>注：用结构加指针实现
+</code></pre><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="string">"stdio.h"</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="string">"stdlib.h"</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">//定义函数指针类型DISPLAYINTEGER，指向返回值为void，参数列表为(const int)的函数</span></span><br><span class="line"><span class="function"><span class="keyword">typedef</span>  <span class="title">void</span><span class="params">( *DISPLAYINTEGER)</span><span class="params">(<span class="keyword">const</span> <span class="keyword">int</span>)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">//定义函数，将数字以十进制形式输出，该函数类型与DISPLAYINTEGER匹配</span></span><br><span class="line"> <span class="function"><span class="keyword">void</span> <span class="title">DisplayDecimal</span><span class="params">(<span class="keyword">const</span> <span class="keyword">int</span> Number)</span> </span>&#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"The decimal value is %d\n"</span>,Number);</span><br><span class="line"> &#125;</span><br><span class="line"> <span class="comment">//定义函数，将数字以八进制形式输出，该函数类型与DISPLAYINTEGER匹配</span></span><br><span class="line"> <span class="function"><span class="keyword">void</span> <span class="title">DisplayOctal</span><span class="params">(<span class="keyword">const</span> <span class="keyword">int</span> Number)</span> </span>&#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"The octal value is %o\n"</span>,Number);</span><br><span class="line"> &#125;</span><br><span class="line"> <span class="comment">//定义函数，将数字以十六进制形式输出，该函数类型与DISPLAYINTEGER匹配</span></span><br><span class="line"> <span class="function"><span class="keyword">void</span> <span class="title">DisplayHexadecimal</span> <span class="params">(<span class="keyword">const</span> <span class="keyword">int</span> Number)</span> </span>&#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"The hexadecimal value is %x\n"</span>,Number);</span><br><span class="line"> &#125;</span><br><span class="line"> <span class="comment">/********************************************************************************************</span><br><span class="line"> 定义通用的显示数字函数DisplayNumber：</span><br><span class="line"> （1）参数DisplayFormat是DISPLAYINTEGER函数指针类型，实参可以是以上定义的三个函数之一，通过传递不同的实参，</span><br><span class="line">      将数字以各种格式输出；</span><br><span class="line"> （2）Number是准备输出的数字</span><br><span class="line">*********************************************************************************************/</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">DisplayNumber</span><span class="params">(DISPLAYINTEGER  DisplayFormat,<span class="keyword">const</span> <span class="keyword">int</span> Number)</span> </span>&#123;</span><br><span class="line">    <span class="comment">//调用以实参传入的函数，以某种格式输出整型数字</span></span><br><span class="line">    DisplayFormat(Number);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">char</span>* argv[])</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> Number=<span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 如果有数字形式的命令行参数，将其输出，否则输出0</span></span><br><span class="line">    <span class="keyword">if</span>(argc&gt;<span class="number">1</span>)  </span><br><span class="line">        Number=atoi(argv[<span class="number">1</span>]);</span><br><span class="line">    <span class="comment">//分别以三种格式将数字输出</span></span><br><span class="line">    DisplayNumber(DisplayDecimal,Number);</span><br><span class="line">    DisplayNumber(DisplayOctal,Number);</span><br><span class="line">    DisplayNumber(DisplayHexadecimal,Number);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="C语言实现C-多态性"><a href="#C语言实现C-多态性" class="headerlink" title="C语言实现C++多态性"></a>C语言实现C++多态性</h3><p>用C语言实现一些类似C＋＋的功能还是有好处的，一方面多重继承开销大，而且在底层编程，C用得比较多。</p>
+<p>1.parent.h</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">ifndef</span> PARENT_H</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> PARENT_H</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="string">"child1.h"</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="string">"child2.h"</span></span></span><br><span class="line"><span class="keyword">struct</span> parent_type &#123;</span><br><span class="line">    <span class="keyword">unsigned</span> <span class="keyword">int</span> id;</span><br><span class="line">    <span class="comment">//char classname[20];</span></span><br><span class="line">    <span class="keyword">char</span> * name;</span><br><span class="line">    <span class="keyword">struct</span>&#123;</span><br><span class="line">        <span class="keyword">struct</span> parent_handle * (*init)(<span class="keyword">void</span> * pvoid);</span><br><span class="line">        <span class="keyword">int</span> (*fp1)(<span class="keyword">struct</span> parent_handle *ph); </span><br><span class="line">        <span class="comment">//...</span></span><br><span class="line">    &#125;pfn;</span><br><span class="line">    <span class="keyword">struct</span> parent_type *next;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">struct</span> parent_handle&#123;</span><br><span class="line">    <span class="keyword">int</span> i;</span><br><span class="line">    <span class="keyword">union</span>&#123;</span><br><span class="line">        <span class="keyword">struct</span> child1_handle child_hdl1;</span><br><span class="line">        <span class="keyword">struct</span> child2_handle child_hdl2;</span><br><span class="line">        <span class="comment">//...</span></span><br><span class="line">    &#125;priv;</span><br><span class="line">    <span class="keyword">struct</span> parent_type *ptp;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>2.parent.c</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="string">"stdafx.h"</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="string">"parent.h"</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">static</span> <span class="keyword">struct</span> parent_type *class_list;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">register_child</span><span class="params">(<span class="keyword">struct</span> parent_type *p)</span> </span>&#123;</span><br><span class="line">    p-&gt;next = class_list;</span><br><span class="line">    class_list = p;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">struct</span> parent_handle * <span class="title">parent_init</span><span class="params">(<span class="keyword">void</span> * pchild_priv, <span class="keyword">unsigned</span> <span class="keyword">int</span> id)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">struct</span> parent_type *p;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">for</span> (p = class_list; p; p = p-&gt;next)</span><br><span class="line">        <span class="keyword">if</span> (p-&gt;id == id)</span><br><span class="line">            <span class="keyword">return</span> p-&gt;pfn.init(pchild_priv);</span><br><span class="line">    </span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"unable to find matching child class\n"</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">NULL</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">parent_fp1</span><span class="params">(<span class="keyword">struct</span> parent_handle *ph)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (!ph-&gt;ptp-&gt;pfn.fp1)</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> ph-&gt;ptp-&gt;pfn.fp1(ph);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">register_child</span><span class="params">(<span class="keyword">struct</span> parent_type *p)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">struct</span> parent_handle * <span class="title">parent_init</span><span class="params">(<span class="keyword">void</span> * pchild_priv, <span class="keyword">unsigned</span> <span class="keyword">int</span> id)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">parent_fp1</span><span class="params">(<span class="keyword">struct</span> parent_handle *ph)</span></span>;</span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></span><br></pre></td></tr></table></figure>
+<ol>
+<li>child1.h</li>
+</ol>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">ifndef</span> CHILD1_H</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> CHILD1_H</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> CHILD_1_ID 101</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">struct</span> child1_handle &#123;</span><br><span class="line">    <span class="keyword">char</span> child1_decr[<span class="number">20</span>];</span><br><span class="line">    <span class="keyword">int</span>  child1_data;</span><br><span class="line">    <span class="comment">//...</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">extern</span> <span class="keyword">struct</span> parent_type child_tp1;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">struct</span> parent_handle * <span class="title">child1_init</span><span class="params">(<span class="keyword">void</span> * pvoid)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">child1_fp1</span><span class="params">(<span class="keyword">struct</span> parent_handle *ph)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></span><br></pre></td></tr></table></figure>
+<p>4.child1.c</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="string">"stdafx.h"</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="string">"parent.h"</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="string">"child1.h"</span></span></span><br><span class="line"><span class="keyword">struct</span> parent_type child_tp1= &#123;CHILD_1_ID,<span class="string">"class child1"</span>,&#123;&amp;child1_init,&amp;child1_fp1&#125;,<span class="number">0</span>&#125;;</span><br><span class="line"><span class="comment">/*</span><br><span class="line">struct parent_type  child1= &#123;</span><br><span class="line">    .id = CHILD_1_ID,</span><br><span class="line">    .name  = "class child1",</span><br><span class="line">    .fn = &#123;</span><br><span class="line">        .init   = &amp;child1_init,</span><br><span class="line">        .fp1   = &amp;child1_fp1,</span><br><span class="line">     &#125;,</span><br><span class="line">&#125;;</span><br><span class="line">*/</span></span><br><span class="line"><span class="function"><span class="keyword">struct</span> parent_handle * <span class="title">child1_init</span><span class="params">(<span class="keyword">void</span> * pvoid)</span> </span>&#123;</span><br><span class="line">    <span class="comment">//int ret;</span></span><br><span class="line">    <span class="keyword">struct</span> child1_handle *h;</span><br><span class="line">    <span class="keyword">struct</span> parent_handle *ph = (<span class="keyword">struct</span> parent_handle *)<span class="built_in">malloc</span>(<span class="keyword">sizeof</span>(<span class="keyword">struct</span> parent_handle<span class="comment">/* *h */</span>));</span><br><span class="line">    <span class="keyword">if</span> (!ph)</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">NULL</span>;</span><br><span class="line">     ph-&gt;ptp = &amp;child_tp1;</span><br><span class="line">    </span><br><span class="line">     <span class="comment">//todo</span></span><br><span class="line">    h = &amp;ph-&gt;priv.child_hdl1;</span><br><span class="line">    <span class="built_in">strcpy</span>(h-&gt;child1_decr,<span class="string">"hello child1!"</span>);</span><br><span class="line">    h-&gt;child1_data=*((<span class="keyword">int</span>*)(pvoid));</span><br><span class="line">    <span class="comment">//...</span></span><br><span class="line">    <span class="keyword">return</span> ph;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">child1_fp1</span><span class="params">(<span class="keyword">struct</span> parent_handle *ph)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">struct</span> child1_handle *h = &amp;ph-&gt;priv.child_hdl1;</span><br><span class="line">    <span class="comment">//todo</span></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"%s,data=%d\r\n"</span>,h-&gt;child1_decr,h-&gt;child1_data);</span><br><span class="line">    <span class="comment">//...</span></span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>5.child2.h</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">ifndef</span> CHILD2_H</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> CHILD2_H</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> CHILD_2_ID 102</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">struct</span> child2_handle &#123;</span><br><span class="line">    <span class="keyword">int</span>  child2_data;</span><br><span class="line">    <span class="keyword">char</span> child2_decr[<span class="number">20</span>];</span><br><span class="line">    <span class="comment">//...</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">extern</span> <span class="keyword">struct</span> parent_type child_tp2;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">child2_fp1</span><span class="params">(<span class="keyword">struct</span> parent_handle *ph)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">struct</span> parent_handle * <span class="title">child2_init</span><span class="params">(<span class="keyword">void</span> * pvoid)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></span><br></pre></td></tr></table></figure>
+<p>6.child2.c</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="string">"stdafx.h"</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="string">"parent.h"</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="string">"child2.h"</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">struct</span> parent_type child_tp2= &#123;CHILD_2_ID,<span class="string">"class child2"</span>,&#123;&amp;child2_init,&amp;child2_fp1&#125;,<span class="number">0</span>&#125;;</span><br><span class="line"><span class="comment">/*</span><br><span class="line">struct parent_type  child1= &#123;</span><br><span class="line">    .id = CHILD_1_ID,</span><br><span class="line">    .name  = "class child1",</span><br><span class="line">    .fn = &#123;</span><br><span class="line">        .init   = &amp;child1_init,</span><br><span class="line">        .fp1   = &amp;child1_fp1,</span><br><span class="line">    &#125;,</span><br><span class="line">&#125;;</span><br><span class="line">*/</span></span><br><span class="line"><span class="function"><span class="keyword">struct</span> parent_handle * <span class="title">child2_init</span><span class="params">(<span class="keyword">void</span> * pvoid)</span> </span>&#123;</span><br><span class="line">     <span class="comment">//int ret;</span></span><br><span class="line">     <span class="keyword">struct</span> child2_handle *h;</span><br><span class="line">     <span class="keyword">struct</span> parent_handle *ph = (<span class="keyword">struct</span> parent_handle *)<span class="built_in">malloc</span>(<span class="keyword">sizeof</span>(<span class="keyword">struct</span> parent_handle<span class="comment">/* *h */</span>));  </span><br><span class="line">     <span class="comment">//别忘了自己加deinit 把它释放</span></span><br><span class="line">     <span class="keyword">if</span> (!ph)</span><br><span class="line">         <span class="keyword">return</span> <span class="literal">NULL</span>;</span><br><span class="line">     ph-&gt;ptp = &amp;child_tp2;</span><br><span class="line">    </span><br><span class="line">     <span class="comment">//todo</span></span><br><span class="line">     h = &amp;ph-&gt;priv.child_hdl2;</span><br><span class="line">     <span class="built_in">strcpy</span>(h-&gt;child2_decr,<span class="string">"hello child2!"</span>);</span><br><span class="line">     h-&gt;child2_data=*((<span class="keyword">int</span>*)(pvoid));</span><br><span class="line">     <span class="comment">//...</span></span><br><span class="line">     <span class="keyword">return</span> ph;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">child2_fp1</span><span class="params">(<span class="keyword">struct</span> parent_handle *ph)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">struct</span> child2_handle *h = &amp;ph-&gt;priv.child_hdl2;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//todo</span></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"%s,data=%d\r\n"</span>,h-&gt;child2_decr,h-&gt;child2_data);</span><br><span class="line">    <span class="comment">//...</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ol>
+<li>main.c</li>
+</ol>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// testClass.cpp : Defines the entry point for the console application.</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="string">"stdafx.h"</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="string">"parent.h"</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="string">"child1.h"</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="string">"child2.h"</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">static</span> <span class="keyword">struct</span> parent_handle *pchild_1_h,*pchild_2_h;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">char</span>* argv[])</span> </span>&#123;</span><br><span class="line">    <span class="comment">//printf("Hello World!\n");</span></span><br><span class="line">    <span class="keyword">int</span> child1_priv=<span class="number">123</span>;</span><br><span class="line">    <span class="keyword">int</span> child2_priv=<span class="number">456</span>;</span><br><span class="line">    register_child(&amp;child_tp1);                 <span class="comment">//注册子类1</span></span><br><span class="line">    pchild_1_h = parent_init((<span class="keyword">void</span> *)(&amp;child1_priv),CHILD_1_ID);<span class="comment">//初始化子类1</span></span><br><span class="line">    <span class="keyword">if</span>(pchild_1_h)</span><br><span class="line">         parent_fp1(pchild_1_h);                 <span class="comment">//执行子类1的fp1函数</span></span><br><span class="line">    </span><br><span class="line">    register_child(&amp;child_tp2);                 <span class="comment">//注册子类2</span></span><br><span class="line">    pchild_2_h = parent_init((<span class="keyword">void</span> *)(&amp;child2_priv),CHILD_2_ID);<span class="comment">//初始化子类2</span></span><br><span class="line">    parent_fp1(pchild_2_h);                     <span class="comment">//执行子类2的fp1函数</span></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>用C++实现很简单</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> parent &#123;</span><br><span class="line">    <span class="function">virturl <span class="keyword">int</span> <span class="title">fp1</span> <span class="params">()</span></span>; </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> child1 :<span class="keyword">public</span> parent &#123;</span><br><span class="line">    <span class="keyword">char</span> child1_decr[<span class="number">20</span>];</span><br><span class="line">    <span class="keyword">int</span>  child1_data;</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">fp1</span> <span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> child2 :<span class="keyword">public</span> parent &#123;</span><br><span class="line">    <span class="keyword">char</span> child2_decr[<span class="number">20</span>];</span><br><span class="line">    <span class="keyword">int</span>  child2_data;</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">fp1</span> <span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">parent * pa;</span><br><span class="line">child1 ch1b;</span><br><span class="line">pa= &amp;ch1b;</span><br><span class="line">pa-&gt;fp1;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    
+  </div>
+  
+    
+    <div class="copyright">
+        <p><span>本文标题:</span><a href="/2015/04/01/2015-04-01-C-CPP-polymorphism/">用C实现C++中的多态性</a></p>
+        <p><span>文章作者:</span><a href="/" title="访问 xiaoyifeibupt 的个人博客">xiaoyifeibupt</a></p>
+        <p><span>发布时间:</span>2015年04月01日 - 13时18分</p>
+        <p><span>最后更新:</span>2017年04月02日 - 10时22分</p>
+        <p>
+            <span>原始链接:</span><a class="post-url" href="/2015/04/01/2015-04-01-C-CPP-polymorphism/" title="用C实现C++中的多态性">http://xiaoyifeibupt.github.io/2015/04/01/2015-04-01-C-CPP-polymorphism/</a>
+            <span class="copy-path" data-clipboard-text="原文: http://xiaoyifeibupt.github.io/2015/04/01/2015-04-01-C-CPP-polymorphism/　　作者: xiaoyifeibupt" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <script src="/js/clipboard.min.js"></script>
+            <script> var clipboard = new Clipboard('.copy-path'); </script>
+        </p>
+        <p>
+            <span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/cn/" title="中国大陆 (CC BY-NC-SA 3.0 CN)" target = "_blank">"署名-非商用-相同方式共享 3.0"</a> 转载请保留原文链接及作者。
+        </p>
+    </div>
+
+
+
+<nav id="article-nav">
+  
+    <a href="/2015/04/06/2015-04-06-tcp-trans/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption"><</strong>
+      <div class="article-nav-title">
+        
+          TCP状态转换
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2015/03/22/2015-03-22-cpp-function-call/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">C函数调用机制及栈帧指针</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#前言：关于多态，关于-C"><span class="toc-number">1.</span> <span class="toc-text">前言：关于多态，关于 C</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#结构体：不得不说的故事"><span class="toc-number">2.</span> <span class="toc-text">结构体：不得不说的故事</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#void-：万能的指针“挂钩”"><span class="toc-number">2.1.</span> <span class="toc-text">void*：万能的指针“挂钩”</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#实现：你的多态你做主"><span class="toc-number">3.</span> <span class="toc-text">实现：你的多态你做主</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#小结"><span class="toc-number">4.</span> <span class="toc-text">小结</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#C语言实现C-继承"><span class="toc-number">5.</span> <span class="toc-text">C语言实现C++继承</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#C语言实现C-多态性"><span class="toc-number">6.</span> <span class="toc-text">C语言实现C++多态性</span></a></li></ol>
+</div>
+<input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
+
+<script src="http://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+<script>
+    var valueHide = "隐藏目录";
+    var valueShow = "显示目录";
+
+    if ($(".left-col").is(":hidden")) {
+        $("#tocButton").attr("value", valueShow);
+    }
+    $("#tocButton").click(function() {
+        if ($("#toc").is(":hidden")) {
+            $("#tocButton").attr("value", valueHide);
+            $("#toc").slideDown(320);
+        }
+        else {
+            $("#tocButton").attr("value", valueShow);
+            $("#toc").slideUp(350);
+        }
+    })
+    if ($(".toc").length < 1) {
+        $("#toc, #tocButton").hide();
+    }
+</script>
+
+
+
+
+
+<div class="bdsharebuttonbox">
+	<a href="#" class="fx fa-weibo bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+	<a href="#" class="fx fa-weixin bds_weixin" data-cmd="weixin" title="分享到微信"></a>
+	<a href="#" class="fx fa-qq bds_sqq" data-cmd="sqq" title="分享到QQ好友"></a>
+	<a href="#" class="fx fa-facebook-official bds_fbook" data-cmd="fbook" title="分享到Facebook"></a>
+	<a href="#" class="fx fa-twitter bds_twi" data-cmd="twi" title="分享到Twitter"></a>
+	<a href="#" class="fx fa-linkedin bds_linkedin" data-cmd="linkedin" title="分享到linkedin"></a>
+	<a href="#" class="fx fa-files-o bds_copy" data-cmd="copy" title="分享到复制网址"></a>
+</div>
+<script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"2","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
+
+
+
+
+    
+
+
+
+    <div class="scroll" id="post-nav-button">
+        
+            <a href="/2015/04/06/2015-04-06-tcp-trans/" title="上一篇: TCP状态转换">
+                <i class="fa fa-angle-left"></i>
+            </a>
+        
+        <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+        
+            <a href="/2015/03/22/2015-03-22-cpp-function-call/" title="下一篇: C函数调用机制及栈帧指针">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        
+    </div>
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2017/04/02/2017-04-02-android_interview/">北邮人论坛DSS886安卓面试总结</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/04/15/2016-05-13-Sublime-LaTex-Chinese-support/">部署Mac OS X上的Sublime Text + LaTex中文环境</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/04/15/2015-04-15-string-function/">字符串相关库函数</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/04/10/2015-04-10-Knuth-Morris-Pratt/">彻底理解KMP算法</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/04/06/2015-04-06-tcp-trans/">TCP状态转换</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/04/01/2015-04-01-C-CPP-polymorphism/">用C实现C++中的多态性</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/03/22/2015-03-22-cpp-function-call/">C函数调用机制及栈帧指针</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/01/19/2015-01-19-effective-cpp-6/">Effective C++ —— 继承与面向对象设计</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/01/18/2015-01-18-effective-cpp-5/">Effective C++ —— 实现</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/01/17/2015-01-17-effective-cpp-4/">Effective C++ —— 设计与声明</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/01/16/2015-01-16-effective-cpp-3/">Effective C++ —— 资源管理</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/01/11/2015-01-11-effective-cpp-2/">Effective C++ —— 构造析构赋值运算</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/01/09/2015-01-09-effective-cpp-1/">Effective C++ —— 让自己习惯C++</a></li><li class="post-list-item"><a class="post-list-link" href="/2014/12/29/2014-12-29-xhttpd-makefile/">从零开始实现自己的httpd——Makefile</a></li><li class="post-list-item"><a class="post-list-link" href="/2014/12/23/2014-12-23-xhttpd-epollnote/">从零开始实现自己的httpd——epoll读写数据的注意事项</a></li><li class="post-list-item"><a class="post-list-link" href="/2014/12/21/2014-12-21-xhttpd-epoll/">从零开始实现自己的httpd——epoll</a></li><li class="post-list-item"><a class="post-list-link" href="/2014/12/19/2014-12-19-xhttpd-socket/">从零开始实现自己的httpd——socket</a></li><li class="post-list-item"><a class="post-list-link" href="/2014/12/18/2014-12-18-xhttpd-buffer/">从零开始实现自己的httpd——buffer</a></li><li class="post-list-item"><a class="post-list-link" href="/2014/12/16/2014-12-16-http- tinyhttpd/">C 语言实现最简单的 HTTP 服务器tinyhttpd详解</a></li><li class="post-list-item"><a class="post-list-link" href="/2014/12/15/2014-12-15-http-protocol/">HTTP协议介绍</a></li><li class="post-list-item"><a class="post-list-link" href="/2014/11/25/2014-11-25-CSAPP-chapter-2/">CSAPP——信息的表示和处理</a></li><li class="post-list-item"><a class="post-list-link" href="/2014/11/23/2014-11-23-Design-pattern-Decorator-Memento-State-Visitor-Mediator-Interpreter/">设计模式--备忘录/状态/访问者/中介者/解释器</a></li><li class="post-list-item"><a class="post-list-link" href="/2014/11/18/2014-11-18-Design-pattern-strategy-Template-Observer-Iterator-ChainofResponsibility-Command/">设计模式--策略/模板方法/观察者/迭代子/责任链/命令</a></li><li class="post-list-item"><a class="post-list-link" href="/2014/11/15/2014-11-15-Design-pattern-Decorator-Proxy-Facade-Bridge-Composite-Flyweight/">设计模式--装饰/代理/外观/桥接/组合/享元</a></li><li class="post-list-item"><a class="post-list-link" href="/2014/11/12/2014-11-12-Design-pattern-Adapter/">设计模式--适配器模式</a></li><li class="post-list-item"><a class="post-list-link" href="/2014/11/10/2014-11-10-Design-pattern-Builder/">设计模式--建造者模式</a></li><li class="post-list-item"><a class="post-list-link" href="/2014/11/09/2014-11-09-Design-pattern-Prototype/">设计模式--原型模式</a></li><li class="post-list-item"><a class="post-list-link" href="/2014/11/08/2014-11-08-Design-pattern-Singleton/">设计模式--单例模式</a></li><li class="post-list-item"><a class="post-list-link" href="/2014/11/07/2014-11-07-Design-pattern-Abstract-Factory/">设计模式--抽象工厂模式</a></li><li class="post-list-item"><a class="post-list-link" href="/2014/11/05/2014-11-05-Design-pattern-Factory-Method/">设计模式--工程模式</a></li></ul>
+    <script src="http://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+    <script>
+        $(".post-list").addClass("toc-article");
+        $(".post-list-item a").attr("target","_blank");
+        $("#post-nav-button > a:nth-child(2)").click(function() {
+            $(".fa-bars, .fa-times").toggle();
+            $(".post-list").toggle(300);
+            if ($(".toc").length > 0) {
+                $("#toc, #tocButton").toggle(200, function() {
+                    if ($(".switch-area").is(":visible")) {
+                        $("#tocButton").attr("value", valueHide);
+                        }
+                    })
+            }
+            else {
+            }
+        })
+    </script>
+
+
+
+    <script>
+        
+    </script>
+</div>
+      <footer id="footer">
+    <div class="outer">
+        <div id="footer-info">
+            <div class="footer-left">
+                &copy; 2017 xiaoyifeibupt
+            </div>
+            <div class="footer-right">
+                <a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/luuman/hexo-theme-spfk" target="_blank">spfk</a> by luuman
+            </div>
+        </div>
+        
+    </div>
+</footer>
+
+    </div>
+    <script src="http://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+<script src="/js/main.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            var backgroundnum = 24;
+            var backgroundimg = "url(/background/bg-x.jpg)".replace(/x/gi, Math.ceil(Math.random() * backgroundnum));
+            $("#mobile-nav").css({"background-image": backgroundimg,"background-size": "cover","background-position": "center"});
+            $(".left-col").css({"background-image": backgroundimg,"background-size": "cover","background-position": "center"});
+        })
+    </script>
+
+
+
+
+
+<div class="scroll" id="scroll">
+    <a href="#"><i class="fa fa-arrow-up"></i></a>
+    <a href="#comments"><i class="fa fa-comments-o"></i></a>
+    <a href="#footer"><i class="fa fa-arrow-down"></i></a>
+</div>
+<script>
+    $(document).ready(function() {
+        if ($("#comments").length < 1) {
+            $("#scroll > a:nth-child(2)").hide();
+        };
+    })
+</script>
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+
+  <script language="javascript">
+    $(function() {
+        $("a[title]").each(function() {
+            var a = $(this);
+            var title = a.attr('title');
+            if (title == undefined || title == "") return;
+            a.data('title', title).removeAttr('title').hover(
+
+            function() {
+                var offset = a.offset();
+                $("<div id=\"anchortitlecontainer\"></div>").appendTo($("body")).html(title).css({
+                    top: offset.top - a.outerHeight() - 15,
+                    left: offset.left + a.outerWidth()/2 + 1
+                }).fadeIn(function() {
+                    var pop = $(this);
+                    setTimeout(function() {
+                        pop.remove();
+                    }, pop.text().length * 800);
+                });
+            }, function() {
+                $("#anchortitlecontainer").remove();
+            });
+        });
+    });
+</script>
+
+
+  </div>
+</body>
+</html>
